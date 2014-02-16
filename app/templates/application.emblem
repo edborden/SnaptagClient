@@ -1,0 +1,6 @@
+ul.nav.nav-pills
+  li Home
+  li Stuff
+  li Messages
+
+= outlet
