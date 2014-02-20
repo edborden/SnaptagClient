@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>App</title>
-<meta name="viewport" content="user-scalable=no,initial-scale = 1.0,maximum-scale = 1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <!-- build:css(tmp/result) /assets/app.min.css -->
-
+    <link rel="stylesheet" href="/assets/app.css">
   <!-- endbuild -->
 
   <!-- for more details visit: https://github.com/yeoman/grunt-usemin -->
@@ -29,14 +29,13 @@
   <!-- endbuild -->
 
   <!-- build:js(tmp/result) /assets/vendor.min.js -->
-
     <script src="/vendor/jquery/jquery.js"></script>
 
     <!-- @if dist=false -->
     <script src="/vendor/handlebars/handlebars.js"></script>
     <script src="/vendor/ember/ember.js"></script>
     <!-- @endif --><!-- @if dist=true -->
-    <script src="/vendor/handlebars/handlebars.runtime.js"></script>
+    <script src="/vendor/handlebars/handlebars.js"></script>
     <script src="/vendor/ember/ember.prod.js"></script>
     <!-- @endif -->
 

@@ -17,11 +17,18 @@ module.exports = {
     }]
   },
 
+  extrasToResult: {
+    expand: true,
+    cwd: 'vendor/bootstrap/dist',
+    src: 'fonts/*',
+    dest: 'tmp/result/'
+  },
+
   cssToResult: {
     expand: true,
     cwd: 'app/styles',
     src: ['**/*.css'],
-    dest: 'tmp/result/assets'
+    dest: 'tmp/result/'
   },
 
   // Assembles everything in `tmp/result`.

@@ -1,2 +1,5 @@
+
 = model.firstname
 = model.lastname
+
+link-to "inside.first" | Login
