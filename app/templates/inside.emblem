@@ -1,12 +1,2 @@
-.container-fluid.mobnav
-		.row.no-gutter
-			.col-xs-12.btn-group.btn-group-lg
-				link-to "inside.first" class="btn btn-primary"
-					span.glyphicon.glyphicon-search
-
-				link-to "inside.second" class="btn btn-primary"
-					span.glyphicon.glyphicon-globe
-
-				link-to "inside.third" class="btn btn-primary"
-					span.glyphicon.glyphicon-user
+= navi-row link1=inside.globe link2=user link3=screenshot
 = outlet

@@ -2,9 +2,9 @@ Router = Ember.Router.extend()
 
 Router.map( ->
 	this.resource('inside', ->
-		this.route('first')
-		this.route('second')
-		this.route('third')
+		this.route('world')
+		this.route('me')
+		this.route('hunt')
 	)
 )
 

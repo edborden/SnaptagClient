@@ -1,5 +1,10 @@
+.container-fluid
+	.row
+		.col-xs-10.col-xs-offset-1.spacer
+			p A game played across an entire city where you hunt and tag other players in the real-world.
 
-= model.firstname
-= model.lastname
+			p Ping your targets to learn their location then tag them before they identify you as their hunter.
 
-link-to "inside.first" | Login
+			p Be careful, because you are also being hunted yourself!
+
+			link-to "inside.world" class="btn btn-primary" | Login with Facebook
