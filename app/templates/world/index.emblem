@@ -1,0 +1,7 @@
+= alert-bar admin=true | Message from the GamesMaster
+
+= alert-bar admin=true | And another one
+
+= alert-bar | A regular one.
+
+= alert-bar | Another one.

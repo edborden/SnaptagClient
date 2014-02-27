@@ -1,0 +1,12 @@
+.navbar-fixed-top
+	.container-fluid.mobnav
+		.row.no-gutter
+			.col-xs-12.btn-group.btn-group-lg
+				link-to "world" class="btn btn-primary"
+					span.glyphicon.glyphicon-globe
+
+				link-to "me" class="btn btn-primary"
+					span.glyphicon.glyphicon-user
+
+				link-to "hunt" class="btn btn-primary"
+					span.glyphicon.glyphicon-screenshot

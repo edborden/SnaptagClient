@@ -1,0 +1,3 @@
+= partial "nav/top"
+h1 two..
+= partial "nav/bottom"

@@ -1,2 +1,3 @@
-= navi-row link1=inside.globe link2=user link3=screenshot
+= navi-row
 = outlet
+= navi-footer
