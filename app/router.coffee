@@ -1,7 +1,6 @@
 Router = Ember.Router.extend()
 
 Router.map( ->
-	this.route('inside')
 	this.resource('world', ->
 		this.route('one')
 		this.route('two')
