@@ -1,20 +1,37 @@
 @import "bootstrap.less";
 
-.btn {width:33.333%;}
+// Navbars
 
-.row.no-gutter [class*='col-']:not(:first-child),.row.no-gutter [class*='col-']:not(:last-child) {
+.btn {width:33.333333%;height:100%;}
+.no-gutter [class*='col-']:not(:first-child),.row.no-gutter [class*='col-']:not(:last-child) {
   padding-right:0;
   padding-left:0;
 }
+.no-padding {padding: 0px;}
 
-.container-fluid.mobnav {
-    padding: 0px;
-}
+// map
+html, body {height: 100%;}
+#map {height: 100%;}
 
-body { padding-top: 50px; padding-bottom: 50px;}
 
+// enter-game button
 .spacer {margin-top:100px;text-align:center;}
+.enter-game {padding-top:100px;}
 
-@media only screen and (min-width: 768px){body{font-size:2.5em;}} 
+// responsive text and nav buttons
+
+@media only screen and (max-width: 991px){body{font-size:2.5em;}} 
 @media only screen and (min-width: 992px){body{font-size:3em;}} 
 @media only screen and (min-width: 1200px){body{font-size:3.5em;}} 
+
+@padding-large-vertical: 15px;
+@font-size-large:1.5em; 
+@border-radius-large:15px;
+
+button.close {font-size:@font-size-large;}
+
+.nav {height:10%;}
+.mid {height:35%;}
+.fill {height:100%;}
+
+body>div {height:100%;}

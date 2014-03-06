@@ -2,6 +2,7 @@ Router = Ember.Router.extend()
 
 Router.map( ->
 	this.resource('world', ->
+		this.route('index', { path: '/' })
 		this.route('one')
 		this.route('two')
 		this.route('three')

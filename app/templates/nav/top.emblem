@@ -1,7 +1,6 @@
-.navbar-fixed-top
-	.container-fluid.mobnav
-		.row.no-gutter
-			.col-xs-12.btn-group.btn-group-lg
+.container-fluid.no-padding
+		.row.no-gutter.fill
+			.col-xs-12.btn-group.btn-group-lg.fill
 				link-to "world" class="btn btn-primary"
 					span.glyphicon.glyphicon-globe
 

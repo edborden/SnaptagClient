@@ -6,3 +6,5 @@
 		p Kills : 5
 		p Reversals : 6
 		p Deaths : 7
+
+view "map"

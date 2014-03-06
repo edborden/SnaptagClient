@@ -1,1 +1,2 @@
-= outlet
+partial "nav/top"
+outlet

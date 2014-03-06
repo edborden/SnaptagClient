@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.gridweb"
+        versionCode = "1" 
+        version     = "1.0.0" >
+
+    <!-- versionCode is optional and Android only -->
+    <preference name="phonegap-version" value="3.1.0" />
+
+    <name>Assassin</name>
+
+    <description>
+        Assassin description.
+    </description>
+
+    <author href="http://www.gridweb.com" email="borden.edward@gmail.com">
+        Ed Borden
+    </author>
+
+    <gap:platform name="ios" />
+    <gap:platform name="android" />
+
+    <gap:plugin name="com.phonegap.plugins.facebookconnect">
+    <param name="APP_ID" value="726528350693125" />
+    <param name="APP_NAME" value="Web" />
+    </gap:plugin>
+
+    <access origin="*" />
+
+</widget>
+
