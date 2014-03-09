@@ -1,6 +1,5 @@
-.container-fluid.no-padding
-		.row.no-gutter.fill
-			.col-xs-12.btn-group.btn-group-lg.fill
+.container-fluid.nav.no-padding.bottom-margin
+			.col-xs-12.btn-group.btn-group-lg.fill.no-padding.no-gutter
 				link-to "world" class="btn btn-primary"
 					span.glyphicon.glyphicon-globe
 

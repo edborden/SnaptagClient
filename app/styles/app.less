@@ -2,12 +2,13 @@
 
 // Navbars
 
-.btn {width:33.333333%;height:100%;}
+.btn {width:33.3333%;height:100%;}
 .no-gutter [class*='col-']:not(:first-child),.row.no-gutter [class*='col-']:not(:last-child) {
   padding-right:0;
   padding-left:0;
 }
 .no-padding {padding: 0px;}
+.bottom-margin {bottom-margin:2px;}
 
 // map
 html, body {height: 100%;}
@@ -20,18 +21,18 @@ html, body {height: 100%;}
 
 // responsive text and nav buttons
 
-@media only screen and (max-width: 991px){body{font-size:2.5em;}} 
-@media only screen and (min-width: 992px){body{font-size:3em;}} 
-@media only screen and (min-width: 1200px){body{font-size:3.5em;}} 
+@media only screen and (min-width: 772px){body{font-size:1.5em;}} 
+@media only screen and (min-width: 992px){body{font-size:2em;}} 
+@media only screen and (min-width: 1200px){body{font-size:2.5em;}} 
 
 @padding-large-vertical: 15px;
 @font-size-large:1.5em; 
-@border-radius-large:15px;
+@border-radius-large:0px;
 
 button.close {font-size:@font-size-large;}
 
-.nav {height:10%;}
-.mid {height:35%;}
+.nav {height:9%;background-color:@brand-primary;}
+.mid {height:82%;}
 .fill {height:100%;}
 
 body>div {height:100%;}
