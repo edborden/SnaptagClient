@@ -1,6 +1,6 @@
 IndexRoute = Ember.Route.extend(
 	beforeModel: ->
-		this.transitionTo('world')
+		this.replaceWith('world')
 )
 
 `export default IndexRoute`

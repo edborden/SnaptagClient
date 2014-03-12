@@ -1,4 +1,4 @@
-`import Resolver from 'resolver'`
+`import Resolver from 'ember/resolver'`
 
 App = Ember.Application.extend(
   LOG_ACTIVE_GENERATION: true
