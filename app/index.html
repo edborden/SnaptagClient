@@ -56,6 +56,12 @@
 
   <!-- endbuild -->
 
+  <!-- @if dist=true -->
+    <script src='phonegap.js'></script>
+    <script src='cdv-plugin-fb-connect.js'></script>
+    <script src='facebook-js-sdk.js'></script>
+  <!-- @endif -->
+
   <!-- @if tests=true -->
   <link rel="stylesheet" href="/vendor/qunit/qunit/qunit.css">
   <script src="/vendor/qunit/qunit/qunit.js"></script>
@@ -93,9 +99,20 @@
   <!-- @if tests=false -->
   <script>
     window.App = require('appkit/app')["default"].create();
-    App.set('appId','726528350693125')
   </script>
   <!-- @endif -->
+  <!-- @if dist=true -->
+  <script>
+    App.set('build',true);
+  </script>
+  <!-- @endif -->
+  <!-- @if tests=false -->
+  <script>
+    App.set('appId','726528350693125');
+  </script>
+  <!-- @endif -->
+
+
 
 </body>
 </html>

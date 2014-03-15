@@ -3,6 +3,7 @@ Facebook = Ember.Mixin.create
   appId: undefined
   facebookParams: Ember.Object.create()
   fetchPicture: true
+  build: false
 
   init: ->
     @_super()
@@ -14,14 +15,18 @@ Facebook = Ember.Mixin.create
 
     $ ->
       $('body').append($("<div>").attr('id', 'fb-root'))
-      js = document.createElement 'script'
 
-      $(js).attr
-        id: 'facebook-jssdk'
-        async: true
-        src: "//connect.facebook.net/en_US/all.js"
+      if build == true
+        js = document.createElement 'script'
 
-      $('head').append js
+        $(js).attr
+          id: 'facebook-jssdk'
+          async: true
+          src: "//connect.facebook.net/en_US/all.js"
+
+        $('head').append js
+
+
   ).observes('facebookParams', 'appId')
 
   fbAsyncInit: ->
