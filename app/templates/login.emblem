@@ -7,4 +7,4 @@
 
 			p Be careful, because you are also being hunted yourself!
 
-			link-to "world" class="btn btn-primary" | Login with Facebook
+			button click="login" class="btn btn-primary" | Login with Facebook

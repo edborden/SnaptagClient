@@ -1,4 +1,4 @@
-.container-fluid.nav.no-padding.bottom-margin
+#nav-top.container-fluid.nav.no-padding.bottom-margin
 			.col-xs-12.btn-group.btn-group-lg.fill.no-padding.no-gutter
 				link-to "world" class="btn btn-primary"
 					span.glyphicon.glyphicon-globe

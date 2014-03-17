@@ -41,7 +41,6 @@
     <!-- @endif -->
 
     <script src="/vendor/ember-data/ember-data.js"></script>
-    <script src="/vendor/ember-simple-auth/ember-simple-auth.js"></script>
     <script src="/vendor/loader.js"></script>
     <script src="/vendor/ember-resolver/dist/ember-resolver.js"></script>
     <script src="/vendor/ic-ajax/main.js"></script>
@@ -60,6 +59,10 @@
     <script src='phonegap.js'></script>
     <script src='cdv-plugin-fb-connect.js'></script>
     <script src='facebook-js-sdk.js'></script>
+    <script>
+    document.addEventListener('deviceready', window.fbAsyncInit());
+
+    </script>
   <!-- @endif -->
 
   <!-- @if tests=true -->
@@ -86,7 +89,7 @@
 
 </head>
 <body>
-
+  <div id="fb-root">
   <!-- @if tests=true -->
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
@@ -96,23 +99,32 @@
   <script src="/testem.js"></script>
   <!-- @endif -->
 
-  <!-- @if tests=false -->
-  <script>
-    window.App = require('appkit/app')["default"].create();
-  </script>
-  <!-- @endif -->
   <!-- @if dist=true -->
-  <script>
-    App.set('test',false);
+  <script>     
+
   </script>
   <!-- @endif -->
-  <!-- @if tests=false -->
-  <script>
-    App.set('appId','726528350693125');
-  </script>
+  <!-- @if dist=false -->
+   <script>
+ (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+     window.fbAsyncInit = function() {
+        FB.init({
+          appId: '726528350693125'
+        });
+    window.App = require('appkit/app')["default"].create();
+    };
+    </script>
+
   <!-- @endif -->
+  
 
-
-
+  </div>
 </body>
 </html>

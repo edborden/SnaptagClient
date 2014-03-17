@@ -1,3 +1,2 @@
-partial "nav/top"
 outlet
 partial "nav/bottom"

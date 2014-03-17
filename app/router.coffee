@@ -1,6 +1,7 @@
 Router = Ember.Router.extend()
 
 Router.map( ->
+	this.route('login')
 	this.resource('world', ->
 		this.route('one')
 		this.route('two')
