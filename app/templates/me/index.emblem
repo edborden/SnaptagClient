@@ -2,7 +2,7 @@
 	.col-xs-6
 		img.img-responsive src="assets/ed.jpg"
 	.col-xs-6
-		p: .centerblock Ed "The Spanker" Borden, 31
+		p: .centerblock #{firstname} "The Spanker" #{lastname}
 		p Kills : 5
 		p Reversals : 6
 		p Deaths : 7
