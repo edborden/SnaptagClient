@@ -4,6 +4,6 @@
 			img.img-responsive src=mediumpic
 	.col-xs-6
 		p: .centerblock #{firstname} #{lastname}
-		p Completed : #{completed_count}
-		p Roll-Ups : #{roll_up_count}
 		p Exposed : #{exposed_count}
+		p Counteracted : #{counteract_count}
+		p Compromised : #{compromised_count}
