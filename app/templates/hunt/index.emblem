@@ -1,1 +1,2 @@
-.text-center.enter-game: link-to "hunt.one" class="btn btn-warning btn-lg" | Enter Game
+.text-center.enter-game
+	link-to "hunt.one" id="button50" class="btn btn-warning btn-lg" | Enter Game

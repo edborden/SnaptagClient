@@ -1,0 +1,2 @@
+img.img-responsive src=largepic
+= partial "nav/bottom1"

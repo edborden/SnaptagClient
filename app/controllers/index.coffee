@@ -10,6 +10,7 @@ IndexController = Ember.ObjectController.extend(
 						token: response.authResponse.accessToken
 						-> _this.transitionToRoute('world')
 					)
+			{scope : "email,user_photos,user_birthday"}
 			)
 )
 

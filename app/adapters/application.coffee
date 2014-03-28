@@ -1,5 +1,5 @@
 ApplicationAdapter = DS.RESTAdapter.extend(
-	host: 'http://gridweb.com'
+	host: 'http://www.gridweb.com'
 )
 
 `export default ApplicationAdapter`

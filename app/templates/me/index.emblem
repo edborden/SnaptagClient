@@ -1,9 +1,9 @@
-.container-fluid.mid
+.container-fluid
 	.col-xs-6
-		img.img-responsive src="assets/ed.jpg"
+		link-to "me.pic"
+			img.img-responsive src=mediumpic
 	.col-xs-6
-		p: .centerblock #{firstname} "The Spanker" #{lastname}
-		p Kills : 5
-		p Reversals : 6
-		p Deaths : 7
-	view "map"
+		p: .centerblock #{firstname} #{lastname}
+		p Completed : #{completed_count}
+		p Roll-Ups : #{roll_up_count}
+		p Exposed : #{exposed_count}

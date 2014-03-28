@@ -10,6 +10,7 @@ Router.map( ->
 		this.route('one')
 		this.route('two')
 		this.route('three')
+		this.route('pic')
 		)
 	this.resource('hunt', ->
 		this.route('one')
