@@ -1,2 +1,3 @@
-.text-center.enter-game
-	link-to "hunt.one" id="button50" class="btn btn-warning btn-lg" | Enter Game
+ul
+	each user in users
+		li = user
