@@ -1,0 +1,2 @@
+p Expose #{firstname}
+= partial "nav/bottom"

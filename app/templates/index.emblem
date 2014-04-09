@@ -1,10 +1,7 @@
 .container-fluid
 	.row
 		.col-xs-10.col-xs-offset-1.spacer
-			p A game played across an entire city where you hunt and tag other players in the real-world.
-
-			p Ping your targets to learn their location then tag them before they identify you as their hunter.
-
-			p Be careful, because you are also being hunted yourself!
-
-			button click="login" class="btn btn-primary" id="button50" | Login with Facebook
+			p You are being watched.
+			p Additional information is available:
+.text-center.enter-game
+	button click="login" id="button50" class="btn btn-primary" Login with Facebook

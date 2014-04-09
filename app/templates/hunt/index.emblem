@@ -1,3 +1,5 @@
 ul
-	each user in users
-		li = user
+	each model
+		li 
+			link-to 'hunt.user' this
+				= firstname

@@ -1,0 +1,2 @@
+p Locate #{firstname}
+= partial "nav/bottom"

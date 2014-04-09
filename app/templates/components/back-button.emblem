@@ -1,0 +1,3 @@
+.navbar-fixed-bottom.mobnav
+	button.btn-lg.btn-danger type="button" id="button100" click="back"
+		span.glyphicon.glyphicon-backward

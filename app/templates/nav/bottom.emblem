@@ -1,12 +1,12 @@
 .navbar-fixed-bottom.mobnav
 	.row.no-gutter
 		.col-xs-12.btn-group.btn-group-lg
-			link-to link1 class="btn btn-danger"
-				span class={ :glyphicon glyphicon1 }
+			link-to 'hunt.counteract' this class="btn btn-danger"
+				span.glyphicon.glyphicon-warning-sign
 
-			link-to link2 class="btn btn-danger"
-				span class={ :glyphicon glyphicon2 }
+			link-to 'hunt.locate' this class="btn btn-danger"
+				span.glyphicon.glyphicon-globe
 
-			link-to link3 class="btn btn-danger"
-				span class={ :glyphicon glyphicon3 }		
+			link-to 'hunt.expose' this class="btn btn-danger"
+				span.glyphicon.glyphicon-eye-open
 	

@@ -1,5 +1,5 @@
 ApplicationAdapter = DS.RESTAdapter.extend(
-	host: 'http://www.gridweb.com'
+	host: 'http://damp-sea-6022.herokuapp.com'
 )
 
 `export default ApplicationAdapter`
