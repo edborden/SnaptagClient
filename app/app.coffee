@@ -22,5 +22,8 @@ Ember.Route.reopen(
 				_this.replaceWith('index')
 		)
 )
+Ember.ControllerMixin.reopen(
+	pusher: null
+)
 
 `export default App`
