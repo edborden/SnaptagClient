@@ -1,6 +1,7 @@
 HuntIndexRoute = Ember.Route.extend(
 
 	beforeModel: ->
+		this._super()
 		_this = this
 		$.get("http://damp-sea-6022.herokuapp.com/users/status.json", (response) -> 
 			if response is 'inactive'

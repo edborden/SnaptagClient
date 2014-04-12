@@ -13,7 +13,8 @@
     "loader.js": "git://github.com/stefanpenner/loader.js",
     "bootstrap": "~3.1.1",
     "emblem.js": "~0.3.11",
-    "emberjs-touch":"https://github.com/JamesHight/emberjs-touch.git#master"
+    "emberjs-touch": "https://github.com/JamesHight/emberjs-touch.git#master",
+    "pusher": "~2.1.6"
   },
   "resolutions": {
     "ember": "~1.4.0"

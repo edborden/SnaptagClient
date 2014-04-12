@@ -1,5 +1,6 @@
-ul
+ul.gridul
+	li.gridli Test info text<BR>more text<BR>still more
 	each model
-		li 
+		li.gridli
 			link-to 'hunt.user' this
-				= firstname
+				img src=smallpic 

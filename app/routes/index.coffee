@@ -1,10 +1,13 @@
 IndexRoute = Ember.Route.extend(
 	beforeModel: ->
-		this.controllerFor('application').toggleProperty('topNav')
-		_this = this
-		FB.getLoginStatus((response) ->
-			_this.replaceWith('world') if response.status is 'connected'
-	)
+		@_super()
+		@controllerFor('application').toggleProperty('topNav')
+		FB.getLoginStatus((response) =>
+			@replaceWith('world') if response.status is 'connected'
+		)
+	deactivate: ->
+		@controllerFor('application').toggleProperty('topNav')
+		@_super
 )
 
 `export default IndexRoute`

@@ -1,4 +1,5 @@
 WorldController = Ember.ObjectController.extend(
+
 	glyphicon1: "glyphicon-user"
 	link1: "world.one"
 	glyphicon2: "glyphicon-globe"

@@ -1,4 +1,5 @@
 ApplicationController = Ember.ObjectController.extend(
+
 	topNav: true
 )
 
