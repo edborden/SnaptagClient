@@ -44,10 +44,11 @@
     <script src="/vendor/loader.js/loader.js"></script>
     <script src="/vendor/ember-resolver/dist/ember-resolver.js"></script>
     <script src="/vendor/ic-ajax/main.js"></script>
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+    <script src="/vendor/leaflet/leaflet.js"></script>
     <script src="/vendor/bootstrap/js/alert.js"></script>
     <script src="/vendor/emberjs-touch/lib/ember-fastclick.js"></script>
     <script src= "/vendor/pusher/dist/pusher.js"></script>
+    <script src="/vendor/facebook/all.js"></script>
   <!-- endbuild -->
 
   <!-- build:js(tmp/result) /assets/app.min.js -->
@@ -61,10 +62,7 @@
     <script src='phonegap.js'></script>
     <script src='cdv-plugin-fb-connect.js'></script>
     <script src='facebook-js-sdk.js'></script>
-    <script>
-    document.addEventListener('deviceready', window.fbAsyncInit());
 
-    </script>
   <!-- @endif -->
 
   <!-- @if tests=true -->
@@ -101,31 +99,31 @@
   <script src="/testem.js"></script>
   <!-- @endif -->
 
-  <!-- @if dist=true -->
-  <script>     
-
-  </script>
-  <!-- @endif -->
   <!-- @if dist=false -->
-   <script>
- (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/all.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
 
-     window.fbAsyncInit = function() {
+    <script>
+      window.fbAsyncInit = function() {
         FB.init({
           appId: '726528350693125'
         });
-    window.App = require('appkit/app')["default"].create();
-    };
+        window.App = require('appkit/app')["default"].create();
+      };
     </script>
 
   <!-- @endif -->
-  
+  <!-- @if dist=true -->
+      <script>
+    document.addEventListener('deviceready', window.fbAsyncInit());
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId: '726528350693125',
+          nativeInterface: CDV.FB,
+          useCachedDialogs: false
+        });
+        window.App = require('appkit/app')["default"].create();
+      };
+    </script>
+  <!-- @endif -->
 
   </div>
 </body>
