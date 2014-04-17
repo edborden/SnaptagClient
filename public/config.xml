@@ -7,6 +7,9 @@
 
     <!-- versionCode is optional and Android only -->
     <preference name="phonegap-version" value="3.4.0" />
+    <preference name="fullscreen" value="true" />
+    <preference name="exit-on-suspend" value="true" />
+    <preference name="orientation" value="portrait" />
 
     <name>Assassin</name>
 
@@ -17,7 +20,8 @@
     <author href="http://www.gridweb.com" email="borden.edward@gmail.com">
         Ed Borden
     </author>
-
+    <gap:plugin name="org.li8.inappbrowser" version="0.1" />
+    <gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog" version="0.1.5" />
     <gap:platform name="ios" />
     <gap:platform name="android" />
 

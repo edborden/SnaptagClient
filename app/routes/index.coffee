@@ -1,10 +1,10 @@
 IndexRoute = Ember.Route.extend(
 	beforeModel: ->
-		@_super()
-		@controllerFor('application').toggleProperty('topNav')
-		FB.getLoginStatus((response) =>
-			@replaceWith('world') if response.status is 'connected'
-		)
+		if localStorage['fbtoken']?
+			@replaceWith('world')
+		else
+			@controllerFor('application').toggleProperty('topNav')
+			@_super()
 	deactivate: ->
 		@controllerFor('application').toggleProperty('topNav')
 		@_super

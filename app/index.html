@@ -7,26 +7,7 @@
 
   <!-- build:css(tmp/result) /assets/app.min.css -->
     <link rel="stylesheet" href="/assets/app.css">
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
-  <!-- endbuild -->
-
-  <!-- for more details visit: https://github.com/yeoman/grunt-usemin -->
-
-  <!-- build:js(tmp/result) /assets/config.min.js -->
-
-    <script src="/config/environment.js"></script>
-    <!-- @if tests=false -->
-
-      <!-- @if dist=false -->
-      <script src="/config/environments/development.js"></script>
-      <!-- @endif --><!-- @if dist=true -->
-      <script src="/config/environments/production.js"></script>
-      <!-- @endif -->
-
-    <!-- @endif --><!-- @if tests=true -->
-      <script src="/config/environments/test.js"></script>
-    <!-- @endif -->
-
+    <link rel="stylesheet" href="/vendor/leaflet-dist/leaflet.css" />
   <!-- endbuild -->
 
   <!-- build:js(tmp/result) /assets/vendor.min.js -->
@@ -44,11 +25,12 @@
     <script src="/vendor/loader.js/loader.js"></script>
     <script src="/vendor/ember-resolver/dist/ember-resolver.js"></script>
     <script src="/vendor/ic-ajax/main.js"></script>
-    <script src="/vendor/leaflet/leaflet.js"></script>
+    <script src="/vendor/leaflet-dist/leaflet.js"></script>
     <script src="/vendor/bootstrap/js/alert.js"></script>
-    <script src="/vendor/emberjs-touch/lib/ember-fastclick.js"></script>
-    <script src= "/vendor/pusher/dist/pusher.js"></script>
-    <script src="/vendor/facebook/all.js"></script>
+    <!-- <script src="/vendor/emberjs-touch/lib/ember-fastclick.js"></script> -->
+    <script src="/vendor/pusher/dist/pusher.js"></script>
+    <script src="/vendor/openfb/openfb.js"></script>
+    <script src="/vendor/ember-leaflet/ember-leaflet.js"></script>
   <!-- endbuild -->
 
   <!-- build:js(tmp/result) /assets/app.min.js -->
@@ -60,9 +42,12 @@
 
   <!-- @if dist=true -->
     <script src='phonegap.js'></script>
-    <script src='cdv-plugin-fb-connect.js'></script>
-    <script src='facebook-js-sdk.js'></script>
-
+        <script>
+        document.addEventListener("deviceready", function(){
+        openFB.init('726528350693125', 'http://localhost:4000/oauthcallback.html', window.localStorage);
+        window.App = require('appkit/app')["default"].create();
+      });
+    </script>
   <!-- @endif -->
 
   <!-- @if tests=true -->
@@ -89,7 +74,6 @@
 
 </head>
 <body>
-  <div id="fb-root">
   <!-- @if tests=true -->
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
@@ -98,33 +82,13 @@
   <script src="/tests/test_loader.js"></script>
   <script src="/testem.js"></script>
   <!-- @endif -->
-
   <!-- @if dist=false -->
-
     <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId: '726528350693125'
-        });
+        
+        openFB.init('726528350693125', 'http://localhost:4000/oauthcallback.html', window.localStorage);
         window.App = require('appkit/app')["default"].create();
-      };
-    </script>
 
-  <!-- @endif -->
-  <!-- @if dist=true -->
-      <script>
-    document.addEventListener('deviceready', window.fbAsyncInit());
-    window.fbAsyncInit = function() {
-        FB.init({
-          appId: '726528350693125',
-          nativeInterface: CDV.FB,
-          useCachedDialogs: false
-        });
-        window.App = require('appkit/app')["default"].create();
-      };
     </script>
-  <!-- @endif -->
-
-  </div>
+      <!-- @endif -->
 </body>
 </html>

@@ -1,3 +1,0 @@
-if topNav
-	partial "nav/top"
-outlet

@@ -19,7 +19,7 @@ module.exports = {
 
   extrasToResult: {
     expand: true,
-    cwd: 'vendor/bootstrap/dist',
+    cwd: 'vendor/fontawesome',
     src: 'fonts/*',
     dest: 'tmp/result/'
   },

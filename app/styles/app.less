@@ -1,25 +1,25 @@
 @import "bootstrap.less";
+@import "fontawesome.less";
 
 // Navbars
 
-body { padding-top: 70px; padding-bottom: 70px;}
+body { padding-bottom: 34px;}
 .btn {width:33.3333%;}
-.no-gutter [class*='col-']:not(:first-child),.row.no-gutter [class*='col-']:not(:last-child) {
-  padding-right:0;
-  padding-left:0;
-}
+
 .no-padding {padding: 0px;}
 
 // map
-// html, body {height: 100%;}
-#map {height: 300px;}
-
+html, body, .leaflet-container, body>div {height: 100%;}
+.stacker {position:absolute;z-index:2;width:100%;font-weight:bold;}
+.stacked { z-index:1; }
 
 // enter-game button
 .spacer {margin-top:100px;text-align:center;}
 .enter-game {padding-top:100px;}
 #button50 {width:50%;}
 #button100 {width:100%;}
+#btn80 {width:80%;}
+#btn20 {width:20%;}
 
 
 // responsive text and nav buttons
@@ -30,13 +30,9 @@ body { padding-top: 70px; padding-bottom: 70px;}
 
 
 @font-size-large:1.5em; 
-@border-radius-large:0px;
+@border-radius-base:0px;
 
 button.close {font-size:@font-size-large;}
-
-.nav {background-color:@brand-primary;}
-
-.navbar-fixed-bottom {background-color:@brand-danger;}
 
 .gridul {
     margin: 0 auto;
@@ -50,3 +46,8 @@ button.close {font-size:@font-size-large;}
     display: inline-block;
     vertical-align: top;
 }
+
+@body-bg: #140000;
+@brand-primary: #520000;
+@brand-danger: #005252;
+@text-color:  @gray-lighter;

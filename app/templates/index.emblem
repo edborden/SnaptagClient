@@ -1,7 +1,12 @@
-.container-fluid
-	.row
-		.col-xs-10.col-xs-offset-1.spacer
-			p You are being watched.
-			p Additional information is available:
-.text-center.enter-game
-	button click="login" id="button50" class="btn btn-primary" Login with Facebook
+.text-center.stacker
+	h2 You are being watched.
+view "leaf"
+
+
+.navbar-fixed-bottom
+	button.btn.btn-danger click="login" id="btn80" 
+		i.fa.fa-facebook-square
+		| &nbsp;&nbsp;Login
+			
+	link-to 'instructions' class="btn btn-danger" id="btn20"
+		| ?

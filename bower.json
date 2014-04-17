@@ -5,18 +5,23 @@
     "jquery": "~1.9.1",
     "qunit": "~1.12.0",
     "ember-qunit": "https://github.com/rpflorence/ember-qunit.git#master",
-    "ember": "~1.4.0",
+    "ember": "~1.6.0-beta.2",
     "ember-data": "~1.0.0-beta.7",
     "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
     "ic-ajax": "~0.3.0",
     "ember-testing-httpRespond": "~0.1.1",
     "loader.js": "git://github.com/stefanpenner/loader.js",
-    "bootstrap": "~3.1.1",
-    "emblem.js": "~0.3.11",
+    "bootstrap": "*",
+    "emblem.js": "*",
     "emberjs-touch": "https://github.com/JamesHight/emberjs-touch.git#master",
-    "pusher": "~2.1.6"
+    "pusher": "~2.1.6",
+    "fontawesome": "*",
+    "openfb": "https://github.com/ccoenraets/OpenFB.git#master",
+    "leaflet-dist": "*",
+    "ember-leaflet": "*"
   },
   "resolutions": {
-    "ember": "~1.4.0"
+    "ember-data": "~1.0.0-beta.7",
+    "ember": "~1.6.0-beta.2"
   }
 }
