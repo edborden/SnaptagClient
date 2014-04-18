@@ -28,7 +28,7 @@ Fonts
   must be included in tasks/options/copy.js (before cssToResult) and registered
 
 `
-    // Parallelize most of the build process
+
   _.merge(config, {
     concurrent: {
       buildDist: [
@@ -48,7 +48,6 @@ Fonts
     }
   });
 
-    // Extras
   grunt.registerTask('buildExtras', [
                      'copy:extrasToResult'
                      ]);
@@ -64,6 +63,7 @@ For facebook login to work during testing, callback.html must be served
 `
 npm -g install simple-http-server
 `
+
 from directory run
 `
 nserver -p 4000
