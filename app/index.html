@@ -8,6 +8,7 @@
   <!-- build:css(tmp/result) /assets/app.min.css -->
     <link rel="stylesheet" href="/assets/app.css">
     <link rel="stylesheet" href="/vendor/leaflet-dist/leaflet.css" />
+    <link rel="stylesheet" href="/vendor/leaflet.awesome-markers/dist/leaflet.awesome-markers.css">
   <!-- endbuild -->
 
   <!-- build:js(tmp/result) /assets/vendor.min.js -->
@@ -31,6 +32,7 @@
     <script src="/vendor/pusher/dist/pusher.js"></script>
     <script src="/vendor/openfb/openfb.js"></script>
     <script src="/vendor/ember-leaflet/ember-leaflet.js"></script>
+    <script src="/vendor/leaflet.awesome-markers/dist/leaflet.awesome-markers.min.js"></script>
   <!-- endbuild -->
 
   <!-- build:js(tmp/result) /assets/app.min.js -->
@@ -42,12 +44,7 @@
 
   <!-- @if dist=true -->
     <script src='phonegap.js'></script>
-        <script>
-        document.addEventListener("deviceready", function(){
-        openFB.init('726528350693125', 'http://localhost:4000/oauthcallback.html', window.localStorage);
-        window.App = require('appkit/app')["default"].create();
-      });
-    </script>
+    <script>document.addEventListener("deviceready", onDeviceReady, false);</script>
   <!-- @endif -->
 
   <!-- @if tests=true -->
@@ -82,12 +79,17 @@
   <script src="/tests/test_loader.js"></script>
   <script src="/testem.js"></script>
   <!-- @endif -->
+
+  <script>
+      function onDeviceReady() {
+                openFB.init('726528350693125', 'http://localhost:4000/oauthcallback.html', window.localStorage);
+                window.App = require('appkit/app')["default"].create();
+            };
+</script>
+
   <!-- @if dist=false -->
     <script>
-        
-        openFB.init('726528350693125', 'http://localhost:4000/oauthcallback.html', window.localStorage);
-        window.App = require('appkit/app')["default"].create();
-
+      onDeviceReady();
     </script>
       <!-- @endif -->
 </body>

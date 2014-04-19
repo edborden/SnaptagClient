@@ -1,4 +1,5 @@
 `import Resolver from 'ember/resolver'`
+`import Location from 'appkit/libs/location'`
 
 App = Ember.Application.extend(
 	LOG_ACTIVE_GENERATION: true
@@ -10,5 +11,6 @@ App = Ember.Application.extend(
 	Resolver: Resolver['default']
 )
 
+window.mylocation = Location.create()
 
 `export default App`

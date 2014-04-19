@@ -1,13 +1,5 @@
 ApplicationRoute = Ember.Route.extend(
 	beforeModel: ->
-		navigator.geolocation.getCurrentPosition( (location) ->
-			console.log('Location from Phonegap')
-			enableHighAccuracy: true
-		)
-		navigator.geolocation.watchPosition( (position) ->
-			console.log("app route watch" + position)
-			enableHighAccuracy: true
-		)
 		if localStorage['fbtoken']?
 			$.ajaxSetup(
 				data: {"token": localStorage['fbtoken']}

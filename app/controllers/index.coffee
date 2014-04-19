@@ -1,19 +1,19 @@
 IndexController = Ember.ArrayController.extend(
 	init: ->
-		navigator.geolocation.getCurrentPosition( (position) =>
-			console.log("init in index controller" + position)
-			hash = {location: L.latLng(position.coords.latitude,position.coords.longitude)}
-			@content.pushObject(hash)
+		#navigator.geolocation.getCurrentPosition( (position) =>
+		#	console.log("init in index controller" + position)
+		#	hash = {location: L.latLng(position.coords.latitude,position.coords.longitude)}
+		#	@content.pushObject(hash)
 
-			enableHighAccuracy: true
-		)
-		navigator.geolocation.watchPosition( (position) =>
-			console.log("init in index controller" + position)
-			hash = {location: L.latLng(position.coords.latitude,position.coords.longitude)}
-			@content.pushObject(hash)
+		#	enableHighAccuracy: true
+		#)
+		#navigator.geolocation.watchPosition( (position) =>
+		#	console.log("init in index controller" + position)
+		#	hash = {location: L.latLng(position.coords.latitude,position.coords.longitude)}
+		#	@content.pushObject(hash)
 
-			enableHighAccuracy: true
-		)
+		#	enableHighAccuracy: true
+		#)
 		@_super()
 
 	actions:

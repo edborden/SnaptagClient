@@ -13,17 +13,17 @@ LeafView = EmberLeaflet.MapView.extend(
 	classNames: ['stacked']
 	didCreateLayer: ->
 		@_super()
-		navigator.geolocation.getCurrentPosition( (position) =>
-			console.log "didCreateLayerget"
-			@_layer.setView([position.coords.latitude, position.coords.longitude], 14)
-			enableHighAccuracy: true
-		)
-		watchid = navigator.geolocation.watchPosition( (position) =>
-			console.log "didCreateLayer"
-			@_layer.setView([position.coords.latitude, position.coords.longitude], 14)
-			enableHighAccuracy: true
-		)
-		@watchid = watchid
+		#navigator.geolocation.getCurrentPosition( (position) =>
+		#	console.log "didCreateLayerget"
+		#	@_layer.setView([position.coords.latitude, position.coords.longitude], 14)
+		#	enableHighAccuracy: true
+		#)
+		#watchid = navigator.geolocation.watchPosition( (position) =>
+		#	console.log "didCreateLayer"
+		#	@_layer.setView([position.coords.latitude, position.coords.longitude], 14)
+		#	enableHighAccuracy: true
+		#)
+		#@watchid = watchid
 
 	childLayers: [LeafTileLayer,MarkerCollectionLayer]
 	options:

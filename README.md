@@ -12,14 +12,21 @@ Paths in 'grunt dist'
 Fonts
 -----
 
-  For font files from bootstrap or fontawesome to be included in "grunt dist" build:
+  For font and image files from bootstrap or fontawesome to be included in "grunt dist" build:
 
 ` extrasToResult: {
   expand: true,
   cwd: 'vendor/fontawesome',
   src: 'fonts/*',
   dest: 'tmp/result/'
-}`
+}
+
+  extras2ToResult: {
+    expand: true,
+    cwd: 'vendor/leaflet.awesome-markers/dist',
+    src: 'images/*',
+    dest: 'tmp/result/'
+  },`
 
   must be included in tasks/options/copy.js (before cssToResult) and registered
 
@@ -42,9 +49,10 @@ Fonts
   }
 });
 
-grunt.registerTask('buildExtras', [
-                   'copy:extrasToResult'
-                   ]);`
+  grunt.registerTask('buildExtras', [
+                     'copy:extrasToResult',
+                     'copy:extras2ToResult'
+                     ]);`
 Config.xml
 ----------
 Phonegap config.xml goes in public/

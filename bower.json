@@ -18,7 +18,8 @@
     "fontawesome": "*",
     "openfb": "https://github.com/ccoenraets/OpenFB.git#master",
     "leaflet-dist": "*",
-    "ember-leaflet": "*"
+    "ember-leaflet": "*",
+    "leaflet.awesome-markers": "https://github.com/lvoogdt/Leaflet.awesome-markers.git#master"
   },
   "resolutions": {
     "ember-data": "~1.0.0-beta.7",
