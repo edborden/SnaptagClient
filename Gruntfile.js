@@ -112,7 +112,9 @@ module.exports = function(grunt) {
 
                      'rev', // Appends 8 char hash value to filenames
                      'usemin', // Replaces file references
-                     'htmlmin:dist' // Removes comments and whitespace
+                     'htmlmin:dist', // Removes comments and whitespace
+                     'shell:git',
+                     'phonegap-build:build'
                      ]));
 
   // Parallelize most of the build process

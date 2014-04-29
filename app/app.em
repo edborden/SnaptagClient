@@ -1,5 +1,7 @@
 `import Resolver from 'ember/resolver'`
 
+L.Icon.Default.imagePath = 'images/' if cordova?
+
 App = Ember.Application.extend
 	LOG_ACTIVE_GENERATION: true
 	LOG_MODULE_RESOLVER: true

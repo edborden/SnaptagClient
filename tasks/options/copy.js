@@ -28,7 +28,7 @@ module.exports = {
     expand: true,
     cwd: 'vendor/leaflet.awesome-markers/dist',
     src: 'images/*',
-    dest: 'tmp/result/'
+    dest: 'tmp/result/assets/'
   },
 
   cssToResult: {
