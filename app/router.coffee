@@ -1,11 +1,9 @@
-Router = Ember.Router.extend()
+class Router extends Ember.Router
 
 Router.map( ->
 	this.route('instructions')
 	this.resource('world', ->
 		this.route('one')
-		this.route('two')
-		this.route('three')
 		)
 	this.resource('me', ->
 		this.route('one')
@@ -23,6 +21,7 @@ Router.map( ->
 		this.route('counteractsuccess')
 		this.route('counteractdisavow')
 	)
+	this.route('map')
 )
 
 `export default Router`

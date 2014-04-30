@@ -3,25 +3,25 @@ meIcon = L.AwesomeMarkers.icon
     markerColor: 'blue'
     prefix: 'fa'
 
-class MeMarker extends EmberLeaflet.MarkerLayer
-	options: {icon: meIcon}
-
-class MeMarkerLayer extends EmberLeaflet.MarkerCollectionLayer
+MeLayerMixin = Ember.Mixin.create
 	init: ->
 		@_super()
-		@content = [{location: L.latLng(@currentLocation.coords.latitude, @currentLocation.coords.longitude)}] if @currentLocation?
+		@content = {location: L.latLng(@currentLocation.coords.latitude, @currentLocation.coords.longitude),radius: @currentLocation.coords.accuracy} if @currentLocation?
 
 	currentLocation: Ember.computed.alias "controller.controllers.application.currentLocation"
 	content: []
-	itemLayerClass: MeMarker
 
 	+observer controller.controllers.application.currentLocation
 	onLocationChange: ->
-		@content = [{location: L.latLng(@currentLocation.coords.latitude, @currentLocation.coords.longitude)}]
+		@content = {location: L.latLng(@currentLocation.coords.latitude, @currentLocation.coords.longitude),radius: @currentLocation.coords.accuracy}
+
+class MeMarker extends EmberLeaflet.MarkerLayer with MeLayerMixin
+	options: {icon: meIcon}
 
 class MarkerCollectionLayer extends EmberLeaflet.MarkerCollectionLayer
 	contentBinding: 'controller'
-	itemLayerClass: MeMarker
+
+class MeCircle extends EmberLeaflet.CircleLayer with MeLayerMixin
 	
 class LeafTileLayer extends EmberLeaflet.TileLayer
 	tileUrl: 'http://{s}.tile.cloudmade.com' + '/{key}/{styleId}/256/' + '{z}/{x}/{y}.png'
@@ -32,18 +32,15 @@ class LeafTileLayer extends EmberLeaflet.TileLayer
 class LeafView extends EmberLeaflet.MapView
 	classNames: ['stacked']
 
-	init: ->
-		@_super()
-		@_layer.setView([@currentLocation.coords.latitude, @currentLocation.coords.longitude], 14) if @currentLocation?
-
 	currentLocation: Ember.computed.alias "controller.controllers.application.currentLocation"
 
 	+observer controller.controllers.application.currentLocation
 	onLocationChange: ->
 		@_layer.setView([@currentLocation.coords.latitude, @currentLocation.coords.longitude], 14)
 
-	childLayers: [LeafTileLayer,MarkerCollectionLayer,MeMarkerLayer]
+	childLayers: [LeafTileLayer,MarkerCollectionLayer,MeMarker,MeCircle]
 	options:
 		zoomControl:false
+		attributionControl:false
 
 `export default LeafView`

@@ -18,7 +18,7 @@ class IndexController extends Ember.ArrayController
 						channel.bind 'updatelocation', =>
 							@send 'updatelocation'
 						window.plugins.spinnerDialog.hide() if cordova?
-						@transitionToRoute 'world'
+						@transitionToRoute 'map'
 					dataType: "text"
 
 	content: [

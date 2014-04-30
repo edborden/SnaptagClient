@@ -1,10 +1,13 @@
-.navbar-fixed-top.container-fluid.nav.no-padding.bottom-margin
-			.col-xs-12.btn-group.btn-group-lg.no-padding.no-gutter
-				link-to "world" class="btn btn-primary"
-					span.glyphicon.glyphicon-globe
+.navbar-fixed-top
 
-				link-to "me" class="btn btn-primary"
-					span.glyphicon.glyphicon-user
+	link-to "map" class="btn25 btn btn-primary"
+		i.fa.fa-map-marker
 
-				link-to "hunt" class="btn btn-primary"
-					span.glyphicon.glyphicon-screenshot
+	link-to "me" class="btn25 btn btn-primary"
+		i.fa.fa-user
+
+	link-to "world" class="btn25 btn btn-primary"
+		i.fa.fa-globe
+
+	link-to "instructions" class="btn25 btn btn-primary"
+		i.fa.fa-question
