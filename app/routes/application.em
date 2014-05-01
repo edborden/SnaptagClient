@@ -1,6 +1,6 @@
 class ApplicationRoute extends Ember.Route
 	beforeModel: ->
-		if localStorage['fbtoken']?
+		if @controllerFor('application').loggedIn
 			$.ajaxSetup(
 				data: {"token": localStorage['fbtoken']}
 			)
@@ -16,5 +16,7 @@ class ApplicationRoute extends Ember.Route
 	actions:
 		updatelocation: ->
 			console.log "UPDATELOCATION EVENT"
+		back: ->
+			window.history.go(-1)
 
 `export default ApplicationRoute`

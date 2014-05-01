@@ -19,7 +19,8 @@
     "openfb": "https://github.com/ccoenraets/OpenFB.git#master",
     "leaflet-dist": "*",
     "ember-leaflet": "*",
-    "leaflet.awesome-markers": "https://github.com/lvoogdt/Leaflet.awesome-markers.git#2.0/develop"
+    "leaflet.awesome-markers": "https://github.com/lvoogdt/Leaflet.awesome-markers.git#2.0/develop",
+    "ember-addons.bs_for_ember": "~0.6.1"
   },
   "resolutions": {
     "ember": "~1.6.0-beta.2"

@@ -1,5 +1,0 @@
-.navbar-fixed-bottom.mobnav
-	.row.no-gutter
-		.col-xs-12.btn-group.btn-group-lg
-			link-to link class="btn btn-danger" id="button100"
-				span class={ :glyphicon glyphicon }

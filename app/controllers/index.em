@@ -1,6 +1,6 @@
 class IndexController extends Ember.ArrayController
-
 	needs: ['application']
+	indexNav: true
 
 	actions:
 		login: ->
@@ -17,6 +17,7 @@ class IndexController extends Ember.ArrayController
 						channel = pusher.subscribe localStorage['fbtoken']
 						channel.bind 'updatelocation', =>
 							@send 'updatelocation'
+						@controllers.application.setClientLoggedIn()
 						window.plugins.spinnerDialog.hide() if cordova?
 						@transitionToRoute 'map'
 					dataType: "text"

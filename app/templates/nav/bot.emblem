@@ -1,0 +1,19 @@
+.navbar-fixed-bottom
+
+	if indexNav
+		button.btn.btn-danger click="login" class="btn80" 
+			i.fa.fa-facebook-square
+			| &nbsp;&nbsp;Login
+
+		link-to 'instructions' class="btn20 btn btn-danger"
+			| ?
+
+	if mapNav
+		if queue
+			button.btn.btn-danger click="join" class="btn100" 
+				i.fa.fa-eye
+				| &nbsp;&nbsp;Exit Queue
+		else
+			button.btn.btn-danger click="join" class="btn100" 
+				i.fa.fa-eye
+				| &nbsp;&nbsp;Activate Sleeper

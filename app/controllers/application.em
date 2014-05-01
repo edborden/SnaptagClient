@@ -1,19 +1,26 @@
 class ApplicationController extends Ember.ObjectController
-	topNav: true
 	currentLocation: null
+	active: true
+	queue: false
+	loggedIn: null
+	transmitting: true
 
 	init: ->
-		app = this
-		@_super()
-		navigator.geolocation.watchPosition(-> return,null, {enableHighAccuracy:true})
+		#app = this
+		@setClientLoggedIn()
+		navigator.geolocation.watchPosition( (position) => @currentLocation = position,null, {enableHighAccuracy:true})
 		@getLocation()
-		`setInterval(function(){app.getLocation()},60000);`
+		@_super()
+		#`setInterval(function(){app.getLocation()},60000);`
 
 	+observer currentLocation
 	currentLocationChanged: ->
 		return
 
+	setClientLoggedIn: ->
+		if localStorage.fbtoken? then @loggedIn = true else @loggedIn = false
+
 	getLocation: ->
-		navigator.geolocation.getCurrentPosition( (position) => @currentLocation = position,null,{timeout:1,maximumAge:Infinity,enableHighAccuracy:true})
+		navigator.geolocation.getCurrentPosition( (position) => @currentLocation = position,null,{timeout:0,maximumAge:Infinity,enableHighAccuracy:true})
 
 `export default ApplicationController`

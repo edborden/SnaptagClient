@@ -1,12 +1,4 @@
 .text-center.stacker
 	h2 You are being watched.
-view "leaf"
-
-
-.navbar-fixed-bottom
-	button.btn.btn-danger click="login" id="btn80" 
-		i.fa.fa-facebook-square
-		| &nbsp;&nbsp;Login
-			
-	link-to 'instructions' class="btn btn-danger" id="btn20"
-		| ?
+view "me-map"
+view "bot-nav"

@@ -1,13 +1,30 @@
 .navbar-fixed-top
+	if active
+		view 'status-nav'
 
-	link-to "map" class="btn25 btn btn-primary"
-		i.fa.fa-map-marker
+		link-to "map" class="btn18 btn btn-primary"
+			i.fa.fa-map-marker
 
-	link-to "me" class="btn25 btn btn-primary"
-		i.fa.fa-user
+		link-to "hunt" class="btn18 btn btn-primary"
+			i.fa.fa-crosshairs
 
-	link-to "world" class="btn25 btn btn-primary"
-		i.fa.fa-globe
+		link-to "me" class="btn18 btn btn-primary"
+			i.fa.fa-user
 
-	link-to "instructions" class="btn25 btn btn-primary"
-		i.fa.fa-question
+		link-to "world" class="btn18 btn btn-primary"
+			i.fa.fa-globe
+
+		link-to "instructions" class="btn10 btn btn-primary"
+			i.fa.fa-question
+	else
+		link-to "map" class="btn30 btn btn-primary"
+			i.fa.fa-map-marker
+
+		link-to "me" class="btn30 btn btn-primary"
+			i.fa.fa-user
+
+		link-to "world" class="btn30 btn btn-primary"
+			i.fa.fa-globe
+
+		link-to "instructions" class="btn10 btn btn-primary"
+			i.fa.fa-question

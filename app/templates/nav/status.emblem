@@ -1,0 +1,5 @@
+button.btn.btn-primary class="btn18" 
+	if transmitting
+		i.fa.fa-circle.is-transmitting
+	else
+		i.fa.fa-circle.not-transmitting
