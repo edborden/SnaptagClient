@@ -1,6 +1,6 @@
 ul.gridul
-	li.gridli Test info text<BR>more text<BR>still more
+	
 	each model
 		li.gridli
 			link-to 'hunt.user' this
-				img src=smallpic 
+				img src=smallpic class="huntimg"

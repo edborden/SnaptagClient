@@ -22,6 +22,7 @@
     </author>
     <gap:plugin name="org.li8.inappbrowser" version="0.1" />
     <gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog" version="0.1.5" />
+    <gap:plugin name="org.apache.cordova.network-information" version="0.2.7" />
     <gap:platform name="ios" />
     <gap:platform name="android" />
 

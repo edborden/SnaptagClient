@@ -4,8 +4,7 @@ class MapController extends Ember.ArrayController
 
 	actions:
 		join: ->
-			@queue = true
-			return
+			@active = true
 #			$.get("http://damp-sea-6022.herokuapp.com/hunts/join.json",
 #				(response) =>
 #					if response is "active"
