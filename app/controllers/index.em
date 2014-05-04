@@ -11,13 +11,7 @@ class IndexController extends Ember.ArrayController
 					data: {token: localStorage['fbtoken']}
 					success: (response) =>
 						localStorage['fbtoken'] = response
-						$.ajaxSetup
-							data: {"token": response}
-						pusher = new Pusher('0750760773b8ed5ae1dc')
-						channel = pusher.subscribe localStorage['fbtoken']
-						channel.bind 'updatelocation', =>
-							@send 'updatelocation'
-						@controllers.application.setClientLoggedIn()
+						@controllers.application.setClientLoggedInStatus()
 						window.plugins.spinnerDialog.hide() if cordova?
 						@transitionToRoute 'map'
 					dataType: "text"

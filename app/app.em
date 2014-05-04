@@ -2,7 +2,7 @@
 
 L.Icon.Default.imagePath = 'images/' if cordova?
 
-App = Ember.Application.extend
+class App extends Ember.Application
 	LOG_ACTIVE_GENERATION: true
 	LOG_MODULE_RESOLVER: true
 	LOG_TRANSITIONS: true

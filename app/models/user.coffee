@@ -1,6 +1,6 @@
 attr = DS.attr
 
-User = DS.Model.extend(
+User = DS.Model.extend
 	firstname: attr()
 	lastname: attr()
 	exposed_count: attr("number")
@@ -9,6 +9,6 @@ User = DS.Model.extend(
 	smallpic: attr()
 	mediumpic: attr()
 	largepic: attr()
-)
+	influence: attr("number")
 
 `export default User`
