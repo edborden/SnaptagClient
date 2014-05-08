@@ -7,7 +7,7 @@ HuntCounteractController = Ember.ObjectController.extend(
 				(response) ->
 					if response is "success"
 						_this.replaceWith('hunt.counteractsuccess') 
-					if response is "disavowed"
+					if response is "failure"
 						_this.replaceWith('hunt.counteractdisavow') 
 			"text"
 			)

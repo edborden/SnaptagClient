@@ -1,6 +1,3 @@
 ul.gridul
-	
-	each model
-		li.gridli
-			link-to 'hunt.user' this
-				img src=smallpic class="huntimg"
+	render "hunt/webtargets" model.targets
+	render "hunt/webnottargets" model.web_without_targets

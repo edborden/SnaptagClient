@@ -3,4 +3,7 @@ class IndexRoute extends Ember.Route
 		@_super()
 		@replaceWith('map') if @controllerFor('application').loggedIn
 
+	model:->
+		[]
+
 `export default IndexRoute`

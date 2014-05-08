@@ -16,8 +16,6 @@ Router.map( ->
 		this.route('counteract', {path: '/counteract/:user_id'})
 		this.route('locate', {path: '/locate/:user_id'})
 		this.route('expose', {path: '/expose/:user_id'})
-		this.route('join')
-		this.route('queue')
 		this.route('counteractsuccess')
 		this.route('counteractdisavow')
 	)

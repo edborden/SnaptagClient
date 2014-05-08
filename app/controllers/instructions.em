@@ -1,4 +1,4 @@
 class InstructionsController extends Ember.ObjectController
-	needs: ['application']
+	needs: 'application'
 
 `export default InstructionsController`

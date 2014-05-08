@@ -1,3 +1,5 @@
+currentLocation
+test2
 if loggedIn
 	view 'top-nav'
 outlet
