@@ -1,4 +1,5 @@
 `import Resolver from 'ember/resolver'`
+`import Session from 'appkit/lib/session'`
 
 L.Icon.Default.imagePath = 'images/' if cordova?
 
@@ -10,5 +11,9 @@ class App extends Ember.Application
 	LOG_VIEW_LOOKUPS: true
 	modulePrefix: 'appkit' 
 	Resolver: Resolver['default']
+	ready: ->
+    	@register('session:current', App.Session, {singleton: true})
+    	@inject('controller', 'session', 'session:current')
+    	@inject('route', 'session', 'session:current')
 
 `export default App`

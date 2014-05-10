@@ -1,3 +1,24 @@
-unless controllers.application.loggedIn
+unless session.loggedIn
 	back-button
-p test
+
+	p Sleepers is a game played with real people, in real time, out in the real world.
+	p This app is your interface, through which you'll receive targets -- other Sleepers in your vicinity.
+	p You'll be supplied with intelligence with which to locate and make contact with your targets, exposing their identity as a Sleeper and removing them from the game.
+	p Other Sleepers will be hunting you in the mean time, so you'll need to be strategic and careful.
+
+
+
+	h5 Location information
+
+	p Once you've logged in and entered the game, the app will start logging your location.
+	ul
+		li Your location will only be logged while you are in the game and the app is open.
+		li After you leave the game (you are exposed or leave voluntarily), your location history will be deleted.
+		li You will have access to the locations of your targets only.
+		li 
+
+	p The Sleepers app 
+		li Approach your target in a non-threatening manner, calmly, without disturbing anyone in your vicinity, ideally without them seeing you.
+		li Tap them lightly once on the shoulder. (Don't touch them anywhere else, please, let's not be weird.)
+		li Push the "Expose Screen" button below, show it to them, and push the "Expose" button immediately after they've seen it.
+		li Revel in your glory.

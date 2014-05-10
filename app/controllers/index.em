@@ -1,10 +1,5 @@
 class IndexController extends Ember.ArrayController
-	needs: 'application'
 	indexNav: true
-
-	actions:
-		login: ->
-			@controllers.application.login()
 			
 	content: [
 		{location: L.latLng(40.714, -74.000)},
