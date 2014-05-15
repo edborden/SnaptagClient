@@ -2,27 +2,62 @@
 
 class ApplicationController extends Ember.ObjectController with ServerTalk
 
-	intervalID: null	
+	intervalID: null
+
+	## NAV HELPERS
+
+	isPicRoute: Ember.computed.equal 'currentRouteName', 'pic'
+	isIndexRoute: Ember.computed.equal 'currentRouteName', 'index'
+	isInactivemapRoute: Ember.computed.equal 'currentRouteName', 'inactivemap'
+	isMapRoute: Ember.computed.equal 'currentRouteName', 'map'
+	isHuntUserRoute: Ember.computed.equal 'currentRouteName', 'hunt.user'
+	isHuntTargetRoute: Ember.computed.equal 'currentRouteName', 'hunt.target'
+
+	currentMapRoute: ~>
+		if @session.active then return "map" else return "inactivemap"
+
+	## BACK BUTTON
+
+	init: ->
+		@_super()
+		document.addEventListener "backbutton", => 
+			switch @currentRouteName
+				when "index" then navigator.app.exitApp()
+				when "inactivemap" then navigator.app.exitApp()
+				when "map" then navigator.app.exitApp()
+				when "hunt.index" then @transitionToRoute "map"
+				when "me" then @transitionToRoute @currentMapRoute
+				when "world" then @transitionToRoute @currentMapRoute
+				else window.history.go(-1)		
+
+	## LOADING
+
+	isLoadingRoute: Ember.computed.equal 'currentRouteName', 'loading'
+	+observer isLoadingRoute
+	isLoadingRouteChanged: ->
+		if isLoadingRoute
+			window.plugins.spinnerDialog.show() if cordova?
+		else
+			window.plugins.spinnerDialog.hide() if cordova?
 
 	## TRANSMITTING
 
 	+observer session.transmitting
 	transmittingChanged: ->
-		if @session.transmitting and @intervalID?
-			@intervalID = @setInterval()
+		if @session.transmitting and !@intervalID?
+			@intervalID = @setLocationInterval()
 		if @session.transmitting is false and @intervalID
 			clearInterval(@intervalID)
 			@intervalID = null
 
 	sendLocation: ->
-		getServer "locations/update",
-			data: 
-				timestamp: @currentLocation.timestamp
-				latitude: @currentLocation.coords.latitude
-				longitude: @currentLocation.coords.longitude
-				accuracy: @currentLocation.coords.accuracy
+		@getServer "locations/update",
+			timestamp: @session.currentLocation.timestamp
+			latitude: @session.currentLocation.coords.latitude
+			longitude: @session.currentLocation.coords.longitude
+			accuracy: @session.currentLocation.coords.accuracy
 
-	setInterval: ->
+	setLocationInterval: ->
 		app = this
 		`setInterval(function(){app.sendLocation()},60000);`
 
@@ -41,7 +76,6 @@ class ApplicationController extends Ember.ObjectController with ServerTalk
 		document.addEventListener("online", @onOnline, false)
 		Ember.run.end
 
-
 	onOffline: ->
 		Ember.run.begin
 		@session.internetConnection = false
@@ -50,11 +84,14 @@ class ApplicationController extends Ember.ObjectController with ServerTalk
 
 	## LOGGED IN
 
-	loggedInChanged: ~>
+	+observer session.loggedIn
+	loggedInChanged: ->
 		if @session.loggedIn 
 			Ember.$.ajaxSetup {data: {"token": localStorage.fbtoken}}
 			@setPusher
-			@getServer("users/status").then @session.setActiveStatus response
+			@getServer("users/status").then (response) =>
+				@session.active = true if response is 'active'
+				@session.queue = true if response is 'queue'
 			@setInternetConnectionListeners
 		else
 			return #put logout code here

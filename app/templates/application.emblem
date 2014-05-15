@@ -1,3 +1,6 @@
-if loggedIn
+bs-growl-notifications
+if session.loggedIn
 	view 'top-nav'
 outlet
+unless isMapRoute
+	view 'bot-nav'

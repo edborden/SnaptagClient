@@ -12,8 +12,8 @@ class App extends Ember.Application
 	modulePrefix: 'appkit' 
 	Resolver: Resolver['default']
 	ready: ->
-    	@register('session:current', App.Session, {singleton: true})
-    	@inject('controller', 'session', 'session:current')
-    	@inject('route', 'session', 'session:current')
+		@register('session:current', Session, {singleton: true})
+		@inject('controller', 'session', 'session:current')
+		@inject('route', 'session', 'session:current')
 
 `export default App`

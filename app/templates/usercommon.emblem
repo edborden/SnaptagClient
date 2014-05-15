@@ -1,9 +1,9 @@
 .container-fluid
 	.col-xs-6
-		link-to "me.pic"
+		link-to "pic" this
 			img.img-responsive src=mediumpic
 	.col-xs-6
-		p: .centerblock #{firstname} #{lastname}
+		p: .centerblock #{name}
 		p Exposed : #{exposed_count}
 		p Counteracted : #{counteract_count}
 		p Compromised : #{compromised_count}

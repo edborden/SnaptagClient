@@ -1,5 +1,5 @@
 button.btn.btn-primary class="btn18" disabled="disabled"
-	if transmitting
+	if session.transmitting
 		i.fa.fa-cloud-upload.is-transmitting
 	else
 		i.fa.fa-cloud-upload.not-transmitting

@@ -1,3 +1,3 @@
 .navbar-fixed-top
-	button.btn.btn-danger id="button20" click="back"
+	button.btn.btn-danger.btn30 click="back"
 		i.fa.fa-reply

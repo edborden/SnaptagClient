@@ -1,3 +1,3 @@
 ul.gridul
 	render "hunt/webtargets" model.targets
-	render "hunt/webnottargets" model.web_without_targets
+	render "hunt/webusers" model.web_without_targets

@@ -1,6 +1,6 @@
 .navbar-fixed-bottom
 
-	if indexNav
+	if isIndexRoute
 		button.btn.btn-danger click="login" class="btn80" 
 			i.fa.fa-facebook-square
 			| &nbsp;&nbsp;Login
@@ -8,12 +8,27 @@
 		link-to 'instructions' class="btn20 btn btn-danger"
 			| ?
 
-	if mapNav
-		if queue
-			button.btn.btn-danger click="join" class="btn100" 
+	if isInactivemapRoute
+		if session.queue
+			button.btn.btn-danger click="unjoin" class="btn100" 
 				i.fa.fa-eye
 				| &nbsp;&nbsp;Exit Queue
 		else
 			button.btn.btn-danger click="join" class="btn100" 
 				i.fa.fa-eye
 				| &nbsp;&nbsp;Activate Sleeper
+
+	if isHuntUserRoute
+		link-to 'hunt.counteract' this class="btn100 btn btn-danger"
+			i.fa.fa-eye
+			| &nbsp;&nbsp;Counteract
+
+	if isHuntTargetRoute
+
+		link-to 'hunt.counteract' this class="btn50 btn btn-danger"
+			i.fa.fa-eye 
+			| &nbsp;&nbsp;Counteract
+
+		link-to 'hunt.expose' this class="btn50 btn btn-warning"
+			i.fa.fa-eye 
+			| &nbsp;&nbsp;Expose

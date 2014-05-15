@@ -1,5 +1,0 @@
-= alert-bar admin=true | Message from the GamesMaster
-
-= alert-bar admin=true | And another one
-
-= partial "nav/bottom"

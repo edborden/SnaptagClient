@@ -1,68 +1,97 @@
 @import "bootstrap.less";
 @import "fontawesome.less";
+@import "growl.less";
 
 // Navbars
 
-.top-nav-padding {padding-top:36px;}
-.bot-nav-padding {padding-bottom:36px;}
+	.top-nav-padding {padding-top:36px;}
+	.bot-nav-padding {padding-bottom:36px;}
 
 // map
-html, body, .leaflet-container, body>div {height: 100%;}
-.stacker {position:absolute;z-index:2;width:100%;font-weight:bold;}
-.stacked { z-index:1; }
+	html, body, .leaflet-container, body>div {height: 100%;}
+	.stacker {position:absolute;z-index:2;width:100%;font-weight:bold;}
+	.stacked { z-index:1; }
 
-// enter-game button
-.spacer {margin-top:100px;text-align:center;}
-.enter-game {padding-top:100px;}
 
-.btn50 {width:50%;}
-.btn100 {width:100%;}
-.btn80 {width:80%;}
-.btn30 {width:30%;}
-.btn25 {width:25%;}
-.btn20 {width:20%;}
-.btn18 {width:18%;}
-.btn10 {width:10%;}
+// BUTTONS
 
-@font-size-large:1.5em; 
-@border-radius-base:0px;
+	.btn50 {width:50%;}
+	.btn100 {width:100%;}
+	.btn80 {width:80%;}
+	.btn30 {width:30%;}
+	.btn25 {width:25%;}
+	.btn20 {width:20%;}
+	.btn18 {width:18%;}
+	.btn10 {width:10%;}
 
-button.close {font-size:@font-size-large;}
+	@font-size-large:1.5em; 
+	@border-radius-base:0px;
 
-.gridul {
-    margin: 0 auto;
-    text-align: center;
-}
+	button.close {font-size:@font-size-large;}
 
-.gridli {
-	width: 50%;
-	border-style: solid;
-	border-width:1px;
-	border-color:gray;
-	display: inline-block;
-   	vertical-align: top;
-}
-
-// webkit fix for web/hunt page
-ul {-webkit-padding-start:0px;}
-.huntimg {float:left;}
-
-@body-bg: #140000;
-@brand-primary: #520000;
-@brand-danger: #005252;
-@text-color:  @gray-lighter;
-
-.is-transmitting {color:green;}
-.not-transmitting {color:red;}
-
-.btn {
+	// changes shading on disabled button to .9 so transmitting button isn't dark
+	.btn {
 
 	&.disabled,
 		&[disabled],
 		fieldset[disabled] & {
 			cursor: not-allowed;
 			pointer-events: none; // Future-proof disabling of clicks
-			.opacity(.90);
+			// .opacity(.90);
 			.box-shadow(none);
 		}
+	}
+
+
+// HUNT PAGE
+
+	// webkit fix for web/hunt page
+	ul {-webkit-padding-start:0px;}
+	.huntimg {
+		float:left;
+		padding-bottom:15px;
+	}
+
+	.gridul {
+    margin: 0 auto;
+    text-align: center;
+	}
+
+	.target {
+		width: 100%;
+		.gridli;
+	}
+
+	.user {
+		.gridli;
+		width: 50%;
+	}
+
+	.gridli {
+		margin-top: 2px;
+		padding-bottom: 2px;
+		padding-left: 2px;
+		padding-right:2px;
+		border-bottom: solid 1px gray;
+		display: inline-block;
+	   	vertical-align: top;
+	}
+
+// COLORS
+
+	@body-bg: #140000;
+	@brand-primary: #520000;
+	@brand-danger: #005252;
+	@text-color:  @gray-lighter;
+
+	.is-transmitting {color:green;}
+	.not-transmitting {color:red;}
+
+	.leaflet-popup-content-wrapper {color:black;}
+
+.growl-notifications {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 9999; /*must be highest element on page*/
 }

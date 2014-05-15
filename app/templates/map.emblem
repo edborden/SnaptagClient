@@ -1,3 +1,1 @@
-view 'me-map'
-unless controllers.application.active
-	view 'bot-nav'
+view 'intro-map'

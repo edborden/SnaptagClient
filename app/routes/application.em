@@ -3,18 +3,21 @@
 class ApplicationRoute extends Ember.Route with ServerTalk
 
 	model: ->
+		Ember.$.ajaxSetup {data: {"token": localStorage.fbtoken}} if localStorage.fbtoken? 
 		Ember.RSVP.hash
 			currentLocation: @setInitialLocation()
-			active: @getInitialStatus().then parseActive response
-			queue: @getInitialStatus().then parseQueue response
-			loggedIn: @setInitialLoggedIn()
 			internetConnection: @setInitialInternetConnection()
+			loggedIn: @setInitialLoggedIn()
+			active: @setInitialActive()
+			queue: @setInitialQueue()
 
-	setupController: (controller,model) ->
-		controller.model = null
+	afterModel: (model) ->
 		@session.setProperties model
-		navigator.geolocation.watchPosition( (position) => @currentLocation = position,null, {enableHighAccuracy:true})
-		@replaceWith 'index' unless model.loggedIn
+		navigator.geolocation.watchPosition( (position) => @session.currentLocation = position,null, {enableHighAccuracy:true})
+		@_super()
+
+	setupController: ->
+		return  # don't want to set the model in the controller, messes up downstream controllers for some reason
 
 	actions:
 		updatelocation: ->
@@ -22,36 +25,47 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 		back: ->
 			window.history.go(-1)
 		login: ->
-			@fbLogin().then(getServer("users/login",data:{token:localStorage.fbtoken})).then onLogin newtoken
+			window.plugins.spinnerDialog.show() if cordova?
+			openFB.login 'email,user_photos,user_birthday', =>
+				@getServer("users/login",{token: localStorage.fbtoken}).then( (response) => 
+					localStorage['fbtoken'] = response
+					@session.loggedIn = true
+					window.plugins.spinnerDialog.hide() if cordova?
+					@transitionTo 'map')
 		join: ->
-			@getServer("hunts/join",
-				data: {location: @session.currentLocation}
-			).then @session.setActiveStatus response
+			window.plugins.spinnerDialog.show() if cordova?
+			@getServer("hunts/join",{timestamp: @session.currentLocation.timestamp,latitude: @session.currentLocation.coords.latitude,longitude: @session.currentLocation.coords.longitude,accuracy: @session.currentLocation.coords.accuracy}).then (response) =>
+				if response is 'active'
+					@session.active = true 
+					Bootstrap.GNM.push('Sleeper Activated.', 'You are now in-game.', 'success')
+				if response is 'queue'
+					@session.queue = true 
+					Bootstrap.GNM.push('Queue entered.', 'You are waiting to play.', 'success')
+				window.plugins.spinnerDialog.hide() if cordova?
+				@replaceWith 'map' if @session.active
 
-	onLogin: (newtoken) ->
-		localStorage['fbtoken'] = newtoken
-		@session.loggedIn = true
-
-	fbLogin: ->
-		return new Promise (resolve,reject) ->
-			openFB.login 'email,user_photos,user_birthday'
+		unjoin: ->
+			@session.queue = false
 
 	## INIT
 
-	parseQueue: (response) ->
-		if response is 'queue' then return true else return false
+	setInitialQueue: ->
+		if localStorage.fbtoken?
+			@getServer("users/status").then (response) ->
+				if response is 'queue' then return true else return false				
+		else
+			return false
 
-	parseActive: (response) ->
-		if response is 'active' then return true else return false
-
-	getInitialStatus: ->
-		getServer "users/status" if localStorage.fbtoken? else return false
+	setInitialActive: ->
+		if localStorage.fbtoken?
+			@getServer("users/status").then (response) ->
+				if response is 'active' then return true else return false
+		else
+			return false
 
 	setInitialLocation: ->
-		return new Promise (resolve,reject) -> 
-			navigator.geolocation.getCurrentPosition (position) -> resolve position
-			null
-			{timeout:0,maximumAge:Infinity,enableHighAccuracy:true}
+		return new Ember.RSVP.Promise (resolve) => 
+			navigator.geolocation.getCurrentPosition (response) -> resolve response,null,{timeout:1000,maximumAge:Infinity,enableHighAccuracy:true}
 
 	setInitialLoggedIn: ->
 		if localStorage.fbtoken? then return true else return false

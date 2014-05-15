@@ -1,6 +1,10 @@
 .navbar-fixed-top
-	if active
-		view 'status-nav'
+	if session.active
+		unless isPicRoute
+			view 'status-nav'
+		if isPicRoute
+			button.btn.btn-danger.btn18 click="back"
+				i.fa.fa-reply
 
 		link-to "map" class="btn18 btn btn-primary"
 			i.fa.fa-map-marker
@@ -17,7 +21,7 @@
 		link-to "instructions" class="btn10 btn btn-primary"
 			i.fa.fa-question
 	else
-		link-to "map" class="btn30 btn btn-primary"
+		link-to "inactivemap" class="btn30 btn btn-primary"
 			i.fa.fa-map-marker
 
 		link-to "me" class="btn30 btn btn-primary"

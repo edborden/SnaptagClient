@@ -1,4 +1,3 @@
 .text-center.stacker
 	h2 You are being watched.
-view "me-map"
-view "bot-nav"
+view "intro-map"

@@ -12,6 +12,4 @@ class Session extends Ember.Object
 		else 
 			return true
 
-	setActiveStatus: (response) ->
-		@active = true if response is 'active'
-		@queue = true if response is 'queue'
+`export default Session`

@@ -1,4 +1,0 @@
-	each model
-		li.gridli
-			link-to 'hunt.user' this
-				img src=smallpic class="huntimg"

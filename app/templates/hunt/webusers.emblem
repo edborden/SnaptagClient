@@ -1,5 +1,5 @@
 	each model
-		li.target
-			link-to 'hunt.target' this
+		li.user
+			link-to 'hunt.user' this
 				img src=smallpic class="huntimg"
 			p #{name}
