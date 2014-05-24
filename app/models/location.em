@@ -1,8 +1,8 @@
 attr = DS.attr
 
 Location = DS.Model.extend
-	latitude: attr
-	longitude: attr
+	lat: attr
+	lon: attr
 	accuracy: attr
 	timestamp: attr
 	user: DS.belongsTo 'user'

@@ -6,4 +6,5 @@
 		p: .centerblock #{name}
 		p Exposed : #{exposed_count}
 		p Counteracted : #{counteract_count}
+		p Disavowed : #{disavowed_count}
 		p Compromised : #{compromised_count}

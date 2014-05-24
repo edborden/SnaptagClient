@@ -21,7 +21,8 @@
     "leaflet-dist": "*",
     "ember-leaflet": "*",
     "leaflet.awesome-markers": "https://github.com/lvoogdt/Leaflet.awesome-markers.git#2.0/develop",
-    "ember-addons.bs_for_ember": "~0.6.1"
+    "ember-addons.bs_for_ember": "~0.6.1",
+    "momentjs": "~2.6.0"
   },
   "resolutions": {
     "ember": "~1.6.0-beta.2"

@@ -1,5 +1,13 @@
 `import MeMapView from 'appkit/views/me-map'`
 
+class ZoneCircle extends EmberLeaflet.CircleLayer
+	content: {location: L.latLng(40.865286, -74.417388),radius: 10000}
+	options:
+		fill: false
+		weight: 3
+		opacity: 1
+		color: "black"
+
 themIcon = L.AwesomeMarkers.icon
     icon: 'crosshairs'
     markerColor: 'darkred'
@@ -7,15 +15,15 @@ themIcon = L.AwesomeMarkers.icon
 
 class ThemMarker extends EmberLeaflet.MarkerLayer with EmberLeaflet.PopupMixin
 	options: {icon: themIcon}
-	popupContent: "Active Sleeper has exposed 25 total targets and has been hunting for the past 2 days and 36 minutes."
+	popupContentBinding: 'content.popupContent'
 
 class MarkersLayer extends EmberLeaflet.MarkerCollectionLayer
-	contentBinding: 'controller'
+	contentBinding: 'controller.content.users'
 	itemLayerClass: ThemMarker
 
 class IntroMapView extends MeMapView
 	init: ->
 		@_super()
-		@childLayers.push MarkersLayer
+		@childLayers.push MarkersLayer, ZoneCircle
 
 `export default IntroMapView`
