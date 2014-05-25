@@ -1,2 +1,5 @@
 partial "usercommon"
-view "bot-nav"
+.navbar-fixed-bottom
+	button.btn.btn-danger click="counteract this" class="btn100"
+		i.fa.fa-exclamation-circle
+		| &nbsp;&nbsp;Counteract

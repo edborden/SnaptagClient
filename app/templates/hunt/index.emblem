@@ -1,3 +1,5 @@
 ul.gridul
+	li.gridli
+			p things go here
 	render "hunt/webtargets" model.targets
 	render "hunt/webusers" model.web_without_targets

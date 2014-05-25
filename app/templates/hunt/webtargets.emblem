@@ -1,5 +1,10 @@
-	each model
-		li.target
-			link-to 'hunt.target' this
-				img src=smallpic class="huntimg"
-			p #{name}
+each model
+	li.gridli
+		link-to 'hunt.target' this
+			img src=mediumpic class="huntimg"
+		div #{name}
+		.center-block
+			button.btn.btn-warning.center-block.hunt.bump21 click="expose this"
+				i.fa.fa-eye 
+			button.btn.btn-danger.center-block.hunt click="counteract this"
+				i.fa.fa-exclamation-circle

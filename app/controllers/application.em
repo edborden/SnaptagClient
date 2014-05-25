@@ -53,8 +53,8 @@ class ApplicationController extends Ember.ObjectController with ServerTalk
 	sendLocation: ->
 		@getServer "locations/update",
 			timestamp: @session.currentLocation.timestamp
-			latitude: @session.currentLocation.coords.latitude
-			longitude: @session.currentLocation.coords.longitude
+			lat: @session.currentLocation.coords.latitude
+			lon: @session.currentLocation.coords.longitude
 			accuracy: @session.currentLocation.coords.accuracy
 
 	setLocationInterval: ->

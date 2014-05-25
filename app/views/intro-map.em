@@ -1,10 +1,10 @@
 `import MeMapView from 'appkit/views/me-map'`
 
 class ZoneCircle extends EmberLeaflet.CircleLayer
-	content: {location: L.latLng(40.865286, -74.417388),radius: 10000}
+	contentBinding: 'controller.content.zone'
 	options:
 		fill: false
-		weight: 3
+		weight: 2
 		opacity: 1
 		color: "black"
 

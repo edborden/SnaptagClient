@@ -11,8 +11,28 @@ unless session.loggedIn
 	ul.indented
 		li Approach your target in a non-threatening manner, calmly, without disturbing anyone in your vicinity, ideally without them seeing you.
 		li Tap them lightly once on the shoulder. (Don't touch them anywhere else, please, let's not be weird.)
-		li Push the "Expose" button (either on the map or on their Sleeper detail page), show it to them, and then confirm the action immediately after they've seen it.
+		li 
+			| Push the 
+			span.fa-stack
+				i.fa.fa-square.primary-warning.fa-stack-2x
+				i.fa.fa-eye.secondary.fa-stack-1x.fa-inverse.fa-lg
+			| button, show them your screen, and then confirm the action immediately after they've seen it.
 		li Revel in your glory.
+
+	h5.highlight Counteracting Your Hunters
+	p 
+		| You can view the list of Sleepers you are playing with by navigating to the 
+		span.fa-stack
+			i.fa.fa-square.primary-primary.fa-stack-2x
+			i.fa.fa-crosshairs.secondary.fa-stack-1x.fa-inverse.fa-lg
+		| button.
+	p
+		| If you're getting a suspicious feeling that any one of these players are hunting you (even the ones you are hunting yourself!), then you may attempt a Counteraction using the 
+		span.fa-stack
+			i.fa.fa-square.primary-danger.fa-stack-2x
+			i.fa.fa-exclamation-circle.secondary.fa-stack-1x.fa-inverse.fa-lg
+		| button.
+	p If you are correct, they'll be exposed.  If you are wrong, you'll be disavowed and removed from the game!
 
 	h5.highlight Influence and Staying Connected
 	p Influence is the currency of the Sleepers world.  You can use it to purchase (coming soon) items and other enhancements that will give you an advantage.
@@ -20,7 +40,6 @@ unless session.loggedIn
 	p To be connected, you must have an accurate location reading from your device (hint: turn on WIFI as well as GPS to get a good lock) and an internet connection.
 
 	h5.highlight Location information
-
 	p Once you've logged in and entered the game, the app will start logging your location.
 	ul.indented
 		li Your location will only be logged while you are in the game and the app is open.

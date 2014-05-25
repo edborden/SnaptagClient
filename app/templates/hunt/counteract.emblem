@@ -1,8 +1,0 @@
-p.text-center If you believe #{firstname} #{lastname} is hostile toward you, you may attempt a counteraction immediately.
-
-.text-center.enter-game
-	button click="counteract" id="button50" class="btn btn-warning btn-lg" Counteract
-
-p.text-center If you are in error, you will be disavowed.
-
-= partial "nav/bottom"

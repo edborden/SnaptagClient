@@ -49,32 +49,41 @@
 	ul {-webkit-padding-start:0px;}
 	.huntimg {
 		float:left;
-		padding-bottom:15px;
+		height:96px;
 	}
 
 	.gridul {
     margin: 0 auto;
     text-align: center;
-	}
-
-	.target {
-		width: 100%;
-		.gridli;
-	}
-
-	.user {
-		.gridli;
-		width: 50%;
+    overflow:auto;
 	}
 
 	.gridli {
+		width: 50%;
+		height: 97px;
 		margin-top: 2px;
 		padding-bottom: 2px;
 		padding-left: 2px;
 		padding-right:2px;
-		border-bottom: solid 1px gray;
+		border-top: solid 1px gray;
 		display: inline-block;
 	   	vertical-align: top;
+	}
+
+	.hunt {
+		padding-top: 1px;
+		padding-bottom: 1px;
+		padding-right: 3px;
+		padding-left: 3px;
+		float:left;
+	}
+
+	.bump21 {
+		margin-left:21px;
+	}
+
+	.bump30 {
+		margin-left:30px;
 	}
 
 // COLORS
@@ -82,6 +91,7 @@
 	@body-bg: #140000;
 	@brand-primary: #520000;
 	@brand-danger: #005252;
+	@brand-warning: #000052;
 	@text-color:  @gray-lighter;
 
 	.is-transmitting {color:green;}
@@ -91,25 +101,43 @@
 
 // GROWL
 
-.growl-notifications {
-  position: fixed;
-  right: 10px;
-  top: 10px;
-  z-index: 9999; /*must be highest element on page*/
-}
+	.growl-notifications {
+	  position: fixed;
+	  right: 10px;
+	  top: 10px;
+	  z-index: 9999; /*must be highest element on page*/
+	}
 
 // INSTRUCTIONS
-.highlight {
-	color:  @brand-danger;
-	font-weight:bold;
-}
 
-.instructions {
-	padding-top:5px;
-	padding-left: 20px;
-	padding-bottom:10px;
-	padding-right:20px;
-	font-size:@font-size-small;
-}
+	.highlight {
+		color:  @brand-danger;
+		font-weight:bold;
+	}
 
-ul.indented {-webkit-padding-start:15px;}
+	.instructions {
+		padding-top:5px;
+		padding-left: 20px;
+		padding-bottom:10px;
+		padding-right:20px;
+		font-size:@font-size-small;
+	}
+
+	ul.indented {-webkit-padding-start:15px;}
+
+	.primary-primary {
+		color:@brand-primary;
+	}
+
+	.primary-danger {
+		color:@brand-danger;
+	}
+
+	.primary-warning {
+		color:@brand-warning;
+	}
+
+
+	.secondary {
+		padding-top:4px;		
+	}

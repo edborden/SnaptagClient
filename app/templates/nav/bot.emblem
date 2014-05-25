@@ -1,5 +1,4 @@
 .navbar-fixed-bottom
-
 	if isIndexRoute
 		button.btn.btn-danger click="login" class="btn80" 
 			i.fa.fa-facebook-square
@@ -17,18 +16,3 @@
 			button.btn.btn-danger click="join" class="btn100" 
 				i.fa.fa-eye
 				| &nbsp;&nbsp;Activate Sleeper
-
-	if isHuntUserRoute
-		link-to 'hunt.counteract' this class="btn100 btn btn-danger"
-			i.fa.fa-eye
-			| &nbsp;&nbsp;Counteract
-
-	if isHuntTargetRoute
-
-		link-to 'hunt.counteract' this class="btn50 btn btn-danger"
-			i.fa.fa-eye 
-			| &nbsp;&nbsp;Counteract
-
-		link-to 'hunt.expose' this class="btn50 btn btn-warning"
-			i.fa.fa-eye 
-			| &nbsp;&nbsp;Expose
