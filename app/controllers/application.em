@@ -16,6 +16,11 @@ class ApplicationController extends Ember.ObjectController with ServerTalk
 	currentMapRoute: ~>
 		if @session.active then return "map" else return "inactivemap"
 
+	isBackButtonRoute: ~>
+		return true if @currentRouteName is 'pic'
+		return true if @currentRouteName is 'hunt.expose'
+		return true if @currentRouteName is 'hunt.counteract'
+
 	## BACK BUTTON
 
 	init: ->
@@ -30,16 +35,6 @@ class ApplicationController extends Ember.ObjectController with ServerTalk
 				when "world" then @transitionToRoute @currentMapRoute
 				else window.history.go(-1)		
 
-	## LOADING
-
-	isLoadingRoute: Ember.computed.equal 'currentRouteName', 'loading'
-	+observer isLoadingRoute
-	isLoadingRouteChanged: ->
-		if isLoadingRoute
-			window.plugins.spinnerDialog.show() if cordova?
-		else
-			window.plugins.spinnerDialog.hide() if cordova?
-
 	## TRANSMITTING
 
 	+observer session.transmitting
@@ -47,7 +42,7 @@ class ApplicationController extends Ember.ObjectController with ServerTalk
 		if @session.transmitting and !@intervalID?
 			@intervalID = @setLocationInterval()
 		if @session.transmitting is false and @intervalID
-			clearInterval(@intervalID)
+			clearInterval @intervalID
 			@intervalID = null
 
 	sendLocation: ->

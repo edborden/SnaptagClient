@@ -1,9 +1,8 @@
 partial "usercommon"
 .navbar-fixed-bottom
-	button.btn.btn-danger click="counteract this" class="btn50"
-		i.fa.fa-exclamation-circle
-		| &nbsp;&nbsp;Counteract
-
-	button.btn.btn-warning click="expose this" class="btn50"
-		i.fa.fa-eye 
+	link-to "hunt.expose" this class="btn50 btn btn-warning"
+		i.fa.fa-crosshairs
 		| &nbsp;&nbsp;Expose
+	link-to "hunt.counteract" this class="btn50 btn btn-danger"
+		i.fa.fa-eye
+		| &nbsp;&nbsp;Counteract

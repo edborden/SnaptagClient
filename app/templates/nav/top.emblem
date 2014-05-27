@@ -1,8 +1,8 @@
 .navbar-fixed-top
 	if session.active
-		unless isPicRoute
+		unless isBackButtonRoute
 			view 'status-nav'
-		if isPicRoute
+		if isBackButtonRoute
 			button.btn.btn-danger.btn18 click="back"
 				i.fa.fa-reply
 
@@ -10,7 +10,7 @@
 			i.fa.fa-map-marker
 
 		link-to "hunt" class="btn18 btn btn-primary"
-			i.fa.fa-crosshairs
+			i.fa.fa-eye
 
 		link-to "me" class="btn18 btn btn-primary"
 			i.fa.fa-user

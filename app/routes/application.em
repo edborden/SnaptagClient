@@ -25,12 +25,10 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 		back: ->
 			window.history.go(-1)
 		login: ->
-			window.plugins.spinnerDialog.show() if cordova?
 			openFB.login 'email,user_photos,user_birthday', =>
 				@getServer("users/login",{token: localStorage.fbtoken},"json").then( (response) => 
 					localStorage['fbtoken'] = response.token
 					@session.loggedIn = true
-					window.plugins.spinnerDialog.hide() if cordova?
 					if response.status is "inactive"
 						@transitionTo 'inactivemap'
 						Bootstrap.GNM.push 'Logged In', 'You may now Activate.', 'success'
@@ -43,7 +41,6 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 						@transitionTo 'map'
 						Bootstrap.GNM.push 'Logged In', 'You are now in-game.', 'success')
 		join: ->
-			window.plugins.spinnerDialog.show() if cordova?
 			@getServer("hunts/join",{timestamp: @session.currentLocation.timestamp,lat: @session.currentLocation.coords.latitude,lon: @session.currentLocation.coords.longitude,accuracy: @session.currentLocation.coords.accuracy}).then (response) =>
 				if response is 'active'
 					@session.active = true 
@@ -51,7 +48,6 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 				if response is 'queue'
 					@session.queue = true 
 					Bootstrap.GNM.push 'Queue entered.', 'You are waiting to play.', 'success'
-				window.plugins.spinnerDialog.hide() if cordova?
 				@replaceWith 'map' if @session.active
 		logout: ->
 			localStorage.clear()
@@ -61,20 +57,22 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 			Bootstrap.GNM.push('Logged Out', null, 'success')
 		unjoin: ->
 			@session.queue = false
-		expose: ->
-			return
+		expose: (user) ->
+			@getServer('hunts/expose', {target_id: user.id}).then( (response) =>
+				Bootstrap.GNM.push 'Success', 'Target Exposed.', 'success'
+				@replaceWith 'hunt')
 		leave_game: ->
 			return
 		counteract: (user) ->
-			console.log user
 			@getServer('hunts/counteract', {hunter_id: user.id}).then( (response) =>
 				if response is "success"
-					Bootstrap.GNM.push 'Counteraction Successful', 'The Sleeper hunting you has been compromised.', 'success'
+					Bootstrap.GNM.push 'Success', 'Hunter compromised.', 'success'
 					@replaceWith 'hunt'
 				else
-					Bootstrap.GNM.push 'Counteraction Unsuccessful', 'You have been disavowed.', 'success'
+					@session.active = false
+					Bootstrap.GNM.push 'Disavowed', 'Counteraction unsuccessful.', 'warning'
 					@replaceWith 'inactivemap')
- 
+
 	## INIT
 
 	setInitialQueue: ->

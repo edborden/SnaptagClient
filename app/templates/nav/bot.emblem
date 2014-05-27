@@ -1,6 +1,6 @@
 .navbar-fixed-bottom
 	if isIndexRoute
-		button.btn.btn-danger click="login" class="btn80" 
+		button.btn.btn-danger.btn80 click="login"
 			i.fa.fa-facebook-square
 			| &nbsp;&nbsp;Login
 
@@ -9,10 +9,10 @@
 
 	if isInactivemapRoute
 		if session.queue
-			button.btn.btn-danger click="unjoin" class="btn100" 
+			button.btn.btn-danger.btn100 click="unjoin"
 				i.fa.fa-eye
 				| &nbsp;&nbsp;Exit Queue
 		else
-			button.btn.btn-danger click="join" class="btn100" 
+			button.btn.btn-danger.btn100 click="join"
 				i.fa.fa-eye
 				| &nbsp;&nbsp;Activate Sleeper

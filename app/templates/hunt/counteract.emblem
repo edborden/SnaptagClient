@@ -1,0 +1,6 @@
+.text-center: h4 Are you sure you want to attempt a Counteraction against this person?
+img.img-responsive src=largepic
+br
+button.btn.btn-danger.center-block.btn50 click="counteract this" 
+	i.fa.fa-eye
+	| &nbsp;&nbsp;Counteract

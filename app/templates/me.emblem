@@ -1,10 +1,10 @@
 render 'usercommon' this
 
 if session.active
-	button.btn.btn-danger.center-block click="leave_game" class="btn50" 
+	button.btn.btn-danger.center-block.btn50 click="leave_game"
 		i.fa.fa-eject
 		| &nbsp;&nbsp;Leave Game
 p &nbsp;
-button.btn.btn-danger.center-block click="logout" class="btn50" 
-	i.fa.fa-circle-o-notch
+button.btn.btn-danger.center-block.btn50 click="logout"
+	i.fa.fa-power-off
 	| &nbsp;&nbsp;Logout

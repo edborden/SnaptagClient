@@ -3,5 +3,6 @@ each model
 		link-to 'hunt.user' this
 			img src=mediumpic class="huntimg"
 		div #{name}
-		button.btn.btn-danger.center-block.hunt.bump30 click="counteract this"
-			i.fa.fa-exclamation-circle
+		.center-block
+			link-to "hunt.counteract" this class="hunt btn bump30 btn-danger"
+				i.fa.fa-eye
