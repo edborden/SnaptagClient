@@ -11,10 +11,10 @@
     <preference name="exit-on-suspend" value="true" />
     <preference name="orientation" value="portrait" />
 
-    <name>Assassin</name>
+    <name>Sleepers</name>
 
     <description>
-        Assassin description.
+        A game played with real people, in real time, out in the real world.
     </description>
 
     <author href="http://www.gridweb.com" email="borden.edward@gmail.com">
@@ -27,5 +27,24 @@
 
     <access origin="*" />
 
+    <!-- iPhone / iPod Touch  -->
+    <icon src="icons/icon-60.png" gap:platform="ios" width="60" height="60" />
+    <icon src="icons/icon-60@2x.png" gap:platform="ios" width="120" height="120" />
+
+    <!-- Settings Icon -->
+    <icon src="icons/icon-small.png" gap:platform="ios" width="29" height="29" />
+    <icon src="icons/icon-small@2x.png" gap:platform="ios" width="58" height="58" />
+
+    <!-- Spotlight Icon -->
+    <icon src="icons/icon-40.png" gap:platform="ios" width="40" height="40" />
+    <icon src="icons/icon-40@2x.png" gap:platform="ios" width="80" height="80" />
+
+    <!-- Android Icon -->
+    <icon src="icons/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
+    <icon src="icons/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />   
+
+    <!-- Android Splash -->
+    <gap:splash src="splash/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
+    <gap:splash src="splash/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
 </widget>
 

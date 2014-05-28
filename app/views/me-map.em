@@ -1,3 +1,11 @@
+class ZoneCircle extends EmberLeaflet.CircleLayer
+	contentBinding: 'controller.content.zone'
+	options:
+		fill: false
+		weight: 2
+		opacity: 1
+		color: "black"
+
 meIcon = L.AwesomeMarkers.icon
     icon: 'user'
     markerColor: 'cadetblue'
@@ -28,7 +36,7 @@ class LeafTileLayer extends EmberLeaflet.TileLayer
 class MeMapView extends EmberLeaflet.MapView
 	classNames: ['stacked']
 	currentLocation: Ember.computed.alias "controller.session.currentLocation"
-	childLayers: [LeafTileLayer,MeMarker,MeCircle]
+	childLayers: [LeafTileLayer,MeMarker,MeCircle,ZoneCircle]
 	options:
 		zoomControl:false
 		attributionControl:false

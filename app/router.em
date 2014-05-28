@@ -10,7 +10,10 @@ Router.map ->
 		@route 'target', {path: '/target/:user_id'}
 		@route 'counteract', {path: '/counteract/:user_id'}
 		@route 'expose', {path: '/expose/:user_id'}
-	@route 'map'
+	@resource 'map', ->
+		@route 'index'
+		@route 'two'
+		@route 'three'
 	@route 'inactivemap'
 
 `export default Router`

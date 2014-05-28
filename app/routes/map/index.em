@@ -1,27 +1,17 @@
 `import ServerTalk from 'appkit/mixins/server-talk'`
 
-class MapRoute extends Ember.Route with ServerTalk
+class MapIndexRoute extends Ember.Route with ServerTalk
 	model:->
 		@getServer("users", {targets_with_locations: true}, "json"
 		).then (response) =>
-			controller = @controllerFor('map')
+			controller = @controllerFor('map.index')
 			numberOfTargets = response.users.length
-			locations_array = response.users[0].locations.map (loc) -> {
-							location: L.latLng(loc.lat, loc.lon)
-							popupContent: "Latest location, " + moment(loc.timestamp).fromNow()			
-			}
-			latestLocation = locations_array.pop()
 
 			if numberOfTargets > 0
 				controller.target1Name = response.users[0].name
 				controller.target2Name = response.users[1].name if numberOfTargets > 1
 				controller.target3Name = response.users[2].name if numberOfTargets is 3
-				return {
-					user: {
-						locations: locations_array	
-						latestLocation: latestLocation		
-					}
-						## THIS IS NOT RIGHT, BUT WORKS			
+				return {	
 					zone: {
 						location: L.latLng(response.zones[0].lat, response.zones[0].lon)
 						radius: response.zones[0].range
@@ -30,4 +20,4 @@ class MapRoute extends Ember.Route with ServerTalk
 			else
 				return null
 
-`export default MapRoute`
+`export default MapIndexRoute`

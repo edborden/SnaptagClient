@@ -1,10 +1,10 @@
 `import ServerTalk from 'appkit/mixins/server-talk'`
 
-class MapRoute extends Ember.Route with ServerTalk
+class MapOneRoute extends Ember.Route with ServerTalk
 	model:->
 		@getServer("users", {targets_with_locations: true}, "json"
 		).then (response) =>
-			controller = @controllerFor('map')
+			controller = @controllerFor('map.one')
 			numberOfTargets = response.users.length
 			locations_array = response.users[0].locations.map (loc) -> {
 							location: L.latLng(loc.lat, loc.lon)
@@ -30,4 +30,4 @@ class MapRoute extends Ember.Route with ServerTalk
 			else
 				return null
 
-`export default MapRoute`
+`export default MapOneRoute`

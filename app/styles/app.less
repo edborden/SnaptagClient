@@ -8,10 +8,39 @@
 	.bot-nav-padding {padding-bottom:36px;}
 
 // map
-	html, body, .leaflet-container, body>div {height: 100%;}
+	html, body, .leaflet-container, .map-container, body>div {height: 100%;}
 	.stacker {position:absolute;z-index:2;width:100%;font-weight:bold;}
 	.stacked { z-index:1; }
 
+	.map1 {
+	position:absolute;
+	top: 45px;
+	left: 8px;
+	z-index:3;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-right: 8px;
+	padding-left: 8px;
+
+	&:active,
+  	&.active {
+    outline: 1;
+    color:orange;
+    background-image: none;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  	}
+
+	}
+
+	.map2 {
+	.map1;
+	top: 80px;
+	}
+
+	.map3 {
+	.map1;
+	top: 115px;
+	}
 
 // BUTTONS
 
@@ -25,7 +54,7 @@
 	.btn10 {width:10%;}
 
 	@font-size-large:1.5em; 
-	@border-radius-base:0px;
+	@border-radius-base:3px;
 
 	button.close {font-size:@font-size-large;}
 
@@ -37,7 +66,7 @@
 		fieldset[disabled] & {
 			cursor: not-allowed;
 			pointer-events: none; // Future-proof disabling of clicks
-			// .opacity(1);
+			.opacity(1);
 			.box-shadow(none);
 		}
 	}
@@ -137,7 +166,6 @@
 		color:@brand-warning;
 	}
 
-
 	.secondary {
 		padding-top:4px;		
 	}
@@ -145,6 +173,7 @@
 // SPINNER
 
 	.center-div {
+	color:@brand-primary;
     position: fixed;
     height: 15%;    
     width: 25%;
