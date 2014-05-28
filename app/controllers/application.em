@@ -11,13 +11,7 @@ class ApplicationController extends Ember.ObjectController with ServerTalk
 	isInactivemapRoute: Ember.computed.equal 'currentRouteName', 'inactivemap'
 	isHuntUserRoute: Ember.computed.equal 'currentRouteName', 'hunt.user'
 	isHuntTargetRoute: Ember.computed.equal 'currentRouteName', 'hunt.target'
-
-	isMapRoute: ~>
-		switch @currentRouteName
-			when "map.index" then return true
-			when "map.two" then return true
-			when "map.three" then return true
-			else return false
+	isMapRoute: Ember.computed.equal 'currentRouteName', 'map'
 
 	isBackButtonRoute: ~>
 		switch @currentRouteName

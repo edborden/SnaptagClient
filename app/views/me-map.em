@@ -1,3 +1,8 @@
+class L.Map extends L.Map
+	openPopup: (popup) ->
+		@_popup = popup
+		return @addLayer(popup).fire 'popupopen', {popup: @_popup}
+
 class ZoneCircle extends EmberLeaflet.CircleLayer
 	contentBinding: 'controller.content.zone'
 	options:
@@ -8,7 +13,7 @@ class ZoneCircle extends EmberLeaflet.CircleLayer
 
 meIcon = L.AwesomeMarkers.icon
     icon: 'user'
-    markerColor: 'cadetblue'
+    markerColor: 'darkred'
     prefix: 'fa'
 
 MeLayerMixin = Ember.Mixin.create
