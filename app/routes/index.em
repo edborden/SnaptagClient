@@ -12,11 +12,15 @@ class IndexRoute extends Ember.Route with ServerTalk
 		@getServer("users", {inactive_map: true, lat: @session.currentLocation.coords.latitude,lon: @session.currentLocation.coords.longitude},"json"
 		).then (response) ->
 			return {
-				users: response.users.map (item) ->
-					location: L.latLng(item.locations[0].lat, item.locations[0].lon)
+				users: response.users.map (user) -> {
+					location: L.latLng(user.lat, user.lon)
 					## THIS IS NOT RIGHT, BUT WORKS
-					popupContent: "Active Sleeper who has exposed " + item.exposed_count.toString() + " targets and has been hunting since " + moment(item.activated_at).fromNow() + "."
-				zone: {location: L.latLng(response.zones[0].lat, response.zones[0].lon),radius: response.zones[0].range}
+					popupContent: "Active Sleeper who has exposed " + user.exposed_count.toString() + " targets and has been hunting since " + moment(user.activated_at).fromNow() + "."
+				}
+				zones: response.zones.map (zone) -> {
+					location: L.latLng(zone.lat, zone.lon)
+					radius: zone.range
+				}
 			}
 
 `export default IndexRoute`

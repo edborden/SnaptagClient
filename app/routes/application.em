@@ -41,7 +41,7 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 						@transitionTo 'map'
 						Bootstrap.GNM.push 'Logged In', 'You are now in-game.', 'success')
 		join: ->
-			@getServer("hunts/join",{timestamp: @session.currentLocation.timestamp,lat: @session.currentLocation.coords.latitude,lon: @session.currentLocation.coords.longitude,accuracy: @session.currentLocation.coords.accuracy}).then (response) =>
+			@getServer("hunts/join",{lat: @session.currentLocation.coords.latitude,lon: @session.currentLocation.coords.longitude}).then (response) =>
 				if response is 'active'
 					@session.active = true 
 					Bootstrap.GNM.push 'Sleeper Activated.', 'You are now in-game.', 'success'

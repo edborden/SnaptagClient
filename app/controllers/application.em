@@ -35,7 +35,7 @@ class ApplicationController extends Ember.ObjectController with ServerTalk
 				when "hunt.index" then @transitionToRoute "map"
 				when "me" then @transitionToRoute @currentMapRoute
 				when "world" then @transitionToRoute @currentMapRoute
-				else window.history.go(-1)		
+				else window.history.go(-1)
 
 	## TRANSMITTING
 
@@ -49,10 +49,8 @@ class ApplicationController extends Ember.ObjectController with ServerTalk
 
 	sendLocation: ->
 		@getServer "locations/update",
-			timestamp: @session.currentLocation.timestamp
 			lat: @session.currentLocation.coords.latitude
 			lon: @session.currentLocation.coords.longitude
-			accuracy: @session.currentLocation.coords.accuracy
 
 	setLocationInterval: ->
 		app = this

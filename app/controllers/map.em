@@ -1,8 +1,8 @@
 class MapController extends Ember.ObjectController
 
-	target1Name: ~> @content.users[0].name
-	target2Name: ~> @content.users[1].name
-	target3Name: ~> @content.users[2].name
+	target1Name: ~> if @content.users[0]? then return @content.users[0].name else return null
+	target2Name: ~> if @content.users[1]? then return @content.users[1].name else return null
+	target3Name: ~> if @content.users[2]? then return @content.users[2].name else return null
 
 	activeTarget: null
 	targetContent: null

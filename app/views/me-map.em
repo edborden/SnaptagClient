@@ -1,16 +1,3 @@
-class L.Map extends L.Map
-	openPopup: (popup) ->
-		@_popup = popup
-		return @addLayer(popup).fire 'popupopen', {popup: @_popup}
-
-class ZoneCircle extends EmberLeaflet.CircleLayer
-	contentBinding: 'controller.content.zone'
-	options:
-		fill: false
-		weight: 2
-		opacity: 1
-		color: "black"
-
 meIcon = L.AwesomeMarkers.icon
     icon: 'user'
     markerColor: 'darkred'
@@ -33,6 +20,12 @@ class MeMarker extends EmberLeaflet.MarkerLayer with MeLayerMixin, EmberLeaflet.
 	popupContent: "You."
 	popupOptions: {offset: L.point(0, -36),closeButton:false}
 
+
+	_createLayer: ->
+		@_super()
+		window.layerrr = @layer
+#		addEventListener 'add', @layer.fireEvent("click")
+
 class MeCircle extends EmberLeaflet.CircleLayer with MeLayerMixin
 
 class LeafTileLayer extends EmberLeaflet.TileLayer
@@ -41,13 +34,15 @@ class LeafTileLayer extends EmberLeaflet.TileLayer
 class MeMapView extends EmberLeaflet.MapView
 	classNames: ['stacked']
 	currentLocation: Ember.computed.alias "controller.session.currentLocation"
-	childLayers: [LeafTileLayer,MeMarker,MeCircle,ZoneCircle]
+	childLayers: [LeafTileLayer,MeMarker,MeCircle]
 	options:
 		zoomControl:false
 		attributionControl:false
 
 	didInsertElement: ->
 		@_super()
-		@_layer.setView([@currentLocation.coords.latitude, @currentLocation.coords.longitude], 14)
+		console.log @childLayers[1]
+		@childLayers[1].layer.fireEvent("click")
+
 
 `export default MeMapView`

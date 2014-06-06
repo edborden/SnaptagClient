@@ -24,6 +24,7 @@
     "ember-addons.bs_for_ember": "~0.6.1",
     "momentjs": "~2.6.0",
     "leaflet.markercluster": "~0.4.0",
+    "typed.js": "https://github.com/mattboldt/typed.js.git#master"
   },
   "resolutions": {
     "ember": "~1.6.0-beta.2"

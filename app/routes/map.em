@@ -4,19 +4,22 @@ class MapRoute extends Ember.Route with ServerTalk
 	model:->
 		@getServer("users", {targets_with_locations: true}, "json"
 		).then (response) ->
-
-			users = response.users.map (user) -> {
-				name: user.name
-				locations: user.locations.map (loc) -> {
-					location: L.latLng(loc.lat, loc.lon)
-					popupContent: moment(loc.timestamp).fromNow()								
-				}
-			}
-
-			users.forEach (user) ->
-				user['latestLocation'] = user.locations.pop()
-
 			if response.users?
+				users = response.users.map (user) -> {
+					name: user.name
+					locations: user.locations.map (loc) -> {
+						location: L.latLng(loc.lat, loc.lon)
+						popupContent: moment.unix(loc.timestamp).fromNow()								
+					}
+				}
+
+				users.forEach (user) ->
+					user['latestLocation'] = user.locations.pop()
+
+				users.forEach (user) ->
+					user.latestLocation.popupContent = "Your target, " + user.name + ", was last seen here " + user.latestLocation.popupContent
+
+
 				return {
 					users
 						## THIS IS NOT RIGHT, BUT WORKS			

@@ -1,4 +1,14 @@
-`import MeMapView from 'appkit/views/me-map'`
+# hack to allow more than one popup open on the screen
+class L.Map extends L.Map
+	openPopup: (popup) ->
+		@_popup = popup
+		return @addLayer(popup).fire 'popupopen', {popup: @_popup}
+
+`import TileLayer from 'appkit/lib/tile-layer'`
+`import MeCircle from 'appkit/lib/me-circle'`
+`import MeMarker from 'appkit/lib/me-marker'`
+`import ZoneCircles from 'appkit/lib/zone-circles'`
+`import TargetClusters from 'appkit/lib/target-clusters'`
 
 latestIcon = L.AwesomeMarkers.icon
 	icon: 'crosshairs'
@@ -32,27 +42,24 @@ class Latest3Marker extends LatestMarker
 		@_super()
 #		addEventListener 'add', @openPopup()
 
-themIcon = L.AwesomeMarkers.icon
-	icon: 'crosshairs'
-	markerColor: 'green'
-	prefix: 'fa'
+class TargetMapView extends EmberLeaflet.MapView
+	classNames: ['stacked']
+	currentLocation: Ember.computed.alias "controller.session.currentLocation"
+	childLayers: [TileLayer,MeCircle,MeMarker,ZoneCircles,TargetClusters,LatestMarker]
+	options:
+		zoomControl:false
+		attributionControl:false
 
-class ThemMarker extends EmberLeaflet.MarkerLayer with EmberLeaflet.PopupMixin
-	options: {icon: themIcon}
-	popupContentBinding: 'content.popupContent'
-
-class TargetMarkersLayer extends EmberLeaflet.MarkerCollectionLayer
-	content: ~> return @controller.targetContent.locations
-	itemLayerClass: ThemMarker
-
-class ClusterLayer extends EmberLeaflet.ContainerLayer
-	childLayers: [TargetMarkersLayer]
-	_newLayer: ->
-		new L.MarkerClusterGroup({maxClusterRadius:60})
-
-class TargetMapView extends MeMapView
-	init: ->
+	didCreateLayer: ->
 		@_super()
-		@childLayers.push ClusterLayer,LatestMarker,Latest1Marker,Latest2Marker,Latest3Marker
+		$ ->
+			$(".typed").typed
+				strings: ["You ^400 are ^500 being ^400 watched."]
+				typeSpeed: 50
+		@_layer.setView([@currentLocation.coords.latitude, @currentLocation.coords.longitude], 14)
+		#@childLayers[2].openPopup()
+		#markerarray = @childLayers[4].childLayers[0].childLayers.map (marker) -> marker.content.location
+		#bounds = L.latLngBounds(markerarray)
+		#@_layer.fitBounds(bounds)
 
 `export default TargetMapView`

@@ -39,12 +39,9 @@
     <icon src="icons/icon-40.png" gap:platform="ios" width="40" height="40" />
     <icon src="icons/icon-40@2x.png" gap:platform="ios" width="80" height="80" />
 
-    <!-- Android Icon -->
+    <!-- Android Icon 160dpi, 240dpi-->
     <icon src="icons/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
     <icon src="icons/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />   
 
-    <!-- Android Splash -->
-    <gap:splash src="splash/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
-    <gap:splash src="splash/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
 </widget>
 

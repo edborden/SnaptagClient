@@ -1,29 +1,28 @@
-`import MeMapView from 'appkit/views/me-map'`
+`import TileLayer from 'appkit/lib/tile-layer'`
+`import MeCircle from 'appkit/lib/me-circle'`
+`import MeMarker from 'appkit/lib/me-marker'`
+`import ZoneCircles from 'appkit/lib/zone-circles'`
+`import ThemClusters from 'appkit/lib/them-clusters'`
 
-class ZoneCircle extends EmberLeaflet.CircleLayer
-	contentBinding: 'controller.content.zone'
+
+class IntroMapView extends EmberLeaflet.MapView
+	classNames: ['stacked']
+	currentLocation: Ember.computed.alias "controller.session.currentLocation"
+	childLayers: [TileLayer,MeCircle,MeMarker,ZoneCircles,ThemClusters]
 	options:
-		fill: false
-		weight: 2
-		opacity: 1
-		color: "black"
+		zoomControl:false
+		attributionControl:false
 
-themIcon = L.AwesomeMarkers.icon
-    icon: 'crosshairs'
-    markerColor: 'darkred'
-    prefix: 'fa'
-
-class ThemMarker extends EmberLeaflet.MarkerLayer with EmberLeaflet.PopupMixin
-	options: {icon: themIcon}
-	popupContentBinding: 'content.popupContent'
-
-class MarkersLayer extends EmberLeaflet.MarkerCollectionLayer
-	contentBinding: 'controller.content.users'
-	itemLayerClass: ThemMarker
-
-class IntroMapView extends MeMapView
-	init: ->
+	didCreateLayer: ->
 		@_super()
-		@childLayers.push MarkersLayer, ZoneCircle
+		$ ->
+			$(".typed").typed
+				strings: ["You ^400 are ^500 being ^400 watched."]
+				typeSpeed: 50
+		@_layer.setView([@currentLocation.coords.latitude, @currentLocation.coords.longitude], 14)
+		@childLayers[2].openPopup()
+		markerarray = @childLayers[4].childLayers[0].childLayers.map (marker) -> marker.content.location
+		bounds = L.latLngBounds(markerarray)
+		@_layer.fitBounds(bounds)
 
 `export default IntroMapView`

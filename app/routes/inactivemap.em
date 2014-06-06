@@ -7,11 +7,14 @@ class InactivemapRoute extends Ember.Route with ServerTalk
 		).then (response) ->
 			return {
 				users: response.users.map (user) -> {
-					location: L.latLng(user.locations[0].lat, user.locations[0].lon)
+					location: L.latLng(user.lat, user.lon)
 					## THIS IS NOT RIGHT, BUT WORKS
 					popupContent: "Active Sleeper who has exposed " + user.exposed_count.toString() + " targets and has been hunting since " + moment(user.activated_at).fromNow() + "."
 				}
-				zone: {location: L.latLng(response.zones[0].lat, response.zones[0].lon),radius: response.zones[0].range}
+				zones: response.zones.map (zone) -> {
+					location: L.latLng(zone.lat, zone.lon)
+					radius: zone.range
+				}
 			}
 
 `export default InactivemapRoute`
