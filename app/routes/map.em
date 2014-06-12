@@ -9,7 +9,7 @@ class MapRoute extends Ember.Route with ServerTalk
 					name: user.name
 					locations: user.locations.map (loc) -> {
 						location: L.latLng(loc.lat, loc.lon)
-						popupContent: moment.unix(loc.timestamp).fromNow()								
+						popupContent: moment(loc.created_at).fromNow()								
 					}
 				}
 
@@ -17,7 +17,7 @@ class MapRoute extends Ember.Route with ServerTalk
 					user['latestLocation'] = user.locations.pop()
 
 				users.forEach (user) ->
-					user.latestLocation.popupContent = "Your target, " + user.name + ", was last seen here " + user.latestLocation.popupContent
+					user.latestLocation.popupContent = user.name + ", " + user.latestLocation.popupContent
 
 
 				return {
@@ -33,5 +33,8 @@ class MapRoute extends Ember.Route with ServerTalk
 	setupController: (controller,model) ->
 		@_super(controller,model)
 		controller.latestLocationsArray = model.users.map (user) -> user.latestLocation
+		if model.users[0]? then controller.target1Name = model.users[0].name
+		if model.users[1]? then controller.target2Name = model.users[1].name
+		if model.users[2]? then controller.target3Name = model.users[2].name
 
 `export default MapRoute`

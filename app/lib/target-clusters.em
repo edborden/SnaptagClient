@@ -7,12 +7,12 @@ class ThemMarker extends EmberLeaflet.MarkerLayer with EmberLeaflet.PopupMixin
 	options: {icon: themIcon}
 	popupContentBinding: 'content.popupContent'
 
-class TargetMarkersLayer extends EmberLeaflet.MarkerCollectionLayer
+class TargetMarkers extends EmberLeaflet.MarkerCollectionLayer
 	content: ~> return @controller.targetContent.locations
 	itemLayerClass: ThemMarker
 
 class TargetClusters extends EmberLeaflet.ContainerLayer
-	childLayers: [TargetMarkersLayer]
+	childLayers: [TargetMarkers]
 	_newLayer: ->
 		new L.MarkerClusterGroup({maxClusterRadius:60})
 
