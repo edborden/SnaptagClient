@@ -10,7 +10,7 @@ CenterMap = new Ember.Mixin
 			else
 				markers = locations
 			bounds = L.latLngBounds(markers)
-			context.fitBounds(bounds,{ padding: [75, 75],reset:true })
+			context.fitBounds(bounds,{ padding: [75, 75] })
 		else
 			return
 

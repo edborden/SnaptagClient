@@ -1,28 +1,28 @@
 if target1Name
-	#target1
-		button.btn.btn-warning.smallbtn click="target1"
+	#target1div
+		button.btn.btn-warning.targetmapbtn#target1 click="target1"
 			|#{target1Name}&nbsp;
 			i.fa.fa-map-marker
 		| &nbsp;
-		button.btn.btn-warning.smallbtn click="target1History"
+		button.btn.btn-warning.targetmapbtn#target1History click="target1History"
 			i.fa.fa-history
 		
 if target2Name
-	#target2
-		button.btn.btn-warning.smallbtn click="target2"
+	#target2div
+		button.btn.btn-warning.targetmapbtn#target2 click="target2"
 			|#{target2Name}&nbsp;
 			i.fa.fa-map-marker
 		| &nbsp;
-		button.btn.btn-warning.smallbtn click="target2History"
+		button.btn.btn-warning.targetmapbtn#target2History click="target2History"
 			i.fa.fa-history
 
 if target3Name
-	#target3
-		button.btn.btn-warning.smallbtn click="target3"
+	#target3div
+		button.btn.btn-warning.targetmapbtn#target3 click="target3"
 			|#{target3Name}&nbsp;
 			i.fa.fa-map-marker
 		| &nbsp;
-		button.btn.btn-warning.smallbtn click="target3History"
+		button.btn.btn-warning.targetmapbtn#target3History click="target3History"
 			i.fa.fa-history
 
 unless target1Name

@@ -60,13 +60,18 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 		expose: (user) ->
 			@getServer('hunts/expose', {target_id: user.id}).then( (response) =>
 				Bootstrap.GNM.push 'Success', 'Target Exposed.', 'success'
+				@modelFor('hunt').reload() if @modelFor('hunt')?
+				@modelFor('map').reload() if @modelFor('map')?
 				@replaceWith 'hunt')
 		leave_game: ->
-			return
+			console.log @modelFor('hunt')
+			window.model = @modelFor('hunt')
 		counteract: (user) ->
 			@getServer('hunts/counteract', {hunter_id: user.id}).then( (response) =>
 				if response is "success"
 					Bootstrap.GNM.push 'Success', 'Hunter compromised.', 'success'
+					@modelFor('hunt').reload() if @modelFor('hunt')?
+					@modelFor('map').reload() if @modelFor('map')?
 					@replaceWith 'hunt'
 				else
 					@session.active = false
