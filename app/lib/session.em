@@ -4,8 +4,7 @@ class Session extends Ember.Object
 	queue: null
 	loggedIn: null
 	internetConnection: null
-	transmitting: ~>
-		if @active and @locationAccurate and @internetConnection then return true else return false
+	transmitting: ~> if @active and @locationAccurate and @internetConnection then return true else return false
 	locationAccurate: ~>
 		if cordova?
 			if @currentLocation.coords.accuracy < 100 then return true else return false

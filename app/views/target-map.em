@@ -20,7 +20,7 @@ class LatestMarkers extends EmberLeaflet.MarkerCollectionLayer
 
 class TargetMapView extends EmberLeaflet.MapView with CenterMap
 	classNames: ['stacked']
-	currentLocation: Ember.computed.alias "controller.session.currentLocation"
+	currentLocation: ~> return @controller.session.currentLocation
 	childLayers: [TileLayer,MeCircle,MeMarker,ZoneCircles,TargetClusters,LatestMarkers]
 	options:
 		zoomControl:false
@@ -38,14 +38,14 @@ class TargetMapView extends EmberLeaflet.MapView with CenterMap
 	onTargetContentChange: ->
 		markerarray = [@childLayers[2].content.location, @controller.latestLocations.map (item) -> item.location]
 		unless @controller.targetContent is null
-			markerarray.push @controller.targetContent.locations.map (item) -> item.location
-		@centerMap(markerarray,@_layer)		
+			markerarray.push @controller.targetContent.map (item) -> item.location
+		@centerMap(markerarray,@_layer)
 
 	+observer controller.latestLocations
 	onLatestLocationsChange: ->
 		markerarray = [@childLayers[2].content.location, @controller.latestLocations.map (item) -> item.location]
 		unless @controller.targetContent is null
-			markerarray.push @controller.targetContent.locations.map (item) -> item.location
-		@centerMap(markerarray,@_layer)			
+			markerarray.push @controller.targetContent.map (item) -> item.location
+		@centerMap(markerarray,@_layer)
 
 `export default TargetMapView`

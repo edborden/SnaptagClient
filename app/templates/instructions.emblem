@@ -15,7 +15,7 @@ unless session.loggedIn
 			| Push the 
 			span.fa-stack
 				i.fa.fa-square.primary-warning.fa-stack-2x
-				i.fa.fa-eye.secondary.fa-stack-1x.fa-inverse.fa-lg
+				i.fa.fa-crosshairs.secondary.fa-stack-1x.fa-inverse.fa-lg
 			| button, show them your screen, and then confirm the action immediately after they've seen it.
 		li Revel in your glory.
 
@@ -24,13 +24,13 @@ unless session.loggedIn
 		| You can view the list of Sleepers you are playing with by navigating to the 
 		span.fa-stack
 			i.fa.fa-square.primary-primary.fa-stack-2x
-			i.fa.fa-crosshairs.secondary.fa-stack-1x.fa-inverse.fa-lg
+			i.fa.fa-eye.secondary.fa-stack-1x.fa-inverse.fa-lg
 		| button.
 	p
 		| If you're getting a suspicious feeling that any one of these players are hunting you (even the ones you are hunting yourself!), then you may attempt a Counteraction using the 
 		span.fa-stack
 			i.fa.fa-square.primary-danger.fa-stack-2x
-			i.fa.fa-exclamation-circle.secondary.fa-stack-1x.fa-inverse.fa-lg
+			i.fa.fa-eye.secondary.fa-stack-1x.fa-inverse.fa-lg
 		| button.
 	p If you are correct, they'll be exposed.  If you are wrong, you'll be disavowed and removed from the game!
 

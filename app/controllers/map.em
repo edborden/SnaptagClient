@@ -1,13 +1,10 @@
-`import CenterMap from 'appkit/mixins/center-map'`
+class MapController extends Ember.ObjectController
 
-class MapController extends Ember.ObjectController with CenterMap
-
-	target1Name: null
-	target2Name: null
-	target3Name: null
+	target1Name: ~> if @content.content[0]? then return @content.content[0].name else return null
+	target2Name: ~> if @content.content[1]? then return @content.content[1].name else return null
+	target3Name: ~> if @content.content[2]? then return @content.content[2].name else return null
 
 	activeTarget: null
-	targetContent: null
 	latestLocations: ~>	
 		switch @activeTarget
 			when null then return @latestLocationsArray
@@ -15,8 +12,9 @@ class MapController extends Ember.ObjectController with CenterMap
 			when 'target2' then return [@latestLocationsArray[1]]
 			when 'target3' then return [@latestLocationsArray[2]]
 
+	latestLocationsArray: ~> if @content.content? then return @content.content.map (user) -> user.locations.content[user.locations.content.length - 1] else return null
 
-	latestLocationsArray: null
+	targetContent: null
 
 	actions:
 		target1: ->
@@ -35,7 +33,7 @@ class MapController extends Ember.ObjectController with CenterMap
 				@targetContent = null
 			else
 				@activeTarget = 'target1'
-				@targetContent = @content.users[0]		
+				@targetContent = @content.content[0].locations
 			@activeCSSHandler()
 		target2: ->
 			if @activeTarget is 'target2'
@@ -53,7 +51,7 @@ class MapController extends Ember.ObjectController with CenterMap
 				@targetContent = null
 			else
 				@activeTarget = 'target2'
-				@targetContent = @content.users[1]		
+				@targetContent = @content.content[1].locations	
 			@activeCSSHandler()
 		target3: ->
 			if @activeTarget is 'target3'
@@ -71,7 +69,7 @@ class MapController extends Ember.ObjectController with CenterMap
 				@targetContent = null
 			else
 				@activeTarget = 'target3'
-				@targetContent = @content.users[2]		
+				@targetContent = @content.content[2].locations	
 			@activeCSSHandler()
 
 	activeCSSHandler: ->

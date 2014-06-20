@@ -5,10 +5,10 @@ themIcon = L.AwesomeMarkers.icon
 
 class ThemMarker extends EmberLeaflet.MarkerLayer with EmberLeaflet.PopupMixin
 	options: {icon: themIcon}
-	popupContentBinding: 'content.popupContent'
+	popupContent: ~> return @content.popupContent
 
 class TargetMarkers extends EmberLeaflet.MarkerCollectionLayer
-	content: ~> return @controller.targetContent.locations
+	content: ~> return @controller.targetContent
 	itemLayerClass: ThemMarker
 
 class TargetClusters extends EmberLeaflet.ContainerLayer

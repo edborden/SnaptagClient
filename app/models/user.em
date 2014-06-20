@@ -10,6 +10,11 @@ class User extends DS.Model
 	mediumpic: attr()
 	largepic: attr()
 	influence: attr "number"
-	active_at: attr "date"
+	activated_at: attr "date"
+	lat: attr()
+	lon: attr()
+	location: ~> return L.latLng @get('lat'), @get('lon')
+	locations: DS.hasMany 'location'
+	inactiveMapPopupContent: ~> return "Active Sleeper who has exposed " + @get('exposed_count').toString() + " targets and has been hunting since " + moment(@get 'activated_at').fromNow() + "."
 
 `export default User`

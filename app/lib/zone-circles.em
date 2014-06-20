@@ -7,6 +7,6 @@ class ZoneCircle extends EmberLeaflet.CircleLayer
 
 class ZoneCircles extends EmberLeaflet.CollectionLayer
 	itemLayerClass: ZoneCircle
-	contentBinding: 'controller.content.zones'
+	contentBinding: 'controller.zones'
 
 `export default ZoneCircles`
