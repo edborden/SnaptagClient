@@ -1,5 +1,5 @@
 class MeRoute extends Ember.Route
 	model: ->
-		@store.find 'user','me'
+		@session.me
 
 `export default MeRoute`

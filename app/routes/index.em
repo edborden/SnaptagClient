@@ -1,12 +1,11 @@
 class IndexRoute extends Ember.Route
 	beforeModel: ->
-		if @session.active
+		if @session.me? && @session.me.status is 'active'
 			@replaceWith 'map'
 		else if @session.loggedIn
 			@replaceWith 'inactivemap' 
-		@_super()
 
 	model:->
-		@store.find 'user',{inactive_map: true, lat: @session.currentLocation.coords.latitude,lon: @session.currentLocation.coords.longitude}
+		@store.find 'zone',{lat: @session.currentLocation.coords.latitude,lon: @session.currentLocation.coords.longitude}
 
 `export default IndexRoute`

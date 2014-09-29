@@ -1,6 +1,7 @@
 attr = DS.attr
 
 class User extends DS.Model
+
 	name: attr()
 	exposed_count: attr "number"
 	counteract_count: attr "number"
@@ -11,10 +12,13 @@ class User extends DS.Model
 	largepic: attr()
 	influence: attr "number"
 	activated_at: attr "date"
-	lat: attr()
-	lon: attr()
-	location: ~> return L.latLng @get('lat'), @get('lon')
+	status: attr()
+	suspects: DS.hasMany 'user'
+	targets: DS.hasMany 'user'
+
+	location: ~> @latestLocation.location if @latestLocation?
 	locations: DS.hasMany 'location'
-	inactiveMapPopupContent: ~> return "Active Sleeper who has exposed " + @get('exposed_count').toString() + " targets and has been hunting since " + moment(@get 'activated_at').fromNow() + "."
+	latestLocation: ~> @locations.lastObject if @locations?
+	inactiveMapPopupContent: ~> "Active Sleeper who has exposed " + @exposed_count.toString() + " targets and has been hunting since " + moment(@activated_at).fromNow() + "."
 
 `export default User`

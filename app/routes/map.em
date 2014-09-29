@@ -1,6 +1,6 @@
 class MapRoute extends Ember.Route
 
 	model:->
-		@store.find 'user',{targets_with_locations: true}
+		@session.me.targets
 
 `export default MapRoute`

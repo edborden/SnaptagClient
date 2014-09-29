@@ -12,5 +12,6 @@ Router.map ->
 		@route 'expose', {path: '/expose/:user_id'}
 	@route 'map'
 	@route 'inactivemap'
+	@route 'status'
 
 `export default Router`

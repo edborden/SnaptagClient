@@ -8,7 +8,7 @@ class ThemMarker extends EmberLeaflet.MarkerLayer with EmberLeaflet.PopupMixin
 	popupContent: ~> return @content.popupContent
 
 class TargetMarkers extends EmberLeaflet.MarkerCollectionLayer
-	content: ~> return @controller.targetContent
+	content: ~> return @controller.targetHistoryLocations
 	itemLayerClass: ThemMarker
 
 class TargetClusters extends EmberLeaflet.ContainerLayer

@@ -1,11 +1,11 @@
 attr = DS.attr
 
 Location = DS.Model.extend
-	lat: attr()
-	lon: attr()
-	created_at: attr "date"
-	location: ~> return L.latLng @get('lat'), @get('lon')
+	lat: attr "number"
+	lon: attr "number"
+	createdAt: attr()
+	location: ~> L.latLng @lat, @lon
 	user: DS.belongsTo 'user'
-	popupContent: ~> return moment(@get 'created_at').fromNow()
+	popupContent: ~> @user.name + ", " + moment(@createdAt).fromNow()
 
 `export default Location`

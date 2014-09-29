@@ -1,4 +1,4 @@
-button.btn.btn-primary class="btn18" disabled="true"
+link-to "status" class="btn18 btn btn-primary"
 	if session.transmitting
 		i.fa.fa-lg.fa-rss.is-transmitting
 	else

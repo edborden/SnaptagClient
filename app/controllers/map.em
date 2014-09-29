@@ -1,75 +1,68 @@
-class MapController extends Ember.ObjectController
+class MapController extends Ember.ArrayController
 
-	target1Name: ~> if @content.content[0]? then return @content.content[0].name else return null
-	target2Name: ~> if @content.content[1]? then return @content.content[1].name else return null
-	target3Name: ~> if @content.content[2]? then return @content.content[2].name else return null
+	target1: ~> @objectAt(0) if @length >= 1
+	target2: ~> @objectAt(1) if @length >= 2
+	target3: ~> @objectAt(2) if @length is 3
 
 	activeTarget: null
-	latestLocations: ~>	
-		switch @activeTarget
-			when null then return @latestLocationsArray
-			when 'target1' then return [@latestLocationsArray[0]]
-			when 'target2' then return [@latestLocationsArray[1]]
-			when 'target3' then return [@latestLocationsArray[2]]
-
-	latestLocationsArray: ~> if @content.content? then return @content.content.map (user) -> user.locations.content[user.locations.content.length - 1] else return null
-
-	targetContent: null
+	latestLocations: ~>	if @activeTarget then [@activeTarget.latestLocation] else @getEach 'latestLocation'
+	targetHistoryLocations: ~> @activeTarget.locations if @history is on
+	history: off
 
 	actions:
 		target1: ->
-			if @activeTarget is 'target1'
+			if @activeTarget is @target1
 				@activeTarget = null
-				@targetContent = null
+				@history = off
 			else if @activeTarget
-				@activeTarget = 'target1'
-				@targetContent = null
+				@activeTarget = @target1
+				@history = off
 			else
-				@activeTarget = 'target1'
+				@activeTarget = @target1
 			@activeCSSHandler()
 		target1History: ->
-			if @activeTarget is 'target1' and @targetContent
+			if @activeTarget is @target1 and @history
 				@activeTarget = null
-				@targetContent = null
+				@history = off
 			else
-				@activeTarget = 'target1'
-				@targetContent = @content.content[0].locations
+				@activeTarget = @target1
+				@history = on
 			@activeCSSHandler()
 		target2: ->
-			if @activeTarget is 'target2'
+			if @activeTarget is @target2
 				@activeTarget = null
-				@targetContent = null
+				@history = off
 			else if @activeTarget
-				@activeTarget = 'target2'
-				@targetContent = null
+				@activeTarget = @target2
+				@history = off
 			else
-				@activeTarget = 'target2'
+				@activeTarget = @target2
 			@activeCSSHandler()
 		target2History: ->
-			if @activeTarget is 'target2' and @targetContent
+			if @activeTarget is @target2 and @history
 				@activeTarget = null
-				@targetContent = null
+				@history = off
 			else
-				@activeTarget = 'target2'
-				@targetContent = @content.content[1].locations	
+				@activeTarget = @target2
+				@history = on	
 			@activeCSSHandler()
 		target3: ->
-			if @activeTarget is 'target3'
+			if @activeTarget is @target3
 				@activeTarget = null
-				@targetContent = null
+				@history = off
 			else if @activeTarget
-				@activeTarget = 'target3'
-				@targetContent = null
+				@activeTarget = @target3
+				@history = off
 			else
-				@activeTarget = 'target3'
+				@activeTarget = @target3
 			@activeCSSHandler()
 		target3History: ->
-			if @activeTarget is 'target3' and @targetContent
+			if @activeTarget is @target3 and @history
 				@activeTarget = null
-				@targetContent = null
+				@history = off
 			else
-				@activeTarget = 'target3'
-				@targetContent = @content.content[2].locations	
+				@activeTarget = @target3
+				@history = on
 			@activeCSSHandler()
 
 	activeCSSHandler: ->
@@ -79,11 +72,14 @@ class MapController extends Ember.ObjectController
 		Ember.$("#target2History").removeClass 'active'
 		Ember.$("#target3").removeClass 'active'
 		Ember.$("#target3History").removeClass 'active'
-		if @activeTarget
-			activeID = "#" + @activeTarget
-			Ember.$(activeID).addClass 'active'
-		if @targetContent
-			activeID = "#" + @activeTarget + "History"
+		activeID = "#"
+		switch @activeTarget
+			when @target1 then activeID = activeID + "target1"
+			when @target2 then activeID = activeID + "target2"
+			when @target3 then activeID = activeID + "target3"
+		Ember.$(activeID).addClass 'active'
+		if @history
+			activeID = activeID + "History"
 			Ember.$(activeID).addClass 'active'
 
 `export default MapController`

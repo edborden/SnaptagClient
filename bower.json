@@ -5,9 +5,9 @@
     "jquery": "~1.9.1",
     "qunit": "~1.12.0",
     "ember-qunit": "https://github.com/rpflorence/ember-qunit.git#master",
-    "ember": "~1.6.0-beta.2",
+    "ember": "~1.7.0",
     "ember-data": "~1.0.0-beta.7",
-    "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
+    "ember-resolver": "~0.1.1",
     "ic-ajax": "~1.0.4",
     "ember-testing-httpRespond": "~0.1.1",
     "loader.js": "git://github.com/stefanpenner/loader.js",
@@ -15,18 +15,18 @@
     "bootstrap": "*",
     "emblem.js": "*",
     "emberjs-touch": "https://github.com/JamesHight/emberjs-touch.git#master",
-    "pusher": "~2.1.6",
+    "pusher": "*",
     "fontawesome": "*",
     "openfb": "https://github.com/ccoenraets/OpenFB.git#master",
     "leaflet-dist": "*",
     "ember-leaflet": "*",
     "leaflet.awesome-markers": "https://github.com/lvoogdt/Leaflet.awesome-markers.git#2.0/develop",
     "ember-addons.bs_for_ember": "~0.6.1",
-    "momentjs": "~2.6.0",
+    "momentjs": "*",
     "leaflet.markercluster": "~0.4.0",
     "typed.js": "https://github.com/mattboldt/typed.js.git#master"
   },
   "resolutions": {
-    "ember": "~1.6.0-beta.2"
+    "ember": "~1.7.0"
   }
 }

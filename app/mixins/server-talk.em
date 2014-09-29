@@ -8,5 +8,12 @@ ServerTalk = new Ember.Mixin
 				success: (response) => 
 					resolve response
 				dataType: dataType
+				headers: @headers
+
+	headers: ~>
+		if @session.token?
+			return {'Authorization': 'Bearer ' + @session.token }
+		else
+			return {}
 
 `export default ServerTalk`
