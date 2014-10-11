@@ -31,6 +31,13 @@ module.exports = {
     dest: 'tmp/result/assets/'
   },
 
+  extras3ToResult: {
+    expand: true,
+    cwd: 'vendor/leaflet-usermarker/src/img',
+    src: '*',
+    dest: 'tmp/result/assets/images/'
+  },
+
   cssToResult: {
     expand: true,
     cwd: 'app/styles',

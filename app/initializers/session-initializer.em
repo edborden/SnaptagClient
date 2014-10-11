@@ -8,6 +8,7 @@ initializer =
 		application.inject 'session:current', 'store', 'store:main'
 		application.inject 'controller', 'session', 'session:current'
 		application.inject 'route', 'session', 'session:current'
+		application.inject 'model', 'session', 'session:current'
 		application.inject 'adapter:application', 'session', 'session:current'
 
 `export default initializer`

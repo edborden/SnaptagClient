@@ -3,8 +3,6 @@
 		link-to "pic" this
 			img.img-responsive src=mediumpic
 	.col-xs-6
-		p: .centerblock #{name}
-		p Exposed : #{exposed_count}
-		p Counteracted : #{counteract_count}
-		p Disavowed : #{disavowed_count}
-		p Compromised : #{compromised_count}
+		p 
+			|#{name}&nbsp;&nbsp;
+			view 'score-list'

@@ -5,6 +5,8 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 	beforeModel: ->
 		@session.setupLocation().then => @session.open localStorage.fbtoken if localStorage.fbtoken?
 
+	model: -> @session.me
+
 	actions:
 		back: ->
 			window.history.go(-1)

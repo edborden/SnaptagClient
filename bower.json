@@ -10,13 +10,13 @@
     "ember-resolver": "~0.1.1",
     "ic-ajax": "~1.0.4",
     "ember-testing-httpRespond": "~0.1.1",
-    "loader.js": "git://github.com/stefanpenner/loader.js",
+    "loader.js": "git://github.com/stefanpenner/loader.js#1.0.1",
     "ember-load-initializers": "git://github.com/stefanpenner/ember-load-initializers.git#0.0.1",
     "bootstrap": "*",
     "emblem.js": "*",
     "emberjs-touch": "https://github.com/JamesHight/emberjs-touch.git#master",
     "pusher": "*",
-    "fontawesome": "*",
+    "fontawesome": "https://github.com/FortAwesome/Font-Awesome.git#5.0.0-wip",
     "openfb": "https://github.com/ccoenraets/OpenFB.git#master",
     "leaflet-dist": "*",
     "ember-leaflet": "*",
@@ -24,7 +24,8 @@
     "ember-addons.bs_for_ember": "~0.6.1",
     "momentjs": "*",
     "leaflet.markercluster": "~0.4.0",
-    "typed.js": "https://github.com/mattboldt/typed.js.git#master"
+    "typed.js": "https://github.com/mattboldt/typed.js.git#master",
+    "leaflet-usermarker": "https://github.com/heyman/leaflet-usermarker.git#master"
   },
   "resolutions": {
     "ember": "~1.7.0"

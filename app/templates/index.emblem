@@ -1,3 +1,10 @@
-.text-center.stacker
-	h3.typed.sleepers
+h3.typed.sleepers
+
+.login-button click="login"
+	i.fa.fa-facebook.fa-2x
+	br
+	span.small Login
+
+view 'instructions-window'
+
 view "intro-map"

@@ -21,6 +21,6 @@
     "commit": "ad35c820bb111fe6d68bb5c484e1a0e03748e298"
   },
   "_source": "git://github.com/stefanpenner/loader.js.git",
-  "_target": "*",
+  "_target": "1.0.1",
   "_originalSource": "git://github.com/stefanpenner/loader.js"
 }

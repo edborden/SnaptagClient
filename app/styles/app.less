@@ -1,6 +1,101 @@
 @import "bootstrap.less";
-@import "fontawesome.less";
+@import "../../vendor/fontawesome/less/font-awesome.less";
 @import "growl.less";
+
+@dark-red:#140000;
+@green:#005252;
+@red:#520000;
+@blue:#000052;
+
+@body-bg: @blue;
+@brand-primary:@dark-red;
+@brand-danger: @green;
+@brand-warning: @blue;
+@text-color:  @gray-lighter;
+
+.popover {
+	color:black;
+	font-size: 75%;
+}
+
+.login-button {
+	bottom:30px;
+	right:30px;
+	color:white;
+	background-color: @blue;
+	line-height: .5;
+	padding-top: 8px;
+	.circle;
+	span.small {
+		font-size: 70%;
+	}
+}
+
+.me-button {
+	.circle;
+	left:15px;
+	top:15px;
+    -webkit-transition: all .2s ease-in-out;
+}
+.me-button.active {
+	border-color:white;
+}
+
+.me-window{
+	.instructions-window;
+}
+
+.me-window-panel {
+	.instructions-window-panel;
+}
+.me-window-text {
+	.instructions-window-text;
+}
+
+.instructions-button {
+	bottom:30px;
+	right:90px;
+	color:white;
+	background-color: @blue;
+	.circle;
+	padding-top: 13px;
+    -webkit-transition: all .2s ease-in-out;	
+}
+.instructions-button.active {
+	border-color:white;
+}
+
+.instructions-window {
+	.stacked;	
+	width:300px;
+	height: 200px;
+	top:50%;
+	left:50%;
+	margin-top: -100px;
+	margin-left: -150px;
+    //-webkit-transition: all 1s ease-in-out;
+}
+.instructions-window-panel {
+	.instructions-window;
+	background-color: @blue;
+	opacity: 0;
+	border-radius: 10%;
+}
+.instructions-window-text {
+	.instructions-window;
+	opacity: 0;
+	display: inline-block;
+	padding:5px;
+}
+
+.circle {
+	border-radius: 50%;
+	border:1px solid black;
+	height:55px;
+	width:55px;
+	.text-center;
+	.stacked;
+}
 
 // Navbars
 
@@ -8,9 +103,10 @@
 	.bot-nav-padding {padding-bottom:36px;}
 
 // map
-	html, body, .leaflet-container, .map-container, body>div {height: 100%;}
-	.stacker {position:absolute;z-index:2;width:100%;font-weight:bold;}
-	.stacked { z-index:1; }
+	html, body, .leaflet-container, body>div {height: 100%}
+
+	.stacked {position:absolute;z-index:2;}
+	.leaflet-container { z-index:1;}
 
 	#target1div {
 	.map;
@@ -51,31 +147,8 @@
 
 // BUTTONS
 
-	.btn50 {width:50%;}
-	.btn100 {width:100%;}
-	.btn80 {width:80%;}
-	.btn30 {width:30%;}
-	.btn25 {width:25%;}
-	.btn20 {width:20%;}
-	.btn18 {width:18%;}
-	.btn10 {width:10%;}
-
-	@font-size-large:1.5em; 
-	@border-radius-base:3px;
-
 	button.close {font-size:@font-size-large;}
 
-	.btn {
-
-	&.disabled,
-		&[disabled],
-		fieldset[disabled] & {
-			cursor: not-allowed;
-			pointer-events: none; // Future-proof disabling of clicks
-			.opacity(1);
-			.box-shadow(none);
-		}
-	}
 
 	.smallbtn {
 		padding-top: 1px;
@@ -127,30 +200,14 @@
 
 // COLORS
 
-	@body-bg: #140000;
-	@brand-primary: #520000;
-	@brand-danger: #005252;
-	@brand-warning: #000052;
-	@text-color:  @gray-lighter;
-
 	.is-transmitting {color:green;}
 	.not-transmitting {color:red;}
 
 	.leaflet-popup-content-wrapper {color:black;}
 
-// GROWL
-
-	.growl-notifications {
-	  position: fixed;
-	  right: 10px;
-	  top: 10px;
-	  z-index: 9999; /*must be highest element on page*/
-	}
-
 // INSTRUCTIONS + STATUS
 
 	.highlight {
-		color:  @brand-danger;
 		font-weight:bold;
 	}
 
@@ -192,18 +249,43 @@
 // SPINNER
 
 	.center-spinner {
-	color:@brand-primary;
-    position: fixed;
-    height: 15%;    
-    width: 25%;
-    top: 40%;
-    left: 40%;
-    padding: 10px;
+		color:@brand-primary;
+	    position: fixed;
+	    height: 15%;    
+	    width: 25%;
+	    top: 40%;
+	    left: 40%;
+	    padding: 10px;
 	}
 
 // TYPED
 
-.sleepers {
-	font-family: "Courier New", Courier, monospace;
-	font-weight: bold;
-}
+	.sleepers {
+		.text-center;
+		.stacked;
+		font-family: "Courier New", Courier, monospace;
+		font-weight: bold;
+		width:100%;
+	}
+
+	.typed-cursor{
+		display:none;
+	}
+
+// MARKER CLUSTERS
+
+	.marker-cluster-small {background-color: rgba(161, 51, 54, 0.6);}
+	.marker-cluster-small div {background-color: rgba(161, 51, 54, 0.6);}
+	.marker-cluster-medium {.marker-cluster-small;}
+	.marker-cluster-medium div {.marker-cluster-small;}
+	.marker-cluster-large {background-color: rgba(241, 211, 87, 0.6);}
+	.marker-cluster-large div {background-color: rgba(240, 194, 12, 0.6);}
+
+// GROWL
+
+	.growl-notifications {
+	  position: fixed;
+	  right: 10px;
+	  top: 10px;
+	  z-index: 9999; /*must be highest element on page*/
+	}

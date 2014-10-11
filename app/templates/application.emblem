@@ -1,6 +1,4 @@
 bs-growl-notifications
 if session.loggedIn
-	view 'top-nav'
+	view 'me-window'
 outlet
-unless isMapRoute
-	view 'bot-nav'

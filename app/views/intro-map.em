@@ -1,12 +1,10 @@
 `import TileLayer from 'appkit/lib/tile-layer'`
-`import MeCircle from 'appkit/lib/me-circle'`
-`import MeMarker from 'appkit/lib/me-marker'`
+`import MeLayer from 'appkit/lib/me-layer'`
 `import ThemClusters from 'appkit/lib/them-clusters'`
 
 class IntroMapView extends EmberLeaflet.MapView
-	classNames: ['stacked']
 	currentLocation: ~> @controller.session.currentLocation
-	childLayers: [TileLayer,MeCircle,MeMarker]
+	childLayers: [TileLayer,MeLayer]
 	options:
 		zoomControl:false
 		attributionControl:false
@@ -19,7 +17,6 @@ class IntroMapView extends EmberLeaflet.MapView
 				strings: ["You ^400 are ^500 being ^400 watched."]
 				typeSpeed: 50
 		@_layer.setView([@currentLocation.coords.latitude, @currentLocation.coords.longitude], 14)
-		@objectAt(2).openPopup()
 		bounds = L.latLngBounds @markerArray
 		@_layer.fitBounds bounds
 

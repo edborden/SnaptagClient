@@ -2,24 +2,23 @@ class ApplicationController extends Ember.ObjectController
 
 	## NAV HELPERS
 
-	isPicRoute: Ember.computed.equal 'currentRouteName', 'pic'
-	isIndexRoute: Ember.computed.equal 'currentRouteName', 'index'
-	isInactivemapRoute: Ember.computed.equal 'currentRouteName', 'inactivemap'
-	isHuntUserRoute: Ember.computed.equal 'currentRouteName', 'hunt.user'
-	isHuntTargetRoute: Ember.computed.equal 'currentRouteName', 'hunt.target'
-	isMapRoute: Ember.computed.equal 'currentRouteName', 'map'
+	isPicRoute: ~> @currentRouteName is 'pic'
+	isIndexRoute: ~> @currentRouteName is 'index'
+	isInactivemapRoute: ~> @currentRouteName is 'inactivemap'
+	isHuntUserRoute: ~> @currentRouteName is 'hunt.user'
+	isHuntTargetRoute: ~> @currentRouteName is 'hunt.target'
+	isMapRoute: ~> @currentRouteName is 'map'
 
 	isBackButtonRoute: ~>
 		switch @currentRouteName
-			when "pic" then return true
-			when "hunt.expose" then return true
-			when "hunt.counteract" then return true
-			else return false
+			when "pic" then true
+			when "hunt.expose" then true
+			when "hunt.counteract" then true
+			else false
 
 	## BACK BUTTON
 
-	currentMapRoute: ~>
-		if @session.active then return "map" else return "inactivemap"
+	currentMapRoute: ~> if @session.active then "map" else "inactivemap"
 
 	init: ->
 		@_super()

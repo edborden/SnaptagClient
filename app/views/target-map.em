@@ -1,13 +1,12 @@
 `import TileLayer from 'appkit/lib/tile-layer'`
-`import MeCircle from 'appkit/lib/me-circle'`
-`import MeMarker from 'appkit/lib/me-marker'`
+`import MeLayer from 'appkit/lib/me-layer'`
 #`import ZoneCircles from 'appkit/lib/zone-circles'`
 `import TargetClusters from 'appkit/lib/target-clusters'`
 `import CenterMap from 'appkit/mixins/center-map'`
 
 latestIcon = L.AwesomeMarkers.icon
 	icon: 'crosshairs'
-	markerColor: 'darkblue'
+	markerColor: 'darkred'
 	prefix: 'fa'
 
 class LatestMarker extends EmberLeaflet.MarkerLayer with EmberLeaflet.PopupMixin
@@ -19,10 +18,9 @@ class LatestMarkers extends EmberLeaflet.MarkerCollectionLayer
 	itemLayerClass: LatestMarker
 
 class TargetMapView extends EmberLeaflet.MapView with CenterMap
-	classNames: ['stacked']
 	currentLocation: ~> @controller.session.currentLocation
 	currentLeaf: ~> @controller.session.location
-	childLayers: [TileLayer,MeCircle,MeMarker,LatestMarkers,TargetClusters]
+	childLayers: [TileLayer,MeLayer,LatestMarkers,TargetClusters]
 	options:
 		zoomControl:false
 		attributionControl:false

@@ -3,22 +3,25 @@ attr = DS.attr
 class User extends DS.Model
 
 	name: attr()
-	exposed_count: attr "number"
-	counteract_count: attr "number"
-	disavowed_count: attr "number"
-	compromised_count: attr "number"
+	exposedCount: attr "number"
+	counteractCount: attr "number"
+	disavowedCount: attr "number"
+	compromisedCount: attr "number"
 	smallpic: attr()
 	mediumpic: attr()
 	largepic: attr()
 	influence: attr "number"
-	activated_at: attr "date"
+	activatedAt: attr "date"
 	status: attr()
-	suspects: DS.hasMany 'user'
-	targets: DS.hasMany 'user'
+
+	suspects: DS.hasMany 'user', {inverse:null}
+	targets: DS.hasMany 'user', {inverse:null}
+
+	isTarget: ~> @session.me.targets.any (user) => user is @
 
 	location: ~> @latestLocation.location if @latestLocation?
 	locations: DS.hasMany 'location'
 	latestLocation: ~> @locations.lastObject if @locations?
-	inactiveMapPopupContent: ~> "Active Sleeper who has exposed " + @exposed_count.toString() + " targets and has been hunting since " + moment(@activated_at).fromNow() + "."
+	inactiveMapPopupContent: ~> "Active Sleeper who has exposed " + @exposedCount.toString() + " targets and has been hunting since " + moment(@activatedAt).fromNow() + "."
 
 `export default User`

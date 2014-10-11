@@ -113,7 +113,4 @@ class Session extends Ember.Object
 				{timeout:1000,maximumAge:Infinity,enableHighAccuracy:true}
 			)
 
-			
-
-
 `export default Session`

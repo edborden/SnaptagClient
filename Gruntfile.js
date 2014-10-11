@@ -172,7 +172,8 @@ module.exports = function(grunt) {
   // Extras
   grunt.registerTask('buildExtras', [
                      'copy:extrasToResult',
-                     'copy:extras2ToResult'
+                     'copy:extras2ToResult',
+                     'copy:extras3ToResult'
                      ]);
 
   // Index HTML

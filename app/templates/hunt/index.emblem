@@ -1,5 +1,14 @@
 ul.gridul
 	li.gridli
 			p things go here
-	render "hunt/webtargets" model.targets
-	render "hunt/webusers" model.web_without_targets
+	each model
+		li.gridli
+			link-to 'hunt.target' this
+				img.circle src=mediumpic class="huntimg"
+			div #{name}
+			.center-block
+				if isTarget
+					link-to "hunt.expose" this class="hunt bump21 btn btn-warning"
+						i.fa.fa-crosshairs
+				link-to "hunt.counteract" this class="hunt btn btn-danger"
+					i.fa.fa-eye

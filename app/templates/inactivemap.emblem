@@ -1,2 +1,6 @@
+.login-button click="join"
+	i.fa.fa-eye.fa-2x
+	br
+	span.small Join
+
 view 'intro-map'
-view 'bot-nav'
