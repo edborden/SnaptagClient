@@ -5,7 +5,7 @@
     "jquery": "~1.9.1",
     "qunit": "~1.12.0",
     "ember-qunit": "https://github.com/rpflorence/ember-qunit.git#master",
-    "ember": "~1.7.0",
+    "ember": "~1.7.0-beta.5",
     "ember-data": "~1.0.0-beta.7",
     "ember-resolver": "~0.1.1",
     "ic-ajax": "~1.0.4",
@@ -25,9 +25,12 @@
     "momentjs": "*",
     "leaflet.markercluster": "~0.4.0",
     "typed.js": "https://github.com/mattboldt/typed.js.git#master",
-    "leaflet-usermarker": "https://github.com/heyman/leaflet-usermarker.git#master"
+    "leaflet-usermarker": "https://github.com/heyman/leaflet-usermarker.git#master",
+    "ember-animate": "*",
+    "ember-handlebars-svg": "*"
   },
   "resolutions": {
-    "ember": "~1.7.0"
+    "handlebars": ">= 1.0.0 < 2.0.0",
+    "ember": "1.7.0-beta.5"
   }
 }

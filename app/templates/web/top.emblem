@@ -1,0 +1,2 @@
+.web-button click="toggle target='view'" class=view.showWeb:web-button-active
+	i.fa.fa-eye.fa-2x

@@ -11,7 +11,7 @@ class InstructionsTextView extends Ember.View with ContentFade
 class InstructionsButtonView extends Ember.View
 	classNames: ['instructions-button']
 	classNameBindings: ['showInstructions:active:inactive']
-	template: Ember.Handlebars.compile "<i class='fa fa-question fa-2x'>"
+	template: Ember.Handlebars.compile "<i class='fa fa-question fa-2x'></i>"
 	showInstructions: ~> @parentView.showInstructions
 
 	click: -> @parentView.toggleProperty 'showInstructions'	
