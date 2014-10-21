@@ -1,33 +1,32 @@
-`import AllSuspectsView from 'appkit/views/web/all-suspects'`
-`import SuspectWindowView from 'appkit/views/web/suspect-window'`
-`import WebButtonView from 'appkit/views/web/button'`
+class WebInterfaceView extends Ember.View
 
-class WebInterfaceView extends Ember.ContainerView
-	width: ~> Ember.$(window).width()
-	height: ~> Ember.$(window).height()
-	childViews: ['button']
+	width: ~> @controller.width
+	elWidth: ~> @width * 0.95
 
-	button: new WebButtonView
-
-	# some wonky stuff here, where I cannot add a collectionview into a containerview like I would any other normal view. have to call createchildview with volatile
-	+volatile
-	allSuspects: -> @createChildView AllSuspectsView
-
-	+volatile
-	suspectWindow: -> @createChildView SuspectWindowView
 	contentSection: 1
 	activeSuspect: null
 	showWeb: false
+	templateName: 'web/top'
 
-	+observer showWeb
-	onShowWebChange: ->
-		if @showWeb
-			@pushObjects [ @suspectWindow,@allSuspects]
-		else
-			@activeSuspect = null
-			suspectWindow = @objectAt(1)
-			allSuspects = @objectAt(2)
-			suspectWindow.animateOutChildren().then => @removeObject suspectWindow
-			allSuspects.animateOutChildren().then => @removeObject allSuspects
+	panelWidth: ~> @elWidth - 60
+	halfPanelWidth: ~> @panelWidth * -0.5
+	circleWidth: ~> @panelWidth * 0.5
+	halfCircleWidth: ~> @circleWidth * -0.5
+
+	panelStyle: ~> "width:#{@panelWidth}px;height:#{@panelWidth}px;margin-left:#{@halfPanelWidth}px;margin-top:#{@halfPanelWidth}px"
+	circleStyle: ~> "width:#{@circleWidth}px;height:#{@circleWidth}px;margin-left:#{@halfCircleWidth}px;margin-top:#{@halfCircleWidth}px"
+
+	actions:
+		toggle: -> @toggleProperty 'showWeb'
+		middle: -> @contentSection = switch @contentSection
+			when 1 then 2
+			when 2 then 1
+		suspect: (suspect) ->
+			if @activeSuspect is suspect
+				@activeSuspect = null
+				@contentSection = 1 unless @contentSection is 1
+			else
+				@activeSuspect = suspect
+				@contentSection = 1 unless @contentSection is 1
 
 `export default WebInterfaceView`

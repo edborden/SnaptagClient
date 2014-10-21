@@ -1,5 +1,8 @@
 class MapController extends Ember.ArrayController
 
+	width: ~> Ember.$(window).width()
+	height: ~> Ember.$(window).height()
+
 	target1: ~> @objectAt(0) if @length >= 1
 	target2: ~> @objectAt(1) if @length >= 2
 	target3: ~> @objectAt(2) if @length is 3

@@ -21,12 +21,7 @@
 	top:50%;
 	left:50%;	
 	border-radius: 50%;	
-	-webkit-transition: opacity .2s ease;
 	border: 1px solid white;
-	width: 100px;
-	height: 100px;
-	margin-left: -50px;
-	margin-top: -50px;
 }
 
 .suspect-window {
@@ -34,25 +29,26 @@
 	top:50%;
 	left:50%;
 	border-radius: 50%;	
-	-webkit-transition: opacity .2s ease;
 }
 .suspect-window-panel {
 	.suspect-window;
 	background-color: @blue;
-	opacity: 0;
+	opacity: 0.6;
 }
 .suspect-window-text {
 	.suspect-window;
-	opacity: 0;
 	display: inline-block;
 	padding:5px;
 	.text-center;
 }
 
 .middle-button {
-	.circle;
-    -webkit-transition: opacity .2s ease;
-    opacity: 0;
+	border-radius: 50%;
+	border:4px solid white;
+	height:56px;
+	width:56px;
+	.text-center;
+	.stacked;
     top:50%;
     left:50%;
     margin-top:-28px;
@@ -65,20 +61,34 @@
 }
 
 .suspect-container {
-    -webkit-transition: opacity .2s ease;
 	border: 3px solid transparent;
 	border-radius: 50%;
 	height:62px;
 	width:62px;
-    opacity: 0;
 	.stacked;
 	left:50%;
 	margin-left: -31px;
 }
 
+.stat-container {
+	border: 1px solid transparent;
+	border-radius: 50%;
+	height:40px;
+	width:40px;
+	.stacked;
+	left:50%;
+	margin-left: -20px;
+	background-color: white;
+	color: @blue;
+	padding-top: 8px;
+}
+
+.stat {
+	.text-center;
+	font-weight: bold;
+}
+
 .suspect-button {
-    -webkit-transition: opacity .2s ease;
-    opacity: 0;
 	border-radius: 50%;
 	border:1px solid black;
 	height:56px;
@@ -93,7 +103,6 @@
 }
 
 .web-button {
-    -webkit-transition: all .2s ease;
 	.circle;
 	left:10px;
 	top:10px;	
@@ -166,12 +175,10 @@
 .instructions-window-panel {
 	.instructions-window;
 	background-color: @blue;
-	opacity: 0;
 	border-radius: 10%;
 }
 .instructions-window-text {
 	.instructions-window;
-	opacity: 0;
 	display: inline-block;
 	padding:5px;
 }

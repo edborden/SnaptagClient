@@ -1,10 +1,7 @@
-`import BgFade from 'appkit/mixins/bg-fade'`
-`import ContentFade from 'appkit/mixins/content-fade'`
-
-class MePanelView extends Ember.View with BgFade
+class MePanelView extends Ember.View
 	classNames: ['me-window-panel']
 
-class MeTextView extends Ember.View with ContentFade
+class MeTextView extends Ember.View
 	templateName: 'me'
 	classNames: ['me-window-text']	
 
@@ -32,7 +29,7 @@ class MeWindowView extends Ember.ContainerView
 		if @showMe
 			@pushObjects [@panel,@text]
 		else
-			Ember.$(@panel.element).fadeOut 200, => @removeObject @panel
-			Ember.$(@text.element).fadeOut 200, => @removeObject @text
+			@removeObject @panel
+			@removeObject @text
 
 `export default MeWindowView`
