@@ -2,23 +2,44 @@
 	i.fa.fa-eye.fa-2x
 
 if view.showWeb
-	.suspect-window-panel style=view.panelStyle
-		.circle-outline style=view.circleStyle
-	.middle-button click="middle target='view"
+	.web
+		.suspect-window-panel
+			.circle-outline
+		.middle-button click="middle target='view'"
 
-	each session.me.suspects itemView="suspect-container"
-		img.suspect-button src=mediumpic class=view.active:active style=view.innerStyle click="suspect this target='view.parentView'"
+		each session.me.suspects itemView="suspect-container"
+			img.suspect-button src=mediumpic class=view.active:active style=view.innerStyle click="suspect this target='view.parentView'"
 
-	if view.activeSuspect
-		view 'stat-container' contentIndex=5
-			div.stat style=view.innerStyle 
-				view.parentView.activeSuspect.exposedCount
-		view 'stat-container' contentIndex=7
-			div.stat style=view.innerStyle 
-				view.parentView.activeSuspect.counteractCount
-		view 'stat-container' contentIndex=9
-			div.stat style=view.innerStyle 
-				view.parentView.activeSuspect.disavowedCount
-		view 'stat-container' contentIndex=11
-			div.stat style=view.innerStyle 
-				view.parentView.activeSuspect.compromisedCount
+		if view.activeSuspect
+			.suspect-window-text
+				view.activeSuspect.name
+			if view.contentSectionOne
+				view 'stat-container' contentIndex=11 popup="Exposed Count"
+					.stat style=view.innerStyle 
+						view.parentView.activeSuspect.exposedCount
+				view 'stat-container' contentIndex=9 popup="Counteract Count"
+					.stat style=view.innerStyle 
+						view.parentView.activeSuspect.counteractCount
+				view 'stat-container' contentIndex=7 popup="Disavowed Count"
+					.stat style=view.innerStyle 
+						view.parentView.activeSuspect.disavowedCount
+				view 'stat-container' contentIndex=5 popup="Compromised Count"
+					.stat style=view.innerStyle 
+						view.parentView.activeSuspect.compromisedCount
+				view 'button-container' contentIndex=2 class="icon"
+					.stat style=view.innerStyle 
+						i.fa.fa-camera.fa-lg
+			else
+				view 'button-container' contentIndex=6 class="icon" action="counteract"
+					.stat style=view.innerStyle 
+						i.fa.fa-exclamation-triangle.fa-2x	
+				if view.activeSuspect.isTarget			
+					view 'button-container' contentIndex=8 class="red icon"
+						.stat style=view.innerStyle 
+							i.fa.fa-crosshairs.fa-2x
+					view 'button-container' contentIndex=10 class="icon" action="target"
+						.stat style=view.innerStyle 
+							i.fa.fa-map-marker.fa-2x
+					view 'button-container' contentIndex=12 class="icon" action="history"
+						.stat style=view.innerStyle 
+							i.fa.fa-history.fa-2x

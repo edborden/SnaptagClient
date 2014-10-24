@@ -1,10 +1,7 @@
-`import BgFade from 'appkit/mixins/bg-fade'`
-`import ContentFade from 'appkit/mixins/content-fade'`
-
-class InstructionsPanelView extends Ember.View with BgFade
+class InstructionsPanelView extends Ember.View
 	classNames: ['instructions-window-panel']
 
-class InstructionsTextView extends Ember.View with ContentFade
+class InstructionsTextView extends Ember.View
 	templateName: 'instructions'
 	classNames: ['instructions-window-text']	
 
