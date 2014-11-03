@@ -1,5 +1,0 @@
-link-to "status" class="btn18 btn btn-primary"
-	if session.transmitting
-		i.fa.fa-lg.fa-rss.is-transmitting
-	else
-		i.fa.fa-lg.fa-rss.not-transmitting

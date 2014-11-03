@@ -1,5 +1,0 @@
-partial "usercommon"
-.navbar-fixed-bottom
-	button.btn.btn-danger click="counteract this" class="btn100"
-		i.fa.fa-eye
-		| &nbsp;&nbsp;Counteract

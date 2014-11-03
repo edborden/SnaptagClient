@@ -1,6 +1,0 @@
-.text-center: h3 Are you #{name}?
-img.img-responsive src=largepic
-br
-button.btn.btn-warning.center-block.btn50 click="expose this" 
-	i.fa.fa-crosshairs
-	| &nbsp;&nbsp;Expose

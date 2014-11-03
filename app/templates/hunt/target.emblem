@@ -1,8 +1,0 @@
-partial "usercommon"
-.navbar-fixed-bottom
-	link-to "hunt.expose" this class="btn50 btn btn-warning"
-		i.fa.fa-crosshairs
-		| &nbsp;&nbsp;Expose
-	link-to "hunt.counteract" this class="btn50 btn btn-danger"
-		i.fa.fa-eye
-		| &nbsp;&nbsp;Counteract

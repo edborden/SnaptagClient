@@ -1,8 +1,0 @@
-.container-fluid
-	.col-xs-6
-		link-to "pic" this
-			img.img-responsive src=mediumpic
-	.col-xs-6
-		p 
-			|#{name}&nbsp;&nbsp;
-			view 'score-list'
