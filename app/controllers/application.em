@@ -1,35 +1,43 @@
 class ApplicationController extends Ember.ObjectController
 
-	## NAV HELPERS
+	modal: null
+	contentSection: 1
+	activeSuspect: null
 
-	isPicRoute: ~> @currentRouteName is 'pic'
-	isIndexRoute: ~> @currentRouteName is 'index'
-	isInactivemapRoute: ~> @currentRouteName is 'inactivemap'
-	isHuntUserRoute: ~> @currentRouteName is 'hunt.user'
-	isHuntTargetRoute: ~> @currentRouteName is 'hunt.target'
-	isMapRoute: ~> @currentRouteName is 'map'
+	showMe: ~> @modal is 'me'
+	showWeb: ~> @modal is 'web'
+	showPic: ~> @modal is 'pic'
+	contentSectionOne: ~> @contentSection is 1
+	mapRoute: ~> @currentRouteName is 'map'
 
-	isBackButtonRoute: ~>
-		switch @currentRouteName
-			when "pic" then true
-			when "hunt.expose" then true
-			when "hunt.counteract" then true
-			else false
+	actions:
+		toggle: -> @modal = null
+		middle: -> @contentSection = switch @contentSection
+			when 1 then 2
+			when 2 then 1			
+		suspect: (suspect) ->
+			if @activeSuspect is suspect
+				@activeSuspect = null
+				@contentSection = 1 unless @contentSection is 1
+			else
+				@activeSuspect = suspect
+				@contentSection = 1 unless @contentSection is 1
+		me: ->
+			@modal = 'me'
+			@activeSuspect = null
+			false
+		web: ->
+			@modal = 'web'
+			false
+		pic: ->
+			@modal = 'pic'
+			false			
 
-	## BACK BUTTON
 
-	currentMapRoute: ~> if @session.active then "map" else "inactivemap"
 
 	init: ->
 		@_super()
-		document.addEventListener "backbutton", => 
-			switch @currentRouteName
-				when "index" then navigator.app.exitApp()
-				when "inactivemap" then navigator.app.exitApp()
-				when "map" then navigator.app.exitApp()
-				when "hunt.index" then @transitionToRoute "map"
-				when "me" then @transitionToRoute @currentMapRoute
-				when "world" then @transitionToRoute @currentMapRoute
-				else window.history.go(-1)
+		document.addEventListener "backbutton", -> navigator.app.exitApp()
+
 
 `export default ApplicationController`

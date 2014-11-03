@@ -5,8 +5,8 @@ class SuspectContainerView extends Ember.View with IsRotatable
 	classNameBindings: ["context.isTarget:target"]
 	attributeBindings: ["style"]
 
-	+computed parentView.activeSuspect
-	active: -> @parentView.activeSuspect is @content
+	+computed controller.activeSuspect
+	active: -> @controller.activeSuspect is @content
 
 	totalCount: ~> @_parentView.length
 	#@contentIndex defined by collectionview

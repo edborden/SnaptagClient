@@ -1,4 +1,4 @@
-.login-button click="join"
+.circle-button.login click="join"
 	i.fa.fa-eye.fa-2x
 	br
 	span.small Join

@@ -1,4 +1,72 @@
 bs-growl-notifications
+
 if session.loggedIn
-	view 'me-window'
+	.me
+		img.circle-button src=mediumpic class=showMe:active click='me'
+		i.fa.fa-rss.overlay class=session.isTransmitting:is-transmitting:not-transmitting
+
+	if showMe
+		.circle-container
+			.circle-window-panel
+				.circle-outline
+			.middle-button click="middle"
+
+			stat-container contentIndex=11 popup="Exposed Count" 
+				exposedCount
+			stat-container contentIndex=9 popup="Counteract Count" 
+				counteractCount
+			stat-container contentIndex=7 popup="Disavowed Count" 
+				disavowedCount
+			stat-container contentIndex=5 popup="Compromised Count" 
+				compromisedCount
+			button-container contentIndex=2 action="pic"
+				i.fa.fa-camera.fa-lg	
+
+if showPic
+	.circle-container
+		outside-button contentIndex=10
+			div.pic-button style=view.innerStyle x
+		if activeSuspect
+			img.circle-pic src=activeSuspect.largepic
+		else
+			img.circle-pic src=session.me.largepic
+
+if mapRoute
+	.circle-button.web click="web" class=showWeb:active
+		i.fa.fa-eye.fa-2x.self-center
+
+	if showWeb
+		.circle-container
+			.circle-window-panel
+				.circle-outline
+			.middle-button click="middle"
+
+			each session.me.suspects itemView="suspect-container"
+				img.suspect-button src=mediumpic class=view.active:active style=view.innerStyle click="suspect this"
+
+			if activeSuspect
+				.suspect-window-text
+					activeSuspect.name
+				if contentSectionOne
+					stat-container contentIndex=11 popup="Exposed Count" 
+						activeSuspect.exposedCount
+					stat-container contentIndex=9 popup="Counteract Count" 
+						activeSuspect.counteractCount
+					stat-container contentIndex=7 popup="Disavowed Count" 
+						activeSuspect.disavowedCount
+					stat-container contentIndex=5 popup="Compromised Count" 
+						activeSuspect.compromisedCount
+					button-container contentIndex=2 action="pic"
+						i.fa.fa-camera.fa-lg
+				else
+					button-container contentIndex=6 action="counteract"
+						i.fa.fa-exclamation-triangle.fa-lg	
+					if activeSuspect.isTarget			
+						button-container contentIndex=8 class="red" action="expose"
+							i.fa.fa-crosshairs.fa-lg
+						button-container contentIndex=10 action="target"
+							i.fa.fa-map-marker.fa-lg
+						button-container contentIndex=12 action="history"
+							i.fa.fa-history.fa-lg
+
 outlet

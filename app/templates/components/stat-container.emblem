@@ -1,0 +1,3 @@
+.stat.self-center 
+	div style=view.innerStyle
+		yield

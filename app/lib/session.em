@@ -57,8 +57,9 @@ class Session extends Ember.Object
 
 	+observer model
 	loggedInChanged: ->
-		@setPusher
-		@setInternetConnectionListeners
+		@setPusher()
+		@setInternetConnectionListeners()
+		@transmittingChanged()
 
 	setPusher: ->
 		pusher = new Pusher '0750760773b8ed5ae1dc'

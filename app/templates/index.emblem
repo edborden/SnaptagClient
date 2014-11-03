@@ -1,10 +1,15 @@
 h3.typed.sleepers
 
-.login-button click="login"
+.circle-button.login click="login"
 	i.fa.fa-facebook.fa-2x
 	br
 	span.small Login
 
-view 'instructions-window'
+.circle-button.instructions click='instructions' class=showInstructions:active
+	i.fa.fa-question.fa-2x
+
+if showInstructions
+	content-panel 
+		partial 'instructions'
 
 view "intro-map"

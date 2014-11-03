@@ -11,76 +11,164 @@ body {
   overflow: hidden;
 }
 
-@dark-red:#140000;
-@green:#005252;
-@red:#520000;
-@blue:#000052;
+// COLORS //
 
-@body-bg: @blue;
-@brand-primary:@dark-red;
-@brand-danger: @green;
-@brand-warning: @blue;
-@text-color:  @gray-lighter;
+	@dark-red:#140000;
+	@green:#005252;
+	@red:#520000;
+	@blue:#000052;
 
-//@popover-bg: @blue;
-//@popover-arrow-color: @blue;
+	@body-bg: @blue;
+	@brand-primary:@dark-red;
+	@brand-danger: @green;
+	@brand-warning: @blue;
+	@text-color:  @gray-lighter;
 
-@panel-width: 78vw;
-@circle-width: 15vw;
 
-.centered(@dim) {
-	top: 50%;
-	margin-top: @dim * -0.5;
-	.h-centered(@dim);
-}
+// POPOVERS //
 
-.circle(@dim) {
-	height: @dim;
-	width: @dim;
-	//border:1px solid transparent;
-	border-radius: 50%;
-	.text-center;
-}
-.h-centered(@dim) {
-	left: 50%;
-	margin-left: @dim * -0.5;
-	.stacked;
-}
+	.popover {color:@blue;font-weight: bold;}
+	//@popover-bg: @blue;
+	//@popover-arrow-color: @blue;
 
-.centered {
-	.centered(@circle-width);
-}
-.circle {
-	.circle(@circle-width);
-}
-.h-centered {
-	.h-centered(@circle-width);
-}
+// COMMON //
 
-.stacked {z-index:2;position:absolute;}
+	@panel-width: 78vw;
+	@circle-width: 15vw;
 
-.popover {color:@blue;font-weight: bold;}
+	.centered(@dim) {
+		top: 50%;
+		margin-top: @dim * -0.5;
+		.h-centered(@dim);
+	}
+	.centered {.centered(@circle-width);}
 
-// WEB INTERFACE //
+	.circle(@dim) {
+		height: @dim;
+		width: @dim;
+		//border:1px solid transparent;
+		border-radius: 50%;
+		.text-center;
+	}
+	.circle {.circle(@circle-width);}
+
+	.h-centered(@dim) {
+		left: 50%;
+		margin-left: @dim * -0.5;
+		.stacked;
+	}
+	.h-centered {.h-centered(@circle-width);}
+
+	.stacked {z-index:2;position:absolute;}
+
+	.self-center {
+		top:50%;
+		position:absolute;
+		left:50%;
+		-webkit-transform: translateY(-50%) translateX(-50%);
+	}
+
+// MAP //
+
+	html, body, .leaflet-container, body>div {height: 100%}
+	.leaflet-popup-content-wrapper {color:black;}
+
+// OVERLAY //
+	
+	.overlay {
+		.circle(6vw);
+		background-color: @blue;
+		position:absolute;
+		z-index:3;
+		margin-top:-6px;
+		margin-left:-6px;
+		padding-top:4px;
+	}
+
+	// TRANSMITTING
+
+	.is-transmitting {color:green;}
+	.not-transmitting {color:red;}
+
+// BUTTONS //
+
+	.circle-button {
+		//color:white;
+		background-color: @blue;
+		.circle;		
+	    .stacked;
+	    border: 1px solid black;
+	}
+	.active {border-color:white;}
+
+	.instructions {
+		padding-top: 10px;
+		bottom:30px;
+		right:90px;
+	}
+
+	.login {
+		bottom:30px;
+		right:30px;
+		line-height: .5;
+		padding-top: 6px;
+		span.small {
+			font-size: 70%;
+		}
+	}
+
+	.me {
+		right:10px;
+		top:15px;
+		position:absolute;
+		height: @circle-width;
+		width: @circle-width;
+	}
 
 	.web {
+		left:10px;
+		top:10px;	
+		background-color: @red;	
+	}
+
+// PANEL //
+
+	.panel-bg {
+		.panel-content;
+		background-color: @blue;
+		opacity:.6;	
+	}
+
+	.panel-content {
+		.stacked;
+		border-radius: 10%;
+		display: inline-block;
+		padding:5px;
+		margin-left:5vw;
+		margin-right:5vw;
+		top:50%
+	}
+
+// PIC INTERFACE //
+
+	.circle-pic {
+		@dim: @panel-width;
+		.circle(@dim);
+		border: 1px solid black;
+	}
+
+	.pic-button {
+		.suspect-button;
+		background-color: @blue;
+	}
+
+// CIRCLE INTERFACE //
+
+	.circle-container {
 		height: @panel-width;
 		width: @panel-width;
 		.centered(@panel-width);
 	}
-
-	.web-button {
-		.circle;
-		.stacked;
-		left:10px;
-		top:10px;	
-		color:@gray-lighter;
-		background-color: @red;
-		padding-top: 12px;
-		border: 1px solid black;
-	}
-
-	.web-button.active {border-color:white;}
 
 	.circle-outline {
 		@dim: @panel-width * 0.5;
@@ -89,7 +177,7 @@ body {
 		border: 1px solid white;
 	}
 
-	.suspect-window-panel {
+	.circle-window-panel {
 		@dim: @panel-width;
 		.circle(@dim);
 		.centered(@dim);
@@ -118,10 +206,9 @@ body {
 	.suspect-container {
 		@dim:@circle-width+2;
 		margin-top: @dim/-2;
-		background-color: transparent;
 		.circle(@dim);
 		.h-centered(@dim);
-		-webkit-transform-origin: 50% (@panel-width / 2)+(@dim / 2);
+		-webkit-transform-origin: 50% (@panel-width / 2)+(@dim / 1.75);
 	}
 
 	.suspect-container.target {background-color: @red;}
@@ -136,168 +223,24 @@ body {
 
 	.stat-container {
 		@dim:10vw;
-		border: 1px solid transparent;
 		.circle(@dim);
 		.h-centered(@dim);
 		background-color: white;
 		color: @blue;
-		padding-top: 8px;
+		//padding-top: 8px;
 		top:25%;
 		margin-top:@dim*-0.5;
 	    -webkit-transform-origin: 50% (@panel-width / 4)+(@dim / 2);
+	  	font-weight: bold;
 	}
 	.stat-container.red {
 		background-color: @red;
 		color:white;
 	}
-	.stat-container.icon {
-		padding-top: 4px;
-	}
 
-	.stat {
-		.text-center;
-		font-weight: bold;
-	}
-
-
-
-// ME PANEL //
-
-	.me-button {
-		.stacked;
-		.circle;
-		right:10px;
-		top:15px;
-	    -webkit-transition: all .2s ease-in-out;
-	}
-	.me-button.active {
-		border-color:white;
-	}
-
-	.me-window{
-		.instructions-window;
-	}
-
-	.me-window-panel {
-		.instructions-window-panel;
-	}
-	.me-window-text {
-		.instructions-window-text;
-	}
-
-
-.login-button {
-	bottom:30px;
-	right:30px;
-	color:white;
-	background-color: @blue;
-	line-height: .5;
-	padding-top: 8px;
-	.circle;
-	span.small {
-		font-size: 70%;
-	}
-}
-
-
-
-.instructions-button {
-	bottom:30px;
-	right:90px;
-	color:white;
-	background-color: @blue;
-	.circle;
-	padding-top: 13px;
-    -webkit-transition: all .2s ease-in-out;	
-}
-.instructions-button.active {
-	border-color:white;
-}
-
-.instructions-window {
-	.stacked;	
-	width:300px;
-	height: 200px;
-	top:50%;
-	left:50%;
-	margin-top: -100px;
-	margin-left: -150px;
-    //-webkit-transition: all 1s ease-in-out;
-}
-.instructions-window-panel {
-	.instructions-window;
-	background-color: @blue;
-	border-radius: 10%;
-}
-.instructions-window-text {
-	.instructions-window;
-	display: inline-block;
-	padding:5px;
-}
-
-
-
-// map
-	html, body, .leaflet-container, body>div {height: 100%}
-
-	.leaflet-container { z-index:1;}
-
-	#target1div {
-	.map;
-	}
-
-	#target2div {
-	.map;
-	bottom: 40px;	
-	}
-
-	#target3div {
-	.map;
-	bottom: 71px;	
-	}
-
-	.map {
-	position:absolute;
-	bottom: 8px;
-	z-index:3;
-	padding-top: 4px;
-	padding-bottom: 4px;
-	padding-right: 8px;
-	padding-left: 8px;
-
-	}
-
-	.targetmapbtn {
-		.smallbtn;
-		&:active,
-	  	&.active {
-	    outline: 0;
-	    color: green;
-	    background-image: none;
-	    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
-	  	}
-	}
-
-
-// BUTTONS
+// NOTIFICATIONS //
 
 	button.close {font-size:@font-size-large;}
-
-
-	.smallbtn {
-		padding-top: 1px;
-		padding-bottom: 1px;
-		padding-right: 3px;
-		padding-left: 3px;
-	}
-
-
-// COLORS
-
-	.is-transmitting {color:green;}
-	.not-transmitting {color:red;}
-
-	.leaflet-popup-content-wrapper {color:black;}
 
 // INSTRUCTIONS + STATUS
 
@@ -305,13 +248,13 @@ body {
 		font-weight:bold;
 	}
 
-	.instructions {
-		padding-top:5px;
-		padding-left: 20px;
-		padding-bottom:10px;
-		padding-right:20px;
-		font-size:@font-size-small;
-	}
+	//.instructions {
+	//	padding-top:5px;
+	//	padding-left: 20px;
+	//	padding-bottom:10px;
+	//	padding-right:20px;
+	//	font-size:@font-size-small;
+	//}
 
 	ul.indented {-webkit-padding-start:15px;}
 
@@ -332,15 +275,14 @@ body {
 	}
 
 	.center-div {
-    position: fixed;
-
-    top: 30%;
-    left:5%;
-    right:5%;
-    padding: 10px;
+	    position: fixed;
+	    top: 30%;
+	    left:5%;
+	    right:5%;
+	    padding: 10px;
 	}
 
-// SPINNER
+// SPINNER //
 
 	.center-spinner {
 		color:@brand-primary;
@@ -352,7 +294,7 @@ body {
 	    padding: 10px;
 	}
 
-// TYPED
+// TYPED //
 
 	.sleepers {
 		.text-center;
@@ -361,12 +303,9 @@ body {
 		font-weight: bold;
 		width:100%;
 	}
+	.typed-cursor{display:none;}
 
-	.typed-cursor{
-		display:none;
-	}
-
-// MARKER CLUSTERS
+// MARKER CLUSTERS //
 
 	.marker-cluster-small {background-color: rgba(161, 51, 54, 0.6);}
 	.marker-cluster-small div {background-color: rgba(161, 51, 54, 0.6);}
@@ -375,7 +314,7 @@ body {
 	.marker-cluster-large {background-color: rgba(241, 211, 87, 0.6);}
 	.marker-cluster-large div {background-color: rgba(240, 194, 12, 0.6);}
 
-// GROWL
+// GROWL //
 
 	.growl-notifications {
 	  position: fixed;

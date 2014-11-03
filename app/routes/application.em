@@ -40,6 +40,7 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 		unjoin: ->
 			@session.queue = false
 		expose: (user) ->
+			console.log 'expose'
 			@getServer('hunts/expose', {target_id: user.id}).then( (response) =>
 				Bootstrap.GNM.push 'Success', 'Target Exposed.', 'success'
 				@session.reloadModels()
