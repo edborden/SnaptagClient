@@ -22,7 +22,7 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 						@transitionTo 'map'
 						Bootstrap.GNM.push 'Logged In', 'You are now in-game.', 'success'
 				)
-				{scope:'email,user_photos,user_birthday'}
+				{scope:'email'}
 		join: ->
 			@getServer("hunts/join",{location: {lat: @session.currentLocation.coords.latitude,lon: @session.currentLocation.coords.longitude}}).then (response) =>
 				@store.pushPayload Ember.$.parseJSON response
