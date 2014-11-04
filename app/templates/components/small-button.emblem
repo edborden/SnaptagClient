@@ -1,3 +1,3 @@
-.stat.self-center 
+.self-center
 	div style=view.innerStyle
 		yield

@@ -8,16 +8,15 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 	model: -> @session.me
 
 	actions:
-		back: ->
-			window.history.go(-1)
 		login: ->
 			openFB.login =>
 				@session.post(localStorage.fbtoken).then( =>
+					@controllerFor('application').model = @session.me
 					if @session.me.status is "inactive"
 						@transitionTo 'inactivemap'
 						Bootstrap.GNM.push 'Logged In', 'You may now Activate.', 'success'
 					else if @session.me.status is "queue"
-						@transitionTo 'map'
+						@transitionTo 'inactivemap'
 						Bootstrap.GNM.push 'Logged In', 'You are waiting for other Sleepers.', 'success'
 					else
 						@transitionTo 'map'
@@ -29,8 +28,7 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 				@store.pushPayload Ember.$.parseJSON response
 				Bootstrap.GNM.push 'Sleeper Activated.', 'You are now in-game.', 'success' if @session.active
 				Bootstrap.GNM.push 'Queue entered.', 'You are waiting to play.', 'success' if @session.queue
-				@replaceWith 'map' if @session.active
-				
+				@replaceWith 'map' if @session.active				
 		logout: ->
 			localStorage.clear()
 			@session.loggedIn = false
@@ -39,23 +37,5 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 			Bootstrap.GNM.push('Logged Out', null, 'success')
 		unjoin: ->
 			@session.queue = false
-		expose: (user) ->
-			console.log 'expose'
-			@getServer('hunts/expose', {target_id: user.id}).then( (response) =>
-				Bootstrap.GNM.push 'Success', 'Target Exposed.', 'success'
-				@session.reloadModels()
-				@replaceWith 'hunt')
-		leave_game: ->
-			return
-		counteract: (user) ->
-			@getServer('hunts/counteract', {hunter_id: user.id}).then( (response) =>
-				if response is "success"
-					Bootstrap.GNM.push 'Success', 'Hunter compromised.', 'success'
-					@session.reloadModels()
-					@replaceWith 'hunt'
-				else
-					@session.active = false
-					Bootstrap.GNM.push 'Disavowed', 'Counteraction unsuccessful.', 'warning'
-					@replaceWith 'inactivemap')
 
 `export default ApplicationRoute`

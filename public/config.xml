@@ -6,12 +6,12 @@
         version     = "1.0.0" >
 
     <!-- versionCode is optional and Android only -->
-    <preference name="phonegap-version" value="3.4.0" />
+    <preference name="phonegap-version" value="3.6.3" />
     <preference name="fullscreen" value="true" />
     <preference name="exit-on-suspend" value="true" />
     <preference name="orientation" value="portrait" />
 
-    <name>Sleepers</name>
+    <name>Stalkers</name>
 
     <description>
         A game played with real people, in real time, out in the real world.

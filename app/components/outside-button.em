@@ -1,9 +1,8 @@
-`import IsRotatable from 'appkit/mixins/is-rotatable'`
+`import SmallButtonComponent from 'appkit/components/small-button'`
 
-class OutsideButtonComponent extends Ember.View with IsRotatable
-	classNames: ['suspect-container']	
-	attributeBindings: ["style"]
-
-	totalCount: 16
+class OutsideButtonComponent extends SmallButtonComponent
+	
+	panelDim: ~> 78*@vw/2
+	circleDim: ~> 10*@vw/2
 
 `export default OutsideButtonComponent`

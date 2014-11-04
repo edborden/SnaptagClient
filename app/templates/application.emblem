@@ -2,7 +2,7 @@ bs-growl-notifications
 
 if session.loggedIn
 	.me
-		img.circle-button src=mediumpic class=showMe:active click='me'
+		img.circle-button src=mediumpic class=meButtonActive:active click='me'
 		i.fa.fa-rss.overlay class=session.isTransmitting:is-transmitting:not-transmitting
 
 	if showMe
@@ -11,28 +11,37 @@ if session.loggedIn
 				.circle-outline
 			.middle-button click="middle"
 
-			stat-container contentIndex=11 popup="Exposed Count" 
+			inside-button contentIndex=11 popup="Exposed Count" 
 				exposedCount
-			stat-container contentIndex=9 popup="Counteract Count" 
+			inside-button contentIndex=9 popup="Counteract Count" 
 				counteractCount
-			stat-container contentIndex=7 popup="Disavowed Count" 
+			inside-button contentIndex=7 popup="Disavowed Count" 
 				disavowedCount
-			stat-container contentIndex=5 popup="Compromised Count" 
+			inside-button contentIndex=5 popup="Compromised Count" 
 				compromisedCount
-			button-container contentIndex=2 action="pic"
+			inside-button contentIndex=3 popup="Influence" 
+				influence
+			inside-button contentIndex=16 action="pic"
 				i.fa.fa-camera.fa-lg	
+
+			outside-button contentIndex=1
+				i.fa.fa-rss.fa-lg class=session.isTransmitting:is-transmitting:not-transmitting	
+			outside-button contentIndex=2
+				i.fa.fa-location-arrow.fa-lg class=session.locationIsAccurate:is-transmitting:not-transmitting
+			outside-button contentIndex=3
+				i.fa.fa-signal.fa-lg class=session.hasInternetConnection:is-transmitting:not-transmitting
 
 if showPic
 	.circle-container
-		outside-button contentIndex=10
-			div.pic-button style=view.innerStyle x
+		outside-button contentIndex=10 noToggle=true action="closePic"
+			i.fa.fa-times.fa-lg
 		if activeSuspect
 			img.circle-pic src=activeSuspect.largepic
 		else
 			img.circle-pic src=session.me.largepic
 
 if mapRoute
-	.circle-button.web click="web" class=showWeb:active
+	.circle-button.web click="web" class=webButtonActive:active
 		i.fa.fa-eye.fa-2x.self-center
 
 	if showWeb
@@ -48,25 +57,27 @@ if mapRoute
 				.suspect-window-text
 					activeSuspect.name
 				if contentSectionOne
-					stat-container contentIndex=11 popup="Exposed Count" 
+					inside-button contentIndex=11 popup="Exposed Count" 
 						activeSuspect.exposedCount
-					stat-container contentIndex=9 popup="Counteract Count" 
+					inside-button contentIndex=9 popup="Counteract Count" 
 						activeSuspect.counteractCount
-					stat-container contentIndex=7 popup="Disavowed Count" 
+					inside-button contentIndex=7 popup="Disavowed Count" 
 						activeSuspect.disavowedCount
-					stat-container contentIndex=5 popup="Compromised Count" 
+					inside-button contentIndex=5 popup="Compromised Count" 
 						activeSuspect.compromisedCount
-					button-container contentIndex=2 action="pic"
+					inside-button contentIndex=3 popup="Influence" 
+						activeSuspect.influence
+					inside-button contentIndex=16 action="pic"
 						i.fa.fa-camera.fa-lg
 				else
-					button-container contentIndex=6 action="counteract"
+					inside-button contentIndex=6 action="counteract"
 						i.fa.fa-exclamation-triangle.fa-lg	
 					if activeSuspect.isTarget			
-						button-container contentIndex=8 class="red" action="expose"
+						inside-button contentIndex=8 class="red" action="expose"
 							i.fa.fa-crosshairs.fa-lg
-						button-container contentIndex=10 action="target"
+						inside-button contentIndex=10 action="target"
 							i.fa.fa-map-marker.fa-lg
-						button-container contentIndex=12 action="history"
+						inside-button contentIndex=12 action="history"
 							i.fa.fa-history.fa-lg
 
 outlet

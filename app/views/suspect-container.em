@@ -11,4 +11,7 @@ class SuspectContainerView extends Ember.View with IsRotatable
 	totalCount: ~> @_parentView.length
 	#@contentIndex defined by collectionview
 
+	panelDim: ~> 78*@vw/2
+	circleDim: ~> 19*@vw/2
+
 `export default SuspectContainerView`

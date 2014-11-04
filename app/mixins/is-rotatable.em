@@ -4,4 +4,12 @@ IsRotatable = new Ember.Mixin
 	style: ~> "-webkit-transform:rotate(" + @rotateBy + "deg);"
 	innerStyle: ~> "-webkit-transform:rotate(" + @rotateBy * -1 + "deg);"
 
+	vw: null
+
+	didInsertElement: ->
+		@_super()
+		@vw = Ember.$('body').width() / 100
+		origin = @panelDim+@circleDim
+		@element.style.webkitTransformOrigin = "50% " + origin + "px"
+
 `export default IsRotatable`
