@@ -17,7 +17,7 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 						Bootstrap.GNM.push 'Logged In', 'You may now Activate.', 'success'
 					else if @session.me.status is "queue"
 						@transitionTo 'inactivemap'
-						Bootstrap.GNM.push 'Logged In', 'You are waiting for other Sleepers.', 'success'
+						Bootstrap.GNM.push 'Logged In', 'You are waiting for other players.', 'success'
 					else
 						@transitionTo 'map'
 						Bootstrap.GNM.push 'Logged In', 'You are now in-game.', 'success'
