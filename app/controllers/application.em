@@ -9,6 +9,8 @@ class ApplicationController extends Ember.ObjectController
 	showMe: ~> @modal is 'me'
 	showWeb: ~> @modal is 'web'
 	showPic: ~> @modal is 'pic'
+	showExpose: false
+	showCounteract: false
 	contentSectionOne: ~> @contentSection is 1
 	mapRoute: ~> @currentRouteName is 'map'
 
@@ -33,29 +35,32 @@ class ApplicationController extends Ember.ObjectController
 				@activeSuspect = suspect
 				@contentSection = 1 unless @contentSection is 1
 		me: ->
-			unless @showMe
+			if @showMe
+				@modal = null
+			else
 				@modal = 'me'
 				@activeSuspect = null
-			else
-				@modal = null
-		web: ->
-			unless @showWeb
-				@modal = 'web'
-			else
-				@modal = null
-		pic: ->
-			@modal = 'pic'
-			false			
-		closePic: ->
-			if @activeSuspect then @modal = 'web' else @modal = 'me'
+		web: -> if @showWeb then @modal = null else @modal = 'web'
+		pic: -> @modal = 'pic'			
+		closePic: -> 
+			@showCounteract = false
+			@showExpose = false
+			if @activeSuspect 
+				@modal = 'web' 
+			else 
+				@modal = 'me'
 		target: ->
 			@activeTarget = @activeSuspect
 			@history = off
-			false
 		history: ->
-			@activeTarget = @activeSuspect
 			@history = on
-			false
+			@activeTarget = @activeSuspect
+		exposeWindow: ->
+			@showExpose = true
+			@modal = 'pic'
+		counteractWindow: ->
+			@showCounteract = true
+			@modal = 'pic'
 		expose: ->
 			@getServer('hunts/expose', {target_id: @activeSuspect.id}).then( (response) =>
 				Bootstrap.GNM.push 'Success', 'Target Exposed.', 'success'
@@ -71,6 +76,26 @@ class ApplicationController extends Ember.ObjectController
 					@session.active = false
 					Bootstrap.GNM.push 'Disavowed', 'Counteraction unsuccessful.', 'warning'
 					@replaceWith 'inactivemap')
+
+	locationAccurateText: ~> 
+		if @session.locationIsAccurate
+			"Your location is accurate."
+		else
+			"Your location is not accurate enough (try turning on your GPS and your WiFi)."
+
+	isTransmittingText: ~>
+		if @session.isTransmitting
+			"You are transmitting your location and accruing influence every 60 seconds."
+		else
+			"You are not transmitting your location or accruing influence."
+
+	hasInternetConnectionText: ~>
+		if @session.hasInternetConnection
+			"You have an internet connection."
+		else
+			"You do not have an internet connection."
+
+	### BACK BUTTON ###
 
 	init: ->
 		@_super()

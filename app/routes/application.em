@@ -30,11 +30,8 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 				Bootstrap.GNM.push 'Queue entered.', 'You are waiting to play.', 'success' if @session.queue
 				@replaceWith 'map' if @session.active				
 		logout: ->
-			localStorage.clear()
-			@session.loggedIn = false
-			@session.active = false
-			@replaceWith 'index'
-			Bootstrap.GNM.push('Logged Out', null, 'success')
+			@session.close()
+			@transitionTo 'index'
 		unjoin: ->
 			@session.queue = false
 

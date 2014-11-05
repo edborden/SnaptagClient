@@ -1,0 +1,4 @@
+.lower-panel-bg
+	yield
+.lower-panel-content
+	yield

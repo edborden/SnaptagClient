@@ -129,7 +129,7 @@ body {
 	}
 
 	.web {
-		left:10px;
+		left:15px;
 		top:10px;	
 		background-color: @red;	
 	}
@@ -143,13 +143,28 @@ body {
 	}
 
 	.panel-content {
+		.panel-base;
+		top:50%;
+	}
+
+	.panel-base {
 		.stacked;
 		border-radius: 10%;
 		display: inline-block;
 		padding:5px;
 		margin-left:5vw;
-		margin-right:5vw;
-		top:50%
+		margin-right:5vw;		
+	}
+
+	.lower-panel-content {	
+		top: 73%;
+		.panel-base;
+	}
+
+	.lower-panel-bg {
+		.lower-panel-content;
+		background-color: @blue;
+		opacity:.6;			
 	}
 
 // SMALL-BUTTON
@@ -172,6 +187,10 @@ body {
 	}
 	.inside-button {
 		top:25%;		
+	}
+
+	i.red {
+		color:red;
 	}
 
 // PIC INTERFACE //
@@ -209,7 +228,7 @@ body {
 		@dim:@panel-width*0.75;
 		width:@dim;
 		.h-centered(@dim);
-		top:@panel-width*0.125;
+		top:@panel-width*0.1;
 		font-weight: bold;
 		.stacked;
 		.text-center;
@@ -218,10 +237,12 @@ body {
 
 	.middle-button {
 		.click-fix;
-		.circle;
-		.centered;
-		border:4px solid white;
-	    background-color: @blue;
+		.circle(@scircle-width);
+		.centered(@scircle-width);
+		border:1px solid @blue;
+	    background-color: white;
+	    color: @blue;
+	    font-weight: bold;
 	}
 
 	.suspect-container {

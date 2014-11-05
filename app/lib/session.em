@@ -32,8 +32,9 @@ class Session extends Ember.Object
 		)
 
 	close: ->
-		localStorage.clear()
-		@model.destroyRecord()
+		openFB.logout()
+		@model = null
+
 
 	#+observer model
 	#onModelChange: ->
@@ -57,9 +58,10 @@ class Session extends Ember.Object
 
 	+observer model
 	loggedInChanged: ->
-		@setPusher()
-		@setInternetConnectionListeners()
-		@transmittingChanged()
+		if @loggedIn
+			@setPusher()
+			@setInternetConnectionListeners()
+			@transmittingChanged()
 
 	setPusher: ->
 		pusher = new Pusher '0750760773b8ed5ae1dc'
