@@ -1,15 +1,16 @@
 h3.typed.stalkers
 
-.circle-button.login click="login"
-	i.fa.fa-facebook.fa-2x
-	br
-	span.small Login
+.circle-button.first.blue click="login"
+	.self-center
+		i.fa.fa-facebook.fa-2x.small
+		br
+		span.small Login
 
-.circle-button.instructions click='instructions' class=showInstructions:active
-	i.fa.fa-question.fa-2x
+.circle-button.second.blue click='instructions' class=showInstructions:active
+	i.fa.fa-question.fa-2x.self-center
 
 if showInstructions
-	content-panel 
+	scrolling-panel 
 		partial 'instructions'
 
 view "intro-map"

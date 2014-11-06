@@ -1,0 +1,3 @@
+.panel-bg.scrollable
+.panel-content.scrollable
+	yield

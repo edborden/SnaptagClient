@@ -96,43 +96,31 @@ body {
 // BUTTONS //
 
 	.circle-button {
-		background-color: @blue;
 		.circle;		
 	    .stacked;
 	    border: 1px solid black;
 	    .click-fix;
-	}
-	.active {border-color:white;}
-
-	.instructions {
-		padding-top: 10px;
-		bottom:30px;
-		right:90px;
-	}
-
-	.login {
-		bottom:30px;
-		right:30px;
+		bottom:4vw;
 		line-height: .5;
-		padding-top: 6px;
 		span.small {
 			font-size: 70%;
 		}
 	}
+	.circle-button.active {border-color:white;}
+	.circle-button.first {right:4vw;}
+	.circle-button.second {right: 6vw + @circle-width;}
+	.circle-button.third {right: 8vw + @circle-width*2;}
+	.circle-button.blue {background-color: @blue;}
+	.circle-button.red {background-color: @red;}
 
-	.me {
-		right:10px;
-		top:15px;
+	.button-container {
+		.circle;
 		position:absolute;
 		height: @circle-width;
 		width: @circle-width;
 	}
+	img.circle-button{position:static;}
 
-	.web {
-		left:15px;
-		top:10px;	
-		background-color: @red;	
-	}
 
 // PANEL //
 
@@ -140,20 +128,27 @@ body {
 		.panel-content;
 		background-color: @blue;
 		opacity:.6;	
+		border-radius: 10%;
+		width:90%;
 	}
 
 	.panel-content {
 		.panel-base;
-		top:50%;
+		width:80%;
+		padding-right:10px;
+		h4 {
+			font-weight:bold;			
+		}
+		span.italic {
+			font-style: italic;
+		}
+
 	}
 
 	.panel-base {
 		.stacked;
-		border-radius: 10%;
 		display: inline-block;
-		padding:5px;
-		margin-left:5vw;
-		margin-right:5vw;		
+		.self-center;
 	}
 
 	.lower-panel-content {	
@@ -165,6 +160,15 @@ body {
 		.lower-panel-content;
 		background-color: @blue;
 		opacity:.6;			
+	}
+
+	.panel-content.scrollable {
+		height: 65%;
+		overflow-y: auto;
+	}
+
+	.panel-bg.scrollable {
+		height: 70%;
 	}
 
 // SMALL-BUTTON
@@ -270,8 +274,8 @@ body {
 
 // INSTRUCTIONS + STATUS
 
-	.highlight {
-		font-weight:bold;
+	h4.highlight {
+		
 	}
 
 	//.instructions {

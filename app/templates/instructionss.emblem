@@ -1,5 +1,3 @@
-unless session.loggedIn
-	back-button
 .instructions
 
 	h5.highlight Sleepers is a game played with real people, in real time, out in the real world.

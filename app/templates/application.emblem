@@ -1,10 +1,10 @@
 bs-growl-notifications
 
 if session.loggedIn
-	.me
-		img.circle-button src=mediumpic class=meButtonActive:active click='me'
+	.circle-button.first
 		if session.active
 			i.fa.fa-rss.overlay class=session.isTransmitting:is-transmitting:not-transmitting
+		img.circle-button src=mediumpic class=meButtonActive:active click='me'
 
 	if showMe
 		.circle-container
@@ -66,7 +66,7 @@ if showPic
 			img.circle-pic src=session.me.largepic
 
 if mapRoute
-	.circle-button.web click="web" class=webButtonActive:active
+	.circle-button.second.red click="web" class=webButtonActive:active
 		i.fa.fa-eye.fa-2x.self-center
 
 	if showWeb

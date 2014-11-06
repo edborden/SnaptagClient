@@ -1,5 +1,0 @@
-if view.content
-	if view.contentSectionOne
-		p: view.content.name
-	else
-		p section two

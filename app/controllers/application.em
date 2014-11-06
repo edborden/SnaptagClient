@@ -1,7 +1,8 @@
-class ApplicationController extends Ember.ObjectController
+`import ServerTalk from 'appkit/mixins/server-talk'`
+
+class ApplicationController extends Ember.ObjectController with ServerTalk
 
 	modal: null
-	contentSection: 1
 	activeSuspect: null
 	activeTarget: null
 	history: off
@@ -11,7 +12,7 @@ class ApplicationController extends Ember.ObjectController
 	showPic: ~> @modal is 'pic'
 	showExpose: false
 	showCounteract: false
-	contentSectionOne: ~> @contentSection is 1
+	contentSectionOne: true
 	mapRoute: ~> @currentRouteName is 'map'
 
 	webButtonActive: ~>		
@@ -24,18 +25,16 @@ class ApplicationController extends Ember.ObjectController
 
 	actions:
 		toggle: -> @modal = null
-		middle: -> @contentSection = switch @contentSection
-			when 1 then 2
-			when 2 then 1			
+		middle: -> @toggleProperty 'contentSectionOne'			
 		suspect: (suspect) ->
 			if @activeSuspect is suspect
 				@activeSuspect = null
-				@contentSection = 1 unless @contentSection is 1
+				@contentSection = true unless @contentSection
 			else
 				@activeSuspect = suspect
-				@contentSection = 1 unless @contentSection is 1
+				@contentSection = true unless @contentSection
 		me: ->
-			if @showMe
+			if @meButtonActive
 				@modal = null
 			else
 				@modal = 'me'
@@ -62,20 +61,22 @@ class ApplicationController extends Ember.ObjectController
 			@showCounteract = true
 			@modal = 'pic'
 		expose: ->
-			@getServer('hunts/expose', {target_id: @activeSuspect.id}).then( (response) =>
-				Bootstrap.GNM.push 'Success', 'Target Exposed.', 'success'
-				@session.reloadModels()
-				@replaceWith 'hunt')
-		counteract: ->
-			@getServer('hunts/counteract', {hunter_id: @activeSuspect.id}).then( (response) =>
+			@getServer('hunts/expose', {target_id: @activeSuspect.id}).then (response) =>
 				if response is "success"
+					@session.me.suspects.removeObject @activeSuspect
+					@activeSuspect = null
+					Bootstrap.GNM.push 'Success', 'Target Exposed.', 'success'
+		counteract: ->
+			@getServer('hunts/counteract', {hunter_id: @activeSuspect.id}).then (response) =>
+				if response is "success"
+					@session.me.suspects.removeObject @activeSuspect
+					@activeSuspect = null
 					Bootstrap.GNM.push 'Success', 'Hunter compromised.', 'success'
-					@session.reloadModels()
-					@replaceWith 'hunt'
 				else
-					@session.active = false
+					@activeSuspect = null
+					@session.me.status = 'inactive'
 					Bootstrap.GNM.push 'Disavowed', 'Counteraction unsuccessful.', 'warning'
-					@replaceWith 'inactivemap')
+					@transitionTo 'inactivemap'
 
 	locationAccurateText: ~> 
 		if @session.locationIsAccurate
