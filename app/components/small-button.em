@@ -23,7 +23,7 @@ class SmallButtonComponent extends Ember.View with IsRotatable
 				@popover = true
 		else
 			if @action
-				@controller.send "toggle" unless @noToggle
-				@controller.send @action, @parentView.activeSuspect
+				@parentView.send "toggle" unless @noToggle
+				@parentView.send @action
 
 `export default SmallButtonComponent`

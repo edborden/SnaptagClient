@@ -3,5 +3,6 @@
 		i.fa.fa-eye.fa-2x
 		br
 		span.small Join
-
+		
+view 'map-interface'
 view 'intro-map'

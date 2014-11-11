@@ -3,14 +3,14 @@ attr = DS.attr
 class User extends DS.Model
 
 	name: attr()
+	targetsFoundCount: attr "number"
+	foundCount: attr "number"
+	stalkersExposedCount: attr "number"
 	exposedCount: attr "number"
-	counteractCount: attr "number"
-	disavowedCount: attr "number"
-	compromisedCount: attr "number"
 	smallpic: attr()
 	mediumpic: attr()
 	largepic: attr()
-	influence: attr "number"
+	stealth: attr "number"
 	activatedAt: attr "date"
 	status: attr()
 
@@ -22,6 +22,6 @@ class User extends DS.Model
 	location: ~> @latestLocation.location if @latestLocation?
 	locations: DS.hasMany 'location'
 	latestLocation: ~> @locations.lastObject if @locations?
-	inactiveMapPopupContent: ~> "Active Sleeper who has exposed " + @exposedCount.toString() + " targets and has been hunting since " + moment(@activatedAt).fromNow() + "."
+	inactiveMapPopupContent: ~> "Active Stalker who has found " + @targetsFoundCount.toString() + " targets and has been hunting since " + moment(@activatedAt).fromNow() + "."
 
 `export default User`

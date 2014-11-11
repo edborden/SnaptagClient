@@ -81,7 +81,7 @@ class Session extends Ember.Object
 			@intervalID = null
 
 	sendLocation: ->
-		@store.createRecord('location',{lat: @currentLocation.coords.latitude,lon: @currentLocation.coords.longitude}).save()
+		@store.createRecord('location',{lat: @currentLocation.coords.latitude,lng: @currentLocation.coords.longitude}).save()
 
 	setLocationInterval: ->
 		app = this

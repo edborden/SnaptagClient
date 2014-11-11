@@ -6,6 +6,6 @@ class IndexRoute extends Ember.Route
 			@replaceWith 'inactivemap' 
 
 	model:->
-		@store.find 'zone',{lat: @session.currentLocation.coords.latitude,lon: @session.currentLocation.coords.longitude}
+		@store.find 'zone',{lat: @session.currentLocation.coords.latitude,lng: @session.currentLocation.coords.longitude}
 
 `export default IndexRoute`

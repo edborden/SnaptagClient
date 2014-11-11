@@ -24,14 +24,11 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 				)
 				{scope:'email'}
 		join: ->
-			@getServer("hunts/join",{location: {lat: @session.currentLocation.coords.latitude,lon: @session.currentLocation.coords.longitude}}).then (response) =>
+			@getServer("hunts/join",{location: {lat: @session.currentLocation.coords.latitude,lng: @session.currentLocation.coords.longitude}}).then (response) =>
 				@store.pushPayload Ember.$.parseJSON response
 				Bootstrap.GNM.push 'Sleeper Activated.', 'You are now in-game.', 'success' if @session.active
 				Bootstrap.GNM.push 'Queue entered.', 'You are waiting to play.', 'success' if @session.queue
 				@replaceWith 'map' if @session.active				
-		logout: ->
-			@session.close()
-			@transitionTo 'index'
 		unjoin: ->
 			@session.queue = false
 

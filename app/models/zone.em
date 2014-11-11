@@ -2,7 +2,7 @@ attr = DS.attr
 
 Zone = DS.Model.extend
 	lat: attr()
-	lon: attr()
+	lng: attr()
 	range: attr()
 	users: DS.hasMany 'user'
 

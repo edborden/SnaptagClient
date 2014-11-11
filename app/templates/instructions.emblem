@@ -1,7 +1,7 @@
 h4 Stalkers is a game played with real people, in real time, out in the real world.
 p Your goal is simple: hunt down and find your targets (other players in your vicinity) before someone does the same to you. You'll be given up to 3 targets at a time, while up to 3 people will be hunting you at a time.
-p Hunters can view their targets' exact location on their map (only while they are in-game, with the app open). Players accrue influence points every minute they have the app open and expose their location, rewarding players who risk vulnerability with the means to purchase power-ups and enhancements (coming soon).
+p Players can view their targets' exact location on their map (only while they are in-game, with the app open). Players accrue stealth points every minute they have the Stalkers app open, which reveals their location. Stealth points are used to purchase power-ups and enhancements (coming soon).
 p 
-	|Your only defense, besides being sneaky, is to attempt to expose your hunters: at any time, you can view the 11 other people that are playing the game with you and guess which of them are hunting you. If you are right, you'll remove them from the game and score. If you're wrong, 
+	|Your only defense, besides being sneaky, is to attempt to expose your hunters: at any time, you can view the other people that are playing the game with you and guess which of them are your hunters. If you are right, you'll remove them from the game and score. If you're wrong, 
 	span.italic you'll 
 	|be removed from the game.
