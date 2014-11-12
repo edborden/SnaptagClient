@@ -3,7 +3,7 @@ class Session extends Ember.Object
 	loggedIn: ~> if @model? then return true else return false
 	model: null
 	token: ~> if @model? then return @model.token else return null
-	me: ~> @model.user
+	me: Ember.computed.alias 'model.user'
 	hasInternetConnection: true
 	locationIsAccurate: ~>
 		if cordova?
@@ -13,8 +13,10 @@ class Session extends Ember.Object
 	currentLocation: null
 	location: ~> L.latLng @currentLocation.coords.latitude, @currentLocation.coords.longitude
 	isTransmitting: ~> if @active and @locationIsAccurate and @hasInternetConnection then return true else return false
-	active: ~> if @model? && @me.status is 'active' then return true else return false
-	queue: ~> if @model? && @me.status is 'queue' then return true else return false
+	
+	active: ~> if @me.status? and @me.status is 'active' then return true else return false
+	queue: ~> if @me.status? and @me.status is 'queue' then return true else return false
+	inactive: ~> if @me.status? and @me.status is 'inactive' then return true else return false
 
 	open: (token) ->
 		@store.find('session', {token: token}).then( 
@@ -35,38 +37,63 @@ class Session extends Ember.Object
 		openFB.logout()
 		@model = null
 
+	pusher: null
+	mapController: null
+	mapUi: null
 
-	#+observer model
-	#onModelChange: ->
-	#	pusher = new Pusher '582c7172c76f25330f7f'
-	#	channel = pusher.subscribe "c"+@me.id.toString()
-	#	channel.bind 'notification', (data) => 
-	#		@store.pushPayload data
-	#		notification = @store.getById 'notification', data.notification.id
-	#		@me.notifications.unshiftObject notification
-	#		@me.notifyPropertyChange 'unreadNotifications'
-	#	channel = pusher.subscribe "tables"
-	#	channel.bind 'remove', (id) => 
-	#		table = @store.getById 'table', id
-	#		table.deleteRecord() if table
-	#	channel.bind 'update', (data) =>
-	#		@store.pushPayload data
-	#		table = @store.getById 'table', data.table.id
-	#		table.restaurant.tables.pushObject table
+	+observer me.status
+	setPusher: ->
+		Ember.run.next @, =>
+			if @model?
+				console.log 'setpusher'
+				@pusher.disconnect() if @pusher? and @inactive
+				@pusher = new Pusher '0750760773b8ed5ae1dc' unless @pusher?
+				if @queue
+					console.log 'queue subscriptions'
+					return # real-time queue sync here
+				if @active
+					channel = @pusher.subscribe @me.id
+					channel.bind 'new_target', (data) =>
+						@store.pushPayload data
+						user = @store.getById 'user', data.user.id
+						@me.suspects.pushObject user
+						@me.targets.pushObject user
+						user.notifyPropertyChange 'isTarget'
+					channel.bind 'remove_suspect', (data) =>
+						user = @store.getById 'user', data
+						if @mapUi.modal?
+							modal = @mapUi.modal
+							@mapUi.activeSuspect = null if @mapUi.activeSuspect.id is data
+							@mapUi.modal = null
+						@me.suspects.removeObject user
+						Ember.run.next @, => @mapUi.modal = modal if modal?
+					@me.suspects.forEach (suspect) =>
+						channel = @pusher.subscribe suspect.id
+						channel.bind 'remove', (data) => 
+							user = @store.getById 'user', data
+							@me.suspects.removeObject user
+							@me.targets.removeObject user
+						if suspect.isTarget
+							channel.bind 'location', (data) =>
+								@store.pushPayload data
+								location = @store.getById 'location', data.location.id
+								suspect.locations.pushObject location
+								suspect.notifyPropertyChange 'latestLocation'
+								@mapController.notifyPropertyChange 'latestLocations'
+			#	channel = pusher.subscribe "tables"
+			#	channel.bind 'remove', (id) => 
+			#		table = @store.getById 'table', id
+			#		table.deleteRecord() if table
+			else
+				@pusher.disconnect() if @pusher?
 
 	## LOGGED IN
 
 	+observer model
 	loggedInChanged: ->
-		if @loggedIn
-			@setPusher()
+		if @model?
 			@setInternetConnectionListeners()
 			@transmittingChanged()
-
-	setPusher: ->
-		pusher = new Pusher '0750760773b8ed5ae1dc'
-		channel = pusher.subscribe localStorage['fbtoken']
-		channel.bind 'updatelocation', => Ember.run.bind this, @send 'updatelocation'
 
 	## TRANSMITTING
 
@@ -82,6 +109,7 @@ class Session extends Ember.Object
 
 	sendLocation: ->
 		@store.createRecord('location',{lat: @currentLocation.coords.latitude,lng: @currentLocation.coords.longitude}).save()
+		@me.stealth = @me.stealth + 1
 
 	setLocationInterval: ->
 		app = this

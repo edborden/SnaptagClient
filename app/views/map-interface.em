@@ -6,6 +6,8 @@ class MapInterfaceView extends Ember.View with ServerTalk
 	init: ->
 		@_super()
 		@context = @
+		@session.mapUi = @
+
 	context: null
 
 	session: ~> @controller.session
@@ -17,6 +19,7 @@ class MapInterfaceView extends Ember.View with ServerTalk
 	showMe: ~> @modal is 'me'
 	showWeb: ~> @modal is 'web'
 	showPic: ~> @modal is 'pic'
+	showNotifications: ~> @modal is 'notifications'
 	showExpose: false
 	showCounteract: false
 	contentSection: true
@@ -97,5 +100,6 @@ class MapInterfaceView extends Ember.View with ServerTalk
 		logout: ->
 			@session.close()
 			@controller.transitionToRoute 'index'
+		notifications: -> @modal = 'notifications'
 
 `export default MapInterfaceView`
