@@ -71,6 +71,34 @@ body {
 		-webkit-transform: translateY(-50%) translateX(-50%);
 	}
 
+// NOTIFICATIONS //
+
+	.notifications-list {
+		
+		.item {
+			margin-bottom:4px;
+			width: 100%;
+			background-color:white;
+			font-size:85%;
+			border: solid 1px black;
+			padding: 5px;
+			border-radius: 3vw;
+			.header {
+				color:@blue;
+				line-height: 2em;
+			}
+			.body {
+				color:black;
+			}
+			.buttons {
+				line-height: 3em;
+			}
+		}
+		.read{
+			opacity: 0.75;
+		}
+	}
+
 // MAP //
 
 	html, body, .leaflet-container, body>div {height: 100%}
@@ -84,8 +112,15 @@ body {
 		position:absolute;
 		z-index:3;
 		margin-top:-6px;
-		margin-left:-6px;
 		padding-top:4px;
+	}
+
+	.overlay.top-left {
+		margin-left:-6px;
+	}
+
+	.overlay.top-right {
+		right:-6px;
 	}
 
 	// TRANSMITTING
@@ -128,7 +163,7 @@ body {
 		.panel-content;
 		background-color: @blue;
 		opacity:.6;	
-		border-radius: 10%;
+		border-radius: 6vw;
 	}
 
 	.panel-content {

@@ -16,6 +16,7 @@ class User extends DS.Model
 
 	suspects: DS.hasMany 'user', {inverse:null}
 	targets: DS.hasMany 'user', {inverse:null}
+	notifications: DS.hasMany 'notification'
 
 	isTarget: ~> @session.me.targets.any (user) => user is @
 
@@ -23,5 +24,10 @@ class User extends DS.Model
 	locations: DS.hasMany 'location'
 	latestLocation: ~> @locations.lastObject if @locations?
 	inactiveMapPopupContent: ~> "Active Stalker who has found " + @targetsFoundCount.toString() + " targets and has been hunting since " + moment(@activatedAt).fromNow() + "."
+
+	unreadNotifications: ~>
+		array = []
+		@notifications.forEach (notification) -> array.pushObject notification unless notification.read
+		return array
 
 `export default User`

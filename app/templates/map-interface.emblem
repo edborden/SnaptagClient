@@ -1,6 +1,9 @@
 .circle-button.first
 	if session.active
-		i.fa.fa-rss.overlay class=session.isTransmitting:is-transmitting:not-transmitting
+		i.fa.fa-rss.overlay.top-left class=session.isTransmitting:is-transmitting:not-transmitting
+	if me.unreadNotifications
+		.overlay.top-right
+			i.red.self-center: me.unreadNotifications.length
 	img.circle-button src=me.mediumpic class=meButtonActive:active click="me target='view'"
 
 if session.active
@@ -86,4 +89,11 @@ if showPic
 			img.circle-pic src=me.largepic
 
 if showNotifications
-	scrolling-panel
+	scrolling-panel class="notifications-list"
+		each me.notifications
+			view 'notification-box'
+		else
+			.self-center.text-center
+				i.fa.fa-folder-o.fa-3x
+				br
+				h4 No Messages!

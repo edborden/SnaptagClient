@@ -1,0 +1,8 @@
+.header 
+	i.fa.fa-envelope-o.fa-lg
+	|&nbsp;&nbsp;&nbsp;
+	subject
+	|&nbsp;
+	createdAtFormatted
+.body
+	cacheBody

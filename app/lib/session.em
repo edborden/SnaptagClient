@@ -37,56 +37,6 @@ class Session extends Ember.Object
 		openFB.logout()
 		@model = null
 
-	pusher: null
-	mapController: null
-	mapUi: null
-
-	+observer me.status
-	setPusher: ->
-		Ember.run.next @, =>
-			if @model?
-				console.log 'setpusher'
-				@pusher.disconnect() if @pusher? and @inactive
-				@pusher = new Pusher '0750760773b8ed5ae1dc' unless @pusher?
-				if @queue
-					console.log 'queue subscriptions'
-					return # real-time queue sync here
-				if @active
-					channel = @pusher.subscribe @me.id
-					channel.bind 'new_target', (data) =>
-						@store.pushPayload data
-						user = @store.getById 'user', data.user.id
-						@me.suspects.pushObject user
-						@me.targets.pushObject user
-						user.notifyPropertyChange 'isTarget'
-					channel.bind 'remove_suspect', (data) =>
-						user = @store.getById 'user', data
-						if @mapUi.modal?
-							modal = @mapUi.modal
-							@mapUi.activeSuspect = null if @mapUi.activeSuspect.id is data
-							@mapUi.modal = null
-						@me.suspects.removeObject user
-						Ember.run.next @, => @mapUi.modal = modal if modal?
-					@me.suspects.forEach (suspect) =>
-						channel = @pusher.subscribe suspect.id
-						channel.bind 'remove', (data) => 
-							user = @store.getById 'user', data
-							@me.suspects.removeObject user
-							@me.targets.removeObject user
-						if suspect.isTarget
-							channel.bind 'location', (data) =>
-								@store.pushPayload data
-								location = @store.getById 'location', data.location.id
-								suspect.locations.pushObject location
-								suspect.notifyPropertyChange 'latestLocation'
-								@mapController.notifyPropertyChange 'latestLocations'
-			#	channel = pusher.subscribe "tables"
-			#	channel.bind 'remove', (id) => 
-			#		table = @store.getById 'table', id
-			#		table.deleteRecord() if table
-			else
-				@pusher.disconnect() if @pusher?
-
 	## LOGGED IN
 
 	+observer model
