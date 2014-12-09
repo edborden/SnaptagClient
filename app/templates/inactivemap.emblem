@@ -1,8 +1,17 @@
-.circle-button.second.blue click="join"
-	.self-center
-		i.fa.fa-eye.fa-2x
-		br
-		span.small Join
+if session.inactive
+	.circle-button.second.blue click="join"
+		.self-center
+			i.fa.fa-eye.fa-2x
+			br
+			span.small Join
+else
+	.circle-button.second.blue click="unjoin"
+		.self-center
+			i.fa.fa-minus-square-o.fa-2x
+			br
+			span.small Exit Queue	
+	lower-panel
+		.text-center You are in the queue, waiting for other players.
 		
 view 'map-interface'
 view 'intro-map'

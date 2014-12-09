@@ -9,6 +9,7 @@ ServerTalk = new Ember.Mixin
 					resolve response
 				dataType: dataType
 				headers: @headers
+				crossDomain: true
 
 	headers: ~>
 		if @session.token?

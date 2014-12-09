@@ -11,24 +11,32 @@ class ApplicationRoute extends Ember.Route with ServerTalk, RealTime
 
 	actions:
 		login: ->
-			openFB.login =>
-				@session.post(localStorage.fbtoken).then =>
-					if @session.active
-						@transitionTo 'map'
-						Bootstrap.GNM.push 'Logged In', 'You are now in-game.', 'success'
-					else
-						@transitionTo 'inactivemap'
-						Bootstrap.GNM.push 'Logged In', 'You may now Activate.', 'success' if @session.inactive
-						Bootstrap.GNM.push 'Logged In', 'You are waiting for other players.', 'success' if @session.queue
-				{scope:'email'}
+			@transitionTo('loading').then =>
+				openFB.login =>
+					@session.post(localStorage.fbtoken).then =>
+						if @session.active
+							@transitionTo 'map'
+							Bootstrap.GNM.push 'Logged In', 'You are now in-game.', 'success'
+						else
+							@transitionTo 'inactivemap'
+							Bootstrap.GNM.push 'Logged In', 'You may now Activate.', 'success' if @session.inactive
+							Bootstrap.GNM.push 'Logged In', 'You are waiting for other players.', 'success' if @session.queue
+					{scope:'email'}
 		join: ->
-			@getServer("hunts/join",{location: {lat: @session.currentLocation.coords.latitude,lng: @session.currentLocation.coords.longitude}}).then (response) =>
-				@store.pushPayload Ember.$.parseJSON response
-				Bootstrap.GNM.push 'Sleeper Activated.', 'You are now in-game.', 'success' if @session.active
-				Bootstrap.GNM.push 'Queue entered.', 'You are waiting to play.', 'success' if @session.queue
-				@replaceWith 'map' if @session.active				
-		#unjoin: ->
-		#	@session.queue = false
+			@transitionTo('loading').then =>
+				@getServer("hunts/join",{location: {lat: @session.currentLocation.coords.latitude,lng: @session.currentLocation.coords.longitude}}).then (response) =>
+					response = Ember.$.parseJSON response
+					@store.pushPayload response
+					@me.status = response.user.status # fixes status not updating if re-enter queue on same session
+					if @session.active
+						Bootstrap.GNM.push 'Sleeper Activated.', 'You are now in-game.', 'success'
+						@transitionTo 'map'
+					else 
+						Bootstrap.GNM.push 'Queue entered.', 'You are waiting to play.', 'success' if @session.queue
+						@transitionTo 'inactivemap'
+		unjoin: ->
+			@getServer "hunts/unjoin"
+			@me.status = 'inactive'
 		found: (target) ->
 			@getServer('hunts/found_target', {target_id: target.id}).then (response) =>
 				notification = @pushUnparsedNotification response

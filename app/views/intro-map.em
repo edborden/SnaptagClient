@@ -17,8 +17,9 @@ class IntroMapView extends EmberLeaflet.MapView
 				strings: ["You ^400 are ^500 being ^400 watched."]
 				typeSpeed: 50
 		@_layer.setView([@currentLocation.coords.latitude, @currentLocation.coords.longitude], 14)
-		bounds = L.latLngBounds @markerArray
-		@_layer.fitBounds bounds
+		if @markerArray.length > 0
+			bounds = L.latLngBounds @markerArray
+			@_layer.fitBounds bounds
 
 	createZoneClusters: ->
 		@controller.forEach (zone) =>
