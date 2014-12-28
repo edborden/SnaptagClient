@@ -1,18 +1,53 @@
-HasPopup = new Ember.Mixin
+HasPopup = Ember.Mixin.create
 	
-	popup: null
+	_popoverOpen: ~> @_popoverJqueryObject?
 
-	popover: null
+	#Set in template
+	popoverContent: null
+
+	#Default behavior is for button to activate popover just one time, then send action on subsequent presses.
+	justOnce: yes
+
+	#Set after first popover closes if @once is set
+	_noMorePopovers: false
+
+	#Object must implement this method to send action
+	sendAction: null
+
+	#Action to send, set in template
+	action: null
+
+	popoverPosition: 'top'
+
+	#set in openPopover
+	_jqueryObject: null
+	_popoverJqueryObject: null
+
+	#object handing opening/closing popups
+	popoverHandler: null
+
+	showPopover: ->
+		@_jqueryObject = Ember.$(@element)
+		@_jqueryObject.popover({content:@popoverContent,placement:@popoverPosition,trigger:'manual'}).popover 'show'
+		@_popoverJqueryObject = @_jqueryObject.prop 'nextSibling'
+		@popoverHandler.objectWithPopover = @
+
+	removePopover: ->
+		@_popoverJqueryObject.remove()
+		@_popoverJqueryObject = null
+		@_noMorePopovers = true if @justOnce
 
 	click: ->
-		if @popup
-			if @popover
-				Ember.$(".popover").remove()
-				#@popover = false
-				#popup only appears one time on purpose, so that tooltips can be displayed on buttons that might need an action explained
+		if @popoverContent?
+			if @_popoverOpen					
+				@popoverHandler.removeAnyOpenPopover()
 			else
-				Ember.$(".popover").remove()
-				Ember.$(@element).popover({content:@popup,placement:'top'}).popover 'show'
-				@popover = true
+				@popoverHandler.removeAnyOpenPopover()
+				unless @_noMorePopovers
+					@showPopover()
+				else
+					@sendAction
+		else
+			@send @action
 
 `export default HasPopup`

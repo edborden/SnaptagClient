@@ -1,5 +1,7 @@
+`import config from 'stalkers-client/config/environment'`
+
 class ApplicationAdapter extends DS.RESTAdapter
-	host: 'http://damp-sea-6022.herokuapp.com'
+	host: config.apiHostName
 
 	#crossdomain
 	ajax: (url, method, hash) -> 

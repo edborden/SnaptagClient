@@ -1,29 +1,15 @@
-`import IsRotatable from 'appkit/mixins/is-rotatable'`
+`import Rotatable from 'stalkers-client/mixins/rotatable'`
+`import HasPopup from 'stalkers-client/mixins/has-popup'`
 
-class SmallButtonComponent extends Ember.View with IsRotatable
+class SmallButtonComponent extends Ember.Component with Rotatable, HasPopup
 	classNames: ['small-button-container']	
 	attributeBindings: ["style"]
 	layoutName: 'components/small-button'
 
 	totalCount: 16
 
-	popup: null
-	popover: null
-	action: null
-
-	click: ->
-		if @popup
-			if @popover
-				Ember.$(".popover").remove()
-				#@popover = false
-				#popup only appears one time on purpose, so that tooltips can be displayed on buttons that might need an action explained
-			else
-				Ember.$(".popover").remove()
-				Ember.$(@element).popover({content:@popup,placement:'top'}).popover 'show'
-				@popover = true
-		else
-			if @action
-				@parentView.send "toggle" unless @noToggle
-				@parentView.send @action
+	sendAction: ->
+		@target.send "toggle" unless @noToggle
+		@_super()
 
 `export default SmallButtonComponent`

@@ -1,73 +1,12 @@
-`import ServerTalk from 'appkit/mixins/server-talk'`
-`import RealTime from 'appkit/mixins/real-time'`
+`import ServerTalk from 'stalkers-client/mixins/server-talk'`
 
-class ApplicationRoute extends Ember.Route with ServerTalk, RealTime
+class ApplicationRoute extends Ember.Route with ServerTalk
 
-	me: ~> @session.me
-
-	beforeModel: ->
-		@session.setupLocation().then => @session.open localStorage.fbtoken if localStorage.fbtoken?
-	model: -> @me
-
+	beforeModel: -> @loc.setupLocation().then => @session.open()
+	
 	actions:
-		login: ->
-			@transitionTo('loading').then =>
-				openFB.login =>
-					@session.post(localStorage.fbtoken).then =>
-						if @session.active
-							@transitionTo 'map'
-							Bootstrap.GNM.push 'Logged In', 'You are now in-game.', 'success'
-						else
-							@transitionTo 'inactivemap'
-							Bootstrap.GNM.push 'Logged In', 'You may now Activate.', 'success' if @session.inactive
-							Bootstrap.GNM.push 'Logged In', 'You are waiting for other players.', 'success' if @session.queue
-					{scope:'email'}
-		join: ->
-			@transitionTo('loading').then =>
-				@getServer("hunts/join",{location: {lat: @session.currentLocation.coords.latitude,lng: @session.currentLocation.coords.longitude}}).then (response) =>
-					response = Ember.$.parseJSON response
-					@store.pushPayload response
-					@me.status = response.user.status # fixes status not updating if re-enter queue on same session
-					if @session.active
-						Bootstrap.GNM.push 'Sleeper Activated.', 'You are now in-game.', 'success'
-						@transitionTo 'map'
-					else 
-						Bootstrap.GNM.push 'Queue entered.', 'You are waiting to play.', 'success' if @session.queue
-						@transitionTo 'inactivemap'
-		unjoin: ->
-			@getServer "hunts/unjoin"
-			@me.status = 'inactive'
-		found: (target) ->
-			@getServer('hunts/found_target', {target_id: target.id}).then (response) =>
-				notification = @pushUnparsedNotification response
-				@me.suspects.removeObject target
-				@me.targetsFoundCount = @me.targetsFoundCount + 1
-				Bootstrap.GNM.push 'Success', 'Target Found.', 'success'
-		expose: (suspect) ->
-			@getServer('hunts/expose', {stalker_id: suspect.id}).then (response) =>
-				notification = @pushUnparsedNotification response
-				if notification.subject is "Stalker exposed"
-					@me.suspects.removeObject suspect
-					@me.targets.removeObject suspect
-					@me.notifyPropertyChange 'suspects'
-					Bootstrap.GNM.push 'Success', 'Stalker exposed.', 'success'
-				if notification.subject is "Exposed self"
-					@me.exposedCount = @me.exposedCount + 1
-					@goInactive()
-					Bootstrap.GNM.push 'Failed', 'You exposed yourself.', 'warning'
-
 		logout: ->
 			@session.close()
 			@transitionTo 'index'
-
-	pushUnparsedNotification: (response) ->
-		response = Ember.$.parseJSON response
-		@pushNotification response
-
-	goInactive: ->
-		@me.status = 'inactive'
-		@me.suspects.clear()
-		@me.targets.clear()		
-		@transitionTo 'inactivemap'
 
 `export default ApplicationRoute`

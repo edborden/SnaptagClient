@@ -1,9 +1,0 @@
-render "nav/top"
-
-= alert-bar admin=true | Message from the GamesMaster that is pretty long, wondering what will happen
-
-= alert-bar admin=true | And another one
-
-= alert-bar | A regular one.
-
-= alert-bar | Another one.

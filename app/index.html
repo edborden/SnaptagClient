@@ -1,133 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>App</title>
-  <meta name="viewport" id="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>StalkersClient</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- build:css(tmp/result) /assets/app.min.css -->
-    <link rel="stylesheet" href="/vendor/leaflet-dist/leaflet.css" />
-    <link rel="stylesheet" href="/vendor/leaflet.awesome-markers/dist/leaflet.awesome-markers.css">
-    <link rel="stylesheet" href="/vendor/leaflet.markercluster/dist/MarkerCluster.Default.css">
-    <link rel="stylesheet" href="/vendor/leaflet-usermarker/src/leaflet.usermarker.css">
-    <link rel="stylesheet" href="/assets/app.css">
-  <!-- endbuild -->
+    {{content-for 'head'}}
 
-    <!-- build:js(tmp/result) /assets/config.min.js -->
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/stalkers-client.css">
 
-    <script src="/config/environment.js"></script>
-    <!-- @if tests=false -->
+    {{content-for 'head-footer'}}
+  </head>
+  <body>
+    {{content-for 'body'}}
 
-      <!-- @if dist=false -->
-      <script src="/config/environments/development.js"></script>
-      <!-- @endif --><!-- @if dist=true -->
-      <script src="/config/environments/production.js"></script>
-      <!-- @endif -->
+    <script src="assets/vendor.js"></script>
+    <script src="assets/stalkers-client.js"></script>
 
-    <!-- @endif --><!-- @if tests=true -->
-      <script src="/config/environments/test.js"></script>
-    <!-- @endif -->
-
-  <!-- endbuild -->
-
-  <!-- build:js(tmp/result) /assets/vendor.min.js -->
-    <script src="/vendor/jquery/jquery.js"></script>
-    
-    <!-- @if dist=false -->
-    <script src="/vendor/handlebars/handlebars.js"></script>
-    <script src="/vendor/ember/ember.js"></script>
-    <!-- @endif --><!-- @if dist=true -->
-    <script src="/vendor/handlebars/handlebars.js"></script>
-    <script src="/vendor/ember/ember.prod.js"></script>
-    <!-- @endif -->
-
-    <script src="/vendor/ember-data/ember-data.js"></script>
-    <script src="/vendor/loader.js/loader.js"></script>
-    <script src="/vendor/ember-resolver/dist/ember-resolver.js"></script>
-    <script src="/vendor/ember-shim.js"></script> 
-    <script src="/vendor/ic-ajax/dist/named-amd/main.js"></script>
-    <script src="/vendor/ember-load-initializers/ember-load-initializers.js"></script>
-    <script src="/vendor/leaflet-dist/leaflet.js"></script>
-    <script src="/vendor/bootstrap/js/alert.js"></script>
-    <script src="/vendor/bootstrap/js/tooltip.js"></script>
-    <script src="/vendor/bootstrap/js/popover.js"></script>
-    <script src="/vendor/ember-addons.bs_for_ember/dist/js/bs-core.min.js"></script>
-    <script src="/vendor/ember-addons.bs_for_ember/dist/js/bs-notifications.min.js"></script>
-    <script src="/vendor/ember-addons.bs_for_ember/dist/js/bs-growl-notifications.min.js"></script>
-    <script src="/vendor/emberjs-touch/lib/ember-fastclick.js"></script>
-    <script src="/vendor/pusher/dist/pusher.js"></script>
-    <script src="/vendor/openfb/openfb.js"></script>
-    <script src="/vendor/ember-leaflet/dist/ember-leaflet.js"></script>
-    <script src="/vendor/leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
-    <script src="/vendor/momentjs/min/moment.min.js"></script>
-    <script src="/vendor/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-    <script src="/vendor/leaflet-usermarker/src/leaflet.usermarker.js"></script>
-    <script src="/vendor/typed.js/js/typed.js"></script>
-  <!-- endbuild -->
-
-  <!-- build:js(tmp/result) /assets/app.min.js -->
-
-    <script src="/assets/app.js"></script>
-    <script src="/assets/templates.js"></script>
-
-  <!-- endbuild -->
-
-  <!-- @if tests=true -->
-  <script src="/vendor/ember-shim.js"></script>
-  <link rel="stylesheet" href="/vendor/qunit/qunit/qunit.css">
-  <script src="/vendor/qunit/qunit/qunit.js"></script>
-  <script src="/vendor/qunit-shim.js"></script>
-  <script src="/vendor/ember-qunit/dist/named-amd/main.js"></script>
-
-  <style>
-    #ember-testing-container {
-      position: absolute;
-      background: white;
-      bottom: 0;
-      right: 0;
-      width: 640px;
-      height: 384px;
-      overflow: auto;
-      z-index: 9997;
-      border: 1px solid #ccc;
-    }
-    #ember-testing {
-      zoom: 50%;
-    }
-
-    #qunit {      
-      position:absolute;
-      z-index: 9998;
-    }
-  </style>
-  <!-- @endif -->
-
-</head>
-<body>
-  <!-- @if tests=true -->
-  <div id="qunit"></div>
-  <div id="qunit-fixture"></div>
-  <script src="/tests/tests.js"></script>
-  <script src="/tests/test-helper.js"></script>
-  <script src="/tests/test-loader.js"></script>
-  <script src="/testem.js"></script>
-  <!-- @endif -->
-
-  <script>
-      onDeviceReady = function () {
-                openFB.init({appId:'726528350693125', tokenStore: window.localStorage});
-                window.App = require('appkit/app')['default'].create(ENV.APP);
-            };
-            //'http://localhost:4000/oauthcallback.html',
-</script>
-  <!-- @if dist=false -->
-    <script>
-      onDeviceReady();
-    </script>
-      <!-- @endif -->
-  <!-- @if dist=true -->
-    <script src='phonegap.js'></script>
-    <script>document.addEventListener("deviceready", onDeviceReady);</script>
-  <!-- @endif -->
-</body>
+    {{content-for 'body-footer'}}
+  </body>
 </html>

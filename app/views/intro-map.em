@@ -1,9 +1,9 @@
-`import TileLayer from 'appkit/lib/tile-layer'`
-`import MeLayer from 'appkit/lib/me-layer'`
-`import ThemClusters from 'appkit/lib/them-clusters'`
+`import TileLayer from 'stalkers-client/views/map-layers/tile-layer'`
+`import MeLayer from 'stalkers-client/views/map-layers/me-layer'`
+`import ThemClusters from 'stalkers-client/views/map-layers/them-clusters'`
 
 class IntroMapView extends EmberLeaflet.MapView
-	currentLocation: ~> @controller.session.currentLocation
+	loc: ~> @controller.loc
 	childLayers: [TileLayer,MeLayer]
 	options:
 		zoomControl:false
@@ -16,7 +16,7 @@ class IntroMapView extends EmberLeaflet.MapView
 			Ember.$(".typed").typed
 				strings: ["You ^400 are ^500 being ^400 watched."]
 				typeSpeed: 50
-		@_layer.setView([@currentLocation.coords.latitude, @currentLocation.coords.longitude], 14)
+		@_layer.setView(@loc.array, 14)
 		if @markerArray.length > 0
 			bounds = L.latLngBounds @markerArray
 			@_layer.fitBounds bounds

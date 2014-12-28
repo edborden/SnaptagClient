@@ -14,6 +14,7 @@ class User extends DS.Model
 	activatedAt: attr "date"
 	status: attr()
 
+	activationqueue: DS.belongsTo 'activationqueue'
 	suspects: DS.hasMany 'user', {inverse:null}
 	targets: DS.hasMany 'user', {inverse:null}
 	notifications: DS.hasMany 'notification'

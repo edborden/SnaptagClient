@@ -9,9 +9,25 @@ else
 		.self-center
 			i.fa.fa-minus-square-o.fa-2x
 			br
-			span.small Exit Queue	
+			span.small Exit Queue
+
+if noPlayers
 	lower-panel
-		.text-center You are in the queue, waiting for other players.
+		.text-center There are no other players in your area right now. So what! Start your own game and spread the word!
+else
+	if session.queue
+		lower-panel
+			.text-center 
+				|You are in the queue, waiting for other players.
+				br
+				queueOtherUsersCount			
+				|&nbsp;other players are in the queue. A new game will start when&nbsp;
+				playersTillStartCount
+				|&nbsp;other players join
+				if activeQueueZone
+					|, or you may be placed into another game as targets are found.
+				else
+					|.
 		
-view 'map-interface'
+map-interface session=session
 view 'intro-map'

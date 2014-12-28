@@ -5,5 +5,6 @@ Zone = DS.Model.extend
 	lng: attr()
 	range: attr()
 	users: DS.hasMany 'user'
+	active: attr 'boolean'
 
 `export default Zone`

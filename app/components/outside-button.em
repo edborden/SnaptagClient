@@ -1,4 +1,4 @@
-`import SmallButtonComponent from 'appkit/components/small-button'`
+`import SmallButtonComponent from 'stalkers-client/components/small-button'`
 
 class OutsideButtonComponent extends SmallButtonComponent
 	

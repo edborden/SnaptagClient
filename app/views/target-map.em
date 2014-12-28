@@ -1,8 +1,8 @@
-`import TileLayer from 'appkit/lib/tile-layer'`
-`import MeLayer from 'appkit/lib/me-layer'`
-#`import ZoneCircles from 'appkit/lib/zone-circles'`
-`import TargetClusters from 'appkit/lib/target-clusters'`
-`import CenterMap from 'appkit/mixins/center-map'`
+`import TileLayer from 'stalkers-client/views/map-layers/tile-layer'`
+`import MeLayer from 'stalkers-client/views/map-layers/me-layer'`
+#`import ZoneCircles from 'appkit/views/map-layers/zone-circles'`
+`import TargetClusters from 'stalkers-client/views/map-layers/target-clusters'`
+`import CenterMap from 'stalkers-client/mixins/center-map'`
 
 latestIcon = L.AwesomeMarkers.icon
 	icon: 'crosshairs'

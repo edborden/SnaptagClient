@@ -1,6 +1,6 @@
-`import IsRotatable from 'appkit/mixins/is-rotatable'`
+`import Rotatable from 'stalkers-client/mixins/rotatable'`
 
-class SuspectContainerView extends Ember.View with IsRotatable
+class SuspectContainerView extends Ember.View with Rotatable
 	classNames: ['suspect-container']	
 	classNameBindings: ["context.isTarget:target"]
 	attributeBindings: ["style"]

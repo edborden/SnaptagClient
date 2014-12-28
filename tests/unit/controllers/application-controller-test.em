@@ -1,11 +1,9 @@
 `import { test, moduleFor } from 'ember-qunit'`
 
-`import ApplicationController from 'appkit/controllers/application'`
-
 moduleFor('controller:application', "Unit - ApplicationController")
 
 test "it exists", ->
-	ok @subject() instanceof ApplicationController
+	ok @subject()
 
 test "transmitting", ->
 	cntrl = @subject()

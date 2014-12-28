@@ -1,0 +1,12 @@
+inside-button contentIndex=11 popoverContent="Targets found" popoverHandler=parentView
+	me.targetsFoundCount
+inside-button contentIndex=9 popoverContent="You were found" popoverHandler=parentView
+	me.foundCount
+inside-button contentIndex=7 popoverContent="Stalkers exposed" popoverHandler=parentView
+	me.stalkersExposedCount
+inside-button contentIndex=5 popoverContent="Exposed yourself" popoverHandler=parentView
+	me.exposedCount
+inside-button contentIndex=3 popoverContent="Stealth points" popoverHandler=parentView
+	me.stealth
+inside-button contentIndex=16 action="pic" target=parentView noToggle="true"
+	i.fa.fa-camera.fa-lg	

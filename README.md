@@ -1,35 +1,50 @@
-Installation
-============
+# Stalkers-client
 
-Paths in 'grunt dist'
----------------------  
+This README outlines the details of collaborating on this Ember application.
+A short introduction of this app could easily go here.
 
-  In node_modules/grunt-usemin/lib/htmlprocessor.js, the following lines must be removed or js and css file paths will be incorrect in "grunt dist" build.
+## Prerequisites
 
-`if (block.startFromRoot) {
-  dest = '/' + dest;
-}`
+You will need the following things properly installed on your computer.
 
-Config.xml
-----------
-Phonegap config.xml goes in public/
+* [Git](http://git-scm.com/)
+* [Node.js](http://nodejs.org/) (with NPM) and [Bower](http://bower.io/)
 
-Facebook login
---------------
-For facebook login to work during testing, callback.html must be served
+## Installation
 
-`npm -g install simple-http-server`
+* `git clone <repository-url>` this repository
+* change into the new directory
+* `npm install`
+* `bower install`
 
-from directory run
-`nserver -p 4000`
+## Running / Development
 
-For npm on Windows
-------------------
-node gyp won't work without following dependencies
-- Python 2.7
-- Visual Studio 2013 Express
-- possible gyp manual update (https://github.com/TooTallNate/node-gyp/issues/339)
+* `ember server`
+* Visit your app at [http://localhost:4200](http://localhost:4200).
 
-To disable CORS for development on local machine and remote server
-------------------
-https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi
+### Code Generators
+
+Make use of the many generators for code, try `ember help generate` for more details
+
+### Running Tests
+
+* `ember test`
+* `ember test --server`
+
+### Building
+
+* `ember build` (development)
+* `ember build --environment production` (production)
+
+### Deploying
+
+Specify what it takes to deploy your app.
+
+## Further Reading / Useful Links
+
+* [ember.js](http://emberjs.com/)
+* [ember-cli](http://www.ember-cli.com/)
+* Development Browser Extensions
+  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
+  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+

@@ -1,4 +1,4 @@
-CenterMap = new Ember.Mixin
+CenterMap = Ember.Mixin.create
 	
 	centerMap: (locations,context) ->
 		if locations?
