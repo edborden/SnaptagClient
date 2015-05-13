@@ -1,6 +1,4 @@
-`import ServerTalk from 'stalkers-client/mixins/server-talk'`
-
-class ApplicationRoute extends Ember.Route with ServerTalk
+class ApplicationRoute extends Ember.Route
 
 	beforeModel: -> @loc.setupLocation().then => @session.open()
 	

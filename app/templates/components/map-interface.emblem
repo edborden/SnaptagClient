@@ -21,7 +21,7 @@ if session.active
 				.suspect-window-text
 					activeSuspect.name
 				if contentSection
-					render 'common-buttons'	activeSuspect
+					/render 'common-buttons'	activeSuspect
 					.middle-button click="middle target='view'"
 						i.fa.fa-caret-down.fa-2x.self-center
 				else

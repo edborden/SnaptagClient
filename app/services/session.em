@@ -1,13 +1,13 @@
 class SessionService extends Ember.Object
 
-	loggedIn: ~> if @model? then return true else return false
+	loggedIn: ~> @model?
 	model: null
-	token: ~> if @model? then return @model.token else return null
+	token: ~> if @model? then @model.token else null
 	me: ~> @model.user
 	
-	active: ~> if @me? and @me.status is 'active' then return true else return false
-	queue: ~> if @me? and @me.status is 'queue' then return true else return false
-	inactive: ~> if @me? and @me.status is 'inactive' then return true else return false
+	active: ~> @me? and @me.status is 'active'
+	queue: ~> @me? and @me.status is 'queue'
+	inactive: ~> @me? and @me.status is 'inactive'
 
 	open: ->
 		return new Ember.RSVP.Promise (resolve) =>
