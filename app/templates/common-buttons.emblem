@@ -1,12 +1,12 @@
 inside-button contentIndex=11 popoverContent="Targets found" 
-	me.targetsFoundCount
+	user.targetsFoundCount
 inside-button contentIndex=9 popoverContent="You were found" 
-	me.foundCount
+	user.foundCount
 inside-button contentIndex=7 popoverContent="Stalkers exposed" 
-	me.stalkersExposedCount
+	user.stalkersExposedCount
 inside-button contentIndex=5 popoverContent="Exposed yourself" 
-	me.exposedCount
+	user.exposedCount
 inside-button contentIndex=3 popoverContent="Stealth points" 
-	me.stealth
-inside-button contentIndex=16 action="pic" noToggle="true"
+	user.stealth
+inside-button contentIndex=16 action="pic"
 	i.fa.fa-camera.fa-lg

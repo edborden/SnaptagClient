@@ -1,2 +1,2 @@
-view 'map-interface'
+map-interface
 view 'target-map'

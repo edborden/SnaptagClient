@@ -1,4 +1,6 @@
 class MapInterfaceComponent extends Ember.Component
+	session:Ember.inject.service()
+	transmit:Ember.inject.service()
 
 	init: ->
 		@_super()
@@ -22,19 +24,19 @@ class MapInterfaceComponent extends Ember.Component
 		return true if @showNotifications
 
 	locationAccurateText: ~> 
-		if @session.locationIsAccurate
+		if @transmit.locationIsAccurate
 			"Your location is accurate."
 		else
 			"Your location is not accurate enough (try turning on your GPS and your WiFi)."
 
 	isTransmittingText: ~>
-		if @session.isTransmitting
+		if @transmit.isTransmitting
 			"You are transmitting your location and accruing influence every 60 seconds."
 		else
 			"You are not transmitting your location or accruing influence."
 
 	hasInternetConnectionText: ~>
-		if @session.hasInternetConnection
+		if @transmit.hasInternetConnection
 			"You have an internet connection."
 		else
 			"You do not have an internet connection."
@@ -42,8 +44,15 @@ class MapInterfaceComponent extends Ember.Component
 	+observer me.suspects
 	onSuspectsChange: -> @rerender()
 
+	sendTarget: 'target'
+	sendHistory: 'history'
+	sendLogout: 'logout'
+	sendFound: 'found'
+	sendExpose: 'expose'
+
 	actions:
-		toggle: -> @modal = null
+		toggle: -> 
+			@modal = null
 		middle: -> @toggleProperty 'contentSection'			
 		me: ->
 			if @meButtonActive
@@ -60,8 +69,8 @@ class MapInterfaceComponent extends Ember.Component
 				@modal = 'web' 
 			else 
 				@modal = 'me'
-		target: -> @controller.send 'target',@activeSuspect
-		history: -> @controller.send 'history',@activeSuspect
+		target: -> @sendAction 'sendTarget',@activeSuspect
+		history: -> @sendAction 'sendHistory',@activeSuspect
 		showFound: ->
 			@showFound = true
 			@modal = 'pic'
@@ -69,12 +78,12 @@ class MapInterfaceComponent extends Ember.Component
 			@showExpose = true
 			@modal = 'pic'
 		found: -> 		
-			@controller.send 'found',@activeSuspect
+			@sendAction 'sendFound',@activeSuspect
 			@activeSuspect = null
 		expose: ->
-			@controller.send 'expose',@activeSuspect
+			@sendAction 'sendExpose',@activeSuspect
 			@activeSuspect = null
-		logout: -> @controller.send 'logout'
+		logout: -> @sendAction 'sendLogout'
 		notifications: -> @modal = 'notifications'
 	
 	removeAnyOpenPopover: ->

@@ -1,13 +1,13 @@
 .circle-button.first
 	if session.active
-		i.fa.fa-rss.overlay.top-left class=session.isTransmitting:is-transmitting:not-transmitting
+		i.fa.fa-rss.overlay.top-left class=transmit.isTransmitting:is-transmitting:not-transmitting
 	if me.unreadNotifications
 		.overlay.top-right
 			i.red.self-center: me.unreadNotifications.length
-	img.circle-button src=me.mediumpic class=meButtonActive:active click="me target='view'"
+	img.circle-button src=me.mediumpic class=meButtonActive:active click="me"
 
 if session.active
-	.circle-button.second.red click="web target='view'" class=webButtonActive:active
+	.circle-button.second.red click="web" class=webButtonActive:active
 		i.fa.fa-eye.fa-2x.self-center
 
 	if showWeb
@@ -20,41 +20,40 @@ if session.active
 			if activeSuspect
 				.suspect-window-text
 					activeSuspect.name
+				.middle-button click="middle"
+					i.fa.fa-2x.self-center class=contentSection:fa-caret-down:fa-caret-up
 				if contentSection
-					/render 'common-buttons'	activeSuspect
-					.middle-button click="middle target='view'"
-						i.fa.fa-caret-down.fa-2x.self-center
+					with activeSuspect as user
+						partial 'common-buttons'
 				else
 					inside-button contentIndex=6 action="showExpose"
 						i.fa.fa-exclamation-triangle.fa-lg	
-					.middle-button click="middle target='view'"
-						i.fa.fa-caret-up.fa-2x.self-center
-
 					if activeSuspect.isTarget			
-						inside-button contentIndex=8 class="red" noToggle=true action="showFound"
+						inside-button contentIndex=8 class="red" action="showFound"
 							i.fa.fa-crosshairs.fa-lg
-						inside-button contentIndex=10 action="target"
+						inside-button contentIndex=10 action="target" toggle=true
 							i.fa.fa-map-marker.fa-lg
-						inside-button contentIndex=12 action="history"
+						inside-button contentIndex=12 action="history" toggle=true
 							i.fa.fa-history.fa-lg
 
 if showMe
 	.circle-container
 		.circle-window-panel: .circle-outline
 
-		common-buttons me=me
+		with me as user
+			partial 'common-buttons'
 		outside-button contentIndex=14 action="logout"
 			i.fa.fa-sign-out.fa-lg.red
 		outside-button contentIndex=11 action="notifications"
 			i.fa.fa-file-text-o.fa-lg		
 
 		if session.active
-			outside-button contentIndex=1 popup=isTransmittingText
-				i.fa.fa-rss.fa-lg class=session.isTransmitting:is-transmitting:not-transmitting	
-			outside-button contentIndex=2 popup=locationAccurateText
-				i.fa.fa-location-arrow.fa-lg class=session.locationIsAccurate:is-transmitting:not-transmitting
-			outside-button contentIndex=3 popup=hasInternetConnectionText
-				i.fa.fa-signal.fa-lg class=session.hasInternetConnection:is-transmitting:not-transmitting
+			outside-button contentIndex=1 popoverContent=isTransmittingText
+				i.fa.fa-rss.fa-lg class=transmit.isTransmitting:is-transmitting:not-transmitting	
+			outside-button contentIndex=2 popoverContent=locationAccurateText
+				i.fa.fa-location-arrow.fa-lg class=transmit.locationIsAccurate:is-transmitting:not-transmitting
+			outside-button contentIndex=3 popoverContent=hasInternetConnectionText
+				i.fa.fa-signal.fa-lg class=transmit.hasInternetConnection:is-transmitting:not-transmitting
 
 if showPic
 
@@ -71,7 +70,7 @@ if showPic
 
 	.circle-container
 
-		outside-button contentIndex=10 noToggle=true action="closePic" target=this
+		outside-button contentIndex=10 action="closePic" target=this
 			i.fa.fa-times.fa-lg
 
 		if showFound
@@ -89,8 +88,8 @@ if showPic
 
 if showNotifications
 	scrolling-panel class="notifications-list"
-		each me.notifications
-			view 'notification-box'
+		each notification in me.notifications
+			notification-box notification=notification
 		else
 			.self-center.text-center
 				i.fa.fa-folder-o.fa-3x

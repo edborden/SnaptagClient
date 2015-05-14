@@ -11,30 +11,30 @@ class SessionService extends Ember.Service
 	queue: ~> @me? and @me.status is 'queue'
 	inactive: ~> @me? and @me.status is 'inactive'
 
-	open: ->
-		return new Ember.RSVP.Promise (resolve) =>
-			if localStorage.fbtoken?
-				@store.find('session', {token: localStorage.fbtoken}).then(
-					(response) => 
-						@model = response.objectAt(0)
-						resolve()
-					(error) -> 
-						localStorage.clear() if error.status is 401
-						resolve()
-				)
-			else 
-				resolve()
-
-	post: (token) ->
-		return new Ember.RSVP.Promise (resolve) =>
-			@store.createRecord('session',{token: token}).save().then(
+	openWithToken: (token) ->
+		return new Ember.RSVP.Promise (resolve,reject) =>
+			@store.find('session', {token:token}).then( 
 				(response) => 
-					@model = response
-					localStorage.fbtoken = @token
+					@openWithSession response.firstObject
 					resolve()
 				(error) => 
-					@close() if error.status is 401
-					resolve()
+					localStorage.clear() if error?
+					reject()
+			)
+
+	openWithSession: (session) ->
+		@model = session
+		localStorage.stalkersToken = @token
+
+	openWithUser: (user) ->
+		return new Ember.RSVP.Promise (resolve,reject) =>
+			@store.createRecord('session', {token:user}).save().then( 
+				(response) =>
+					@openWithSession response
+					resolve "Logged in successfully"
+				(error) => 
+					console.log 'openWithUser error',error
+					reject error.responseJSON
 			)
 
 	close: ->

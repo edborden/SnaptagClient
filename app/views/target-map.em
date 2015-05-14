@@ -18,8 +18,7 @@ class LatestMarkers extends EmberLeaflet.MarkerCollectionLayer
 	itemLayerClass: LatestMarker
 
 class TargetMapView extends EmberLeaflet.MapView with CenterMap
-	currentLocation: ~> @controller.session.currentLocation
-	currentLeaf: ~> @controller.session.location
+	geolocation:Ember.inject.service()
 	childLayers: [TileLayer,MeLayer,LatestMarkers,TargetClusters]
 	options:
 		zoomControl:false
@@ -30,7 +29,7 @@ class TargetMapView extends EmberLeaflet.MapView with CenterMap
 		if @controller.length > 0
 			@resetCenter()
 		else
-			@_layer.setView([@currentLocation.coords.latitude, @currentLocation.coords.longitude], 14)
+			@_layer.setView(@geolocation.array, 14)
 
 	+observer controller.latestLocations
 	onTargetContentChange: ->
@@ -41,7 +40,7 @@ class TargetMapView extends EmberLeaflet.MapView with CenterMap
 		@resetCenter()
 
 	resetCenter: ->
-		locationarray = [@currentLeaf]
+		locationarray = [@geolocation.location]
 		locationarray.push @controller.latestLocations.getEach 'location' if @controller.latestLocations
 		locationarray.push @controller.targetHistoryLocations.getEach 'location' if @controller.targetHistoryLocations
 		@centerMap(locationarray,@_layer)		

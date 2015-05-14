@@ -1,6 +1,4 @@
-`import NeedsAuthorization from 'stalkers-client/mixins/needs-authorization'`
-
-class InactivemapController extends Ember.ArrayController with NeedsAuthorization
+class InactivemapController extends Ember.ArrayController
 
 	activationqueue: ~> @session.me.activationqueue
 	usersCount: ~> @activationqueue.usersCount

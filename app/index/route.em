@@ -1,21 +1,14 @@
-`import LoginRedirect from 'stalkers-client/mixins/login-redirect'`
+class IndexRoute extends Ember.Route
 
-class IndexRoute extends Ember.Route with LoginRedirect
+	beforeModel: ->
+		Ember.$(".center-spinner").hide()
+		if @session.active
+			console.log 'transitionTo map'
+			@replaceWith 'map' 
+		else if @session.inactive or @session.queue
+			console.log 'transitionTo inactivemap'
+			@replaceWith 'inactivemap'
 
-	model:->
-		@store.find 'zone', @geolocation.object
-
-	actions:
-		login: ->
-			@transitionTo('loading').then =>
-				@torii.open('facebook-token').then (authorization) =>
-					@session.post(authorization.authorizationToken.token).then =>
-						if @session.active
-							@transitionTo 'map'
-							#Bootstrap.GNM.push 'Logged In', 'You are now in-game.', 'success'
-						else
-							@transitionTo 'inactivemap'
-							#Bootstrap.GNM.push 'Logged In', 'You may now Activate.', 'success' if @session.inactive
-							#Bootstrap.GNM.push 'Logged In', 'You are waiting for other players.', 'success' if @session.queue
+	model:-> @store.find 'zone', @geolocation.object
 
 `export default IndexRoute`

@@ -8,8 +8,4 @@ class SmallButtonComponent extends Ember.Component with Rotatable, HasPopup
 
 	totalCount: 16
 
-	sendAction: ->
-		@target.send "toggle" unless @noToggle
-		@_super()
-
 `export default SmallButtonComponent`

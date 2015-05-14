@@ -29,5 +29,5 @@ else
 				else
 					|.
 		
-map-interface session=session
+map-interface
 view 'intro-map'

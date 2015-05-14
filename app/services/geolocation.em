@@ -6,6 +6,7 @@ class GeolocationService extends Ember.Service
 	lng: ~> @currentLocationObject.coords.longitude
 	accuracy: ~> @currentLocationObject.coords.accuracy
 
+	location: ~> L.latLng @lat, @lng
 	object: ~> {lat:@lat,lng:@lng}
 	array: ~> [@lat,@lng]
 

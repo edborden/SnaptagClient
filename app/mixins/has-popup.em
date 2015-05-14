@@ -11,9 +11,6 @@ HasPopup = Ember.Mixin.create
 	#Set after first popover closes if @once is set
 	_noMorePopovers: false
 
-	#Object must implement this method to send action
-	sendAction: null
-
 	#Action to send, set in template
 	action: null
 
@@ -24,7 +21,7 @@ HasPopup = Ember.Mixin.create
 	_popoverJqueryObject: null
 
 	#object handing opening/closing popups
-	popoverHandler: null
+	popoverHandler: ~> @parentView
 
 	showPopover: ->
 		@_jqueryObject = Ember.$(@element)
@@ -46,8 +43,13 @@ HasPopup = Ember.Mixin.create
 				unless @_noMorePopovers
 					@showPopover()
 				else
-					@sendAction
+					@standardClick()
 		else
-			@send @action
+			@standardClick()
+
+	toggleAction: 'toggle'
+	standardClick: ->
+		@sendAction()
+		@sendAction 'toggleAction' if @toggle
 
 `export default HasPopup`
