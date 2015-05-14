@@ -1,4 +1,4 @@
-class LocService extends Ember.Object
+class GeolocationService extends Ember.Service
 
 	currentLocationObject: null
 
@@ -12,10 +12,10 @@ class LocService extends Ember.Object
 	setupLocation: ->
 		return new Ember.RSVP.Promise (resolve) =>
 			navigator.geolocation.watchPosition (position) => @currentLocationObject = position,null, {enableHighAccuracy:true}
-			navigator.geolocation.getCurrentPosition (position) => 
+			navigator.geolocation.getCurrentPosition( (position) => 
 				@currentLocationObject = position
 				resolve()
 				null
 				{timeout:1000,maximumAge:Infinity,enableHighAccuracy:true}
-
-`export default LocService`
+			)
+`export default GeolocationService`

@@ -3,7 +3,7 @@
 class IndexRoute extends Ember.Route with LoginRedirect
 
 	model:->
-		@store.find 'zone', @loc.object
+		@store.find 'zone', @geolocation.object
 
 	actions:
 		login: ->

@@ -1,4 +1,4 @@
-`import LocService from 'stalkers-client/services/loc'`
+`import GeolocationService from 'stalkers-client/services/geolocation'`
 `import SessionService from 'stalkers-client/services/session'`
 `import TransmitService from 'stalkers-client/services/transmit'`
 `import RealtimeService from 'stalkers-client/services/realtime'`
@@ -9,25 +9,18 @@ initializer =
 	initialize: (container,application) ->
 
 		#Register service objects
-		application.register 'service:loc', LocService, {singleton: true}
-		application.register 'service:session', SessionService, {singleton: true}
-		application.register 'service:transmit', TransmitService, {singleton: true}
-		application.register 'service:realtime', RealtimeService, {singleton: true}
-
-		#Setup service objects
-		['session','transmit','realtime'].forEach (type) ->
-			application.inject 'service:' + type, 'store', 'store:main'
-		application.inject 'service:realtime', 'map', 'controller:map'
-
-		#Inject session
-		application.inject 'service:transmit', 'session', 'service:session'
-		application.inject 'service:realtime', 'session', 'service:session'
+		application.register 'service:session', SessionService
+		application.register 'service:geolocation', GeolocationService
+		application.register 'service:transmit', TransmitService
+		application.register 'service:realtime', RealtimeService
+		services = ['session','geolocation']
 
 		#Inject into app factories
-		['controller','route','model'].forEach (type) ->
-			application.inject type, 'loc', 'service:loc'
+		['controller','route'].forEach (type) ->
+			services.forEach (service) ->
+				application.inject type, service, 'service:' + service
 
-		['controller','route','model','adapter'].forEach (type) ->
-			application.inject type, 'session', 'service:session'
+		#Setup service objects
+		application.inject 'service:realtime', 'map', 'controller:map'
 
 `export default initializer`

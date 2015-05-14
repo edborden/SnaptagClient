@@ -1,5 +1,6 @@
-class TransmitService extends Ember.Object
-
+class TransmitService extends Ember.Service
+	store: Ember.inject.service()
+	session: Ember.inject.service()
 	init: -> @setInternetConnectionListeners()
 
 	active: ~> @session.active

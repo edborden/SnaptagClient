@@ -7,17 +7,9 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
     apiHostName: 'http://localhost:3000',
-    EmberENV: {
-      FEATURES: {
-        // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
-      }
-    },
+    EmberENV: { FEATURES: {} },
 
-    APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
-    },
+    APP: {},
 
     torii: {
       sessionServiceName: 'session',
@@ -49,9 +41,8 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
+  if (environment === 'production' || environment === 'phonegap') {
     ENV.apiHostName = 'http://damp-sea-6022.herokuapp.com'
-
   }
 
   return ENV;

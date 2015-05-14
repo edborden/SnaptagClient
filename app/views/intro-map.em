@@ -3,7 +3,7 @@
 `import ThemClusters from 'stalkers-client/views/map-layers/them-clusters'`
 
 class IntroMapView extends EmberLeaflet.MapView
-	loc: ~> @controller.loc
+	geolocation: Ember.inject.service()
 	childLayers: [TileLayer,MeLayer]
 	options:
 		zoomControl:false
@@ -16,7 +16,7 @@ class IntroMapView extends EmberLeaflet.MapView
 			Ember.$(".typed").typed
 				strings: ["You ^400 are ^500 being ^400 watched."]
 				typeSpeed: 50
-		@_layer.setView(@loc.array, 14)
+		@_layer.setView(@geolocation.array, 14)
 		if @markerArray.length > 0
 			bounds = L.latLngBounds @markerArray
 			@_layer.fitBounds bounds

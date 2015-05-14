@@ -2,6 +2,8 @@ attr = DS.attr
 
 class User extends DS.Model
 
+	session:Ember.inject.service()
+
 	name: attr()
 	targetsFoundCount: attr "number"
 	foundCount: attr "number"

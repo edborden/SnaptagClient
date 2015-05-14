@@ -1,5 +1,6 @@
-class RealtimeService extends Ember.Object
-
+class RealtimeService extends Ember.Service
+	store:Ember.inject.service()
+	session:Ember.inject.service()
 	me: ~> @session.me
 	pusher: null
 	status: null

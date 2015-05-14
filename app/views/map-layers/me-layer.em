@@ -1,13 +1,13 @@
 class MeLayer extends EmberLeaflet.Layer
 
-	loc: ~> @controller.loc
+	geolocation:Ember.inject.service()
 
 	_newLayer: ->
-		L.userMarker @loc.array, {accuracy:@loc.accuracy, smallIcon:true, pulsing:true}
+		L.userMarker @geolocation.array, {accuracy:@geolocation.accuracy, smallIcon:true, pulsing:true}
 
-	+observer loc.currentLocationObject
+	+observer geolocation.currentLocationObject
 	onLocationChange: ->
-		@_layer.setLatLng @loc.array
-		@_layer.setAccuracy @loc.accuracy
+		@_layer.setLatLng @geolocation.array
+		@_layer.setAccuracy @geolocation.accuracy
 
 `export default MeLayer`
