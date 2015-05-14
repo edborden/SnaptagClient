@@ -9,17 +9,20 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 		logout: ->
 			@session.close()
 			@transitionTo 'index'
+			@notify.info "Logged out"
 		login: ->
 			@transitionTo('loading').then =>
 				@torii.open('facebook-token').then (authorization) =>
 					@session.openWithUser(authorization.authorizationToken.token).then =>
 						if @session.active
 							@transitionTo 'map'
-							#Bootstrap.GNM.push 'Logged In', 'You are now in-game.', 'success'
+							@notify.info 'Logged in! You are now in-game.'
 						else
 							@transitionTo 'inactivemap'
-							#Bootstrap.GNM.push 'Logged In', 'You may now Activate.', 'success' if @session.inactive
-							#Bootstrap.GNM.push 'Logged In', 'You are waiting for other players.', 'success' if @session.queue
+							if @session.inactive
+								@notify.info 'Logged in! You may now Activate.'
+							else
+								@notify.info 'Logged in! You are waiting for other players.'
 		join: ->
 			@transitionTo('loading').then =>
 				@getServer("hunts/join",{location: @geolocation.object}).then (response) =>
@@ -27,15 +30,16 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 					@store.pushPayload response
 					@session.me.notifyPropertyChange 'status' # fixes status not updating if re-enter queue on same session
 					if @session.active
-						#Bootstrap.GNM.push 'Sleeper Activated.', 'You are now in-game.', 'success'
 						@transitionTo 'map'
+						@notify.info 'Stalker Activated. You are now in-game.'
 					else 
-						#Bootstrap.GNM.push 'Queue entered.', 'You are waiting to play.', 'success'
 						@transitionTo 'inactivemap'
+						@notify.info 'Queue entered. You are waiting to play.'
+						
 		unjoin: ->
 			@getServer "hunts/unjoin"
 			@session.me.status = 'inactive'
-			#Bootstrap.GNM.push 'Queue exited.', 'You are inactive.', 'success'
+			@notify.info 'Queue exited. You are inactive.'
 
 		found: (target) ->
 			@transitionTo 'loading'
@@ -43,8 +47,8 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 				notification = @pushUnparsedNotification response
 				@me.suspects.removeObject target
 				@me.targetsFoundCount = @me.targetsFoundCount + 1
-				#Bootstrap.GNM.push 'Success', 'Target Found.', 'success'
 				@transitionTo 'map'
+				@notify.info 'Success! Target Found.'
 		expose: (suspect) ->
 			@transitionTo 'loading'
 			@getServer('hunts/expose', {stalker_id: suspect.id}).then (response) =>
@@ -53,12 +57,12 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 					@me.suspects.removeObject suspect
 					@me.targets.removeObject suspect
 					@me.notifyPropertyChange 'suspects'
-					#Bootstrap.GNM.push 'Success', 'Stalker exposed.', 'success'
-					@transitionTo 'map'
+					@transitionTo 'map' 
+					@notify.info 'Success! Stalker exposed.'
 				if notification.subject is "Exposed self"
 					@me.exposedCount = @me.exposedCount + 1
 					@goInactive()
-					#Bootstrap.GNM.push 'Failed', 'You exposed yourself.', 'warning'
+					@notify.info 'Failed... You exposed yourself.'
 
 	pushUnparsedNotification: (response) ->
 		response = Ember.$.parseJSON response

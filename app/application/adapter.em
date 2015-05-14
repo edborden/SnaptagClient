@@ -1,8 +1,7 @@
 `import config from 'stalkers-client/config/environment'`
 
-class ApplicationAdapter extends DS.RESTAdapter
+class ApplicationAdapter extends DS.ActiveModelAdapter
 	host: config.apiHostName
-	session: Ember.inject.service()
 
 	#crossdomain
 	ajax: (url, method, hash) -> 
@@ -11,7 +10,7 @@ class ApplicationAdapter extends DS.RESTAdapter
 		return @_super(url, method, hash)
 
 	headers: ~>
-		if @session.token?
+		if @session.loggedIn
 			return {'Authorization': 'Bearer ' + @session.token }
 		else
 			return {}

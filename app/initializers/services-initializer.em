@@ -16,7 +16,7 @@ initializer =
 		services = ['session','geolocation']
 
 		#Inject into app factories
-		['controller','route'].forEach (type) ->
+		['controller','route','adapter'].forEach (type) ->
 			services.forEach (service) ->
 				application.inject type, service, 'service:' + service
 

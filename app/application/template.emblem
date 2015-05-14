@@ -1,3 +1,3 @@
-bs-growl-notifications
-
 outlet
+
+ember-notify messageStyle='bootstrap' closeAfter=5000
