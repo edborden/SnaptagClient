@@ -1,5 +1,4 @@
 class MapInterfaceComponent extends Ember.Component
-	layoutName: 'map-interface'
 
 	init: ->
 		@_super()

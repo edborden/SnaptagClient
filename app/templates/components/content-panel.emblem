@@ -1,4 +1,0 @@
-.panel-bg
-	yield
-.panel-content
-	yield
