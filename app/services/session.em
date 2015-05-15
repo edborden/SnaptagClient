@@ -11,6 +11,8 @@ class SessionService extends Ember.Service
 	queue: ~> @me? and @me.status is 'queue'
 	inactive: ~> @me? and @me.status is 'inactive'
 
+	refresh: -> @openWithToken @token
+
 	openWithToken: (token) ->
 		return new Ember.RSVP.Promise (resolve,reject) =>
 			@store.find('session', {token:token}).then( 

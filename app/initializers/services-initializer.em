@@ -3,6 +3,8 @@
 `import TransmitService from 'stalkers-client/services/transmit'`
 `import RealtimeService from 'stalkers-client/services/realtime'`
 `import GrowlerService from 'stalkers-client/services/growler'`
+`import NotificatorService from 'stalkers-client/services/notificator'`
+`import ExecutiveService from 'stalkers-client/services/executive'`
 
 initializer =
 	name:'services'
@@ -15,6 +17,9 @@ initializer =
 		application.register 'service:transmit', TransmitService
 		application.register 'service:realtime', RealtimeService
 		application.register 'service:growler', GrowlerService
+		application.register 'service:notificator', NotificatorService
+		application.register 'service:executive', ExecutiveService
+
 		services = ['session','geolocation','realtime']
 
 		#Inject into app factories
@@ -23,6 +28,7 @@ initializer =
 				application.inject type, service, 'service:' + service
 
 		#Setup service objects
-		#application.inject 'service:realtime', 'map', 'controller:map'
+		application.inject 'service:executive', 'map', 'controller:map'
+		application.inject 'service:executive', 'router', 'router:main'
 
 `export default initializer`
