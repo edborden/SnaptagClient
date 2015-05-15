@@ -6,23 +6,32 @@ class RealtimeService extends Ember.Service
 	status: null
 	# Set in intializer to MapController
 	map: null
-	
-	+observer me.status, session.loggedIn
+
+	init: ->
+		@_super()
+		@statusChanged()
+
+	+observer session.me.status, session.loggedIn
 	statusChanged: ->
-		Ember.run.next @, =>
-			@disconnect()
-			@setPusher unless @pusher?
-			@setPusherQueue() if @session.queue
-			@setPusherActive() if @session.active
+		@disconnect() if @pusher?
+		if @session.queue
+			@setPusher()
+			@setPusherQueue() 
+		if @session.active
+			@setPusher()
+			@setPusherActive() 
 				
 	disconnect: -> @pusher.disconnect()
 
-	setPusher: -> @pusher = new Pusher '0750760773b8ed5ae1dc'
+	setPusher: -> 
+		@pusher = new Pusher '0750760773b8ed5ae1dc'
 
 	setPusherActive: ->
+		console.log 'setPusherActive', "user#{@me.id}"
 		@status = 'active'
-		channel = @pusher.subscribe "user"+@me.id
+		channel = @pusher.subscribe "user#{@me.id}"
 		channel.bind 'notification', (data) =>
+			console.log 'notification push',data
 			notification = @pushNotification data
 			if notification.subject is "Found"
 				@me.foundCount = @me.foundCount + 1
@@ -33,7 +42,7 @@ class RealtimeService extends Ember.Service
 				@goInactive()
 				Bootstrap.GNM.push 'Exposed', 'You were exposed.', 'warning'
 			if notification.subject is "Target removed"
-				@removeSuspect notification.notifiedObjectId						
+				@removeSuspect notification.notifiedObjectId
 		channel.bind 'new_target', (data) =>
 			user = @pushSuspect data
 			@me.targets.pushObject user
@@ -71,8 +80,8 @@ class RealtimeService extends Ember.Service
 		if suspect.isTarget
 			channel.bind 'location', (data) =>
 				@store.pushPayload data
-				location = @store.getById 'location', data.location.id
-				suspect.locations.pushObject location
+				#location = @store.getById 'location', data.location.id
+				#suspect.locations.pushObject location
 				suspect.notifyPropertyChange 'latestLocation'
 				@map.notifyPropertyChange 'latestLocations'
 
@@ -84,19 +93,21 @@ class RealtimeService extends Ember.Service
 	pushSuspect: (data) ->
 		user = @pushUser data
 		@me.suspects.pushObject user
-		@me.notifyPropertyChange 'suspects'
+		#@me.notifyPropertyChange 'suspects'
 		return user
 
 	removeSuspect: (userId) ->
 		user = @store.getById 'user', userId
-		@me.suspects.removeObject user
-		@me.targets.removeObject user
-		@me.notifyPropertyChange 'suspects'
+		#@me.suspects.removeObject user
+		#@me.targets.removeObject user
+		#@me.notifyPropertyChange 'suspects'
+		user.deleteRecord()
 
 	pushNotification: (response) ->
 		@store.pushPayload response
+		@session.me.notifyPropertyChange 'unreadNotifications'
 		notification = @store.getById 'notification',response.notification.id
-		@me.notifications.unshiftObject notification
+		#@me.notifications.unshiftObject notification
 		return notification		
 
 `export default RealtimeService`

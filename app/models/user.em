@@ -29,8 +29,6 @@ class User extends DS.Model
 	inactiveMapPopupContent: ~> "Active Stalker who has found " + @targetsFoundCount.toString() + " targets and has been hunting since " + moment(@activatedAt).fromNow() + "."
 
 	unreadNotifications: ~>
-		array = []
-		@notifications.forEach (notification) -> array.pushObject notification unless notification.read
-		return array
+		@notifications.rejectBy 'read'
 
 `export default User`

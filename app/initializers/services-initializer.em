@@ -13,7 +13,7 @@ initializer =
 		application.register 'service:geolocation', GeolocationService
 		application.register 'service:transmit', TransmitService
 		application.register 'service:realtime', RealtimeService
-		services = ['session','geolocation']
+		services = ['session','geolocation','realtime']
 
 		#Inject into app factories
 		['controller','route','adapter'].forEach (type) ->
@@ -21,6 +21,6 @@ initializer =
 				application.inject type, service, 'service:' + service
 
 		#Setup service objects
-		application.inject 'service:realtime', 'map', 'controller:map'
+		#application.inject 'service:realtime', 'map', 'controller:map'
 
 `export default initializer`

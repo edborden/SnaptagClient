@@ -1,35 +1,36 @@
 class TransmitService extends Ember.Service
 	store: Ember.inject.service()
 	session: Ember.inject.service()
-	init: -> @setInternetConnectionListeners()
+	geolocation: Ember.inject.service()
 
-	active: ~> @session.active
+	init: -> 
+		@transmittingChanged()
+		@setInternetConnectionListeners()
 
 	hasInternetConnection: true
 
 	locationIsAccurate: ~>
-		if cordova?
-			if @loc.accuracy < 100 then return true else return false
-		else 
-			return true
+		if cordova? then @geolocation.accuracy < 100 else true
 
-	isTransmitting: ~> if @active and @locationIsAccurate and @hasInternetConnection then return true else return false
+	isTransmitting: ~> @session.active and @locationIsAccurate and @hasInternetConnection
 
 	intervalID: null
 
 	+observer isTransmitting
 	transmittingChanged: ->
-		if @isTransmitting and !@intervalID?
+		if @isTransmitting and not @intervalID?
 			@intervalID = @setLocationInterval()
 		if @isTransmitting is false and @intervalID
 			clearInterval @intervalID
 			@intervalID = null
 
 	sendLocation: ->
-		@store.createRecord('location',@loc.formatted).save()
-		@me.stealth = @me.stealth + 1
+		console.log 'sendLocation'
+		@store.createRecord('location',@geolocation.object).save()
+		@session.me.stealth = @session.me.stealth + 1
 
 	setLocationInterval: ->
+		console.log 'setLocationInterval'
 		app = this
 		`setInterval(function(){app.sendLocation()},60000);`
 

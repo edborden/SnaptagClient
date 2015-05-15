@@ -2,6 +2,8 @@
 
 class ApplicationRoute extends Ember.Route with ServerTalk
 
+	me: ~> @session.me
+
 	beforeModel: ->
 		@session.openWithToken(localStorage.stalkersToken) if localStorage.stalkersToken
 
@@ -31,7 +33,7 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 					@session.me.notifyPropertyChange 'status' # fixes status not updating if re-enter queue on same session
 					if @session.active
 						@transitionTo 'map'
-						@notify.info 'Stalker Activated. You are now in-game.'
+						@notify.info 'You have been activated and are now in-game.'
 					else 
 						@transitionTo 'inactivemap'
 						@notify.info 'Queue entered. You are waiting to play.'
@@ -44,7 +46,7 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 		found: (target) ->
 			@transitionTo 'loading'
 			@getServer('hunts/found_target', {target_id: target.id}).then (response) =>
-				notification = @pushUnparsedNotification response
+				#notification = @pushUnparsedNotification response
 				@me.suspects.removeObject target
 				@me.targetsFoundCount = @me.targetsFoundCount + 1
 				@transitionTo 'map'
