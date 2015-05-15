@@ -51,8 +51,7 @@ class MapInterfaceComponent extends Ember.Component
 	sendExpose: 'expose'
 
 	actions:
-		toggle: -> 
-			@modal = null
+		toggle: -> @modal = null
 		middle: -> @toggleProperty 'contentSection'			
 		me: ->
 			if @meButtonActive
@@ -88,12 +87,5 @@ class MapInterfaceComponent extends Ember.Component
 		suspectClicked: (suspect) ->
 			@contentSection = true unless @contentSection
 			if @activeSuspect is suspect then @activeSuspect = null else @activeSuspect = suspect
-	
-	removeAnyOpenPopover: ->
-		if @objectWithPopover?
-			@objectWithPopover.removePopover()
-			@objectWithPopover = null
-
-	objectWithPopover: null
 
 `export default MapInterfaceComponent`

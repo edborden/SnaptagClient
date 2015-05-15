@@ -20,26 +20,21 @@ HasPopup = Ember.Mixin.create
 	_jqueryObject: null
 	_popoverJqueryObject: null
 
-	#object handing opening/closing popups
-	popoverHandler: ~> @parentView
-
 	showPopover: ->
 		@_jqueryObject = Ember.$(@element)
 		@_jqueryObject.popover({content:@popoverContent,placement:@popoverPosition,trigger:'manual'}).popover 'show'
 		@_popoverJqueryObject = @_jqueryObject.prop 'nextSibling'
-		@popoverHandler.objectWithPopover = @
+		@parentView.objectWithPopover = @
 
 	removePopover: ->
-		@_popoverJqueryObject.remove()
+		@_popoverJqueryObject.remove() #
 		@_popoverJqueryObject = null
 		@_noMorePopovers = true if @justOnce
 
 	click: ->
 		if @popoverContent?
-			if @_popoverOpen					
-				@popoverHandler.removeAnyOpenPopover()
-			else
-				@popoverHandler.removeAnyOpenPopover()
+			@removeAnyOpenPopover()
+			unless @_popoverOpen					
 				unless @_noMorePopovers
 					@showPopover()
 				else
@@ -51,5 +46,10 @@ HasPopup = Ember.Mixin.create
 	standardClick: ->
 		@sendAction()
 		@sendAction 'toggleAction' if @toggle
+
+	removeAnyOpenPopover: ->
+		if @parentView.objectWithPopover?
+			@parentView.objectWithPopover.removePopover() if @parentView.objectWithPopover._popoverOpen
+			@parentView.objectWithPopover = null
 
 `export default HasPopup`
