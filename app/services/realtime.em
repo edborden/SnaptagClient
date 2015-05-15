@@ -1,6 +1,7 @@
 class RealtimeService extends Ember.Service
 	store:Ember.inject.service()
 	session:Ember.inject.service()
+	growler:Ember.inject.service()
 	me: ~> @session.me
 	pusher: null
 	status: null
@@ -23,11 +24,9 @@ class RealtimeService extends Ember.Service
 				
 	disconnect: -> @pusher.disconnect()
 
-	setPusher: -> 
-		@pusher = new Pusher '0750760773b8ed5ae1dc'
+	setPusher: -> @pusher = new Pusher '0750760773b8ed5ae1dc'
 
 	setPusherActive: ->
-		console.log 'setPusherActive', "user#{@me.id}"
 		@status = 'active'
 		channel = @pusher.subscribe "user#{@me.id}"
 		channel.bind 'notification', (data) =>
@@ -36,11 +35,11 @@ class RealtimeService extends Ember.Service
 			if notification.subject is "Found"
 				@me.foundCount = @me.foundCount + 1
 				@goInactive()
-				Bootstrap.GNM.push 'Found', 'You were found.', 'warning'
+				@growler.growl 11
 			if notification.subject is "Exposed"
 				@me.exposedCount = @me.exposedCount + 1
 				@goInactive()
-				Bootstrap.GNM.push 'Exposed', 'You were exposed.', 'warning'
+				@growler.growl 12
 			if notification.subject is "Target removed"
 				@removeSuspect notification.notifiedObjectId
 		channel.bind 'new_target', (data) =>

@@ -2,6 +2,7 @@
 `import SessionService from 'stalkers-client/services/session'`
 `import TransmitService from 'stalkers-client/services/transmit'`
 `import RealtimeService from 'stalkers-client/services/realtime'`
+`import GrowlerService from 'stalkers-client/services/growler'`
 
 initializer =
 	name:'services'
@@ -13,6 +14,7 @@ initializer =
 		application.register 'service:geolocation', GeolocationService
 		application.register 'service:transmit', TransmitService
 		application.register 'service:realtime', RealtimeService
+		application.register 'service:growler', GrowlerService
 		services = ['session','geolocation','realtime']
 
 		#Inject into app factories

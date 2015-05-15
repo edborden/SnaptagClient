@@ -2,6 +2,8 @@
 
 class ApplicationRoute extends Ember.Route with ServerTalk
 
+	growler:Ember.inject.service()
+
 	me: ~> @session.me
 
 	beforeModel: ->
@@ -11,20 +13,20 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 		logout: ->
 			@session.close()
 			@transitionTo 'index'
-			@notify.info "Logged out"
+			@growler.growl 1
 		login: ->
 			@transitionTo('loading').then =>
 				@torii.open('facebook-token').then (authorization) =>
 					@session.openWithUser(authorization.authorizationToken.token).then =>
 						if @session.active
 							@transitionTo 'map'
-							@notify.info 'Logged in! You are now in-game.'
+							@growler.growl 2
 						else
 							@transitionTo 'inactivemap'
 							if @session.inactive
-								@notify.info 'Logged in! You may now Activate.'
+								@growler.growl 3
 							else
-								@notify.info 'Logged in! You are waiting for other players.'
+								@growler.growl 4
 		join: ->
 			@transitionTo('loading').then =>
 				@getServer("hunts/join",{location: @geolocation.object}).then (response) =>
@@ -33,15 +35,15 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 					@session.me.notifyPropertyChange 'status' # fixes status not updating if re-enter queue on same session
 					if @session.active
 						@transitionTo 'map'
-						@notify.info 'You have been activated and are now in-game.'
+						@growler.growl 5
 					else 
 						@transitionTo 'inactivemap'
-						@notify.info 'Queue entered. You are waiting to play.'
+						@growler.growl 6
 						
 		unjoin: ->
 			@getServer "hunts/unjoin"
 			@session.me.status = 'inactive'
-			@notify.info 'Queue exited. You are inactive.'
+			@growler.growl 7
 
 		found: (target) ->
 			@transitionTo 'loading'
@@ -50,7 +52,7 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 				@me.suspects.removeObject target
 				@me.targetsFoundCount = @me.targetsFoundCount + 1
 				@transitionTo 'map'
-				@notify.info 'Success! Target Found.'
+				@growler.growl 8
 		expose: (suspect) ->
 			@transitionTo 'loading'
 			@getServer('hunts/expose', {stalker_id: suspect.id}).then (response) =>
@@ -60,11 +62,11 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 					@me.targets.removeObject suspect
 					@me.notifyPropertyChange 'suspects'
 					@transitionTo 'map' 
-					@notify.info 'Success! Stalker exposed.'
+					@growler.growl 9
 				if notification.subject is "Exposed self"
 					@me.exposedCount = @me.exposedCount + 1
 					@goInactive()
-					@notify.info 'Failed... You exposed yourself.'
+					@growler.growl 10
 
 	pushUnparsedNotification: (response) ->
 		response = Ember.$.parseJSON response
