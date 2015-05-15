@@ -1,4 +1,6 @@
 Rotatable = Ember.Mixin.create
+
+	attributeBindings: ["style"]
 	
 	rotateBy: ~> 360 / @totalCount * @contentIndex
 	style: ~> "-webkit-transform:rotate(#{@rotateBy}deg);".htmlSafe()

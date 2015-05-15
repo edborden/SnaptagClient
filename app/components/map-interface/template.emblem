@@ -14,8 +14,8 @@ if session.active
 		.circle-container
 			.circle-window-panel: .circle-outline
 
-			each me.suspects itemView="suspect-container"
-				img.suspect-button src=mediumpic class=view.active:active style=view.innerStyle
+			each me.suspects as |suspect index|
+				suspect-container suspect=suspect activeSuspect=activeSuspect contentIndex=index
 
 			if activeSuspect
 				.suspect-window-text

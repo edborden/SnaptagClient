@@ -85,6 +85,9 @@ class MapInterfaceComponent extends Ember.Component
 			@activeSuspect = null
 		logout: -> @sendAction 'sendLogout'
 		notifications: -> @modal = 'notifications'
+		suspectClicked: (suspect) ->
+			@contentSection = true unless @contentSection
+			if @activeSuspect is suspect then @activeSuspect = null else @activeSuspect = suspect
 	
 	removeAnyOpenPopover: ->
 		if @objectWithPopover?

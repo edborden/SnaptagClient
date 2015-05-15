@@ -3,7 +3,6 @@
 
 class SmallButtonComponent extends Ember.Component with Rotatable, HasPopup
 	classNames: ['small-button-container']	
-	attributeBindings: ["style"]
 	layoutName: 'components/small-button'
 
 	totalCount: 16
