@@ -7,7 +7,7 @@ class ExecutiveService extends Ember.Service
 
 	action: (message,data) ->
 
-		console.log "Executive received ",message
+		console.log "Executive received",message,data
 
 		switch message
 
@@ -50,7 +50,7 @@ class ExecutiveService extends Ember.Service
 
 			when "Target removed"
 
-				@removeSuspect data.notification.notifiedObjectId
+				@removeSuspect data.notifiedObjectId
 
 
 			when "New target"
@@ -97,13 +97,19 @@ class ExecutiveService extends Ember.Service
 
 			when "Added to activationqueue"
 
-				@router.transitionTo('loading').then => @session.refresh().then => @router.transitionTo 'inactivemap'
+				@router.transitionTo('loading').then => 
+					@store.find('activationqueue',data.notifiedObjectId).then (activationqueue) =>
+						@session.me.activationqueue = activationqueue
+						@session.me.status = "queue"
+						@router.transitionTo 'inactivemap'
 				@growler.growl 6
 
 
 			when "You have entered the game"
 
-				@router.transitionTo('loading').then => @session.refresh().then => @router.transitionTo 'map'
+				@router.transitionTo('loading').then => @session.refresh().then => 
+					@session.me.status = 'active'
+					@router.transitionTo 'map'
 				@growler.growl 5
 
 	## HELPERS

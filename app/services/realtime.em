@@ -12,21 +12,19 @@ class RealtimeService extends Ember.Service
 
 	init: ->
 		@_super()
-		@statusChanged()
+		@session.me
 
-	+observer session.me.status, session.loggedIn
+	+observer session.me.status
 	statusChanged: ->
-		console.log 'statusChanged'
 		@disconnect() if @pusher?
 		if @session.loggedIn
+			console.log @session.me.status
 			@setPusher()
 			@subscribeToNotifications()
-			if @session.queue
-				@setPusherQueue() 
-			if @session.active
-				@setPusherActive() 
-			if @session.inactive
-				@setPusherInactive()
+			switch @session.me.status
+				when 'queue' then @setPusherQueue() 
+				when 'active' then @setPusherActive() 
+				when 'inactive' then @setPusherInactive()
 				
 	disconnect: -> @pusher.disconnect()
 
@@ -35,8 +33,7 @@ class RealtimeService extends Ember.Service
 
 		channel.bind 'notification', (data) =>
 			console.log 'notification push',data
-			message = @notificator.handle data
-			@executive.action message,data	
+			@notificator.handle data
 
 	setPusher: -> @pusher = new Pusher '0750760773b8ed5ae1dc'
 
@@ -70,6 +67,8 @@ class RealtimeService extends Ember.Service
 
 	bindMessagesToChannel: (messages,channel) ->
 		messages.forEach (message) =>
-			channel.bind message, (data) => @executive.action message,data
+			channel.bind message, (data) => 
+				console.log 'Message received ',message
+				@executive.action message,data
 
 `export default RealtimeService`

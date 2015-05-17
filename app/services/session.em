@@ -7,9 +7,9 @@ class SessionService extends Ember.Service
 	token: ~> if @model? then @model.token else null
 	me: ~> @model.user
 	
-	active: ~> @me? and @me.status is 'active'
-	queue: ~> @me? and @me.status is 'queue'
-	inactive: ~> @me? and @me.status is 'inactive'
+	active: ~> @me.status is 'active' if @me?
+	queue: ~> @me.status is 'queue' if @me?
+	inactive: ~> @me.status is 'inactive' if @me?
 
 	refresh: -> @openWithToken @token
 

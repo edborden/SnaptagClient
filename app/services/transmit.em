@@ -18,9 +18,12 @@ class TransmitService extends Ember.Service
 
 	+observer isTransmitting
 	transmittingChanged: ->
+		console.log 'transmittingChanged',@isTransmitting
+		console.log @session.active, @locationIsAccurate, @hasInternetConnection
 		if @isTransmitting and not @intervalID?
 			@intervalID = @setLocationInterval()
 		if @isTransmitting is false and @intervalID
+			console.log 'clearInterval'
 			clearInterval @intervalID
 			@intervalID = null
 

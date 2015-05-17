@@ -8,6 +8,6 @@ class InactivemapController extends Ember.ArrayController
 		count = "No" if count is 0
 		return count
 	playersTillStartCount: ~> 12 - @usersCount
-	activeQueueZone: ~> @activationqueue.zone.active
+	activeQueueZone: ~> @activationqueue.zone.active if @activationqueue?
 
 `export default InactivemapController`

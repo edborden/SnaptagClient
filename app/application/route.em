@@ -39,6 +39,7 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 		unjoin: ->
 			@getServer "hunts/unjoin"
 			@session.me.status = 'inactive'
+			@session.me.activationqueue = null
 			@growler.growl 7
 
 		found: (target) ->
