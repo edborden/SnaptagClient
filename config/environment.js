@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'stalkers-client',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     apiHostName: 'http://localhost:3000',
     EmberENV: { FEATURES: {} },
 
@@ -41,7 +41,7 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production' || environment === 'phonegap') {
+  if (environment === 'production') {
     ENV.apiHostName = 'http://damp-sea-6022.herokuapp.com'
   }
 

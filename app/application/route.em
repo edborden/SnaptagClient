@@ -1,4 +1,5 @@
 `import ServerTalk from 'stalkers-client/mixins/server-talk'`
+`import config from 'stalkers-client/config/environment'`
 
 class ApplicationRoute extends Ember.Route with ServerTalk
 
@@ -20,8 +21,8 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 
 		login: ->
 			@transitionTo('loading')
-			@torii.open('facebook-token').then (authorization) =>
-				@session.openWithUser(authorization.authorizationToken.token).then =>
+			@facebookLogin().then (token) =>
+				@session.openWithUser(token).then =>
 					if @session.active
 						@transitionTo 'map'
 						@growler.growl 2
@@ -49,5 +50,16 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 		expose: (suspect) ->
 			@transitionTo 'loading'
 			@getServer('hunts/expose', {stalker_id: suspect.id})
+
+	facebookLogin: ->
+		return new Ember.RSVP.Promise (resolve) =>
+			if config.environment is 'production'
+				facebookConnectPlugin.login(['email'], (response) -> 
+					console.log response
+					resolve response.authResponse.accessToken
+				)
+			else
+				@torii.open('facebook-token').then (authorization) -> 
+					resolve authorization.authorizationToken.token
 
 `export default ApplicationRoute`

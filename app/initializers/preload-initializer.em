@@ -11,14 +11,11 @@ initializer =
 		geolocation.setupLocation().then =>
 
 		## setup Phonegap
-			if config.environment is 'phonegap'	
+			if config.environment is 'production'	
 				document.addEventListener "deviceready", ->
 					document.addEventListener "backbutton", -> navigator.app.exitApp()
 					application.advanceReadiness()
-				console.log 'pre phonegap'
 				Ember.$.getScript 'phonegap.js'
-				console.log 'post phonegap'
-				window.application = application
 			else
 				application.advanceReadiness()
 
