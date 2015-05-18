@@ -55,7 +55,6 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 		return new Ember.RSVP.Promise (resolve) =>
 			if config.environment is 'production'
 				facebookConnectPlugin.login(['email'], (response) -> 
-					console.log response
 					resolve response.authResponse.accessToken
 				)
 			else

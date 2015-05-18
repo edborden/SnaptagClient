@@ -23,7 +23,7 @@ if session.active
 				.middle-button click="middle"
 					i.fa.fa-2x.self-center class=contentSection:fa-caret-down:fa-caret-up
 				if contentSection
-					with activeSuspect as user
+					with activeSuspect as |user|
 						partial 'common-buttons'
 				else
 					inside-button contentIndex=6 action="showExpose"
@@ -40,7 +40,7 @@ if showMe
 	.circle-container
 		.circle-window-panel: .circle-outline
 
-		with me as user
+		with me as |user|
 			partial 'common-buttons'
 		outside-button contentIndex=14 action="logout"
 			i.fa.fa-sign-out.fa-lg.red

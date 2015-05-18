@@ -1,5 +1,7 @@
 class TypedScrollerComponent extends Ember.Component
 
+	classNames: ['stalkers']
+
 	didInsertElement: ->	
 		Ember.$(@element).typed
 			strings: [@content]
