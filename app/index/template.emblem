@@ -1,4 +1,4 @@
-h3.typed.stalkers
+typed-scroller content="You ^400 are ^500 being ^400 watched." tagName="h3"
 
 .circle-button.first.blue click="login"
 	.self-center

@@ -12,10 +12,6 @@ class IntroMapView extends EmberLeaflet.MapView
 	didCreateLayer: ->
 		@_super()
 		@createZoneClusters()
-		Ember.$ ->
-			Ember.$(".typed").typed
-				strings: ["You ^400 are ^500 being ^400 watched."]
-				typeSpeed: 50
 		@_layer.setView(@geolocation.array, 14)
 		if @markerArray.length > 0
 			bounds = L.latLngBounds @markerArray

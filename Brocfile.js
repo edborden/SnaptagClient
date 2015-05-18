@@ -1,8 +1,10 @@
-/* global require, module */
-
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-var app = new EmberApp();
+var app = new EmberApp({
+	fingerprint: {
+		exclude: ['icons/'],
+	}
+});
 
 var pickFiles = require('broccoli-static-compiler');
 var mergeTrees = require('broccoli-merge-trees');
