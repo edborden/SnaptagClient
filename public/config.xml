@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "com.gridweb"
+        id          = "com.stalkersgame"
         versionCode = "1" 
         version     = "1.0.0" >
 
     <!-- versionCode is optional and Android only -->
-    <preference name="phonegap-version" value="3.7.0" />
+    <preference name="phonegap-version" value="3.6.3" />
     <preference name="fullscreen" value="true" />
     <preference name="exit-on-suspend" value="true" />
     <preference name="orientation" value="portrait" />
@@ -14,7 +14,7 @@
     <name>Stalkers</name>
 
     <description>
-        A game played with real people, in real time, out in the real world.
+        The biggest game of hide-and-seek ever, played with real people, in real-time, out in the real world.
     </description>
 
     <author href="http://www.gridweb.com" email="borden.edward@gmail.com">
@@ -24,7 +24,8 @@
         <param name="APP_ID" value="726528350693125" />
         <param name="APP_NAME" value="Stalkers" />
     </gap:plugin>
-    <gap:plugin name="org.apache.cordova.network-information" version="0.2.7" />
+    <gap:plugin name="com.pushapps.phonegap" version="1.7.1" />
+    <gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
     <gap:platform name="ios" />
     <gap:platform name="android" />
 

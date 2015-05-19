@@ -47,11 +47,15 @@ class TransmitService extends Ember.Service
 			@hasInternetConnection = true
 
 	onOnline: -> 
-		@hasInternetConnection = true
-		document.addEventListener("online", @onOnline, false)
+		console.log "internet connection went online"
+		unless @hasInternetConnection
+			@hasInternetConnection = true
+			document.addEventListener("online", @onOnline, false)
 
 	onOffline: ->
-		@hasInternetConnection = false
-		document.addEventListener("offline", @onOffline, false)
+		console.log "inernet connection went offline"
+		if @hasInternetConnection
+			@hasInternetConnection = false
+			document.addEventListener("offline", @onOffline, false)
 
 `export default TransmitService`
