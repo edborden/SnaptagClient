@@ -10,7 +10,6 @@ class User extends DS.Model
 	stalkersExposedCount: attr "number"
 	exposedCount: attr "number"
 	smallpic: attr()
-	mediumpic: attr()
 	largepic: attr()
 	stealth: attr "number"
 	activatedAt: attr "date"

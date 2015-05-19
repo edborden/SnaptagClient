@@ -4,7 +4,7 @@
 	if me.unreadNotifications
 		.overlay.top-right
 			i.red.self-center: me.unreadNotifications.length
-	img.circle-button src=me.mediumpic class=meButtonActive:active click="me"
+	img.circle-button src=me.smallpic class=meButtonActive:active click="me"
 
 if session.active
 	.circle-button.second.red click="web" class=webButtonActive:active
