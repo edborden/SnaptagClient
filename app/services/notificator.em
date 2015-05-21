@@ -1,15 +1,54 @@
 class NotificatorService extends Ember.Service
 
-	store: Ember.inject.service()
-	session: Ember.inject.service()
-	executive: Ember.inject.service()
+	regId: null
+	platform: null
 
-	handle: (data) ->
-		data = Ember.$.parseJSON(data) if typeof data is "string"
-		@store.pushPayload data
-		notification = @store.getById 'notification',data.notification.id
-		@session.me.notifications.unshiftObject notification
-		@session.me.notifyPropertyChange 'unreadNotifications'
-		@executive.action notification.subject,notification
+	init: ->
+		if cordova?
+			@setup()
+		else
+			document.addEventListener "deviceready", => @setup()
+
+		window.onNotification = Ember.run.bind @,@onNotification
+		window.onNotificationAPN = Ember.run.bind @,@onNotificationAPN
+
+	setup: ->
+		pushNotification = window.plugins.pushNotification
+
+		if device.platform is 'android' or device.platform is 'Android'
+			@platform = 'android'
+			pushNotification.register null,null,{"senderID":"153122295049","ecb":"onNotification"}
+		else
+			@platform = 'ios'
+			pushNotification.register null,null,{"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"}			
+
+	onNotificationAPN: (event) ->
+		console.log event
+		if event.alert
+			navigator.notification.alert(event.alert)
+
+		if event.badge 
+			pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge)
+
+	onNotification: (e) ->
+		console.log e
+
+		switch e.event
+			when 'registered' then @regId = e.regid
+
+			when 'message'
+				if e.foreground
+					console.log 'app is in the foreground'
+				else
+
+					if e.coldstart
+						console.log 'coldstart'
+					else
+						console.log 'background notification'
+
+				console.log 'message:',e.payload.message
+
+			when 'error'
+				console.log 'error',e
 
 `export default NotificatorService`

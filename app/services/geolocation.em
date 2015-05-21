@@ -1,6 +1,13 @@
 class GeolocationService extends Ember.Service
 
-	currentLocationObject: null
+	init: ->
+		@setupLocation()
+
+	currentLocationObject: 
+		coords:
+			latitude: 0
+			longitude: 0
+			accuracy: 9999
 
 	lat: ~> @currentLocationObject.coords.latitude
 	lng: ~> @currentLocationObject.coords.longitude
@@ -11,12 +18,14 @@ class GeolocationService extends Ember.Service
 	array: ~> [@lat,@lng]
 
 	setupLocation: ->
-		return new Ember.RSVP.Promise (resolve) =>
-			navigator.geolocation.watchPosition (position) => @currentLocationObject = position,null, {enableHighAccuracy:true}
-			navigator.geolocation.getCurrentPosition( (position) => 
-				@currentLocationObject = position
-				resolve()
-				null
-				{timeout:1000,maximumAge:Infinity,enableHighAccuracy:true}
-			)
+		success = Ember.run.bind @,@success
+		navigator.geolocation.watchPosition success,@error, {enableHighAccuracy:true}
+		navigator.geolocation.getCurrentPosition success,@error,{timeout:1000,maximumAge:Infinity,enableHighAccuracy:true}
+
+	success: (position) ->
+		@currentLocationObject = position
+
+	error: (error) ->
+		console.warn('LOCATION ERROR(' + error.code + '): ' + error.message)
+
 `export default GeolocationService`

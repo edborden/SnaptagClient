@@ -1,7 +1,7 @@
 class SessionService extends Ember.Service
 
 	store: Ember.inject.service()
-	registrator: Ember.inject.service()
+	notificator: Ember.inject.service()
 
 	loggedIn: ~> @model?
 	model: null
@@ -31,7 +31,7 @@ class SessionService extends Ember.Service
 
 	openWithUser: (user) ->
 		return new Ember.RSVP.Promise (resolve,reject) =>
-			@store.createRecord('session', {token:user}).save().then( 
+			@store.createRecord('session', {token:user,regId:@notificator.regId,platform:@notificator.platform}).save().then( 
 				(response) =>
 					@openWithSession response
 					resolve "Logged in successfully"

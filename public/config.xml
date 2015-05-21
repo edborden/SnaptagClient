@@ -6,7 +6,7 @@
         version     = "1.0.0" >
 
     <!-- versionCode is optional and Android only -->
-    <preference name="phonegap-version" value="3.6.3" />
+    <preference name="phonegap-version" value="3.7.0" />
     <preference name="fullscreen" value="true" />
     <preference name="exit-on-suspend" value="true" />
     <preference name="orientation" value="portrait" />
@@ -17,15 +17,17 @@
         The biggest game of hide-and-seek ever, played with real people, in real-time, out in the real world.
     </description>
 
-    <author href="http://www.gridweb.com" email="borden.edward@gmail.com">
+    <author href="http://www.stalkersgame.com" email="borden.edward@gmail.com">
         Ed Borden
     </author>
+
     <gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.9.0">
         <param name="APP_ID" value="726528350693125" />
         <param name="APP_NAME" value="Stalkers" />
     </gap:plugin>
-    <gap:plugin name="com.pushapps.phonegap" version="1.7.1" />
+    <gap:plugin name="com.edborden.workingpushplugin" version="2.5.5" />
     <gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
+    <gap:plugin name="org.apache.cordova.device" version="0.2.12" />
     <gap:platform name="ios" />
     <gap:platform name="android" />
 

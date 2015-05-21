@@ -2,7 +2,6 @@ class RealtimeService extends Ember.Service
 	store:Ember.inject.service()
 	session:Ember.inject.service()
 	growler:Ember.inject.service()
-	notificator:Ember.inject.service()
 	executive:Ember.inject.service()
 
 	me: ~> @session.me
@@ -33,7 +32,7 @@ class RealtimeService extends Ember.Service
 
 		channel.bind 'notification', (data) =>
 			console.log 'notification push',data
-			@notificator.handle data
+			@handleNotification data
 
 	setPusher: -> @pusher = new Pusher '0750760773b8ed5ae1dc'
 
@@ -70,5 +69,13 @@ class RealtimeService extends Ember.Service
 			channel.bind message, (data) => 
 				console.log 'Message received ',message
 				@executive.action message,data
+
+	handleNotification: (data) ->
+		data = Ember.$.parseJSON(data) if typeof data is "string"
+		@store.pushPayload data
+		notification = @store.getById 'notification',data.notification.id
+		@session.me.notifications.unshiftObject notification
+		@session.me.notifyPropertyChange 'unreadNotifications'
+		@executive.action notification.subject,notification
 
 `export default RealtimeService`
