@@ -12,5 +12,5 @@ typed-scroller content="You ^400 are ^500 being ^400 watched." tagName="h3"
 if showInstructions
 	scrolling-panel 
 		partial 'instructions'
-
-view "intro-map"
+if geolocation.success
+	view "intro-map"

@@ -5,9 +5,9 @@ class TransmitService extends Ember.Service
 
 	init: -> 
 		@transmittingChanged()
-		@setInternetConnectionListeners()
+		#@setInternetConnectionListeners()
 
-	hasInternetConnection: true
+	hasInternetConnection: true#false
 
 	locationIsAccurate: ~>
 		if cordova? then @geolocation.accuracy < 100 else true

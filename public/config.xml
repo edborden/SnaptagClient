@@ -3,13 +3,13 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.stalkersgame"
         versionCode = "1" 
-        version     = "1.0.0" >
+        version     = "1.0.1" >
 
-    <!-- versionCode is optional and Android only -->
     <preference name="phonegap-version" value="3.7.0" />
     <preference name="fullscreen" value="true" />
     <preference name="exit-on-suspend" value="true" />
     <preference name="orientation" value="portrait" />
+    <access origin="*" />
 
     <name>Stalkers</name>
 
@@ -21,33 +21,38 @@
         Ed Borden
     </author>
 
+    <!-- Set permissions to none, then re-add one by one. -->
+    <preference name="permissions" value="none"/>
+
+    <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.9.0">
         <param name="APP_ID" value="726528350693125" />
         <param name="APP_NAME" value="Stalkers" />
     </gap:plugin>
-    <gap:plugin name="com.edborden.workingpushplugin" version="2.5.5" />
-    <gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
-    <gap:plugin name="org.apache.cordova.device" version="0.2.12" />
-    <gap:platform name="ios" />
+    <gap:plugin name="com.edborden.workingpushplugin" />
+    <gap:plugin name="org.apache.cordova.network-information" />
+    <gap:plugin name="org.apache.cordova.device" />
+
+
+    <!-- Platforms -->    
     <gap:platform name="android" />
 
-    <access origin="*" />
+    <!-- Android Icons -->
+    <icon src="icons/android/drawable-hdpi/appicon.png" gap:platform="android" gap:qualifier="hdpi" />
+    <icon src="icons/android/drawable-ldpi/appicon.png" gap:platform="android" gap:qualifier="ldpi" />
+    <icon src="icons/android/drawable-mdpi/appicon.png" gap:platform="android" gap:qualifier="mdpi" />
+    <icon src="icons/android/drawable-xhdpi/appicon.png" gap:platform="android" gap:qualifier="xhdpi" />
+    <icon src="icons/android/drawable-xxhdpi/appicon.png" gap:platform="android" gap:qualifier="xxhdpi" />
+    <icon src="icons/android/drawable-xxxhdpi/appicon.png" gap:platform="android" gap:qualifier="xxxhdpi" />
 
-    <!-- iPhone / iPod Touch  -->
-    <icon src="icons/icon-60.png" gap:platform="ios" width="60" height="60" />
-    <icon src="icons/icon-60@2x.png" gap:platform="ios" width="120" height="120" />
+    <!-- Android Splash -->
+    <gap:splash src="icons/android/res-notlong-port-hdpi/default.png" />
+    <gap:splash src="icons/android/res-notlong-port-hdpi/default.png" gap:platform="android" gap:qualifier="port-hdpi" />
+    <gap:splash src="icons/android/res-notlong-port-ldpi/default.png" gap:platform="android" gap:qualifier="port-ldpi" />
+    <gap:splash src="icons/android/res-notlong-port-xhdpi/default.png" gap:platform="android" gap:qualifier="port-xhdpi" />
+    <gap:splash src="icons/android/res-notlong-port-xxhdpi/default.png" gap:platform="android" gap:qualifier="port-xxhdpi" />
 
-    <!-- Settings Icon -->
-    <icon src="icons/icon-small.png" gap:platform="ios" width="29" height="29" />
-    <icon src="icons/icon-small@2x.png" gap:platform="ios" width="58" height="58" />
-
-    <!-- Spotlight Icon -->
-    <icon src="icons/icon-40.png" gap:platform="ios" width="40" height="40" />
-    <icon src="icons/icon-40@2x.png" gap:platform="ios" width="80" height="80" />
-
-    <!-- Android Icon 160dpi, 240dpi-->
-    <icon src="icons/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
-    <icon src="icons/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />   
+    <preference name="SplashScreenDelay" value="5000" />
 
 </widget>
 

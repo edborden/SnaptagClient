@@ -4,7 +4,6 @@
 class ApplicationRoute extends Ember.Route with ServerTalk
 
 	growler:Ember.inject.service()
-	notificator:Ember.inject.service()
 	executive:Ember.inject.service()
 
 	me: ~> @session.me
@@ -55,10 +54,12 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 		return new Ember.RSVP.Promise (resolve) =>
 			if config.environment is 'production'
 				facebookConnectPlugin.login(['email'], (response) -> 
+					console.log 'Facebook connect success',response
 					resolve response.authResponse.accessToken
 				)
 			else
 				@torii.open('facebook-token').then (authorization) -> 
+					console.log 'torii success',authorization
 					resolve authorization.authorizationToken.token
 
 `export default ApplicationRoute`

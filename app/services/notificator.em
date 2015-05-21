@@ -14,13 +14,18 @@ class NotificatorService extends Ember.Service
 
 	setup: ->
 		pushNotification = window.plugins.pushNotification
+		callbackHandler = Ember.run.bind @,@callbackHandler
 
 		if device.platform is 'android' or device.platform is 'Android'
 			@platform = 'android'
-			pushNotification.register null,null,{"senderID":"153122295049","ecb":"onNotification"}
+			pushNotification.register callbackHandler,callbackHandler,{"senderID":"153122295049","ecb":"onNotification"}
 		else
 			@platform = 'ios'
-			pushNotification.register null,null,{"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"}			
+			pushNotification.register callbackHandler,callbackHandler,{"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"}
+
+	callbackHandler: (result) ->
+		console.log 'RegistratorServiceCallback'
+		console.log result	
 
 	onNotificationAPN: (event) ->
 		console.log event

@@ -1,8 +1,7 @@
 `import config from 'stalkers-client/config/environment'`
 
 initializer =
-	name: 'cordova'
-	after: 'services'
+
 	initialize: ->
 			
 		if config.environment is 'production'	

@@ -9,6 +9,11 @@ class IndexRoute extends Ember.Route
 			console.log 'transitionTo inactivemap'
 			@replaceWith 'inactivemap'
 
-	model:-> @store.find 'zone', @geolocation.object
+	model:-> 
+		console.log 'geo success?',@geolocation.success
+		if @geolocation.success
+			@store.find 'zone', @geolocation.object
+		else
+			[]
 
 `export default IndexRoute`

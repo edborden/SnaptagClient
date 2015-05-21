@@ -1,26 +1,8 @@
-`import GeolocationService from 'stalkers-client/services/geolocation'`
-`import SessionService from 'stalkers-client/services/session'`
-`import TransmitService from 'stalkers-client/services/transmit'`
-`import RealtimeService from 'stalkers-client/services/realtime'`
-`import GrowlerService from 'stalkers-client/services/growler'`
-`import NotificatorService from 'stalkers-client/services/notificator'`
-`import ExecutiveService from 'stalkers-client/services/executive'`
-
 initializer =
-	name:'services'
-	after: 'store'
-	initialize: (nil,application) ->
 
-		#Register service objects
-		application.register 'service:notificator', NotificatorService
-		application.register 'service:session', SessionService
-		application.register 'service:geolocation', GeolocationService
-		application.register 'service:transmit', TransmitService
-		application.register 'service:realtime', RealtimeService
-		application.register 'service:growler', GrowlerService
-		application.register 'service:executive', ExecutiveService
+	initialize: (container,application) ->
 
-		services = ['session','geolocation','realtime','notificator']
+		services = ['geolocation','notificator','session','realtime']
 
 		#Inject into app factories
 		['controller','route','adapter'].forEach (type) ->
