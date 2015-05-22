@@ -50,7 +50,6 @@
     <gap:splash src="icons/android/res-notlong-port-hdpi/default.png" gap:platform="android" gap:qualifier="port-hdpi" />
     <gap:splash src="icons/android/res-notlong-port-ldpi/default.png" gap:platform="android" gap:qualifier="port-ldpi" />
     <gap:splash src="icons/android/res-notlong-port-xhdpi/default.png" gap:platform="android" gap:qualifier="port-xhdpi" />
-    <gap:splash src="icons/android/res-notlong-port-xxhdpi/default.png" gap:platform="android" gap:qualifier="port-xxhdpi" />
 
     <preference name="SplashScreenDelay" value="5000" />
 
