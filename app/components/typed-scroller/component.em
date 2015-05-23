@@ -1,5 +1,7 @@
 class TypedScrollerComponent extends Ember.Component
 
+	tagName: 'h3'
+
 	content: null
 
 	typedContent: ~>
@@ -10,12 +12,15 @@ class TypedScrollerComponent extends Ember.Component
 			typed.push item
 		typed.join " "
 
-	classNames: ['stalkers']
-
 	didInsertElement: ->	
 		Ember.$(@element).children().first().typed
 			strings: [@typedContent]
 			typeSpeed: 50
+			callback: => Ember.run.later @, @onFinish, 3000
+
+	onFinish: ->
+		Ember.$(@element).fadeOut 1500, =>
+			@sendAction 'action',@content
 
 	randomDelayString: ->
 		"^" + @getRandomInt(250,550).toString()

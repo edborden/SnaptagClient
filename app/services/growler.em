@@ -1,6 +1,6 @@
-`import Notify from 'ember-notify'`
-
 class GrowlerService extends Ember.Service
+
+	messages: Ember.A()
 
 	growl: (code) ->
 		message = switch code
@@ -16,7 +16,8 @@ class GrowlerService extends Ember.Service
 			when 10 then 'Failed... You exposed yourself.'
 			when 11 then 'You were found by your Stalker!'
 			when 12 then 'You were exposed by your target!'
+			when 13 then 'You are being watched.'
 
-		Notify.info message
+		@messages.pushObject message
 
 `export default GrowlerService`

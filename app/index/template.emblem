@@ -1,5 +1,3 @@
-typed-scroller content="You are being watched." tagName="h3"
-
 .circle-button.first.blue click="login"
 	.self-center
 		i.fa.fa-facebook.fa-2x.small
