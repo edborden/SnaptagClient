@@ -12,11 +12,11 @@ else
 			span.small Exit Queue
 
 if noPlayers
-	lower-panel
+	content-panel upper=true
 		.text-center There are no other players in your area right now. So what! Start your own game and spread the word!
 else
 	if session.queue
-		lower-panel
+		content-panel upper=true
 			.text-center 
 				|You are in the queue, waiting for other players.
 				br

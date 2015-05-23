@@ -1,4 +1,3 @@
-.panel-bg
-	yield
-.panel-content
+.bg class={ scrolling upper }
+.content class={ scrolling upper }
 	yield

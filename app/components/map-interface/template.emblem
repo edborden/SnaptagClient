@@ -26,14 +26,14 @@ if session.active
 					with activeSuspect as |user|
 						partial 'common-buttons'
 				else
-					inside-button contentIndex=6 action="showExpose"
+					small-button inside=true contentIndex=6 action="showExpose"
 						i.fa.fa-exclamation-triangle.fa-lg	
 					if activeSuspect.isTarget			
-						inside-button contentIndex=8 class="red" action="showFound"
+						small-button inside=true contentIndex=8 class="red" action="showFound"
 							i.fa.fa-crosshairs.fa-lg
-						inside-button contentIndex=10 action="target" toggle=true
+						small-button inside=true contentIndex=10 action="target" toggle=true
 							i.fa.fa-map-marker.fa-lg
-						inside-button contentIndex=12 action="history" toggle=true
+						small-button inside=true contentIndex=12 action="history" toggle=true
 							i.fa.fa-history.fa-lg
 
 if showMe
@@ -42,43 +42,43 @@ if showMe
 
 		with me as |user|
 			partial 'common-buttons'
-		outside-button contentIndex=14 action="logout"
+		small-button contentIndex=14 action="logout"
 			i.fa.fa-sign-out.fa-lg.red
-		outside-button contentIndex=11 action="notifications"
+		small-button contentIndex=11 action="notifications"
 			i.fa.fa-file-text-o.fa-lg		
 
 		if session.active
-			outside-button contentIndex=1 popoverContent=isTransmittingText
+			small-button contentIndex=1 popoverContent=isTransmittingText
 				i.fa.fa-rss.fa-lg class=transmit.isTransmitting:is-transmitting:not-transmitting	
-			outside-button contentIndex=2 popoverContent=locationAccurateText
+			small-button contentIndex=2 popoverContent=locationAccurateText
 				i.fa.fa-location-arrow.fa-lg class=transmit.locationIsAccurate:is-transmitting:not-transmitting
-			outside-button contentIndex=3 popoverContent=hasInternetConnectionText
+			small-button contentIndex=3 popoverContent=hasInternetConnectionText
 				i.fa.fa-signal.fa-lg class=transmit.hasInternetConnection:is-transmitting:not-transmitting
 
 if showPic
 
 	if showFound
-		lower-panel
+		content-panel upper=true
 			ul.indented
 				li Approach your target in a non-threatening manner, calmly, without disturbing anyone in your vicinity, ideally without them seeing you.
 				li Tap them lightly once on the shoulder.
 				li Push the Expose button.
 
 	if showExpose
-		lower-panel
+		content-panel upper=true
 			|If you think this person is stalking you, attempt a counteraction. If you are right, they'll be exposed; if you are wrong, you'll be disavowed and removed from the game!
 
 	.circle-container
 
-		outside-button contentIndex=10 action="closePic" target=this
+		small-button contentIndex=10 action="closePic" target=this
 			i.fa.fa-times.fa-lg
 
 		if showFound
-			outside-button contentIndex=6 class="red" action="found"
+			small-button contentIndex=6 class="red" action="found"
 				i.fa.fa-crosshairs.fa-lg
 
 		if showExpose
-			outside-button contentIndex=6 action="expose"
+			small-button contentIndex=6 action="expose"
 				i.fa.fa-exclamation-triangle.fa-lg		
 
 		if activeSuspect
@@ -87,7 +87,7 @@ if showPic
 			img.circle-pic src=me.largepic
 
 if showNotifications
-	scrolling-panel class="notifications-list"
+	content-panel scrolling=true
 		each notification in me.notifications
 			notification-box notification=notification
 		else

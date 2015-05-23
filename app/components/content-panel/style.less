@@ -1,0 +1,35 @@
+.bg {
+	.content;
+	background-color: @blue;
+	opacity:.6;	
+	border-radius: 6vw;
+}
+
+.content {
+	.base;
+	width:90%;
+	h4 {font-weight:bold}
+	span.italic {font-style: italic}
+}
+
+.base {
+	.stacked;
+	display: inline-block;
+	.self-center;
+}
+
+.upper {	
+	top: 3%;
+	-webkit-transform: translateX(-50%);
+}
+
+.content.scrolling {
+	height: 65%;
+	overflow-y: auto;
+	width:80%;
+	padding-right:10px;
+}
+
+.bg.scrolling {
+	height: 70%;
+}

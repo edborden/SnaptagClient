@@ -1,9 +1,0 @@
-`import SmallButtonComponent from 'stalkers-client/components/small-button'`
-
-class InsideButtonComponent extends SmallButtonComponent
-	classNames: ['inside-button']
-
-	panelDim: ~> 78*@vw/4
-	circleDim: ~> 10*@vw/2
-
-`export default InsideButtonComponent`

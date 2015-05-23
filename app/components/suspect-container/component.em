@@ -2,8 +2,9 @@
 
 class SuspectContainerComponent extends Ember.Component with Rotatable
 	session: Ember.inject.service()
-	classNames: ['suspect-container']	
-	classNameBindings: ["suspect.isTarget:target"]
+	classNameBindings: ["target"]
+
+	target: ~> @suspect.isTarget
 
 	activeSuspect: null
 	active: ~> @activeSuspect is @suspect

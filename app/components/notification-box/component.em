@@ -2,7 +2,6 @@ class NotificationBoxComponent extends Ember.Component
 
 	session:Ember.inject.service()
 
-	classNames: ['item']
 	classNameBindings: ['notification.read:read']
 
 	click: -> 

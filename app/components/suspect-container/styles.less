@@ -1,0 +1,18 @@
+& {
+	@dim:@circle-width+2;
+	margin-top: @dim/-2;
+	.circle(@dim);
+	.h-centered(@dim);
+	//-webkit-transform-origin: 50% (@panel-width / 2)+(@dim / 2);
+}
+
+.target {background-color: @red;}
+
+img {
+	.click-fix;
+	.circle;
+	border:1px solid black;
+	.centered;
+}
+
+img.active {border-color: white;}

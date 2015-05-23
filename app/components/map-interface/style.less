@@ -1,0 +1,51 @@
+// PIC INTERFACE //
+
+	.circle-pic {
+		@dim: @panel-width;
+		.circle(@dim);
+		border: 1px solid black;
+	}
+
+// CIRCLE INTERFACE //
+
+	.circle-container {
+		height: @panel-width;
+		width: @panel-width;
+		.centered(@panel-width);
+	}
+
+	.circle-outline {
+		@dim: @panel-width * 0.5;
+		.circle(@dim);
+		.centered(@dim);
+		border: 1px solid white;
+	}
+
+	.circle-window-panel {
+		@dim: @panel-width;
+		.circle(@dim);
+		.centered(@dim);
+		background-color: @blue;
+		opacity: 0.6;
+	}
+
+	.suspect-window-text {
+		@dim:@panel-width*0.75;
+		width:@dim;
+		.h-centered(@dim);
+		top:@panel-width*0.1;
+		font-weight: bold;
+		.stacked;
+		.text-center;
+		font-size: 125%;
+	}
+
+	.middle-button {
+		.click-fix;
+		.circle(@scircle-width);
+		.centered(@scircle-width);
+		border:1px solid @blue;
+	    background-color: white;
+	    color: @blue;
+	    font-weight: bold;
+	}

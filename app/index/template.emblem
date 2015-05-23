@@ -8,7 +8,7 @@
 	i.fa.fa-question.fa-2x.self-center
 
 if showInstructions
-	scrolling-panel 
+	content-panel scrolling=true 
 		partial 'instructions'
 if geolocation.success
 	view "intro-map"

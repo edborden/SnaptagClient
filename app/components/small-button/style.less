@@ -1,0 +1,21 @@
+& {
+	.click-fix;
+	@dim:@scircle-width;
+	.circle(@dim);
+	.h-centered(@dim);
+	background-color: white;
+	color: @blue;
+	border: 1px solid @blue;
+	margin-top:@dim/-2;
+    //-webkit-transform-origin: 50% (@panel-width / 4)+(@dim / 2);
+  	font-weight: bold;
+}
+
+&.red {
+	background-color: @red;
+	color:white;
+}
+
+&.inside {top:25%}
+
+i.red {color:red}

@@ -1,12 +1,12 @@
-inside-button contentIndex=11 popoverContent="Targets found" 
+small-button inside=true contentIndex=11 popoverContent="Targets found" 
 	user.targetsFoundCount
-inside-button contentIndex=9 popoverContent="You were found" 
+small-button inside=true contentIndex=9 popoverContent="You were found" 
 	user.foundCount
-inside-button contentIndex=7 popoverContent="Stalkers exposed" 
+small-button inside=true contentIndex=7 popoverContent="Stalkers exposed" 
 	user.stalkersExposedCount
-inside-button contentIndex=5 popoverContent="Exposed yourself" 
+small-button inside=true contentIndex=5 popoverContent="Exposed yourself" 
 	user.exposedCount
-inside-button contentIndex=3 popoverContent="Stealth points" 
+small-button inside=true contentIndex=3 popoverContent="Stealth points" 
 	user.stealth
-inside-button contentIndex=16 action="pic"
+small-button inside=true contentIndex=16 action="pic"
 	i.fa.fa-camera.fa-lg

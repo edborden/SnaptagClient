@@ -1,0 +1,3 @@
+.self-center
+	div style=innerStyle
+		yield
