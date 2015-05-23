@@ -45,7 +45,9 @@ if showMe
 		small-button contentIndex=14 action="logout"
 			i.fa.fa-sign-out.fa-lg.red
 		small-button contentIndex=11 action="notifications"
-			i.fa.fa-file-text-o.fa-lg		
+			i.fa.fa-file-text-o.fa-lg
+		small-button contentIndex=10 action="instructions"
+			i.fa.fa-question.fa-lg
 
 		if session.active
 			small-button contentIndex=1 popoverContent=isTransmittingText
@@ -95,3 +97,35 @@ if showNotifications
 				i.fa.fa-folder-o.fa-3x
 				br
 				h4 No Messages!
+
+if showInstructions
+	content-panel scrolling=true 
+		partial 'instructions'
+
+if showInfoButton
+	unless session.active
+		.circle-button.blue.third click="info" class=showInfo:active
+			i.fa.fa-info.fa-2x.self-center	
+
+if showInfo
+	if session.inactive
+		if noPlayers
+			content-panel
+				.text-center There are no other players in your area right now, so start your own game and spread the word!
+		else
+			content-panel
+				.text-center There are other active players in your area right now! Join up!
+
+	if session.queue
+		content-panel
+			.text-center 
+				|You are in the queue, waiting for other players.
+				br
+				queueOtherUsersCount			
+				|&nbsp;other players are in the queue. A new game will start when&nbsp;
+				playersTillStartCount
+				|&nbsp;other players join
+				if activeQueueZone
+					|, or you may be placed into another game as targets are found.
+				else
+					|.

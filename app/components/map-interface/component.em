@@ -1,10 +1,10 @@
 class MapInterfaceComponent extends Ember.Component
+
+	modal: null
+	showInfo: false
+
 	session:Ember.inject.service()
 	transmit:Ember.inject.service()
-
-	init: ->
-		@_super()
-		@context = @
 
 	me: ~> @session.me
 
@@ -12,6 +12,8 @@ class MapInterfaceComponent extends Ember.Component
 	showWeb: ~> @modal is 'web'
 	showPic: ~> @modal is 'pic'
 	showNotifications: ~> @modal is 'notifications'
+	showInstructions: ~> @modal is 'instructions'
+	showInfoButton: ~> @modal is null
 	contentSection: true
 
 	webButtonActive: ~>		
@@ -22,6 +24,7 @@ class MapInterfaceComponent extends Ember.Component
 		return true if @showMe
 		return true if @showPic and not @activeSuspect
 		return true if @showNotifications
+		return true if @showInstructions
 
 	locationAccurateText: ~> 
 		if @transmit.locationIsAccurate
@@ -84,8 +87,21 @@ class MapInterfaceComponent extends Ember.Component
 			@activeSuspect = null
 		logout: -> @sendAction 'sendLogout'
 		notifications: -> @modal = 'notifications'
+		instructions: -> @modal = 'instructions'
 		suspectClicked: (suspect) ->
 			@contentSection = true unless @contentSection
 			if @activeSuspect is suspect then @activeSuspect = null else @activeSuspect = suspect
+		info: -> 
+			@toggleProperty 'showInfo'
+			false
+
+	## Info box
+	activationqueue: ~> @session.me.activationqueue
+	usersCount: ~> @activationqueue.usersCount
+	noPlayers: ~> @length is 0
+	queueOtherUsersCount: ~> 
+		if @usersCount is 0 then "No" else @usersCount - 1
+	playersTillStartCount: ~> 12 - @usersCount
+	activeQueueZone: ~> @activationqueue.zone.active if @activationqueue?
 
 `export default MapInterfaceComponent`

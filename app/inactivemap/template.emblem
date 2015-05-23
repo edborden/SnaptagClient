@@ -10,24 +10,6 @@ else
 			i.fa.fa-minus-square-o.fa-2x
 			br
 			span.small Exit Queue
-
-if noPlayers
-	content-panel upper=true
-		.text-center There are no other players in your area right now. So what! Start your own game and spread the word!
-else
-	if session.queue
-		content-panel upper=true
-			.text-center 
-				|You are in the queue, waiting for other players.
-				br
-				queueOtherUsersCount			
-				|&nbsp;other players are in the queue. A new game will start when&nbsp;
-				playersTillStartCount
-				|&nbsp;other players join
-				if activeQueueZone
-					|, or you may be placed into another game as targets are found.
-				else
-					|.
 		
-map-interface
+map-interface length=model.length
 view 'intro-map'
