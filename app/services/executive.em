@@ -4,6 +4,7 @@ class ExecutiveService extends Ember.Service
 	session:Ember.inject.service()
 	realtime:Ember.inject.service()
 	store:Ember.inject.service()
+	loader:Ember.inject.service()
 
 	action: (message,data) ->
 
@@ -15,6 +16,7 @@ class ExecutiveService extends Ember.Service
 
 				@me.suspects.removeObject data
 				@me.targetsFoundCount = @me.targetsFoundCount + 1
+				@loader.out()
 				@router.transitionTo 'map'
 				@growler.growl 8
 
@@ -23,6 +25,7 @@ class ExecutiveService extends Ember.Service
 
 				data.deleteRecord()
 				@me.notifyPropertyChange 'suspects'
+				@loader.out()
 				@router.transitionTo 'map' 
 				@growler.growl 9
 
@@ -30,6 +33,7 @@ class ExecutiveService extends Ember.Service
 			when "Exposed self"
 
 				@me.exposedCount = @me.exposedCount + 1
+				@loader.out()
 				@goInactive()
 				@growler.growl 10
 
@@ -97,18 +101,21 @@ class ExecutiveService extends Ember.Service
 
 			when "Added to activationqueue"
 
-				@router.transitionTo('loading').then => 
-					@store.find('activationqueue',data.notifiedObjectId).then (activationqueue) =>
-						@session.me.activationqueue = activationqueue
-						@session.me.status = "queue"
-						@router.transitionTo 'inactivemap'
+				@loader.in()
+				@store.find('activationqueue',data.notifiedObjectId).then (activationqueue) =>
+					@session.me.activationqueue = activationqueue
+					@session.me.status = "queue"
+					@loader.out()
+					@router.transitionTo 'inactivemap'
 				@growler.growl 6
 
 
 			when "You have entered the game"
 
-				@router.transitionTo('loading').then => @session.refresh().then => 
+				@loader.in() 
+				@session.refresh().then => 
 					@session.me.status = 'active'
+					@loader.out()
 					@router.transitionTo 'map'
 				@growler.growl 5
 

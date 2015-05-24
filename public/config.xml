@@ -32,6 +32,7 @@
     <gap:plugin name="com.edborden.workingpushplugin" />
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog3" version="1.3.9" />
 
 
     <!-- Platforms -->    
@@ -46,10 +47,10 @@
     <icon src="icons/android/drawable-xxxhdpi/appicon.png" gap:platform="android" gap:qualifier="xxxhdpi" />
 
     <!-- Android Splash -->
-    <gap:splash src="icons/android/res-notlong-port-hdpi/default.png" />
-    <gap:splash src="icons/android/res-notlong-port-hdpi/default.png" gap:platform="android" gap:qualifier="port-hdpi" />
-    <gap:splash src="icons/android/res-notlong-port-ldpi/default.png" gap:platform="android" gap:qualifier="port-ldpi" />
-    <gap:splash src="icons/android/res-notlong-port-xhdpi/default.png" gap:platform="android" gap:qualifier="port-xhdpi" />
+    <gap:splash src="icons/android/res-long-port-hdpi/default.png" />
+    <gap:splash src="icons/android/res-long-port-hdpi/default.png" gap:platform="android" gap:qualifier="port-hdpi" />
+    <gap:splash src="icons/android/res-long-port-ldpi/default.png" gap:platform="android" gap:qualifier="port-ldpi" />
+    <gap:splash src="icons/android/res-long-port-xhdpi/default.png" gap:platform="android" gap:qualifier="port-xhdpi" />
 
     <preference name="SplashScreenDelay" value="5000" />
 

@@ -2,7 +2,7 @@ initializer =
 
 	initialize: (container,application) ->
 
-		services = ['geolocation','notificator','session','realtime','growler']
+		services = ['geolocation','notificator','session','realtime','growler','loader']
 
 		#Inject into app factories
 		['controller','route','adapter'].forEach (type) ->
@@ -12,5 +12,6 @@ initializer =
 		#Setup service objects
 		application.inject 'service:executive', 'map', 'controller:map'
 		application.inject 'service:executive', 'router', 'router:main'
+		application.inject 'service:loader', 'router', 'router:main'
 
 `export default initializer`

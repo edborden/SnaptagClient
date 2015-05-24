@@ -34,13 +34,15 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 			@growler.growl 1
 
 		login: ->
-			@transitionTo('loading')
+			@loader.in()
 			@facebookLogin().then (token) =>
 				@session.openWithUser(token).then =>
 					if @session.active
+						@loader.out()
 						@transitionTo 'map'
 						@growler.growl 2
 					else
+						@loader.out()
 						@transitionTo 'inactivemap'
 						if @session.inactive
 							@growler.growl 3
@@ -48,7 +50,7 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 							@growler.growl 4
 
 		join: ->
-			@transitionTo('loading')
+			@loader.in()
 			@getServer("hunts/join",{location: @geolocation.object})
 						
 		unjoin: ->
@@ -58,11 +60,11 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 			@growler.growl 7
 
 		found: (target) ->
-			@transitionTo 'loading'
+			@loader.in()
 			@getServer('hunts/found_target', {target_id: target.id})
 
 		expose: (suspect) ->
-			@transitionTo 'loading'
+			@loader.in()
 			@getServer('hunts/expose', {stalker_id: suspect.id})
 
 	facebookLogin: ->

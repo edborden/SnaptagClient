@@ -7,7 +7,7 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'hash',
     apiHostName: 'http://localhost:3000',
-    appVersion: 0.9,
+    appVersion: 1.1,
     EmberENV: { FEATURES: {} },
 
     APP: {},
