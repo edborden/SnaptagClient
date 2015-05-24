@@ -43,6 +43,6 @@
     "grunt-phonegap-build": "*",
     "grunt-shell": "*",
     "ember-cli-fastclick":"*",
-    "ember-component-css": "0.1.1"
+    "ember-component-css": "git://github.com/edborden/ember-component-css"
   }
 }

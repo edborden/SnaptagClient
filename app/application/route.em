@@ -9,7 +9,22 @@ class ApplicationRoute extends Ember.Route with ServerTalk
 	me: ~> @session.me
 
 	beforeModel: ->
-		@session.openWithToken(localStorage.stalkersToken) if localStorage.stalkersToken
+		@store.find('version').then( 
+			(versions) =>
+				device = {platform:'android'}
+				if device?
+					if device.platform is 'android' or device.platform is 'Android'
+						remoteVersion = versions.filterBy('platform','android').firstObject.revision
+					else
+						remoteVersion = versions.filterBy('platform','ios').firstObject.revision
+					localVersion = config.appVersion
+					if remoteVersion > localVersion
+						@session.updateApp = true
+					else
+						@session.openWithToken(localStorage.stalkersToken) if localStorage.stalkersToken
+		)
+
+	openSession: ->
 
 	actions:
 

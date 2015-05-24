@@ -6,5 +6,6 @@ class Router extends Ember.Router
 Router.map ->
 	@route 'map'
 	@route 'inactivemap'
+	@route 'update'
 
 `export default Router`
