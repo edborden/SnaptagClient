@@ -20,7 +20,7 @@ class GeolocationService extends Ember.Service
 		setPosition = Ember.run.bind @,@setPosition
 
 		navigator.geolocation.watchPosition setPosition,@error, {enableHighAccuracy:true}
-		navigator.geolocation.getCurrentPosition firstPositionSuccess,@error,{timeout:1000,maximumAge:Infinity,enableHighAccuracy:true}
+		navigator.geolocation.getCurrentPosition firstPositionSuccess,@error,{timeout:15000,maximumAge:0,enableHighAccuracy:true}
 
 	setPosition: (position) ->
 		@currentLocationObject = position
