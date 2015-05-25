@@ -3,5 +3,5 @@
 		h3 An updated version of Stalkers has been released and is required to keep playing. Download it now!
 	.circle-button.second.blue	
 		.self-center
-			a href="market://details?id=com.stalkersgame"
+			a href=updater.updateLink
 				i.fa.fa-external-link.fa-2x
