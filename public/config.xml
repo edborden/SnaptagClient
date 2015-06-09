@@ -23,7 +23,15 @@
     <!-- Set permissions to none, then re-add one by one. -->
     <preference name="permissions" value="none"/>
 
+    <!-- GEOLOCATION -->
     <gap:plugin name="org.apache.cordova.geolocation" />
+    <gap:config-file platform="ios" parent="NSLocationAlwaysUsageDescription" overwrite="true">
+        <string>Once you have entered an active game, your location information will be collected and stored remotely. Your location will be shared only with other players in the game you are playing.</string>
+    </gap:config-file>
+    <gap:config-file platform="ios" parent="NSLocationUsageDescription" overwrite="true">
+        <string>Once you have entered an active game, your location information will be collected and stored remotely. Your location will be shared only with other players in the game you are playing.</string>
+    </gap:config-file>
+
     <gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.9.0">
         <param name="APP_ID" value="726528350693125" />
         <param name="APP_NAME" value="Stalkers" />
