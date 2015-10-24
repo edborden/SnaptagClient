@@ -2,8 +2,8 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.stalkersgame"
-        android-versionCode = "3" 
-        version     = "3" >
+        android-versionCode = "4" 
+        version     = "1.0.1" >
 
     <preference name="phonegap-version" value="3.7.0" />
     <preference name="fullscreen" value="true" />
