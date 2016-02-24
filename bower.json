@@ -15,9 +15,9 @@
   },
   "devDependencies": {
     "fastclick": "~1.0.6",
-    "bootstrap": "*",
+    "bootstrap": "3.3.4",
     "components-font-awesome": "*",
-    "pusher": "*",
+    "pusher": "2.2.4",
     "ember-leaflet": "~0.6.0",
     "leaflet.awesome-markers": "https://github.com/lvoogdt/Leaflet.awesome-markers.git#2.0/develop",
     "typed.js": "https://github.com/mattboldt/typed.js.git#master",
