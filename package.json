@@ -30,19 +30,17 @@
     "ember-cli-uglify": "1.0.1",
     "ember-data": "1.0.0-beta.17",
     "ember-export-application-global": "^1.0.2",
-
     "broccoli-merge-trees": "*",
-    "broccoli-static-compiler": "*", 
+    "broccoli-static-compiler": "*",
     "ember-cli-ember-leaflet": "*",
     "torii": "*",
     "ember-cli-less": "*",
     "ember-cli-moment": "*",
     "broccoli-ember-script": "git://github.com/kolybasov/broccoli-ember-script",
-    "ember-cli-emblem": "*",
     "grunt": "*",
     "grunt-phonegap-build": "*",
     "grunt-shell": "*",
-    "ember-cli-fastclick":"*",
+    "ember-cli-fastclick": "*",
     "ember-component-css": "git://github.com/edborden/ember-component-css"
   }
 }

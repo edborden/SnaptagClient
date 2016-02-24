@@ -1,3 +1,0 @@
-.bg class={ scrolling upper }
-.content class={ scrolling upper }
-	yield

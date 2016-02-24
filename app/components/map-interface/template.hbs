@@ -1,0 +1,197 @@
+<div class="circle-button first">
+	{{#if session.active}}
+		<i class="fa fa-rss overlay top-left {{if transmit.isTransmitting 'is-transmitting' 'not-transmitting'}}"></i>
+	{{/if}}
+	{{#if me.unreadNotifications}}
+		<div class="overlay top-right">
+			<i class="red self-center">
+				{{me.unreadNotifications.length}}
+			</i>
+		</div>
+	{{/if}}
+	<img class="circle-button {{if meButtonActive 'active'}}" src={{me.smallpic}} {{action "me"}}>
+</div>
+
+{{#if session.active}}
+	<div class="circle-button second red {{if webButtonActive 'active'}}" {{action "web"}}>
+		<i class="fa fa-eye fa-2x self-center"></i>
+	</div>
+
+	{{#if showWeb}}
+		<div class="circle-container">
+			<div class="circle-window-panel">
+				<div class="circle-outline"></div>
+			</div>
+
+			{{#each me.suspects as |suspect index|}}
+				{{suspect-container suspect=suspect activeSuspect=activeSuspect contentIndex=index}}
+			{{/each}}
+
+			{{#if activeSuspect}}
+				<div class="suspect-window-text">
+					{{activeSuspect.name}}
+				</div>
+				<div class="middle-button" {{action "middle"}}>
+					<i class="fa fa-2x self-center {{if contentSection 'fa-caret-down' 'fa-caret-up'}}"></i>
+				</div>
+
+				{{#if contentSection}}
+					{{#with activeSuspect as |user|}}
+						{{partial 'common-buttons'}}
+					{{/with}}
+
+				{{else}}
+					{{#small-button inside=true contentIndex=6 action="showExpose"}}
+						<i class="fa fa-exclamation-triangle fa-lg"></i>
+					{{/small-button}}	
+
+					{{#if activeSuspect.isTarget}}			
+						{{#small-button inside=true contentIndex=8 class="red" action="showFound"}}
+							<i class="fa fa-crosshairs fa-lg"></i>
+						{{/small-button}}
+						{{#small-button inside=true contentIndex=10 action="target" toggle=true}}
+							<i class="fa fa-map-marker fa-lg"></i>
+						{{/small-button}}
+						{{#small-button inside=true contentIndex=12 action="history" toggle=true}}
+							<i class="fa fa-history fa-lg"></i>
+						{{/small-button}}
+					{{/if}}
+				{{/if}}
+			{{/if}}
+		</div>
+	{{/if}}
+{{/if}}
+
+{{#if showMe}}
+	<div class="circle-container">
+		<div class="circle-window-panel">
+			<div class="circle-outline"></div>
+		</div>
+
+		{{#with me as |user|}}
+			{{partial 'common-buttons'}}
+		{{/with}}
+		{{#small-button contentIndex=14 action="logout"}}
+			<i class="fa fa-sign-out fa-lg red"></i>
+		{{/small-button}}
+		{{#small-button contentIndex=11 action="notifications"}}
+			<i class="fa fa-file-text-o fa-lg"></i>
+		{{/small-button}}
+		{{#small-button contentIndex=10 action="instructions"}}
+			<i class="fa fa-question fa-lg"></i>
+		{{/small-button}}
+
+		{{#if session.active}}
+			{{#small-button contentIndex=1 popoverContent=isTransmittingText}}
+				<i class="fa fa-rss fa-lg {{if transmit.isTransmitting 'is-transmitting' 'not-transmitting'}}"></i>
+			{{/small-button}}
+			{{#small-button contentIndex=2 popoverContent=locationAccurateText}}
+				<i class="fa fa-location-arrow fa-lg {{if transmit.locationIsAccurate 'is-transmitting' 'not-transmitting'}}"></i>
+			{{/small-button}}
+			{{#small-button contentIndex=3 popoverContent=hasInternetConnectionText}}
+				<i class="fa fa-signal fa-lg {{if transmit.hasInternetConnection 'is-transmitting' 'not-transmitting'}}"></i>
+			{{/small-button}}
+		{{/if}}
+	</div>
+{{/if}}
+
+{{#if showPic}}
+
+	{{#if showFound}}
+		{{#content-panel upper=true}}
+			<ul class="indented">
+				<li>Approach your target in a non-threatening manner, calmly, without disturbing anyone in your vicinity, ideally without them seeing you.</li>
+				<li>Tap them lightly once on the shoulder.</li>
+				<li>Push the Expose button.</li>
+			</ul>
+		{{/content-panel}}
+	{{/if}}
+
+	{{#if showExpose}}
+		{{#content-panel upper=true}}
+			If you think this person is stalking you, attempt a counteraction. If you are right, they'll be exposed; if you are wrong, you'll be disavowed and removed from the game!
+		{{/content-panel}}
+	{{/if}}
+
+	<div class="circle-container">
+
+		{{#small-button contentIndex=10 action="closePic" target=this}}
+			<i class="fa fa-times fa-lg"></i>
+		{{/small-button}}
+
+		{{#if showFound}}
+			{{#small-button contentIndex=6 class="red" action="found"}}
+				<i class="fa fa-crosshairs fa-lg"></i>
+			{{/small-button}}
+		{{/if}}
+
+		{{#if showExpose}}
+			{{#small-button contentIndex=6 action="expose"}}
+				<i class="fa fa-exclamation-triangle fa-lg"></i>
+			{{/small-button}}
+		{{/if}}		
+
+		{{#if activeSuspect}}
+			<img class="circle-pic" src={{activeSuspect.largepic}}>
+		{{else}}
+			<img class="circle-pic" src={{me.largepic}}>
+		{{/if}}
+	</div>
+{{/if}}
+
+{{#if showNotifications}}
+	{{#content-panel scrolling=true}}
+		{{#each me.notifications as |notification|}}
+			{{notification-box notification=notification}}
+		{{else}}
+			<div class="self-center text-center">
+				<i class="fa fa-folder-o fa-3x"></i>
+				<br>
+				<h4>No Messages!</h4>
+			</div>
+		{{/each}}
+	{{/content-panel}}
+{{/if}}
+
+{{#if showInstructions}}
+	{{#content-panel scrolling=true}}
+		{{partial 'instructions'}}
+	{{/content-panel}}
+{{/if}}
+
+{{#if showInfoButton}}
+	{{#unless session.active}}
+		<div class="circle-button blue third {{if showInfo 'active'}}" {{action "info"}}>
+			<i class="fa fa-info fa-2x self-center"></i>
+		</div>
+	{{/unless}}
+{{/if}}
+
+{{#if showInfo}}
+	{{#if session.inactive}}
+		{{#if noPlayers}}
+			{{#content-panel}}
+				<div class="text-center">There are no other players in your area right now, so start your own game and spread the word!</div>
+			{{/content-panel}}
+		{{else}}
+			{{#content-panel}}
+				<div class="text-center">There are other active players in your area right now! Join up!</div>
+			{{/content-panel}}
+		{{/if}}
+	{{/if}}
+
+	{{#if session.queue}}
+		{{#content-panel}}
+			<div class="text-center">
+				You are in the queue, waiting for other players.
+				<br>
+				{{queueOtherUsersCount}} other players are in the queue. A new game will start when {{playersTillStartCount}} other players join
+				{{#if activeQueueZone}}
+					, or you may be placed into another game as targets are found.
+				{{else}}
+					.
+				{{/if}}
+			</div>
+		{{/content-panel}}
+	{{/if}}
+{{/if}}

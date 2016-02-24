@@ -1,2 +1,0 @@
-each message in messages
-	typed-scroller content=message action="remove"

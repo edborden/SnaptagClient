@@ -1,8 +1,0 @@
-.header 
-	i.fa.fa-envelope-o.fa-lg
-	|&nbsp;&nbsp;&nbsp;
-	notification.subject
-	|&nbsp;
-	notification.createdAtFormatted
-.body
-	notification.body
