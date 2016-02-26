@@ -6,6 +6,13 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     fingerprint: {
       exclude: ['icons/','splash.png','images/','icon.png']
+    },
+    babel: {
+      includePolyfill: true,
+      optional: ['es7.decorators']
+    },
+    'ember-cli-qunit': {
+      useLintTree: false
     }
   });
 

@@ -14,9 +14,7 @@ module.exports = function(environment) {
     torii: {
       sessionServiceName: 'session',
       providers: {
-        'facebook-token': {
-        apiKey:'726528350693125'
-        }
+        'facebook-token': { apiKey: '726528350693125' }
       }
     },
 

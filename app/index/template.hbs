@@ -17,5 +17,7 @@
 {{/if}}
 
 {{#if geolocation.success}}
-	{{view "intro-map"}}
+	{{#leaflet-map}}
+		{{tile-layer url='http://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}
+	{{/leaflet-map}}
 {{/if}}
