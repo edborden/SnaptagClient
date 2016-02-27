@@ -5,44 +5,28 @@ import { alias } from 'ember-computed-decorators';
 const {
   Service,
   inject: { service },
-  run: { bind }
+  run: { bind },
+  RSVP: { Promise }
 } = Ember;
 
 export default Service.extend({
 
   // attributes
-  success: false,
   currentLocationObject: null,
+  promise: null,
+  resolvePromise: null,
 
   // computed
   @alias('currentLocationObject.coords.latitude') lat,
   @alias('currentLocationObject.coords.longitude') lng,
   @alias('currentLocationObject.coords.accuracy') accuracy,
 
-  @computed('lat', 'lng')
-  location() {
-    let lat = this.get('lat');
-    let lng = this.get('lng');
-    return L.latLng(lat, lng);
-  },
-
-  @computed('lat', 'lng')
-  object() {
-    let lat = this.get('lat');
-    let lng = this.get('lng');
-    return { lat, lng };
-  },
-
-  @computed('lat', 'lng')
-  array() {
-    let lat = this.get('lat');
-    let lng = this.get('lng');
-    return [ lat, lng ];
-  },
-
   // events
   init() {
     this.setupLocation();
+    this.set('promise', new Promise((resolve) => {
+      this.set('resolvePromise', resolve);
+    }));
   },
 
   // helpers
@@ -65,7 +49,7 @@ export default Service.extend({
   firstPositionSuccess(position) {
     this.setPosition(position);
     console.log('LOCATION SUCCESS');
-    this.set('success', true);
+    this.get('resolvePromise')();
   },
 
   error(error) {

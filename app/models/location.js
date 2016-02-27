@@ -19,11 +19,6 @@ export default Model.extend({
 
   // computed
   @computed
-  location() {
-    return L.latLng(this.get('lat'), this.get('lng'));
-  },
-
-  @computed
   popupContent() {
     let name = this.get('user').get('name')
     let fromNow = moment(this.get('createdAt')).fromNow()
