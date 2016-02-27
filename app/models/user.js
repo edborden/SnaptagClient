@@ -41,8 +41,7 @@ export default Model.extend({
 
   // computed
   @alias('session.me.targets') meTargets,
-  @alias('locations.lastObject') latestLocation,
-  @alias('latestLocation.location') location,
+  @alias('locations.lastObject') location,
   
   @computed('targets')
   isTarget() {
@@ -50,11 +49,6 @@ export default Model.extend({
     .any(function(user) {
       return isEqual(user, this);
     });
-  },
-
-  @computed
-  inactiveMapPopupContent() {
-    return 'Active Stalker who has found ' + this.get('targetsFoundCount').toString() + ' targets and has been hunting since ' + moment(this.get('activatedAt')).fromNow() + '.';
   },
 
   @filterBy('notifications', 'read', false) unreadNotifications
