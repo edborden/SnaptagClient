@@ -29,11 +29,10 @@ export default Mixin.create({
 
 	// events
 	didInsertElement() {
-		let vw = Ember.$('body').width() / 100;
-		let origin = this.get('panelDim') + this.get('circleDim');
-
 		this._super();
+		let vw = Ember.$('body').width() / 100;
 		this.set('vw', vw);
+		let origin = this.get('panelDim') + this.get('circleDim');
 		this.get('element').style.webkitTransformOrigin = '50% ' + origin + 'px';
 	}
 });

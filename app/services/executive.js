@@ -124,7 +124,7 @@ export default Service.extend({
       case 'Added to activationqueue':
 
         loader.in();
-        store.find('activationqueue', data.get('notifiedObjectId'))
+        store.query('activationqueue', data.get('notifiedObjectId'))
         .then(function(activationqueue) {
           me.set('activationqueue', activationqueue);
           me.set('status', 'queue');

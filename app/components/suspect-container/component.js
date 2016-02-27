@@ -21,7 +21,7 @@ export default Component.extend(Rotatable, {
 	action: 'suspectClicked',
 
 	// computed
-	@alias(suspect.isTarget) target,
+	@alias('suspect.isTarget') target,
 	@alias('session.me.suspects.length') totalCount,
 	
 	@computed('activeSuspect')

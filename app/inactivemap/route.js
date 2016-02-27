@@ -12,6 +12,7 @@ export default Route.extend({
 
   model() {
     let geolocation = this.get('geolocation');
-    return this.get('store').find('zone', geolocation.get('object'));
+    return this.get('store').query('zone', geolocation.get('object'));
   }
+  
 });
