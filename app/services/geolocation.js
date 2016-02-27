@@ -12,14 +12,11 @@ const {
 export default Service.extend({
 
   // attributes
-  currentLocationObject: null,
   promise: null,
   resolvePromise: null,
-
-  // computed
-  @alias('currentLocationObject.coords.latitude') lat,
-  @alias('currentLocationObject.coords.longitude') lng,
-  @alias('currentLocationObject.coords.accuracy') accuracy,
+  lat: null,
+  lng: null,
+  accuracy: null,
 
   // events
   init() {
@@ -43,7 +40,9 @@ export default Service.extend({
   },
 
   setPosition(position) {
-    this.set('currentLocationObject', position);
+    this.set('lat', position.coords.latitude);
+    this.set('lng', position.coords.longitude);
+    this.set('accuracy', position.coords.accuracy);
   },
 
   firstPositionSuccess(position) {

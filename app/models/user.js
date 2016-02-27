@@ -43,7 +43,8 @@ export default Model.extend({
   @alias('session.me.targets') meTargets,
   @alias('locations.lastObject') location,
   
-  @computed('targets')
+  // this errors if there isn't a session
+  @computed('meTargets')
   isTarget() {
     return this.get('meTargets')
     .any(function(user) {
