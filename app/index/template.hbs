@@ -16,8 +16,14 @@
   {{/content-panel}}
 {{/if}}
 
-{{#if geolocation.success}}
-	{{#leaflet-map}}
-		{{tile-layer url='http://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}
-	{{/leaflet-map}}
-{{/if}}
+{{#stalkers-map}}
+	{{tile-layer url='http://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}
+	{{#each model as |zone|}}
+		{{zone}}
+		{{#each zone.users as |user|}}
+			{{#marker-layer lat=user.location.lat lng=user.location.lng}}
+				Active Stalker who has found {{user.targetsFoundCount}} targets and has been hunting since {{moment-from-now user.activatedAt}}.
+			{{/marker-layer}}
+		{{/each}}
+	{{/each}}
+{{/stalkers-map}}
