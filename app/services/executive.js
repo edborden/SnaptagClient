@@ -15,6 +15,7 @@ export default Service.extend({
   store: service(),
   loader: service(),
   routing: service('-routing'),
+  eventer: service(),
 
   // computed
   @alias('session.me') me,
@@ -28,6 +29,7 @@ export default Service.extend({
     let growler = this.get('growler');
     let realtime = this.get('realtime');
     let store = this.get('store');
+    let eventer = this.get('eventer');
     let user;
     let location;
     let target;
@@ -40,7 +42,7 @@ export default Service.extend({
         me.get('suspects').removeObject(data);
         me.set('targetsFoundCount', me.get('targetsFoundCount') + 1);
         loader.out();
-        routing.transitionTo('map');
+        eventer.trigger('resetUI');
         growler.growl(8);
         break;
 
@@ -49,7 +51,7 @@ export default Service.extend({
         data.deleteRecord();
         me.notifyPropertyChange('suspects');
         loader.out();
-        routing.transitionTo('map');
+        eventer.trigger('resetUI');
         growler.growl(9);
         break;
 

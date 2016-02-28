@@ -16,6 +16,7 @@ export default Component.extend({
   // services
   session: service(),
   transmit: service(),
+  eventer: service(),
 
   // attributes
   modal: null,
@@ -83,6 +84,20 @@ export default Component.extend({
     } else {
       return 'You do not have an internet connection.';
     }
+  },
+
+  // events
+  init() {
+    this._super();
+    this.get('eventer').on('resetUI', this, this.sendToggle);
+  },
+
+  willDestroyElement() {
+    this.get('eventer').off('resetUI', this, this.sendToggle);
+  },
+
+  sendToggle() {
+    this.send('toggle');
   },
 
   // actions
