@@ -28,7 +28,7 @@ export default Service.extend({
   
   // helpers
   refresh() {
-    this.openWithToken(this.get('token'));
+    return this.openWithToken(this.get('token'));
   },
 
   openWithToken(token) {

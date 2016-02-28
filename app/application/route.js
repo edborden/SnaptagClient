@@ -19,6 +19,7 @@ export default Route.extend(ServerTalk, {
   session: service(),
   loader: service(),
   geolocation: service(),
+  realtime: service(),
 
   // computed
   @alias('session.me') me,
@@ -48,6 +49,7 @@ export default Route.extend(ServerTalk, {
   },
 
   afterModel() {
+    this.get('realtime').statusChanged();
     return this.get('geolocation').get('promise');
   },
 

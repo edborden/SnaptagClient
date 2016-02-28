@@ -15,13 +15,6 @@ export default Model.extend({
   createdAt: attr('string'),
 
   // associations
-  user: belongsTo('user', { async: false }),
+  user: belongsTo('user', { async: false })
 
-  // computed
-  @computed
-  popupContent() {
-    let name = this.get('user').get('name')
-    let fromNow = moment(this.get('createdAt')).fromNow()
-    return name + ", " + fromNow;
-  }
 });

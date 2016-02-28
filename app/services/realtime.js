@@ -31,7 +31,8 @@ export default Service.extend({
     this.get('me');
   },
 
-  statusChanged: observer('me.status', () => {
+  statusChanged: observer('me.status', function() {
+    console.log('status changed');
     if (isPresent(this.get('pusher'))) {
       this.disconnect();
     }
@@ -83,7 +84,7 @@ export default Service.extend({
     let messages = [ 'New target', 'New suspect', 'Suspect removed' ];
     this.bindMessagesToChannel(messages, channel);
 
-    me.targets.forEach((target) => {
+    me.get('targets').forEach((target) => {
       this.watchTarget(target);
     });
   },    
@@ -126,9 +127,9 @@ export default Service.extend({
       data = Ember.$.parseJSON(data);
     }
     store.pushPayload(data);
-    let notification = store.getById('notification', data.notification.id);
+    let notification = store.peekRecord('notification', data.notification.id);
     me.get('notifications').unshiftObject(notification);
     me.notifyPropertyChange('unreadNotifications');
-    this.get('executive').action(notification.subject, notification);
+    this.get('executive').action(notification.get('subject'), notification);
   }
 });

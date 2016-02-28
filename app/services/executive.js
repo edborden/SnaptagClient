@@ -14,6 +14,7 @@ export default Service.extend({
   realtime: service(),
   store: service(),
   loader: service(),
+  routing: service('-routing'),
 
   // computed
   @alias('session.me') me,
@@ -23,7 +24,7 @@ export default Service.extend({
   action(message, data) {
     let me = this.get('me');
     let loader = this.get('loader');
-    let router = this.get('router');
+    let routing = this.get('routing');
     let growler = this.get('growler');
     let realtime = this.get('realtime');
     let store = this.get('store');
@@ -39,7 +40,7 @@ export default Service.extend({
         me.get('suspects').removeObject(data);
         me.set('targetsFoundCount', me.get('targetsFoundCount') + 1);
         loader.out();
-        router.transitionTo('map');
+        routing.transitionTo('map');
         growler.growl(8);
         break;
 
@@ -48,7 +49,7 @@ export default Service.extend({
         data.deleteRecord();
         me.notifyPropertyChange('suspects');
         loader.out();
-        router.transitionTo('map');
+        routing.transitionTo('map');
         growler.growl(9);
         break;
 
@@ -106,7 +107,7 @@ export default Service.extend({
 
       case 'Remove user from activationqueue':
 
-        user = store.getById('user', data);
+        user = store.peekRecord('user', data);
         this.get('zone').get('users').removeObject(user);
         this.get('activationqueue').set('usersCount', this.get('activationqueue').get('usersCount') - 1);
         break;
@@ -114,7 +115,7 @@ export default Service.extend({
       case 'New target location':
       
         store.pushPayload(data);
-        location = store.getById('location', data.location.id);
+        location = store.peekRecord('location', data.location.id);
         target = location.get('user');
         target.get('locations').pushObject(location);
         target.notifyPropertyChange('latestLocation');
@@ -124,12 +125,12 @@ export default Service.extend({
       case 'Added to activationqueue':
 
         loader.in();
-        store.query('activationqueue', data.get('notifiedObjectId'))
+        store.find('activationqueue', data.get('notifiedObjectId'))
         .then(function(activationqueue) {
           me.set('activationqueue', activationqueue);
           me.set('status', 'queue');
           loader.out()
-          router.transitionTo('inactivemap');
+          routing.transitionTo('inactivemap');
         });
         growler.growl(6);
         break;
@@ -137,11 +138,11 @@ export default Service.extend({
       case 'You have entered the game':
 
         loader.in(); 
-        session.refresh()
+        this.get('session').refresh()
         .then(function() { 
           me.set('status', 'active');
           loader.out();
-          router.transitionTo('map');
+          routing.transitionTo('map');
         });
         growler.growl(5);
         break;
@@ -150,16 +151,17 @@ export default Service.extend({
 
   // helpers
   goInactive() {
+    let me = this.get('me');
     me.set('status', 'inactive');
     me.get('suspects').clear();
     me.get('targets').clear();
-    this.get('router').transitionTo('inactivemap');
+    this.get('routing').transitionTo('inactivemap');
   },
 
   pushUser(data) {
     let store = this.get('store');
     store.pushPayload(data);
-    let user = store.getById('user', data.user.id);   
+    let user = store.peekRecord('user', data.user.id);   
     return user;
   },
 
@@ -173,7 +175,7 @@ export default Service.extend({
 
   removeSuspect(userId) {
     let me = this.get('me');
-    let user = this.get('store').getById('user', userId);
+    let user = this.get('store').peekRecord('user', userId);
     me.get('suspects').removeObject(user);
     me.get('targets').removeObject(user);
     me.notifyPropertyChange('suspects');

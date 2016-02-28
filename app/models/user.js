@@ -47,7 +47,7 @@ export default Model.extend({
   @computed('meTargets')
   isTarget() {
     return this.get('meTargets')
-    .any(function(user) {
+    .any((user) => {
       return isEqual(user, this);
     });
   },

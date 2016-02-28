@@ -10,7 +10,7 @@ export default Route.extend({
   session: service(),
 
   model() {
-    return this.get('session').get('me').get('targets').getEach('latestLocations');
+    return this.get('session').get('me').get('targets').getEach('location');
   }
 
 });
