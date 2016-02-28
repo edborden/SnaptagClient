@@ -53,6 +53,18 @@ export default Service.extend({
 
   error(error) {
     console.warn('LOCATION ERROR(' + error.code + '): ' + error.message);
-  }
+  },
+
+  getObject() {
+    let lat = this.get('lat');
+    let lng = this.get('lng');
+    return { lat, lng };
+  },
+
+  getArray() {
+    let lat = this.get('lat');
+    let lng = this.get('lng');
+    return [ lat, lng ];
+  }  
 
 });

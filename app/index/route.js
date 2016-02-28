@@ -33,8 +33,7 @@ export default Route.extend({
 
   model() {
     let geolocation = this.get('geolocation');
-    let lat = geolocation.get('lat');
-    let lng = geolocation.get('lng');
-    return this.get('store').query('zone', { lat, lng });
+    let object = geolocation.getObject();
+    return this.get('store').query('zone', object);
   }
 });

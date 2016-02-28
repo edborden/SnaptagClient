@@ -13,10 +13,21 @@ const {
 
 export default LeafletMap.extend({
 
-  lat: 40.7127,
-  lng: -74.0059,
+  geolocation: service(),
+
+  lat: null,
+  lng: null,
   zoom: 16,
   zoomControl: false,
-  attributionControl: false
+  attributionControl: false,
+
+  init() {
+    let geolocation = this.get('geolocation');
+    let lat = geolocation.get('lat');
+    let lng = geolocation.get('lng');
+    this.set('lat', lat);
+    this.set('lng', lng);
+    this._super();
+  }
   
 });

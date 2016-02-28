@@ -88,7 +88,7 @@ export default Route.extend(ServerTalk, {
 
     join() {
       this.get('loader').in();
-      this.getServer('hunts/join', { location: this.get('geolocation').get('object') });
+      this.getServer('hunts/join', { location: this.get('geolocation').getObject() });
     },
             
     unjoin() {
