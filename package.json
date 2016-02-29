@@ -18,7 +18,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "active-model-adapter": "1.13.5",
+    "active-model-adapter": "2.1.1",
     "broccoli-asset-rev": "^2.2.0",
     "broccoli-merge-trees": "1.1.1",
     "broccoli-static-compiler": "0.2.2",
