@@ -6,7 +6,8 @@ const {
   Service,
   inject: { service },
   run: { bind },
-  RSVP: { Promise }
+  RSVP: { Promise },
+  Object
 } = Ember;
 
 export default Service.extend({
@@ -59,6 +60,12 @@ export default Service.extend({
     let lat = this.get('lat');
     let lng = this.get('lng');
     return { lat, lng };
+  },
+
+  getEmberObject() {
+    let lat = this.get('lat');
+    let lng = this.get('lng');
+    return new Object({ lat, lng });    
   },
 
   getArray() {
