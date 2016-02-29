@@ -59,33 +59,6 @@ export default Component.extend({
     }
   },
 
-  @computed('transmit.locationIsAccurate')
-  locationAccurateText() {
-    if (this.get('transmit').get('locationIsAccurate')) {
-      return 'Your location is accurate.';
-    } else {
-      return 'Your location is not accurate enough (try turning on your GPS and your WiFi).';
-    }
-  },
-
-  @computed('transmit.isTransmitting')
-  isTransmittingText() {
-    if (this.get('transmit').get('isTransmitting')) {
-      return 'You are transmitting your location and accruing influence every 60 seconds.';
-    } else {
-      return 'You are not transmitting your location or accruing influence.';
-    }
-  },
-
-  @computed('transmit.hasInternetConnection')
-  hasInternetConnectionText() {
-    if (this.get('transmit').get('hasInternetConnection')) {
-      return 'You have an internet connection.';
-    } else {
-      return 'You do not have an internet connection.';
-    }
-  },
-
   // events
   init() {
     this._super();

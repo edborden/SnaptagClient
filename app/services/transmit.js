@@ -20,6 +20,7 @@ export default Service.extend({
 
   // attributes
   intervalID: null,
+  hasInternetConnection: true,
 
   // computed
   @alias('geolocation.accuracy') accuracy,
@@ -28,10 +29,18 @@ export default Service.extend({
   @computed('accuracy')
   locationIsAccurate() {
     if (typeof cordova === 'undefined') {
-      return this.get('accuracy') < 100;
-    } else {
       return true;
+    } else {
+      return this.get('accuracy') < 100;
     }
+  },
+
+  @computed('session.active', 'locationIsAccurate', 'hasInternetConnection')
+  isTransmitting() {
+    let active = this.get('session').get('active');
+    let locationIsAccurate = this.get('locationIsAccurate');
+    let hasInternetConnection = this.get('hasInternetConnection');
+    return active && locationIsAccurate && hasInternetConnection;
   },
 
   // events

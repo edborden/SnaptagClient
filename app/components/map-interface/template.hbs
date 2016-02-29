@@ -82,13 +82,13 @@
 		{{/small-button}}
 
 		{{#if session.active}}
-			{{#small-button contentIndex=1 popoverContent=isTransmittingText}}
+			{{#small-button contentIndex=1 popoverContent=(if transmit.isTransmitting 'You are transmitting your location and accruing influence every 60 seconds.' 'You are not transmitting your location or accruing influence.')}}
 				<i class="fa fa-rss fa-lg {{if transmit.isTransmitting 'is-transmitting' 'not-transmitting'}}"></i>
 			{{/small-button}}
-			{{#small-button contentIndex=2 popoverContent=locationAccurateText}}
+			{{#small-button contentIndex=2 popoverContent=(if transmit.locationIsAccurate 'Your location is accurate.' 'Your location is not accurate enough (try turning on your GPS and your WiFi).')}}
 				<i class="fa fa-location-arrow fa-lg {{if transmit.locationIsAccurate 'is-transmitting' 'not-transmitting'}}"></i>
 			{{/small-button}}
-			{{#small-button contentIndex=3 popoverContent=hasInternetConnectionText}}
+			{{#small-button contentIndex=3 popoverContent=(if transmit.hasInternetConnection 'You have an internet connection.' 'You do not have an internet connection.')}}
 				<i class="fa fa-signal fa-lg {{if transmit.hasInternetConnection 'is-transmitting' 'not-transmitting'}}"></i>
 			{{/small-button}}
 		{{/if}}
