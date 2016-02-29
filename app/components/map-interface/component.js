@@ -74,8 +74,6 @@ export default Component.extend({
   },
 
   // actions
-  sendTarget: 'target',
-  sendHistory: 'history',
   sendLogout: 'logout',
   sendFound: 'found',
   sendExpose: 'expose',
@@ -113,12 +111,6 @@ export default Component.extend({
       } else {
         this.set('modal', 'me');
       }
-    },
-    target() {
-      this.sendAction('sendTarget', this.get('activeSuspect'));
-    },
-    history() {
-      this.sendAction('sendHistory', this.get('activeSuspect'));
     },
     showFound() {
       this.set('showFound', true);

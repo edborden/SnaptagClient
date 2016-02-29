@@ -67,7 +67,7 @@ export default Service.extend({
   sendLocation() {
     console.log('sendLocation');
     let me = this.get('me');
-    let location = this.get('geolocation').get('object');
+    let location = this.get('geolocation').getObject();
     this.get('store').createRecord('location', location).save();
     me.set('stealth', me.get('stealth') + 1);
   },
