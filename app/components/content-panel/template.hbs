@@ -1,4 +1,4 @@
-<div class="bg {{scrolling}} {{upper}}"></div>
-<div class="content {{scrolling}} {{upper}}">
+<div class="bg {{if scrolling 'scrolling'}} {{if upper 'upper'}}"></div>
+<div class="content {{if scrolling 'scrolling'}} {{if upper 'upper'}}">
 	{{yield}}
 </div>
