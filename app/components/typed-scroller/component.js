@@ -5,7 +5,7 @@ import { alias, equal } from 'ember-computed-decorators';
 const {
   Component,
   isEqual,
-  run: { later }
+  run: { bind }
 } = Ember;
 
 export default Component.extend({
@@ -19,7 +19,7 @@ export default Component.extend({
 	typedContent() {
 		let raw = this.get('content').split(' ');
 		let typed = [];
-		raw.forEach(function(item, index) {		
+		raw.forEach((item, index) => {		
 			// don't do this on the first element
 			if (!isEqual(index, 0)) {
 				typed.push(this.randomDelayString());
@@ -31,7 +31,7 @@ export default Component.extend({
 
 	// events
 	didInsertElement() {
-		let onFinish = later(this, this.onFinish, 3000);	
+		let onFinish = bind(this, this.onFinish);	
 		this.$().children().first().typed({
 			strings: [ this.get('typedContent') ],
 			typeSpeed: 50,
@@ -40,7 +40,7 @@ export default Component.extend({
 	},
 
 	onFinish() {
-		this.$().fadeOut(1500, () => {
+		this.$().fadeOut(3000, () => {
 			this.sendAction('action', this.get('content'));
 		});
 	},

@@ -1,12 +1,15 @@
 import Ember from 'ember';
+import { alias } from 'ember-computed-decorators';
 
 const {
-  Component
+  Component,
+  inject: { service }
 } = Ember;
 
 export default Component.extend({
 
-  messages: null,
+  growler: service(),
+  @alias('growler.messages') messages,
 
   actions: {
     remove(message) {
