@@ -1,111 +1,144 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <widget xmlns   = "http://www.w3.org/ns/widgets"
-        xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "com.stalkersgame"
-        android-versionCode = "4" 
-        version     = "1.0.1" >
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+  xmlns:gap   = "http://phonegap.com/ns/1.0"
+  id          = "com.stalkersgame"
+  android-versionCode = "4" 
+  version     = "1.0.1" >
 
-    <preference name="phonegap-version" value="3.7.0" />
-    <preference name="fullscreen" value="true" />
-    <preference name="orientation" value="portrait" />
-    <access origin="*" />
+  <preference name="phonegap-version" value="cli-6.0.0" />
+  <preference name="fullscreen" value="true" />
+  <preference name="orientation" value="portrait" />
 
-    <name>Stalkers</name>
+  <access origin="*" />
+  <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
+  <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
+  <plugin name="cordova-plugin-whitelist" />
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+  <allow-intent href="tel:*" />
+  <allow-intent href="sms:*" />
+  <allow-intent href="mailto:*" />
+  <allow-intent href="geo:*" />
+  <platform name="android">
+      <allow-intent href="market:*" />
+  </platform>
+  <platform name="ios">
+      <allow-intent href="itms:*" />
+      <allow-intent href="itms-apps:*" />
+  </platform>
 
-    <description>
-        The biggest game of hide-and-seek ever, played with real people, in real-time, out in the real world.
-    </description>
+  <name>Stalkers</name>
 
-    <author href="http://www.stalkersgame.com" email="borden.edward@gmail.com">
-        Ed Borden
-    </author>
+  <description>
+    A city-wide game of hide-and-seek, played with real people, in real-time, out in the real world.
+  </description>
 
-    <!-- Set permissions to none, then re-add one by one. -->
-    <preference name="permissions" value="none"/>
+  <author href="http://www.stalkersgame.com" email="borden.edward@gmail.com">
+    Ed Borden
+  </author>
 
-    <!-- GEOLOCATION -->
-    <gap:plugin name="org.apache.cordova.geolocation" />
-    <gap:config-file platform="ios" parent="NSLocationAlwaysUsageDescription" overwrite="true">
-        <string>Once you have entered an active game, your location information will be collected and stored remotely. Your location will be shared only with other players in the game you are playing.</string>
-    </gap:config-file>
-    <gap:config-file platform="ios" parent="NSLocationUsageDescription" overwrite="true">
-        <string>Once you have entered an active game, your location information will be collected and stored remotely. Your location will be shared only with other players in the game you are playing.</string>
-    </gap:config-file>
+  <preference name="android-build-tool" value="gradle" />
+  <preference name="android-minSdkVersion"      value="15" />
+  <!-- Set permissions to none, then re-add one by one. -->
+  <preference name="permissions" value="none" />
 
-    <gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.9.0">
-        <param name="APP_ID" value="726528350693125" />
-        <param name="APP_NAME" value="Stalkers" />
-    </gap:plugin>
-    <gap:plugin name="com.edborden.workingpushplugin" />
-    <gap:plugin name="org.apache.cordova.network-information" />
-    <gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog3" version="1.3.9" />
+  <plugin name="cordova-plugin-geolocation" spec="2.1.0" />
+  <!-- see: https://www.npmjs.com/package/cordova-plugin-facebook4 -->
+  <plugin name="cordova-plugin-facebook4" source="npm" spec="1.4.0" >
+    <param name="APP_ID" value="726528350693125" />
+    <param name="APP_NAME" value="Stalkers" />
+  </plugin>
+  <plugin name="phonegap-plugin-push" source="npm">
+    <variable name="SENDER_ID" value="153122295049" />
+  </plugin>
+  <plugin name="cordova-plugin-network-information" spec="1.2.0" />
+  <plugin name="cordova-plugin-device" spec="1.1.1" />
+  <gap:plugin name="hu.dpal.phonegap.plugins.spinnerdialog3" version="1.3.9" /> -->
 
-    <!-- Defaults -->  
-    <icon src="icon.png" />
-    <gap:splash src="splash.png" />
+  <!-- Defaults -->  
+  <icon src="icon.png" />
+  <splash src="splash.png" />
 
-    <!-- Android -->    
-    <gap:platform name="android" />
+  <!-- Android -->    
+  <platform name="android">
 
     <!-- Icons -->
-    <icon src="icons/android/drawable-hdpi/appicon.png" gap:platform="android" gap:qualifier="hdpi" />
-    <icon src="icons/android/drawable-ldpi/appicon.png" gap:platform="android" gap:qualifier="ldpi" />
-    <icon src="icons/android/drawable-mdpi/appicon.png" gap:platform="android" gap:qualifier="mdpi" />
-    <icon src="icons/android/drawable-xhdpi/appicon.png" gap:platform="android" gap:qualifier="xhdpi" />
-    <icon src="icons/android/drawable-xxhdpi/appicon.png" gap:platform="android" gap:qualifier="xxhdpi" />
-    <icon src="icons/android/drawable-xxxhdpi/appicon.png" gap:platform="android" gap:qualifier="xxxhdpi" />
+    <icon src="icons/android/drawable-hdpi/appicon.png" gap:qualifier="hdpi" />
+    <icon src="icons/android/drawable-ldpi/appicon.png" gap:qualifier="ldpi" />
+    <icon src="icons/android/drawable-mdpi/appicon.png" gap:qualifier="mdpi" />
+    <icon src="icons/android/drawable-xhdpi/appicon.png" gap:qualifier="xhdpi" />
+    <icon src="icons/android/drawable-xxhdpi/appicon.png" gap:qualifier="xxhdpi" />
+    <icon src="icons/android/drawable-xxxhdpi/appicon.png" gap:qualifier="xxxhdpi" />
 
     <!-- Splash -->
-    <gap:splash src="icons/android/res-long-port-hdpi/default.png" />
-    <gap:splash src="icons/android/res-long-port-hdpi/default.png" gap:platform="android" gap:qualifier="port-hdpi" />
-    <gap:splash src="icons/android/res-long-port-ldpi/default.png" gap:platform="android" gap:qualifier="port-ldpi" />
-    <gap:splash src="icons/android/res-long-port-xhdpi/default.png" gap:platform="android" gap:qualifier="port-xhdpi" />
+    <splash src="icons/android/res-long-port-hdpi/default.png" />
+    <splash src="icons/android/res-long-port-hdpi/default.png" gap:qualifier="port-hdpi" />
+    <splash src="icons/android/res-long-port-ldpi/default.png" gap:qualifier="port-ldpi" />
+    <splash src="icons/android/res-long-port-xhdpi/default.png" gap:qualifier="port-xhdpi" />
 
     <preference name="SplashScreenDelay" value="5000" />
 
+  </platform>
 
-     <!-- iOS -->    
-    <gap:platform name="ios" />   
+   <!-- iOS -->    
+  <platform name="ios">
     <preference name="target-device" value="handset" />
     <preference name="exit-on-suspend" value="true" />
 
+    <!-- Hiding status bar on ios, see http://stackoverflow.com/questions/20734117/how-to-remove-ios-status-bar-with-phonegap-build -->
+    <gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance" overwrite="true">
+      <false/>
+    </gap:config-file>
+    <gap:config-file platform="ios" parent="UIStatusBarHidden" overwrite="true">
+      <true/>
+    </gap:config-file>
+
+    <!-- Geolocation -->
+    <config-file parent="NSLocationAlwaysUsageDescription" overwrite="true">
+      <string>Once you have entered an active game, your location information will be collected and stored remotely. Your location will be shared only with other players in the game you are playing.</string>
+    </config-file>
+    <config-file parent="NSLocationUsageDescription" overwrite="true">
+      <string>Once you have entered an active game, your location information will be collected and stored remotely. Your location will be shared only with other players in the game you are playing.</string>
+    </config-file>
+
     <!-- iPhone 6 / 6+ -->
-    <icon src="icons/ios/appicon-60@3x.png" gap:platform="ios" width="180" height="180" />
+    <icon src="icons/ios/appicon-60@3x.png" width="180" height="180" />
 
     <!-- iPhone / iPod Touch  -->
-    <icon src="icons/ios/appicon-57.png" gap:platform="ios" width="57" height="57" />
-    <icon src="icons/ios/appicon-60.png" gap:platform="ios" width="60" height="60" />
-    <icon src="icons/ios/appicon-60@2x.png" gap:platform="ios" width="120" height="120" />
+    <icon src="icons/ios/appicon-57.png" width="57" height="57" />
+    <icon src="icons/ios/appicon-60.png" width="60" height="60" />
+    <icon src="icons/ios/appicon-60@2x.png" width="120" height="120" />
 
     <!-- iPad -->
-    <icon src="icons/ios/appicon-76.png" gap:platform="ios" width="76" height="76" />
-    <icon src="icons/ios/appicon-76@2x.png" gap:platform="ios" width="152" height="152" />
+    <icon src="icons/ios/appicon-76.png" width="76" height="76" />
+    <icon src="icons/ios/appicon-76@2x.png" width="152" height="152" />
 
     <!-- Settings Icon -->
-    <icon src="icons/ios/appicon-Small.png" gap:platform="ios" width="29" height="29" />
-    <icon src="icons/ios/appicon-Small@2x.png" gap:platform="ios" width="58" height="58" />
+    <icon src="icons/ios/appicon-Small.png" width="29" height="29" />
+    <icon src="icons/ios/appicon-Small@2x.png" width="58" height="58" />
 
     <!-- Spotlight Icon -->
-    <icon src="icons/ios/appicon-Small-40.png" gap:platform="ios" width="40" height="40" />
-    <icon src="icons/ios/appicon-Small-40@2x.png" gap:platform="ios" width="80" height="80" />
+    <icon src="icons/ios/appicon-Small-40.png" width="40" height="40" />
+    <icon src="icons/ios/appicon-Small-40@2x.png" width="80" height="80" />
 
     <!-- iPhone and iPod touch -->
-    <gap:splash src="icons/ios/Default.png" gap:platform="ios" width="320" height="480" />
-    <gap:splash src="icons/ios/Default@2x.png" gap:platform="ios" width="640" height="960" />
+    <splash src="icons/ios/Default.png" width="320" height="480" />
+    <splash src="icons/ios/Default@2x.png" width="640" height="960" />
 
     <!-- iPhone 5 / iPod Touch (5th Generation) -->
-    <gap:splash src="icons/ios/Default-568h.png" gap:platform="ios" width="320" height="568" />   
-    <gap:splash src="icons/ios/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
+    <splash src="icons/ios/Default-568h.png" width="320" height="568" />   
+    <splash src="icons/ios/Default-568h@2x.png" width="640" height="1136" />
 
     <!-- iPhone 6 -->
-    <gap:splash src="icons/ios/Default-667h@2x.png" gap:platform="ios" width="750" height="1334" />
-    <gap:splash src="icons/ios/Default-Portrait-736h@3x.png" gap:platform="ios" width="1242" height="2208" />
+    <splash src="icons/ios/Default-667h@2x.png" width="750" height="1334" />
+    <splash src="icons/ios/Default-Portrait-736h@3x.png" width="1242" height="2208" />
 
     <!-- iPad -->
-    <gap:splash src="icons/ios/Default-Portrait.png" gap:platform="ios" width="768" height="1024" />
+    <splash src="icons/ios/Default-Portrait.png" width="768" height="1024" />
 
     <!-- Retina iPad -->
-    <gap:splash src="icons/ios/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
+    <splash src="icons/ios/Default-Portrait@2x.png" width="1536" height="2048" />
+
+  </platform>
 
 </widget>

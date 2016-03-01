@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 grunt.initConfig({
 	shell: {
 		build: {
-			command: "ember build --environment=production"
+			command: "rimraf dist && ember build --environment=production"
 		},
 		git: {
 			command: "git init && git remote add origin git@github.com:edborden/StalkersClientBuild.git && git add -A && git commit -m 'auto'",
