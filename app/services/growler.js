@@ -8,7 +8,7 @@ export default Service.extend({
   messages: Ember.A(),
 
   growl(code) {
-    let message = '';
+    let message;
     
     switch (code) {
       case 1:
@@ -50,8 +50,11 @@ export default Service.extend({
       case 13:
         message = 'You are being watched.';
         break;
+      default:
+        message = code;
     }
 
+    console.log('growled', message);
     this.get('messages').pushObject(message);
   }
 });
