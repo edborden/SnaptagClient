@@ -115,19 +115,17 @@ export default Route.extend(ServerTalk, {
   // helpers
   facebookLogin() {
     let torii = this.get('torii');
-    return new Promise(function(resolve) {
-      if (config.environment === 'production') {
-        facebookConnectPlugin.login(['email'], function(response) {
-          console.log('Facebook connect success', response);
-          resolve(response.authResponse.accessToken);
-        });
-      } else {
-        torii.open('facebook-token')
-        .then(function(authorization) {
-          console.log('torii success', authorization);
-          resolve(authorization.authorizationToken.token);         
-        });
-      }
+    let provider;
+    if (config.environment === 'production') {
+      provider = 'facebook-phonegap';
+    } else {
+      provider = 'facebook-token';
+    }
+    return torii.open(provider)
+    .then(function(authorization) {
+      console.log('torii success', authorization);
+      return authorization.authorizationToken.token;     
     });
   }
+
 });
