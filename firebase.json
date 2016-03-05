@@ -1,0 +1,19 @@
+{
+  "firebase": "stalkers",
+  "public": "./dist",
+  "rules":"db/rules.json",
+  "rewrites": [
+    {
+      "source": "/tests",
+      "destination": "/tests/index.html"
+    },
+    {
+      "source": "/tests/**",
+      "destination": "/tests/index.html"
+    },
+    {
+      "source": "/**",
+      "destination": "/index.html"
+    }
+  ]
+}
