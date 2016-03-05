@@ -1,7 +1,6 @@
 {
   "firebase": "stalkers",
   "public": "./dist",
-  "rules":"db/rules.json",
   "rewrites": [
     {
       "source": "/tests",
