@@ -35,9 +35,9 @@ export default Service.extend({
     }
   },
 
-  @computed('session.active', 'locationIsAccurate', 'hasInternetConnection')
+  @computed('me.active', 'locationIsAccurate', 'hasInternetConnection')
   isTransmitting() {
-    let active = this.get('session').get('active');
+    let active = this.get('me').get('active');
     let locationIsAccurate = this.get('locationIsAccurate');
     let hasInternetConnection = this.get('hasInternetConnection');
     return active && locationIsAccurate && hasInternetConnection;
@@ -53,7 +53,6 @@ export default Service.extend({
     let isTransmitting = this.get('isTransmitting');
     let intervalID = this.get('intervalID');
     console.log('transmittingChanged', isTransmitting);
-    console.log(this.get('session').get('active'), this.get('locationIsAccurate'), this.get('hasInternetConnection'));
     if (isTransmitting && isBlank(intervalID)) {
       this.set('intervalID', this.setLocationInterval());
     }
