@@ -24,7 +24,7 @@ export default Service.extend({
 
   // computed
   @alias('geolocation.accuracy') accuracy,
-  @alias('session.me') me,
+  @alias('session.currentUser') me,
 
   @computed('accuracy')
   locationIsAccurate() {

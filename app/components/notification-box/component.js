@@ -23,7 +23,7 @@ export default Component.extend({
     if (!this.get('read')) {
       let notification = this.get('notification');
       notification.set('read', true);
-      this.get('session').get('me').notifyPropertyChange('unreadNotifications');
+      this.get('session').get('currentUser').notifyPropertyChange('unreadNotifications');
       notification.save();
     }
   }

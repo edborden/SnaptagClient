@@ -22,7 +22,7 @@ export default Component.extend(Rotatable, {
 
 	// computed
 	@alias('suspect.isTarget') target,
-	@alias('session.me.suspects.length') totalCount,
+	@alias('session.currentUser.suspects.length') totalCount,
 	
 	@computed('activeSuspect')
 	active() {

@@ -23,7 +23,7 @@ export default Service.extend({
   map: null,
 
   // computed
-  @alias('session.me') me,
+  @alias('session.currentUser') me,
 
   //events
   init() {

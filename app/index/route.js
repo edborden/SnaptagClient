@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { alias } from 'ember-computed-decorators';
 import { calculateBounds } from 'stalkers-client/utils/leaflet-helpers';
 
 const {
@@ -13,20 +14,26 @@ export default Route.extend({
   session: service(),
   geolocation: service(),
 
+  // computed
+  @alias('session.currentUser') me,
+
   beforeModel() {
     let shouldUpdateApp = this.get('updater').get('updateApp');
-    let session = this.get('session');
+    let me = this.get('me');
 
     if (shouldUpdateApp) {
       this.replaceWith('update');     
     } else {
-      if (session.get('active')) {
-        console.log('transitionTo map');
-        this.replaceWith('map');
-      } else {
-        if (session.get('inactive') || session.get('queue')) {
-          console.log('transitionTo inactivemap');
-          this.replaceWith('inactivemap');
+      let isAuthenticated = this.get('session').get('isAuthenticated');
+      if (isAuthenticated) {
+        if (me.get('active')) {
+          console.log('transitionTo map');
+          this.replaceWith('map');
+        } else {
+          if (me.get('inactive') || me.get('queue')) {
+            console.log('transitionTo inactivemap');
+            this.replaceWith('inactivemap');
+          }
         }
       }
     }

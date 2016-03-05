@@ -18,7 +18,7 @@ export default Service.extend({
   eventer: service(),
 
   // computed
-  @alias('session.me') me,
+  @alias('session.currentUser') me,
   @alias('me.activationqueue') activationqueue,
   @alias('activationqueue.zone') zone,
 
@@ -140,7 +140,7 @@ export default Service.extend({
       case 'You have entered the game':
 
         loader.in(); 
-        this.get('session').refresh()
+        this.get('session').fetch()
         .then(function() { 
           me.set('status', 'active');
           loader.out();

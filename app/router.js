@@ -6,8 +6,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('map');
-  this.route('inactivemap');
+  this.authenticatedRoute('map');
+  this.authenticatedRoute('inactivemap');
   this.route('update');
 });
 

@@ -1,5 +1,5 @@
 <div class="circle-button first">
-	{{#if session.active}}
+	{{#if me.active}}
 		<i class="fa fa-rss overlay top-left {{if transmit.isTransmitting 'is-transmitting' 'not-transmitting'}}"></i>
 	{{/if}}
 	{{#if me.unreadNotifications}}
@@ -12,7 +12,7 @@
 	<img class="circle-button {{if meButtonActive 'active'}}" src={{me.smallpic}} {{action "me"}}>
 </div>
 
-{{#if session.active}}
+{{#if me.active}}
 	<div class="circle-button second red {{if webButtonActive 'active'}}" {{action "web"}}>
 		<i class="fa fa-eye fa-2x self-center"></i>
 	</div>
@@ -75,7 +75,7 @@
 			<i class="fa fa-question fa-lg"></i>
 		{{/small-button}}
 
-		{{#if session.active}}
+		{{#if me.active}}
 			{{#small-button contentIndex=1 popoverContent=(if transmit.isTransmitting 'You are transmitting your location and accruing influence every 60 seconds.' 'You are not transmitting your location or accruing influence.')}}
 				<i class="fa fa-rss fa-lg {{if transmit.isTransmitting 'is-transmitting' 'not-transmitting'}}"></i>
 			{{/small-button}}
@@ -154,7 +154,7 @@
 {{/if}}
 
 {{#if showInfoButton}}
-	{{#unless session.active}}
+	{{#unless me.active}}
 		<div class="circle-button blue third {{if showInfo 'active'}}" {{action "info"}}>
 			<i class="fa fa-info fa-2x self-center"></i>
 		</div>
@@ -162,7 +162,7 @@
 {{/if}}
 
 {{#if showInfo}}
-	{{#if session.inactive}}
+	{{#if me.inactive}}
 		{{#if noPlayers}}
 			{{#content-panel}}
 				<div class="text-center">There are no other players in your area right now, so start your own game and spread the word!</div>
@@ -174,7 +174,7 @@
 		{{/if}}
 	{{/if}}
 
-	{{#if session.queue}}
+	{{#if me.queue}}
 		{{#content-panel}}
 			<div class="text-center">
 				You are in the queue, waiting for other players.

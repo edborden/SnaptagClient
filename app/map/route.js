@@ -12,7 +12,7 @@ export default Route.extend({
   geolocation: service(),
 
   model() {
-    return this.get('session').get('me').get('targets').getEach('location');
+    return this.get('session').get('currentUser').get('targets').getEach('location');
   },
 
   setupController(controller, model) {

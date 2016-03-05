@@ -25,7 +25,7 @@ export default Component.extend({
   activeSuspect: null,
 
   // computed
-  @alias('session.me') me,
+  @alias('session.currentUser') me,
   @equal('modal', 'me') showMe,
   @equal('modal', 'web') showWeb,
   @equal('modal', 'pic') showPic,
@@ -153,7 +153,7 @@ export default Component.extend({
   },
 
   // info box
-  @alias('session.me.activationqueue') activationqueue,
+  @alias('me.activationqueue') activationqueue,
   @alias('activationqueue.usersCount') usersCount,
   @equal('length', 0) noPlayers,
   @computed('usersCount')

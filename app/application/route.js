@@ -22,32 +22,9 @@ export default Route.extend(ServerTalk, {
   realtime: service(),
 
   // computed
-  @alias('session.me') me,
+  @alias('session.currentUser') me,
 
   // events
-  beforeModel() {
-    let token = localStorage.stalkersToken;
-    let session = this.get('session');
-    let growler = this.get('growler');
-    let updater = this.get('updater');
-
-    return new Promise(function(resolve) {
-      updater.checkUpdate()
-      .then((result) => {
-        if (result === false && isPresent(token)) {
-          session.openWithToken(token)
-          .then(function() {
-            resolve();
-            growler.growl(13);
-          });
-        } else {
-          resolve();
-          growler.growl(13);
-        }
-      });
-    });
-  },
-
   afterModel() {
     this.get('realtime').statusChanged();
     return this.get('geolocation').get('promise');
@@ -62,30 +39,27 @@ export default Route.extend(ServerTalk, {
     },
 
     login() {
-      let session = this.get('session');
       let loader = this.get('loader');
       let growler = this.get('growler');
 
       loader.in();
       this.facebookLogin()
-      .then((token) => {
-        session.openWithUser(token)
-        .then(() => {
-          if (session.get('active')) {
-            loader.out();
-            this.transitionTo('map');
-            growler.growl(2);
+      .then(() => {
+        let me = this.get('me');
+        if (me.get('active')) {
+          loader.out();
+          this.transitionTo('map');
+          growler.growl(2);
+        } else {
+          loader.out();
+          this.transitionTo('inactivemap');
+          if (me.get('inactive')) {
+            growler.growl(3);
           } else {
-            loader.out();
-            this.transitionTo('inactivemap');
-            if (session.get('inactive')) {
-              growler.growl(3);
-            } else {
-              growler.growl(4);
-            }
+            growler.growl(4);
           }
-        });
-      });      
+        }
+      });
     },
 
     join() {
@@ -109,23 +83,23 @@ export default Route.extend(ServerTalk, {
     expose(suspect) {
       this.get('loader').in();
       this.getServer('hunts/expose', { stalker_id: suspect.get('id') });
+    },
+
+    accessDenied() {
+      this.transitionTo('index');
     }
   },
 
   // helpers
   facebookLogin() {
-    let torii = this.get('torii');
+    let session = this.get('session');
     let provider;
     if (config.environment === 'production') {
       provider = 'facebook-phonegap';
     } else {
       provider = 'facebook-token';
     }
-    return torii.open(provider)
-    .then(function(authorization) {
-      console.log('torii success', authorization);
-      return authorization.authorizationToken.token;     
-    });
+    return session.open(provider)
   }
 
 });

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
-import { alias, filterBy } from 'ember-computed-decorators';
+import { alias, filterBy, equal } from 'ember-computed-decorators';
 import DS from 'ember-data';
 
 const {
@@ -40,8 +40,11 @@ export default Model.extend({
   locations: hasMany('location', { async: false }),
 
   // computed
-  @alias('session.me.targets') meTargets,
+  @alias('session.currentUser.targets') meTargets,
   @alias('locations.lastObject') location,
+  @equal('status', 'active') active,
+  @equal('status', 'queue') queue,
+  @equal('status', 'inactive') inactive,
   
   // this errors if there isn't a session
   @computed('meTargets')
