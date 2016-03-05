@@ -53,7 +53,7 @@ export default Service.extend({
   },
 
   error(error) {
-    console.warn(`LOCATION ERROR(${error.code}): ${error.message});
+    console.warn(`LOCATION ERROR(${error.code}): ${error.message}`);
   },
 
   getObject() {
