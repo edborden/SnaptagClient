@@ -94,11 +94,11 @@ export default Route.extend({
   facebookLogin() {
     let session = this.get('session');
     let provider;
-    if (config.environment === 'production') {
-      provider = 'facebook-phonegap';
-    } else {
-      provider = 'facebook-token';
-    }
+    //if (config.environment === 'production') {
+    //  provider = 'facebook-phonegap';
+    //} else {
+    provider = 'facebook-token';
+    //}
     return session.open(provider)
   }
 
