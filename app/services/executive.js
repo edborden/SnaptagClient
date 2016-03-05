@@ -140,7 +140,7 @@ export default Service.extend({
       case 'You have entered the game':
 
         loader.in(); 
-        this.get('session').fetch()
+        this.get('session').get('currentSession').reload()
         .then(function() { 
           me.set('status', 'active');
           loader.out();
