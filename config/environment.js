@@ -40,7 +40,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.apiHostName = 'http://damp-sea-6022.herokuapp.com'
+    ENV.apiHostName = 'https://damp-sea-6022.herokuapp.com'
     ENV.APP.LOG_ACTIVE_GENERATION = true;
     ENV.APP.LOG_TRANSITIONS = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
