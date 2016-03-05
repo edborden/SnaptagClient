@@ -22,7 +22,7 @@ export default Route.extend({
     let me = this.get('me');
 
     if (shouldUpdateApp) {
-      this.replaceWith('update');     
+      this.replaceWith('update');
     } else {
       let isAuthenticated = this.get('session').get('isAuthenticated');
       if (isAuthenticated) {
@@ -49,7 +49,7 @@ export default Route.extend({
     // Call _super for default behavior
     this._super(controller, model);
     // Implement your custom setup after
-    const myLocation = this.get('geolocation').getEmberObject();
+    let myLocation = this.get('geolocation').getEmberObject();
     let boundsArray = model.getEach('users').map(function(usersArray) {
       return usersArray.getEach('location');
     });

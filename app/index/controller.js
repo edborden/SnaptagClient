@@ -9,8 +9,8 @@ export default Controller.extend({
   showInstructions: false,
 
   actions: {
-    instructions() { 
+    instructions() {
       this.toggleProperty('showInstructions');
     }
-  }  
+  }
 });

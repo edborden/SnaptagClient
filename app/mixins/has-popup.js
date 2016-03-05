@@ -52,7 +52,7 @@ export default Mixin.create({
   click() {
     if (isPresent(this.get('popoverContent'))) {
       this.removeAnyOpenPopover();
-      if (!this.get('_popoverOpen')) {  
+      if (!this.get('_popoverOpen')) {
         if (!this.get('_noMorePopovers')) {
           this.showPopover();
         } else {

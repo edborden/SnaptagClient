@@ -21,7 +21,7 @@ export default Route.extend({
     // Call _super for default behavior
     this._super(controller, model);
     // Implement your custom setup after
-    const myLocation = this.get('geolocation').getEmberObject();
+    let myLocation = this.get('geolocation').getEmberObject();
     let boundsArray = model.getEach('users').map(function(usersArray) {
       return usersArray.getEach('location');
     });
@@ -29,5 +29,5 @@ export default Route.extend({
     boundsArray.pushObject(myLocation);
     controller.set('initialBounds', calculateBounds(boundsArray));
   }
-  
+
 });

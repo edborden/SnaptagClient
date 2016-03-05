@@ -8,7 +8,7 @@ const {
 } = Ember;
 
 export default Mixin.create({
-  
+
   // services
   session: service(),
 
@@ -19,9 +19,9 @@ export default Mixin.create({
   headers() {
     let session = this.get('session');
     if (session.get('isAuthenticated')) {
-      return { 'Authorization': `Bearer ${session.get('currentSession').get('token')}` };      
+      return { 'Authorization': `Bearer ${session.get('currentSession').get('token')}` };
     } else {
-      return {};      
+      return {};
     }
   }
 
