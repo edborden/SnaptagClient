@@ -66,21 +66,23 @@ export default Route.extend({
       this.get('loader').in();
       this.get('ajax').getServer('hunts/join', { location: this.get('geolocation').getObject() });
     },
-            
+
     unjoin() {
       let me = this.get('session').get('me');
       this.get('ajax').getServer('hunts/unjoin');
-      me.set('status' ,'inactive');
+      me.set('status', 'inactive');
       me.set('activationqueue', null);
       this.get('growler').growl(7);
     },
 
     found(target) {
+      // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
       this.get('loader').in();
       this.get('ajax').getServer('hunts/found_target', { target_id: target.get('id') });
     },
 
     expose(suspect) {
+      // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
       this.get('loader').in();
       this.get('ajax').getServer('hunts/expose', { stalker_id: suspect.get('id') });
     },
@@ -94,12 +96,12 @@ export default Route.extend({
   facebookLogin() {
     let session = this.get('session');
     let provider;
-    //if (config.environment === 'production') {
+    // if (config.environment === 'production') {
     //  provider = 'facebook-phonegap';
-    //} else {
+    // } else {
     provider = 'facebook-token';
-    //}
-    return session.open(provider)
+    // }
+    return session.open(provider);
   }
 
 });

@@ -103,10 +103,10 @@ export default Component.extend({
     pic() {
       this.set('modal', 'pic');
     },
-    closePic() { 
+    closePic() {
       this.set('showFound', false);
       this.set('showExpose', false);
-      if (isPresent(this.get('activeSuspect'))) { 
+      if (isPresent(this.get('activeSuspect'))) {
         this.set('modal', 'web');
       } else {
         this.set('modal', 'me');
@@ -120,7 +120,7 @@ export default Component.extend({
       this.set('showExpose', true);
       this.set('modal', 'pic');
     },
-    found() {     
+    found() {
       this.sendAction('sendFound', this.get('activeSuspect'));
       this.set('activeSuspect', null);
     },
@@ -147,7 +147,7 @@ export default Component.extend({
         this.set('activeSuspect', suspect);
       }
     },
-    info() { 
+    info() {
       this.toggleProperty('showInfo');
     }
   },

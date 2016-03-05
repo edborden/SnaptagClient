@@ -30,7 +30,7 @@ export default MarkerLayer.extend({
   onLocationChange: observer('lat', 'lng', function() {
     let geolocation = this.get('geolocation');
     let array = geolocation.getArray();
-    let accuracy = geolocation.get('accuracy');    
+    let accuracy = geolocation.get('accuracy');
     this._layer.setLatLng(array);
     this._layer.setAccuracy(accuracy);
   })

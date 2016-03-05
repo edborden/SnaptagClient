@@ -15,10 +15,10 @@ export default Component.extend({
   classNameBindings: [ 'read' ],
   notification: null,
 
-  //computed
+  // computed
   @alias('notification.read') read,
 
-  //events
+  // events
   click() {
     if (!this.get('read')) {
       let notification = this.get('notification');
