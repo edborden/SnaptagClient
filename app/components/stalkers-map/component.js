@@ -4,5 +4,5 @@ export default LeafletMap.extend({
 
   zoomControl: false,
   attributionControl: false
-  
+
 });

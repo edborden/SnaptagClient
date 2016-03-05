@@ -11,38 +11,38 @@ const {
 
 export default Component.extend(Rotatable, {
 
-	// services
-	session: service(),
+  // services
+  session: service(),
 
-	// attributes
-	classNameBindings: [ 'target' ],
-	suspect: null,
-	activeSuspect: null,
-	action: 'suspectClicked',
+  // attributes
+  classNameBindings: [ 'target' ],
+  suspect: null,
+  activeSuspect: null,
+  action: 'suspectClicked',
 
-	// computed
-	@alias('suspect.isTarget') target,
-	@alias('session.me.suspects.length') totalCount,
-	
-	@computed('activeSuspect')
-	active() {
-		return isEqual(this.get('activeSuspect'), this.get('suspect'));
-	},
+  // computed
+  @alias('suspect.isTarget') target,
+  @alias('session.me.suspects.length') totalCount,
 
-	@computed
-	panelDim() {
+  @computed('activeSuspect')
+  active() {
+    return isEqual(this.get('activeSuspect'), this.get('suspect'));
+  },
+
+  @computed
+  panelDim() {
     let vw = this.get('vw');
-		return 78*vw/2;
-	},
+    return 78 * vw / 2;
+  },
 
-	@computed
-	circleDim() {
+  @computed
+  circleDim() {
     let vw = this.get('vw');
-		return 19*vw/2;
-	},
+    return 19 * vw / 2;
+  },
 
-	click() {
-		this.sendAction('action', this.get('suspect'));
-	}
+  click() {
+    this.sendAction('action', this.get('suspect'));
+  }
 
 });
