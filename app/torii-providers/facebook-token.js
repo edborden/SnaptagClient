@@ -3,15 +3,15 @@ import Oauth2 from 'torii/providers/oauth2-bearer';
 
 export default Oauth2.extend({
 
-	name:    'facebook-token',
-	baseUrl: 'https://www.facebook.com/dialog/oauth',
+  name:    'facebook-token',
+  baseUrl: 'https://www.facebook.com/dialog/oauth',
 
-	requiredUrlParams: ['display'],
+  requiredUrlParams: ['display'],
 
-	responseParams: ['token'],
+  responseParams: ['token'],
 
-	scope:        configurable('scope', 'email'),
+  scope:        configurable('scope', 'email'),
 
-	display: 'popup'
+  display: 'popup'
 
 });

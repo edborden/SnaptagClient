@@ -11,7 +11,7 @@ export function toLeafletArray(locationsArray) {
 };
 
 export function toLeaflet(locationModel) {
-  const lat = locationModel.get('lat');
-  const lng = locationModel.get('lng');
-  return L.latLng(lat, lng);  
+  let lat = locationModel.get('lat');
+  let lng = locationModel.get('lng');
+  return L.latLng(lat, lng);
 };

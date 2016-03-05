@@ -115,7 +115,7 @@ export default Service.extend({
         break;
 
       case 'New target location':
-      
+
         store.pushPayload(data);
         location = store.peekRecord('location', data.location.id);
         target = location.get('user');

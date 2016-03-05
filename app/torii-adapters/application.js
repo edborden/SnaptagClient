@@ -48,7 +48,7 @@ export default Object.extend({
           currentSession: session,
           me: session.get('user')
         };
-      }, (error) => { 
+      }, (error) => {
         localStorage.clear();
         reject(error);
       });

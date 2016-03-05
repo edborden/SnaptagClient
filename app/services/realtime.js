@@ -53,7 +53,7 @@ export default Service.extend({
       }
     }
   }),
-    
+
   // helpers
   disconnect() {
     this.get('pusher').disconnect();
