@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import ServerTalk from 'stalkers-client/mixins/server-talk';
 import config from 'stalkers-client/config/environment';
 import { alias } from 'ember-computed-decorators';
 
@@ -10,7 +9,7 @@ const {
   isPresent
 } = Ember;
 
-export default Route.extend(ServerTalk, {
+export default Route.extend({
 
   // services
   growler: service(),
@@ -20,6 +19,7 @@ export default Route.extend(ServerTalk, {
   loader: service(),
   geolocation: service(),
   realtime: service(),
+  ajax: service(),
 
   // computed
   @alias('session.currentUser') me,
@@ -64,12 +64,12 @@ export default Route.extend(ServerTalk, {
 
     join() {
       this.get('loader').in();
-      this.getServer('hunts/join', { location: this.get('geolocation').getObject() });
+      this.get('ajax').getServer('hunts/join', { location: this.get('geolocation').getObject() });
     },
             
     unjoin() {
       let me = this.get('session').get('me');
-      this.getServer('hunts/unjoin');
+      this.get('ajax').getServer('hunts/unjoin');
       me.set('status' ,'inactive');
       me.set('activationqueue', null);
       this.get('growler').growl(7);
@@ -77,12 +77,12 @@ export default Route.extend(ServerTalk, {
 
     found(target) {
       this.get('loader').in();
-      this.getServer('hunts/found_target', { target_id: target.get('id') });
+      this.get('ajax').getServer('hunts/found_target', { target_id: target.get('id') });
     },
 
     expose(suspect) {
       this.get('loader').in();
-      this.getServer('hunts/expose', { stalker_id: suspect.get('id') });
+      this.get('ajax').getServer('hunts/expose', { stalker_id: suspect.get('id') });
     },
 
     accessDenied() {
