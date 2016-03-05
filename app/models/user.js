@@ -13,7 +13,7 @@ const {
 const {
   inject: { service },
   isEqual
-} = Ember
+} = Ember;
 
 export default Model.extend({
 
@@ -45,7 +45,7 @@ export default Model.extend({
   @equal('status', 'active') active,
   @equal('status', 'queue') queue,
   @equal('status', 'inactive') inactive,
-  
+
   // this errors if there isn't a session
   @computed('meTargets')
   isTarget() {

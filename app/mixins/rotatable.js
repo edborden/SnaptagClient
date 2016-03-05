@@ -33,6 +33,6 @@ export default Mixin.create({
     let vw = Ember.$('body').width() / 100;
     this.set('vw', vw);
     let origin = this.get('panelDim') + this.get('circleDim');
-    this.get('element').style.webkitTransformOrigin = '50% ' + origin + 'px';
+    this.get('element').style.webkitTransformOrigin = `50%${origin}px`;
   }
 });

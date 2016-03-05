@@ -9,7 +9,7 @@ export default Service.extend({
 
   growl(code) {
     let message;
-    
+
     switch (code) {
       case 1:
         message = 'Logged out';

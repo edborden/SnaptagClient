@@ -19,7 +19,7 @@ export default Service.extend({
   updateApp: false,
   iosLink: 'http://itunes.apple.com/app/id998182913',
   androidLink: 'market://details?id=com.stalkersgame',
-  
+
   // computed
   @computed
   updateLink() {
@@ -59,9 +59,9 @@ export default Service.extend({
   setRemoteVersion() {
     let versions = this.get('remoteVersions');
     if (this.androidDevice()) {
-      this.set('remoteVersion', versions.filterBy('platform','android').get('firstObject').get('revision'));
+      this.set('remoteVersion', versions.filterBy('platform', 'android').get('firstObject').get('revision'));
     } else {
-      this.set('remoteVersion', versions.filterBy('platform','ios').get('firstObject').get('revision'));
+      this.set('remoteVersion', versions.filterBy('platform', 'ios').get('firstObject').get('revision'));
     }
   },
 

@@ -16,9 +16,9 @@ export default Object.extend({
   growler: service(),
 
   open(auth) {
-    const notificator = this.get('notificator');
-    const store = this.get('store');
-    const { authorizationToken: { token } } = auth;
+    let notificator = this.get('notificator');
+    let store = this.get('store');
+    let { authorizationToken: { token } } = auth;
 
     return store.createRecord('session', {
       token,

@@ -24,22 +24,22 @@ export default Service.extend({
   },
 
   setup() {
-    let pushNotification = window.plugins.pushNotification
+    let { plugins: { pushNotification } } = window;
     let callbackHandler = bind(this, this.callbackHandler);
 
     if (device.platform === 'android' || device.platform === 'Android') {
       this.set('platform', 'android');
       pushNotification.register(callbackHandler, callbackHandler, {
-        "senderID": "153122295049",
-        "ecb":"onNotification"
+        senderID: 153122295049,
+        ecb: 'onNotification'
       });
     } else {
       this.set('platform', 'ios');
       pushNotification.register(callbackHandler, callbackHandler, {
-        "badge": "true",
-        "sound":"true",
-        "alert":"true",
-        "ecb":"onNotificationAPN"
+        badge: true,
+        sound: true,
+        alert: true,
+        ecb: 'onNotificationAPN'
       });
     }
   },

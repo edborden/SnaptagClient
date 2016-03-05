@@ -25,7 +25,7 @@ export default Service.extend({
   // computed
   @alias('session.me') me,
 
-  //events
+  // events
   init() {
     this._super();
     this.get('me');
@@ -51,10 +51,10 @@ export default Service.extend({
           this.setPusherInactive();
           break;
       }
-    }   
+    }
   }),
     
-  // helpers    
+  // helpers
   disconnect() {
     this.get('pusher').disconnect();
   },
@@ -87,7 +87,7 @@ export default Service.extend({
     me.get('targets').forEach((target) => {
       this.watchTarget(target);
     });
-  },    
+  },
 
   setPusherQueue() {
     console.log('setPusherQueue');
@@ -98,13 +98,13 @@ export default Service.extend({
     let messages = [ 'You have entered the game' ];
     this.bindMessagesToChannel(messages, channel);
 
-    channel = pusher.subscribe('activationqueue' + me.get('activationqueue').get('id'));
+    channel = pusher.subscribe(`activationqueue${me.get('activationqueue').get('id')}`);
     messages = [ 'Add user to activationqueue', 'Remove user from activationqueue' ];
     this.bindMessagesToChannel(messages, channel);
   },
 
   watchTarget(target) {
-    let channel = this.get('pusher').subscribe('user' + target.get('id'));
+    let channel = this.get('pusher').subscribe(`user${target.get('id')}`);
     let messages = [ 'New target location' ];
     this.bindMessagesToChannel(messages, channel);
   },
@@ -112,7 +112,7 @@ export default Service.extend({
   bindMessagesToChannel(messages, channel) {
     let executive = this.get('executive');
     messages.forEach(function(message) {
-      channel.bind(message, function(data) { 
+      channel.bind(message, function(data) {
         console.log('Message received ', message);
         executive.action(message, data);
       });

@@ -131,7 +131,7 @@ export default Service.extend({
         .then(function(activationqueue) {
           me.set('activationqueue', activationqueue);
           me.set('status', 'queue');
-          loader.out()
+          loader.out();
           routing.transitionTo('inactivemap');
         });
         growler.growl(6);
@@ -139,9 +139,9 @@ export default Service.extend({
 
       case 'You have entered the game':
 
-        loader.in(); 
+        loader.in();
         this.get('session').get('currentSession').reload()
-        .then(function() { 
+        .then(function() {
           me.set('status', 'active');
           loader.out();
           routing.transitionTo('map');
@@ -163,7 +163,7 @@ export default Service.extend({
   pushUser(data) {
     let store = this.get('store');
     store.pushPayload(data);
-    let user = store.peekRecord('user', data.user.id);   
+    let user = store.peekRecord('user', data.user.id);
     return user;
   },
 
@@ -181,6 +181,6 @@ export default Service.extend({
     me.get('suspects').removeObject(user);
     me.get('targets').removeObject(user);
     me.notifyPropertyChange('suspects');
-    user.deleteRecord()
+    user.deleteRecord();
   }
 });

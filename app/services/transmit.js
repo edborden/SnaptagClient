@@ -46,7 +46,7 @@ export default Service.extend({
   // events
   init() {
     this.transmittingChanged();
-    //@setInternetConnectionListeners()
+    // @setInternetConnectionListeners()
   },
 
   transmittingChanged: observer('isTransmitting', function() {
@@ -86,7 +86,7 @@ export default Service.extend({
     else
       @hasInternetConnection = true
 
-  onOnline: -> 
+  onOnline: ->
     console.log "internet connection went online"
     unless @hasInternetConnection
       @hasInternetConnection = true
