@@ -22,7 +22,7 @@ export default Route.extend({
   ajax: service(),
 
   // computed
-  @alias('session.currentUser') me,
+  @alias('session.me') me,
 
   // events
   afterModel() {

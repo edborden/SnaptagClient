@@ -15,7 +15,7 @@ export default Route.extend({
   geolocation: service(),
 
   // computed
-  @alias('session.currentUser') me,
+  @alias('session.me') me,
 
   beforeModel() {
     let shouldUpdateApp = this.get('updater').get('updateApp');

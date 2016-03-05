@@ -25,7 +25,7 @@ export default Component.extend({
   activeSuspect: null,
 
   // computed
-  @alias('session.currentUser') me,
+  @alias('session.me') me,
   @equal('modal', 'me') showMe,
   @equal('modal', 'web') showWeb,
   @equal('modal', 'pic') showPic,

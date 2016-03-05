@@ -40,7 +40,7 @@ export default Model.extend({
   locations: hasMany('location', { async: false }),
 
   // computed
-  @alias('session.currentUser.targets') meTargets,
+  @alias('session.me.targets') meTargets,
   @alias('locations.lastObject') location,
   @equal('status', 'active') active,
   @equal('status', 'queue') queue,

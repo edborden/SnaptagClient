@@ -30,7 +30,7 @@ export default Object.extend({
       this.get('growler').growl('Logged in successfully');
       return {
         currentSession: response,
-        currentUser: response.get('user')
+        me: response.get('user')
       };
     });
   },
@@ -46,7 +46,7 @@ export default Object.extend({
         let session = response.get('firstObject');
         return {
           currentSession: session,
-          currentUser: session.get('user')
+          me: session.get('user')
         };
       }, (error) => { 
         localStorage.clear();

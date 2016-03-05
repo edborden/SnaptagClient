@@ -18,7 +18,7 @@ export default Service.extend({
   eventer: service(),
 
   // computed
-  @alias('session.currentUser') me,
+  @alias('session.me') me,
   @alias('me.activationqueue') activationqueue,
   @alias('activationqueue.zone') zone,
 

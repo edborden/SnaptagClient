@@ -23,7 +23,7 @@ export default Service.extend({
   map: null,
 
   // computed
-  @alias('session.currentUser') me,
+  @alias('session.me') me,
 
   //events
   init() {
@@ -36,7 +36,7 @@ export default Service.extend({
     if (isPresent(this.get('pusher'))) {
       this.disconnect();
     }
-    if (this.get('session').get('loggedIn')) {
+    if (this.get('session').get('isAuthenticated')) {
       console.log(this.get('me').get('status'));
       this.setPusher();
       this.subscribeToNotifications();
