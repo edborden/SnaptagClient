@@ -32,12 +32,11 @@ export default Service.extend({
   },
 
   statusChanged: observer('me.status', function() {
-    console.log('status changed');
     if (isPresent(this.get('pusher'))) {
       this.disconnect();
     }
-    if (this.get('session').get('isAuthenticated')) {
-      console.log(this.get('me').get('status'));
+    let session = this.get('session');
+    if (session.get('isAuthenticated') && !session.get('isClosing')) {
       this.setPusher();
       this.subscribeToNotifications();
       switch (this.get('me').get('status')) {
