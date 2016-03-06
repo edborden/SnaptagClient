@@ -41,25 +41,14 @@ export default Route.extend({
 
     login() {
       let loader = this.get('loader');
-      let growler = this.get('growler');
 
       loader.in();
       this.facebookLogin()
       .then(() => {
-        let me = this.get('me');
-        if (me.get('active')) {
-          loader.out();
-          this.transitionTo('active');
-          growler.growl(2);
-        } else {
-          loader.out();
-          this.transitionTo('inactive');
-          if (me.get('inactive')) {
-            growler.growl(3);
-          } else {
-            growler.growl(4);
-          }
-        }
+        loader.out()
+        this.get('growler').growl(2);
+        let status = this.get('me').get('status');
+        this.transitionTo(status);
       });
     },
 

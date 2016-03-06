@@ -25,13 +25,8 @@ export default Route.extend(ZoneModel, {
     } else {
       let isAuthenticated = this.get('session').get('isAuthenticated');
       if (isAuthenticated) {
-        if (me.get('active')) {
-          this.replaceWith('active');
-        } else {
-          if (me.get('inactive') || me.get('queue')) {
-            this.replaceWith('inactive');
-          }
-        }
+        let status = me.get('status');
+        this.replaceWith(status);
       }
     }
   }

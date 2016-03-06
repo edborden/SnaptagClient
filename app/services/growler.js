@@ -15,13 +15,13 @@ export default Service.extend({
         message = 'Logged out';
         break;
       case 2:
-        message = 'Logged in! You are now in-game.';
-        break;
+        message = 'Logged in';
+        break;      
       case 3:
-        message = 'Logged in! You may now Activate.';
+        message = 'You may now Activate.';
         break;
       case 4:
-        message = 'Logged in! You are waiting for other players.';
+        message = 'You are waiting for other players.';
         break;
       case 5:
         message = 'You have been activated and are now in-game.';

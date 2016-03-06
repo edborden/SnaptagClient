@@ -8,8 +8,15 @@ const {
 
 export default Route.extend({
 
+  // services
   session: service(),
   geolocation: service(),
+  growler: service(),
+
+  // events
+  beforeModel() {
+    this.get('growler').growl(13);
+  },
 
   model() {
     return this.get('session').get('me').get('targets').getEach('location');

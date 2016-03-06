@@ -5,4 +5,11 @@ const {
   Route
 } = Ember;
 
-export default Route.extend(ZoneModel, {});
+export default Route.extend(ZoneModel, {
+
+  // events
+  beforeModel() {
+    this.get('growler').growl(3);
+  }
+
+});
