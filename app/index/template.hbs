@@ -15,7 +15,7 @@
 		{{partial 'instructions'}}
   {{/content-panel}}
 {{/if}}
-{{#stalkers-map bounds=initialBounds}}
+{{#stalkers-map bounds=initialBounds center=center zoom=zoom}}
 	{{tile-layer url='https://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}
 	{{me-marker}}
 	{{#each model as |zone|}}

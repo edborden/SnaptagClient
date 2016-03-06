@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { calculateBounds } from 'stalkers-client/utils/leaflet-helpers';
+import { calculateBounds, toLeaflet } from 'stalkers-client/utils/leaflet-helpers';
 
 const {
   Route,
@@ -21,7 +21,12 @@ export default Route.extend({
     // Implement your custom setup after
     let myLocation = this.get('geolocation').getEmberObject();
     let boundsArray = [myLocation].pushObjects(model);
-    controller.set('initialBounds', calculateBounds(boundsArray));
+    if (boundsArray.length === 1) {
+      controller.set('center', toLeaflet(myLocation));
+      controller.set('zoom', 15);
+    } else {
+      controller.set('initialBounds', calculateBounds(boundsArray));
+    }
   }
 
 });

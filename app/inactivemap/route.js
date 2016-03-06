@@ -27,7 +27,12 @@ export default Route.extend({
     });
     boundsArray = boundsArray.get('firstObject');
     boundsArray.pushObject(myLocation);
-    controller.set('initialBounds', calculateBounds(boundsArray));
+    if (boundsArray.length === 1) {
+      controller.set('center', toLeaflet(myLocation));
+      controller.set('zoom', 15);
+    } else {
+      controller.set('initialBounds', calculateBounds(boundsArray));
+    }
   }
 
 });

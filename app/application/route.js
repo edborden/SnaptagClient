@@ -20,6 +20,7 @@ export default Route.extend({
   geolocation: service(),
   realtime: service(),
   ajax: service(),
+  keen: service(),
 
   // computed
   @alias('session.me') me,
@@ -77,12 +78,14 @@ export default Route.extend({
 
     found(target) {
       // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+      this.get('keen').addEvent('found', target.getProperties('id', 'name', 'email'));
       this.get('loader').in();
       this.get('ajax').getServer('hunts/found_target', { target_id: target.get('id') });
     },
 
     expose(suspect) {
       // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+      this.get('keen').addEvent('expose', suspect.getProperties('id', 'name', 'email'));
       this.get('loader').in();
       this.get('ajax').getServer('hunts/expose', { stalker_id: suspect.get('id') });
     },
