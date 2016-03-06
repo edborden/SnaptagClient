@@ -25,19 +25,16 @@ export default Service.extend({
   // computed
   @alias('geolocation.accuracy') accuracy,
   @alias('session.me') me,
+  @alias('me.active') active,
 
   @computed('accuracy')
   locationIsAccurate() {
-    if (typeof cordova === 'undefined') {
-      return true;
-    } else {
-      return this.get('accuracy') < 100;
-    }
+    return this.get('accuracy') < 100;
   },
 
-  @computed('me.active', 'locationIsAccurate', 'hasInternetConnection')
+  @computed('active', 'locationIsAccurate', 'hasInternetConnection')
   isTransmitting() {
-    let active = this.get('me').get('active');
+    let active = this.get('active');
     let locationIsAccurate = this.get('locationIsAccurate');
     let hasInternetConnection = this.get('hasInternetConnection');
     return active && locationIsAccurate && hasInternetConnection;
@@ -49,6 +46,7 @@ export default Service.extend({
     // @setInternetConnectionListeners()
   },
 
+  // this does not function correctly after logout, still sends location
   transmittingChanged: observer('isTransmitting', function() {
     let isTransmitting = this.get('isTransmitting');
     let intervalID = this.get('intervalID');
