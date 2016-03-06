@@ -23,6 +23,7 @@ export default Component.extend({
   showInfo: false,
   contentSection: true,
   activeSuspect: null,
+  length: null,
 
   // computed
   @alias('session.me') me,
