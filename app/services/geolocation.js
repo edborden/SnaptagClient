@@ -15,25 +15,29 @@ export default Service.extend({
   // attributes
   promise: null,
   resolvePromise: null,
+  rejectPromise: null,
   lat: null,
   lng: null,
   accuracy: null,
 
   // events
   init() {
+    console.log('geolocation init')
     this.setupLocation();
-    this.set('promise', new Promise((resolve) => {
+    this.set('promise', new Promise((resolve, reject) => {
       this.set('resolvePromise', resolve);
+      this.set('rejectPromise', reject);
     }));
   },
 
   // helpers
   setupLocation() {
     let firstPositionSuccess = bind(this, this.firstPositionSuccess);
+    let firstPositionError = bind(this, this.firstPositionError);
     let setPosition = bind(this, this.setPosition);
 
     navigator.geolocation.watchPosition(setPosition, this.error, { enableHighAccuracy: true });
-    navigator.geolocation.getCurrentPosition(firstPositionSuccess, this.error, {
+    navigator.geolocation.getCurrentPosition(firstPositionSuccess, firstPositionError, {
       timeout: 15000,
       maximumAge: 0,
       enableHighAccuracy: true
@@ -50,6 +54,11 @@ export default Service.extend({
     this.setPosition(position);
     console.log('LOCATION SUCCESS');
     this.get('resolvePromise')();
+  },
+
+  firstPositionError(error) {
+    this.error(error);
+    this.get('rejectPromise')(error.message);
   },
 
   error(error) {

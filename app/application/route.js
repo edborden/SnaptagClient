@@ -27,7 +27,6 @@ export default Route.extend({
   // events
   afterModel() {
     this.get('realtime').statusChanged();
-    return this.get('geolocation').get('promise');
   },
 
   // actions
