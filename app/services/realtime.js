@@ -19,8 +19,6 @@ export default Service.extend({
 
   // attributes
   pusher: null,
-  // Set in intializer to MapController
-  map: null,
 
   // computed
   @alias('session.me') me,

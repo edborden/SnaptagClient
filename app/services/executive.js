@@ -120,8 +120,6 @@ export default Service.extend({
         location = store.peekRecord('location', data.location.id);
         target = location.get('user');
         target.get('locations').pushObject(location);
-        target.notifyPropertyChange('latestLocation');
-        this.get('map').notifyPropertyChange('latestLocations');
         break;
 
       case 'Added to activationqueue':
@@ -144,7 +142,7 @@ export default Service.extend({
         .then(function() {
           me.set('status', 'active');
           loader.out();
-          routing.transitionTo('map');
+          routing.transitionTo('active');
         });
         growler.growl(5);
         break;

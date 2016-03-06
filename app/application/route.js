@@ -49,7 +49,7 @@ export default Route.extend({
         let me = this.get('me');
         if (me.get('active')) {
           loader.out();
-          this.transitionTo('map');
+          this.transitionTo('active');
           growler.growl(2);
         } else {
           loader.out();

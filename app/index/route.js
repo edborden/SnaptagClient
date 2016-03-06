@@ -27,7 +27,7 @@ export default Route.extend({
       let isAuthenticated = this.get('session').get('isAuthenticated');
       if (isAuthenticated) {
         if (me.get('active')) {
-          this.replaceWith('map');
+          this.replaceWith('active');
         } else {
           if (me.get('inactive') || me.get('queue')) {
             this.replaceWith('inactive');
