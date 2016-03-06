@@ -26,6 +26,9 @@ module.exports = function(defaults) {
   // Pusher
   app.import('bower_components/pusher/dist/pusher.min.js');
 
+  // Keen.io
+  app.import('bower_components/keen-js/dist/keen.min.js');
+  
   // Leaflet Awesome Markers
   app.import('bower_components/leaflet.awesome-markers/dist/leaflet.awesome-markers.js');
   app.import('bower_components/leaflet.awesome-markers/dist/leaflet.awesome-markers.css');
