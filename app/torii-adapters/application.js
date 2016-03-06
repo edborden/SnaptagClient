@@ -27,7 +27,6 @@ export default Object.extend({
     }).save()
     .then((response) => {
       localStorage.stalkersToken = response.get('token');
-      this.get('growler').growl('Logged in successfully');
       return {
         currentSession: response,
         me: response.get('user')

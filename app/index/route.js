@@ -27,12 +27,10 @@ export default Route.extend({
       let isAuthenticated = this.get('session').get('isAuthenticated');
       if (isAuthenticated) {
         if (me.get('active')) {
-          console.log('transitionTo map');
           this.replaceWith('map');
         } else {
           if (me.get('inactive') || me.get('queue')) {
-            console.log('transitionTo inactivemap');
-            this.replaceWith('inactivemap');
+            this.replaceWith('inactive');
           }
         }
       }

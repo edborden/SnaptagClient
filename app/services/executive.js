@@ -132,7 +132,7 @@ export default Service.extend({
           me.set('activationqueue', activationqueue);
           me.set('status', 'queue');
           loader.out();
-          routing.transitionTo('inactivemap');
+          routing.transitionTo('inactive');
         });
         growler.growl(6);
         break;
@@ -157,7 +157,7 @@ export default Service.extend({
     me.set('status', 'inactive');
     me.get('suspects').clear();
     me.get('targets').clear();
-    this.get('routing').transitionTo('inactivemap');
+    this.get('routing').transitionTo('inactive');
   },
 
   pushUser(data) {

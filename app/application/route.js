@@ -53,7 +53,7 @@ export default Route.extend({
           growler.growl(2);
         } else {
           loader.out();
-          this.transitionTo('inactivemap');
+          this.transitionTo('inactive');
           if (me.get('inactive')) {
             growler.growl(3);
           } else {
