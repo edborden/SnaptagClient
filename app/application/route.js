@@ -14,7 +14,6 @@ export default Route.extend({
   // services
   growler: service(),
   executive: service(),
-  updater: service(),
   session: service(),
   loader: service(),
   geolocation: service(),

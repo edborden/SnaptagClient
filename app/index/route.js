@@ -10,24 +10,16 @@ const {
 export default Route.extend(ZoneModel, {
 
   // services
-  updater: service(),
   session: service(),
 
   // computed
   @alias('session.me') me,
 
   beforeModel() {
-    let shouldUpdateApp = this.get('updater').get('updateApp');
-    let me = this.get('me');
-
-    if (shouldUpdateApp) {
-      this.replaceWith('update');
-    } else {
-      let isAuthenticated = this.get('session').get('isAuthenticated');
-      if (isAuthenticated) {
-        let status = me.get('status');
-        this.replaceWith(status);
-      }
+    let isAuthenticated = this.get('session').get('isAuthenticated');
+    if (isAuthenticated) {
+      let status = this.get('me').get('status');
+      this.replaceWith(status);
     }
   }
 

@@ -9,7 +9,6 @@ Router.map(function() {
   this.authenticatedRoute('active');
   this.authenticatedRoute('inactive');
   this.authenticatedRoute('queue');
-  this.route('update');
 });
 
 export default Router;
