@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import { alias } from 'ember-computed-decorators';
-import { calculateBounds } from 'stalkers-client/utils/leaflet-helpers';
+import { calculateBounds, toLeaflet } from 'stalkers-client/utils/leaflet-helpers';
 
 const {
   Route,

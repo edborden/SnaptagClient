@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { calculateBounds } from 'stalkers-client/utils/leaflet-helpers';
+import { calculateBounds, toLeaflet } from 'stalkers-client/utils/leaflet-helpers';
 
 const {
   Route,
