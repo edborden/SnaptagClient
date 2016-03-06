@@ -16,7 +16,7 @@ export default Service.extend({
         break;
       case 2:
         message = 'Logged in';
-        break;      
+        break;
       case 3:
         message = 'You may now Activate.';
         break;

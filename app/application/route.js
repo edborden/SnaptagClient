@@ -43,7 +43,7 @@ export default Route.extend({
       loader.in();
       this.facebookLogin()
       .then(() => {
-        loader.out()
+        loader.out();
         this.get('growler').growl(2);
         let status = this.get('me').get('status');
         this.transitionTo(status);

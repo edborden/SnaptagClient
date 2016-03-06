@@ -22,7 +22,6 @@ export default Service.extend({
 
   // events
   init() {
-    console.log('geolocation init')
     this.setupLocation();
     this.set('promise', new Promise((resolve, reject) => {
       this.set('resolvePromise', resolve);
