@@ -1,28 +1,18 @@
 <div class="index-bg">
   {{#content-panel upper=true}}
     Welcome to the
-    <h3>Selective Society of Self-Imposed Secret Stalkers<br>
-      (SSSSS)</h3>
+    <h2>Selective Society of Self-Imposed Secret Stalkers<br>
+      (SSSSS)</h2>
     For those who desire genuine experiences of watching and being watched, and sneaking and being sneaked.
   {{/content-panel}}
   {{#content-panel}}
-    To begin, you'll need to share your location so we can search for other members in your area.
+    To begin, you'll need to share your location so we can show you if there are other members in your area. Your location won't be stored and we won't share it with anyone.
   {{/content-panel}}
-  <div class="circle-button second blue" {{action 'location'}}> 
+  <div class="circle-button second blue"> 
     <div class="self-center">
-      <i class="fa fa-map-marker fa-2x"></i>
+      {{#link-to 'location'}}
+        <i class="fa fa-map-marker fa-2x"></i>
+      {{/link-to}}
     </div>
   </div>
-  {{#if location}}
-    {{#content-panel full=true styled=false}}
-      <button class="btn btn-primary" {{action 'confirm'}}>
-        Confirm
-      </button>
-      <button class="btn btn-primary" {{action 'location'}}>
-        Cancel
-      </button>
-      <br>
-      {{error}}
-    {{/content-panel}}
-  {{/if}}
 </div>

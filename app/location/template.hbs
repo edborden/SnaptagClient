@@ -1,0 +1,14 @@
+<div class="index-bg">
+  {{#content-panel full=true styled=false}}
+    <h1><i class="fa fa-map-marker fa-1x"></i>    Use Location?</h1><br><br><br>
+    <h4>In order to show you other members in your area, SSSSS would like to access your location information from your device. This location information won't be stored and we won't share it with anyone.</h4><br><br><br>
+    <button class="btn btn-lg btn-primary" {{action 'confirm'}}>
+      Confirm
+    </button>
+    <button class="btn btn-lg btn-primary" {{action 'cancel'}}>
+      Cancel
+    </button>
+    <br>
+    <h4 class="red">{{error}}</h4>
+  {{/content-panel}}
+</div>

@@ -6,6 +6,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('location');
   this.route('search');
   this.authenticatedRoute('inactive');
   this.authenticatedRoute('queue');

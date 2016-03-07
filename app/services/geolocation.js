@@ -37,7 +37,7 @@ export default Service.extend({
 
     navigator.geolocation.watchPosition(setPosition, this.error, { enableHighAccuracy: true });
     navigator.geolocation.getCurrentPosition(firstPositionSuccess, firstPositionError, {
-      timeout: 15000,
+      timeout: 10000,
       maximumAge: 0,
       enableHighAccuracy: true
     });
@@ -51,17 +51,28 @@ export default Service.extend({
 
   firstPositionSuccess(position) {
     this.setPosition(position);
-    console.log('LOCATION SUCCESS');
     this.get('resolvePromise')();
   },
 
   firstPositionError(error) {
-    this.error(error);
-    this.get('rejectPromise')(error.message);
+    this.get('rejectPromise')(this.error(error));
   },
 
   error(error) {
-    console.warn(`LOCATION ERROR(${error.code}): ${error.message}`);
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        return 'You denied the request for your location. You may have to reset system settings to be able to re-confirm.';
+        break;
+      case error.POSITION_UNAVAILABLE:
+        return 'Your location information is unavailable. Please make sure your GPS and/or WiFi radios are enabled. If they already are, it may not be able to get your location at this time. Please try again in a different location.';
+        break;
+      case error.TIMEOUT:
+        return 'The request for your location timed out. Please make sure your GPS and/or WiFi radios are enabled. If they already are, it may not be able to get your location at this time. Please try again in a different location.';
+        break;
+      case error.UNKNOWN_ERROR:
+        return 'An unknown error occurred. Please make sure your GPS and/or WiFi radios are enabled. If they already are, it may not be able to get your location at this time. Please try again in a different location or try restarting the application.';
+        break;
+    }
   },
 
   getObject() {

@@ -11,22 +11,20 @@ export default Controller.extend({
   geolocation: service(),
 
   // attributes
-  location: false,
   error: null,
 
   // actions
   actions: {
-    location() {
-      this.toggleProperty('location');
-    },
     confirm() {
+      this.set('error', null);
       this.get('geolocation').get('promise').then(() => {
-        console.log('geolocation successful in contr');
         this.transitionToRoute('search');
       }, (error) => {
-        console.log('unsuccessful');
         this.set('error', error);
       });
+    },
+    cancel() {
+      this.transitionToRoute('index');
     }
   }
 });
