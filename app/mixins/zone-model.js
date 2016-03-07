@@ -3,7 +3,8 @@ import { calculateBounds, toLeaflet } from 'stalkers-client/utils/leaflet-helper
 
 const {
   Mixin,
-  inject: { service }
+  inject: { service },
+  isPresent
 } = Ember;
 
 export default Mixin.create({
@@ -22,16 +23,16 @@ export default Mixin.create({
     this._super(controller, model);
     // Implement your custom setup after
     let myLocation = this.get('geolocation').getEmberObject();
-    let boundsArray = model.getEach('users').map(function(usersArray) {
-      return usersArray.getEach('location');
-    });
-    boundsArray = boundsArray.get('firstObject');
-    boundsArray.pushObject(myLocation);
-    if (boundsArray.length === 1) {
+    if (isPresent(model)) {
+      let boundsArray = model.getEach('users').map(function(usersArray) {
+        return usersArray.getEach('location');
+      });
+      boundsArray = boundsArray.get('firstObject');
+      boundsArray.pushObject(myLocation);
+      controller.set('initialBounds', calculateBounds(boundsArray));
+    } else {
       controller.set('center', toLeaflet(myLocation));
       controller.set('zoom', 15);
-    } else {
-      controller.set('initialBounds', calculateBounds(boundsArray));
     }
   }
 
