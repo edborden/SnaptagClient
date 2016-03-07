@@ -3,13 +3,16 @@ import ZoneModel from 'stalkers-client/mixins/zone-model';
 import RequiresLocation from 'stalkers-client/mixins/requires-location';
 
 const {
-  Route
+  Route,
+  inject: { service }
 } = Ember;
 
 export default Route.extend(ZoneModel, RequiresLocation, {
 
+  growler: service(),
+
   // events
-  beforeModel() {
+  afterModel() {
     this.get('growler').growl(4);
   }
 

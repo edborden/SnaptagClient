@@ -15,14 +15,14 @@ export default Route.extend(RequiresLocation, {
   growler: service(),
 
   // events
-  beforeModel() {
-    this.get('growler').growl(13);
-  },
-
   model() {
     return this.get('session').get('me').get('targets').getEach('location');
   },
 
+  afterModel() {
+    this.get('growler').growl(13);
+  },
+  
   setupController(controller, model) {
     // Call _super for default behavior
     this._super(controller, model);
