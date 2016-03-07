@@ -1,13 +1,14 @@
 import Ember from 'ember';
 import { alias } from 'ember-computed-decorators';
 import ZoneModel from 'stalkers-client/mixins/zone-model';
+import RequiresLocation from 'stalkers-client/mixins/requires-location';
 
 const {
   Route,
   inject: { service }
 } = Ember;
 
-export default Route.extend(ZoneModel, {
+export default Route.extend(ZoneModel, RequiresLocation, {
 
   // services
   session: service(),
@@ -21,6 +22,7 @@ export default Route.extend(ZoneModel, {
       let status = this.get('me').get('status');
       this.replaceWith(status);
     }
+    return this._super();
   }
 
 });
