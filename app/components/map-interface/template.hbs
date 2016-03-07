@@ -165,11 +165,11 @@
   {{#if me.inactive}}
     {{#if noPlayers}}
       {{#content-panel}}
-        <div class="text-center">There are no other players in your area right now, so start your own game and spread the word!</div>
+        <div class="text-center">There are no other members in your area right now, so start your own chapter and recruit some other members!</div>
       {{/content-panel}}
     {{else}}
       {{#content-panel}}
-        <div class="text-center">There are other active players in your area right now! Join up!</div>
+        <div class="text-center">There are other active members in your area right now! Join up!</div>
       {{/content-panel}}
     {{/if}}
   {{/if}}
@@ -177,11 +177,11 @@
   {{#if me.queue}}
     {{#content-panel}}
       <div class="text-center">
-        You are in the queue, waiting for other players.
+        You are in the queue, waiting for other members.
         <br>
-        {{queueOtherUsersCount}} other players are in the queue. A new game will start when {{playersTillStartCount}} other players join
+        {{queueOtherUsersCount}} other members are in the queue. When {{playersTillStartCount}} other members join, you will begin
         {{#if activeQueueZone}}
-          , or you may be placed into another game as targets are found.
+          , or you may begin sooner as currently active targets are found.
         {{else}}
           .
         {{/if}}

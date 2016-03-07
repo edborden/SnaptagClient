@@ -22,7 +22,7 @@ export default Route.extend(RequiresLocation, {
   afterModel() {
     this.get('growler').growl(13);
   },
-  
+
   setupController(controller, model) {
     // Call _super for default behavior
     this._super(controller, model);

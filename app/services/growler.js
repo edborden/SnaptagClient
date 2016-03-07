@@ -18,16 +18,16 @@ export default Service.extend({
         message = 'Logged in';
         break;
       case 3:
-        message = 'You may now Activate.';
+        message = 'You may now join.';
         break;
       case 4:
-        message = 'You are waiting for other players.';
+        message = 'You are waiting for other members.';
         break;
       case 5:
-        message = 'You have been activated and are now in-game.';
+        message = 'You have been activated.';
         break;
       case 6:
-        message = 'Queue entered. You are waiting to play.';
+        message = 'Queue entered. You are waiting.';
         break;
       case 7:
         message = 'Queue exited. You are inactive.';
@@ -54,7 +54,6 @@ export default Service.extend({
         message = code;
     }
 
-    console.log('growled', message);
     this.get('messages').pushObject(message);
   }
 });
