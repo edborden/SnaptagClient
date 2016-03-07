@@ -19,6 +19,7 @@ export default Service.extend({
   lat: null,
   lng: null,
   accuracy: null,
+  failsafeID: null,
 
   // events
   init() {
@@ -37,10 +38,26 @@ export default Service.extend({
 
     navigator.geolocation.watchPosition(setPosition, this.error, { enableHighAccuracy: true });
     navigator.geolocation.getCurrentPosition(firstPositionSuccess, firstPositionError, {
-      timeout: 10000,
+      timeout: 6000,
       maximumAge: 0,
       enableHighAccuracy: true
     });
+
+    this.set('failsafeID', this.setFailsafeInterval());
+
+  },
+
+  setFailsafeInterval() {
+    let failsafeFail = bind(this, this.failsafeFail);
+    return setInterval(failsafeFail, 7000);
+  },
+
+  failsafeFail() {
+    this.get('rejectPromise')('Your location request timed out. Try again.');
+  },
+
+  clearFailsafe() {
+    clearInterval(this.get('failsafeID'));
   },
 
   setPosition(position) {
@@ -50,18 +67,20 @@ export default Service.extend({
   },
 
   firstPositionSuccess(position) {
+    this.clearFailsafe();
     this.setPosition(position);
     this.get('resolvePromise')();
   },
 
   firstPositionError(error) {
+    this.clearFailsafe();
     this.get('rejectPromise')(this.error(error));
   },
 
   error(error) {
     switch (error.code) {
       case error.PERMISSION_DENIED:
-        return 'You denied the request for your location. You may have to reset system settings to be able to re-confirm.';
+        return 'You denied the request for your location. You will have to reset your system settings to be able to re-confirm.';
         break;
       case error.POSITION_UNAVAILABLE:
         return 'Your location information is unavailable. Please make sure your GPS and/or WiFi radios are enabled. If they already are, it may not be able to get your location at this time. Please try again in a different location.';
@@ -72,6 +91,8 @@ export default Service.extend({
       case error.UNKNOWN_ERROR:
         return 'An unknown error occurred. Please make sure your GPS and/or WiFi radios are enabled. If they already are, it may not be able to get your location at this time. Please try again in a different location or try restarting the application.';
         break;
+      default:
+        return 'An very unknown error occurred. Please make sure your GPS and/or WiFi radios are enabled. If they already are, it may not be able to get your location at this time. Please try again in a different location or try restarting the application.';
     }
   },
 

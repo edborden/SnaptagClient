@@ -72,7 +72,7 @@ export default Service.extend({
   setLocationInterval() {
     console.log('setLocationInterval');
     let sendLocation = bind(this, this.sendLocation);
-    setInterval(sendLocation, 60000);
+    return setInterval(sendLocation, 60000);
   }
 
   /*

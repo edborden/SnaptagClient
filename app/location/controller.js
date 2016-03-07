@@ -12,14 +12,20 @@ export default Controller.extend({
 
   // attributes
   error: null,
+  waiting: false,
 
   // actions
   actions: {
     confirm() {
       this.set('error', null);
-      this.get('geolocation').get('promise').then(() => {
+      this.set('waiting', true);
+      let geolocation = this.get('geolocation');
+      geolocation.init();
+      geolocation.get('promise').then(() => {
+        this.set('waiting', false);
         this.transitionToRoute('search');
       }, (error) => {
+        this.set('waiting', false);
         this.set('error', error);
       });
     },
