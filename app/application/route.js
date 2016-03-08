@@ -61,6 +61,7 @@ export default Route.extend({
       me.set('status', 'inactive');
       me.set('activationqueue', null);
       this.get('growler').growl(7);
+      this.transitionTo('inactive');
     },
 
     found(target) {
