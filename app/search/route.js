@@ -2,13 +2,14 @@ import Ember from 'ember';
 import { alias } from 'ember-computed-decorators';
 import ZoneModel from 'stalkers-client/mixins/zone-model';
 import RequiresLocation from 'stalkers-client/mixins/requires-location';
+import ChecksStatus from 'stalkers-client/mixins/checks-status';
 
 const {
   Route,
   inject: { service }
 } = Ember;
 
-export default Route.extend(ZoneModel, RequiresLocation, {
+export default Route.extend(ZoneModel, RequiresLocation, ChecksStatus, {
 
   // services
   session: service(),

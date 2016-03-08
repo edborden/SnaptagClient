@@ -1,13 +1,14 @@
 import Ember from 'ember';
 import { calculateBounds, toLeaflet } from 'stalkers-client/utils/leaflet-helpers';
 import RequiresLocation from 'stalkers-client/mixins/requires-location';
+import ChecksStatus from 'stalkers-client/mixins/checks-status';
 
 const {
   Route,
   inject: { service }
 } = Ember;
 
-export default Route.extend(RequiresLocation, {
+export default Route.extend(RequiresLocation, ChecksStatus, {
 
   // services
   session: service(),
