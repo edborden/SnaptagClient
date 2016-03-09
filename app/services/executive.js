@@ -130,7 +130,7 @@ export default Service.extend({
           me.set('activationqueue', activationqueue);
           me.set('status', 'queue');
           loader.out();
-          routing.transitionTo('inactive');
+          routing.transitionTo('queue');
         });
         growler.growl(6);
         break;
