@@ -5,8 +5,10 @@
 		<span class="small">Exit Queue</span>
 	</div>
 </div>
+
+{{info-box length=model.length}}
 		
-{{map-interface length=model.length}}
+{{map-interface}}
 
 {{#stalkers-map bounds=initialBounds initialCenter=center initialZoom=zoom}}
 	{{tile-layer url='https://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}

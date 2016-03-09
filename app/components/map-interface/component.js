@@ -32,7 +32,6 @@ export default Component.extend({
   @equal('modal', 'pic') showPic,
   @equal('modal', 'notifications') showNotifications,
   @equal('modal', 'instructions') showInstructions,
-  @equal('modal', null) showInfoButton,
 
   @computed('showWeb', 'showPic', 'activeSuspect')
   webButtonActive() {
@@ -147,28 +146,7 @@ export default Component.extend({
       } else {
         this.set('activeSuspect', suspect);
       }
-    },
-    info() {
-      this.toggleProperty('showInfo');
     }
-  },
-
-  // info box
-  @alias('me.activationqueue') activationqueue,
-  @alias('activationqueue.usersCount') usersCount,
-  @equal('length', 0) noPlayers,
-  @computed('usersCount')
-  queueOtherUsersCount() {
-    if (isEqual(this.get('usersCount'), 0)) {
-      return 'No';
-    } else {
-      return this.get('usersCount') - 1;
-    }
-  },
-  @computed('usersCount')
-  playersTillStartCount() {
-    return 12 - this.get('usersCount');
-  },
-  @alias('activationqueue.zone.active') activeQueueZone
+  }
 
 });
