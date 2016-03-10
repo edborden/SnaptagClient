@@ -21,9 +21,7 @@ export default Object.extend({
     let { authorizationToken: { token } } = auth;
 
     return store.createRecord('session', {
-      token,
-      regId: notificator.get('regId'),
-      platform: notificator.get('platform')
+      token
     }).save()
     .then((response) => {
       localStorage.stalkersToken = response.get('token');
