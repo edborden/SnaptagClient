@@ -1,5 +1,9 @@
 @import "bower_components/bootstrap/less/bootstrap";
 @import "bower_components/components-font-awesome/less/font-awesome";
+@import "brand";
+@import "colors";
+@import "user-marker";
+@import "popovers";
 @import "pod-styles";
 
 body {
@@ -31,27 +35,6 @@ body {
 			bottom:15%
 		}
 	}
-
-// COLORS //
-
-	@dark-red:#140000;
-	@green:#005252;
-	@red:#520000;
-	@blue:#000052;
-
-	@body-bg: @blue;
-	@brand-primary:@dark-red;
-	@brand-danger: @green;
-	@brand-warning: @blue;
-	@text-color:  @gray-lighter;
-
-	.red {color:red}
-
-// POPOVERS //
-
-	.popover {color:@blue;font-weight: bold;}
-	//@popover-bg: @blue;
-	//@popover-arrow-color: @blue;
 
 // COMMON //
 
@@ -148,70 +131,4 @@ body {
 		position:absolute;
 		height: @circle-width;
 		width: @circle-width;
-	}
-
-
-
-// INSTRUCTIONS + STATUS
-
-	h4.highlight {
-		
-	}
-
-	//.instructions {
-	//	padding-top:5px;
-	//	padding-left: 20px;
-	//	padding-bottom:10px;
-	//	padding-right:20px;
-	//	font-size:@font-size-small;
-	//}
-
-	ul.indented {-webkit-padding-start:15px;}
-
-	.primary-primary {
-		color:@brand-primary;
-	}
-
-	.primary-danger {
-		color:@brand-danger;
-	}
-
-	.primary-warning {
-		color:@brand-warning;
-	}
-
-	.secondary {
-		padding-top:4px;		
-	}
-
-	.center-div {
-	    position: fixed;
-	    top: 30%;
-	    left:5%;
-	    right:5%;
-	    padding: 10px;
-	}
-
-// SPINNER //
-
-	.center-spinner {
-		color:@brand-primary;
-	    .self-center
-	}
-
-// MARKER CLUSTERS //
-
-	.marker-cluster-small {background-color: rgba(161, 51, 54, 0.6);}
-	.marker-cluster-small div {background-color: rgba(161, 51, 54, 0.6);}
-	.marker-cluster-medium {.marker-cluster-small;}
-	.marker-cluster-medium div {.marker-cluster-small;}
-	.marker-cluster-large {background-color: rgba(241, 211, 87, 0.6);}
-	.marker-cluster-large div {background-color: rgba(240, 194, 12, 0.6);}
-
-// USER MARKER //
-
-	.leaflet-usermarker,
-	.leaflet-usermarker-small {
-	    background: url(images/bluedot.png);
-	    background-size: 100%;
 	}
