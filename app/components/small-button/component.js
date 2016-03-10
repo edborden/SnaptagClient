@@ -2,7 +2,6 @@ import Ember from 'ember';
 import computed from 'ember-computed-decorators';
 import Rotatable from 'stalkers-client/mixins/rotatable';
 import HasPopup from 'stalkers-client/mixins/has-popup';
-import layout from 'stalkers-client/components/small-button/template';
 
 const {
   Component,
@@ -13,7 +12,6 @@ export default Component.extend(Rotatable, HasPopup, {
 
   // attributes
   classNames: [ 'small-button-container' ],
-  layout,
   classNameBindings: [ 'inside' ],
   totalCount: 16,
 
