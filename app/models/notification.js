@@ -14,11 +14,6 @@ export default Model.extend({
   body: attr('string'),
   createdAt: attr('string'),
   notifiedObjectType: attr('string'),
-  notifiedObjectId: attr('number'),
-
-  // computed
-  @computed
-  createdAtFormatted() {
-    return moment(this.get('createdAt')).fromNow();
-  }
+  notifiedObjectId: attr('number')
+  
 });

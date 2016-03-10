@@ -1,7 +1,7 @@
 <div class="header">
-	<i class="fa fa-envelope-o fa-lg"></i>
+	{{i-fa icon="envelope-o"}}
 	&nbsp;&nbsp;&nbsp;
-	{{notification.subject}}&nbsp;{{notification.createdAtFormatted}}
+	{{notification.subject}}&nbsp;{{moment-from-now notification.createdAt}}
 </div>
 <div class="body">
 	{{notification.body}}
