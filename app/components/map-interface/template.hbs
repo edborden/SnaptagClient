@@ -21,11 +21,7 @@
 
   {{#if showWeb}}
     {{#auto-closer}}
-      <div class="circle-container">
-        <div class="circle-window-panel">
-          <div class="circle-outline"></div>
-        </div>
-
+      {{#circle-interface}}
         {{#each me.suspects as |suspect index|}}
           {{suspect-container suspect=suspect activeSuspect=activeSuspect contentIndex=index}}
         {{/each}}
@@ -55,42 +51,41 @@
             {{/if}}
           {{/if}}
         {{/if}}
-      </div>
+      {{/circle-interface}}
     {{/auto-closer}}
   {{/if}}
 {{/if}}
 
 {{#if showMe}}
-  <div class="circle-container">
-    <div class="circle-window-panel">
-      <div class="circle-outline"></div>
-    </div>
+  {{#auto-closer}}
+    {{#circle-interface}}
 
-    {{#with me as |user|}}
-      {{partial 'common-buttons'}}
-    {{/with}}
-    {{#small-button contentIndex=14 action="logout"}}
-      <i class="fa fa-sign-out fa-lg color-red"></i>
-    {{/small-button}}
-    {{#small-button contentIndex=11 action="notifications" overlayContent=me.unreadNotifications.length}}
-      <i class="fa fa-file-text-o fa-lg"></i>
-    {{/small-button}}
-    {{#small-button contentIndex=10 action="instructions"}}
-      <i class="fa fa-question fa-lg"></i>
-    {{/small-button}}
+      {{#with me as |user|}}
+        {{partial 'common-buttons'}}
+      {{/with}}
+      {{#small-button contentIndex=14 action="logout"}}
+        <i class="fa fa-sign-out fa-lg color-red"></i>
+      {{/small-button}}
+      {{#small-button contentIndex=11 action="notifications" overlayContent=me.unreadNotifications.length}}
+        <i class="fa fa-file-text-o fa-lg"></i>
+      {{/small-button}}
+      {{#small-button contentIndex=10 action="instructions"}}
+        <i class="fa fa-question fa-lg"></i>
+      {{/small-button}}
 
-    {{#if me.active}}
-      {{#small-button contentIndex=1 popoverContent=(if transmit.isTransmitting 'You are transmitting your location and accruing influence every 60 seconds.' 'You are not transmitting your location or accruing influence.')}}
-        <i class="fa fa-rss fa-lg {{if transmit.isTransmitting 'is-transmitting' 'not-transmitting'}}"></i>
-      {{/small-button}}
-      {{#small-button contentIndex=2 popoverContent=(if transmit.locationIsAccurate 'Your location is accurate.' 'Your location is not accurate enough (try turning on your GPS and your WiFi).')}}
-        <i class="fa fa-location-arrow fa-lg {{if transmit.locationIsAccurate 'is-transmitting' 'not-transmitting'}}"></i>
-      {{/small-button}}
-      {{#small-button contentIndex=3 popoverContent=(if transmit.hasInternetConnection 'You have an internet connection.' 'You do not have an internet connection.')}}
-        <i class="fa fa-signal fa-lg {{if transmit.hasInternetConnection 'is-transmitting' 'not-transmitting'}}"></i>
-      {{/small-button}}
-    {{/if}}
-  </div>
+      {{#if me.active}}
+        {{#small-button contentIndex=1 popoverContent=(if transmit.isTransmitting 'You are transmitting your location and accruing influence every 60 seconds.' 'You are not transmitting your location or accruing influence.')}}
+          <i class="fa fa-rss fa-lg {{if transmit.isTransmitting 'is-transmitting' 'not-transmitting'}}"></i>
+        {{/small-button}}
+        {{#small-button contentIndex=2 popoverContent=(if transmit.locationIsAccurate 'Your location is accurate.' 'Your location is not accurate enough (try turning on your GPS and your WiFi).')}}
+          <i class="fa fa-location-arrow fa-lg {{if transmit.locationIsAccurate 'is-transmitting' 'not-transmitting'}}"></i>
+        {{/small-button}}
+        {{#small-button contentIndex=3 popoverContent=(if transmit.hasInternetConnection 'You have an internet connection.' 'You do not have an internet connection.')}}
+          <i class="fa fa-signal fa-lg {{if transmit.hasInternetConnection 'is-transmitting' 'not-transmitting'}}"></i>
+        {{/small-button}}
+      {{/if}}
+    {{/circle-interface}}
+  {{/auto-closer}}
 {{/if}}
 
 {{#if showPic}}
@@ -111,30 +106,31 @@
     {{/content-panel}}
   {{/if}}
 
-  <div class="circle-container">
-
-    {{#small-button contentIndex=10 action="closePic" target=this}}
-      <i class="fa fa-times fa-lg"></i>
-    {{/small-button}}
-
-    {{#if showFound}}
-      {{#small-button contentIndex=6 class="red" action="found"}}
-        <i class="fa fa-crosshairs fa-lg"></i>
+  {{#auto-closer}}
+    {{#circle-interface}}
+      {{#small-button contentIndex=10 action="closePic" target=this}}
+        <i class="fa fa-times fa-lg"></i>
       {{/small-button}}
-    {{/if}}
 
-    {{#if showExpose}}
-      {{#small-button contentIndex=6 action="expose"}}
-        <i class="fa fa-exclamation-triangle fa-lg"></i>
-      {{/small-button}}
-    {{/if}}   
+      {{#if showFound}}
+        {{#small-button contentIndex=6 class="red" action="found"}}
+          <i class="fa fa-crosshairs fa-lg"></i>
+        {{/small-button}}
+      {{/if}}
 
-    {{#if activeSuspect}}
-      <img class="circle-pic" src={{activeSuspect.largepic}}>
-    {{else}}
-      <img class="circle-pic" src={{me.largepic}}>
-    {{/if}}
-  </div>
+      {{#if showExpose}}
+        {{#small-button contentIndex=6 action="expose"}}
+          <i class="fa fa-exclamation-triangle fa-lg"></i>
+        {{/small-button}}
+      {{/if}}   
+
+      {{#if activeSuspect}}
+        <img class="circle-pic" src={{activeSuspect.largepic}}>
+      {{else}}
+        <img class="circle-pic" src={{me.largepic}}>
+      {{/if}}
+    {{/circle-interface}}
+  {{/auto-closer}}
 {{/if}}
 
 {{#if showNotifications}}

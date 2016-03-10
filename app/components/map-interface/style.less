@@ -4,30 +4,11 @@
 		@dim: @panel-width;
 		.circle(@dim);
 		border: 1px solid black;
+		z-index: 10;
+		position:absolute
 	}
 
 // CIRCLE INTERFACE //
-
-	.circle-container {
-		height: @panel-width;
-		width: @panel-width;
-		.centered(@panel-width);
-	}
-
-	.circle-outline {
-		@dim: @panel-width * 0.5;
-		.circle(@dim);
-		.centered(@dim);
-		border: 1px solid white;
-	}
-
-	.circle-window-panel {
-		@dim: @panel-width;
-		.circle(@dim);
-		.centered(@dim);
-		background-color: @blue;
-		opacity: 0.6;
-	}
 
 	.suspect-window-text {
 		@dim:@panel-width*0.75;
