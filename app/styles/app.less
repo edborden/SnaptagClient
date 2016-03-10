@@ -4,6 +4,7 @@
 @import "colors";
 @import "user-marker";
 @import "popovers";
+@import "circle";
 @import "pod-styles";
 
 body {
@@ -19,116 +20,83 @@ body {
 
 // INDEX
 
-	.index-bg {
-		height:100%;
-		width:100%;
-		.text-center;
-		h3 {
-			color:white;
-			font-family: "Courier New", Courier, monospace;
-			font-weight: bold;
-		}
-		.circle-button {
-			.h-centered;
-			border-color: white;
-			a {color:white}
-			bottom:15%
-		}
-	}
+  .index-bg {
+    height:100%;
+    width:100%;
+    .text-center;
+    h3 {
+      color:white;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: bold;
+    }
+    .circle-button {
+      .h-centered;
+      border-color: white;
+      a {color:white}
+      bottom:15%
+    }
+  }
 
 // COMMON //
 
-	.click-fix {cursor:pointer}
+  .click-fix {cursor:pointer}
 
-	@panel-width: 78vw;
-	@circle-width: 15vw;
-	@scircle-width: 10vw;
+  @panel-width: 78vw;
+  @circle-width: 15vw;
+  @scircle-width: 10vw;
 
-	.centered(@dim) {
-		top: 50%;
-		margin-top: @dim * -0.5;
-		.h-centered(@dim);
-	}
-	.centered {.centered(@circle-width);}
+  .centered(@dim) {
+    top: 50%;
+    margin-top: @dim * -0.5;
+    .h-centered(@dim);
+  }
+  .centered {.centered(@circle-width);}
 
-	.circle(@dim) {
-		height: @dim;
-		width: @dim;
-		//border:1px solid transparent;
-		border-radius: 50%;
-		.text-center;
-	}
-	.circle {.circle(@circle-width);}
+  .h-centered(@dim) {
+    left: 50%;
+    margin-left: @dim * -0.5;
+    .stacked;
+  }
+  .h-centered {.h-centered(@circle-width);}
 
-	.h-centered(@dim) {
-		left: 50%;
-		margin-left: @dim * -0.5;
-		.stacked;
-	}
-	.h-centered {.h-centered(@circle-width);}
+  .stacked {z-index:2;position:absolute;}
 
-	.stacked {z-index:2;position:absolute;}
-
-	.self-center {
-		top:50%;
-		position:absolute;
-		left:50%;
-		-webkit-transform: translateY(-50%) translateX(-50%);
-	}
+  .self-center {
+    top:50%;
+    position:absolute;
+    left:50%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+  }
 
 // MAP //
 
-	html, body, .leaflet-container, body>div {height: 100%}
-	.leaflet-popup-content-wrapper {color:black;}
-
-// OVERLAY //
-	
-	.overlay {
-		.circle(6vw);
-		background-color: @blue;
-		position:absolute;
-		z-index:3;
-		margin-top:-6px;
-		padding-top:4px;
-	}
-
-	.overlay.top-left {
-		margin-left:-6px;
-	}
-
-	.overlay.top-right {
-		right:-6px;
-	}
-
-	// TRANSMITTING
-
-	.is-transmitting {color:green;}
-	.not-transmitting {color:red;}
+  html, body, .leaflet-container, body>div {height: 100%}
+  .leaflet-popup-content-wrapper {color:black;}
 
 // BUTTONS //
 
-	.circle-button {
-		.circle;		
-	    .stacked;
-	    border: 1px solid black;
-	    .click-fix;
-		bottom:4vw;
-		line-height: .5;
-		span.small {
-			font-size: 70%;
-		}
-		img.circle-button{position:static;}
-	}
-	.circle-button.active {border-color:white;}
-	.circle-button.first {right:4vw;}
-	.circle-button.second {right: 6vw + @circle-width;}
-	.circle-button.third {right: 8vw + @circle-width*2;}
-	.circle-button.blue {background-color: @blue;}
-	.circle-button.red {background-color: @red;}
+  .circle-button {
+    .circle;    
+    .stacked;
+    border: 1px solid black;
+    .click-fix;
+    bottom:4vw;
+    line-height: .5;
+    span.small {
+      font-size: 70%;
+    }
+    img.circle-button {position:static}
+  }
+  .circle-button.active {border-color:white}
+  .circle-button.first {right:4vw;}
+  .circle-button.second {right: 6vw + @circle-width;}
+  .circle-button.third {right: 8vw + @circle-width*2;}
+  .circle-button.blue {background-color: @blue;}
+  .circle-button.red {background-color: @red;}
 
-	.button-container {
-		.circle;
-		position:absolute;
-		height: @circle-width;
-		width: @circle-width;
-	}
+  .button-container {
+    .circle;
+    position:absolute;
+    height: @circle-width;
+    width: @circle-width;
+  }

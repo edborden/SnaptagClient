@@ -1,13 +1,15 @@
 <div class="circle-button first">
   {{#if me.active}}
-    <i class="fa fa-rss overlay top-left {{if transmit.isTransmitting 'is-transmitting' 'not-transmitting'}}"></i>
+    {{#overlay-circle top-left=true blue=true}}
+      <i class="fa fa-rss{{if transmit.isTransmitting ' color-green' ' color-red'}}"></i>
+    {{/overlay-circle}}
   {{/if}}
   {{#if me.unreadNotifications}}
-    <div class="overlay top-right">
-      <i class="red self-center">
+    {{#overlay-circle top-right=true red=true}}
+      <i class="self-center">
         {{me.unreadNotifications.length}}
       </i>
-    </div>
+    {{/overlay-circle}}
   {{/if}}
   <img class="circle-button {{if meButtonActive 'active'}}" src={{me.smallpic}} {{action "me"}}>
 </div>
