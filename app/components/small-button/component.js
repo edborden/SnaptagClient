@@ -14,6 +14,7 @@ export default Component.extend(Rotatable, HasPopup, {
   classNames: [ 'small-button-container' ],
   classNameBindings: [ 'inside' ],
   totalCount: 16,
+  overlayContent: null,
 
   // computed
   @computed

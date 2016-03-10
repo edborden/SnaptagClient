@@ -1,5 +1,14 @@
+{{#if overlayContent}}
+  {{#overlay-circle top-right=true red=true}}
+    <div class="self-center color-white">
+      <div style={{innerStyle}}>
+        {{overlayContent}}
+      </div>
+    </div>
+  {{/overlay-circle}}
+{{/if}}
 <div class="self-center">
-	<div style={{innerStyle}}>
-		{{yield}}
+  <div style={{innerStyle}}>
+    {{yield}}
   </div>
 </div>
