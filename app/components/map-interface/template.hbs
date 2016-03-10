@@ -20,41 +20,43 @@
   </div>
 
   {{#if showWeb}}
-    <div class="circle-container">
-      <div class="circle-window-panel">
-        <div class="circle-outline"></div>
-      </div>
-
-      {{#each me.suspects as |suspect index|}}
-        {{suspect-container suspect=suspect activeSuspect=activeSuspect contentIndex=index}}
-      {{/each}}
-
-      {{#if activeSuspect}}
-        <div class="suspect-window-text">
-          {{activeSuspect.name}}
-        </div>
-        <div class="middle-button" {{action "middle"}}>
-          <i class="fa fa-2x self-center {{if contentSection 'fa-caret-down' 'fa-caret-up'}}"></i>
+    {{#auto-closer}}
+      <div class="circle-container">
+        <div class="circle-window-panel">
+          <div class="circle-outline"></div>
         </div>
 
-        {{#if contentSection}}
-          {{#with activeSuspect as |user|}}
-            {{partial 'common-buttons'}}
-          {{/with}}
+        {{#each me.suspects as |suspect index|}}
+          {{suspect-container suspect=suspect activeSuspect=activeSuspect contentIndex=index}}
+        {{/each}}
 
-        {{else}}
-          {{#small-button inside=true contentIndex=6 action="showExpose"}}
-            <i class="fa fa-exclamation-triangle fa-lg"></i>
-          {{/small-button}} 
+        {{#if activeSuspect}}
+          <div class="suspect-window-text">
+            {{activeSuspect.name}}
+          </div>
+          <div class="middle-button" {{action "middle"}}>
+            <i class="fa fa-2x self-center {{if contentSection 'fa-caret-down' 'fa-caret-up'}}"></i>
+          </div>
 
-          {{#if activeSuspect.isTarget}}      
-            {{#small-button inside=true contentIndex=8 class="red" action="showFound"}}
-              <i class="fa fa-crosshairs fa-lg"></i>
-            {{/small-button}}
+          {{#if contentSection}}
+            {{#with activeSuspect as |user|}}
+              {{partial 'common-buttons'}}
+            {{/with}}
+
+          {{else}}
+            {{#small-button inside=true contentIndex=6 action="showExpose"}}
+              <i class="fa fa-exclamation-triangle fa-lg"></i>
+            {{/small-button}} 
+
+            {{#if activeSuspect.isTarget}}      
+              {{#small-button inside=true contentIndex=8 class="red" action="showFound"}}
+                <i class="fa fa-crosshairs fa-lg"></i>
+              {{/small-button}}
+            {{/if}}
           {{/if}}
         {{/if}}
-      {{/if}}
-    </div>
+      </div>
+    {{/auto-closer}}
   {{/if}}
 {{/if}}
 
@@ -150,7 +152,9 @@
 {{/if}}
 
 {{#if showInstructions}}
-  {{#content-panel scrolling=true}}
-    {{partial 'instructions'}}
-  {{/content-panel}}
+  {{#auto-closer}}
+    {{#content-panel scrolling=true}}
+      {{partial 'instructions'}}
+    {{/content-panel}}
+  {{/auto-closer}}
 {{/if}}
