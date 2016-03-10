@@ -1,13 +1,13 @@
 <div class="circle-button first blue" {{action "login"}}>
   <div class="self-center">
-    <i class="fa fa-facebook fa-2x small"></i>
+    {{i-fa icon="facebook" size="2x" class="small"}}
     <br>
     <span class="small">Login</span>
   </div>
 </div>
 
 <div class="circle-button second blue {{if showInstructions 'active'}}" {{action 'instructions'}}>
-  <i class="fa fa-question fa-2x self-center"></i>
+  {{i-fa icon="question" size="2x" class="self-center"}}
 </div>
 
 {{#if showInstructions}}

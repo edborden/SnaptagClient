@@ -1,9 +1,10 @@
 <div class="index-bg">
   {{#content-panel full=true styled=false}}
-    <h1><i class="fa fa-map-marker fa-1x"></i>    Use Location?</h1><br><br><br>
+    <h1>{{i-fa icon="map-marker" size="1x"}}
+    Use Location?</h1><br><br><br>
     <h4>In order to show you other members in your area, SSSSS would like to access your location information from your device. This location information won't be stored and we won't share it with anyone.</h4><br>
     {{#if waiting}}
-      <i class="fa fa-4x fa-cog fa-spin"></i><br>
+      {{i-fa size="4x" icon="cog" class="fa-spin"}}
     {{/if}}
     {{#if error}}
       <h4 class="color-red">{{error}}</h4>

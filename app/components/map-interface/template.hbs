@@ -1,7 +1,7 @@
 <div class="circle-button first">
   {{#if me.active}}
     {{#overlay-circle top-left=true blue=true}}
-      <i class="fa fa-rss{{if transmit.isTransmitting ' color-green' ' color-red'}}"></i>
+      {{i-fa icon="rss" size=false color=(if transmit.isTransmitting 'green' 'red')}}
     {{/overlay-circle}}
   {{/if}}
   {{#if me.unreadNotifications}}
@@ -15,8 +15,8 @@
 </div>
 
 {{#if me.active}}
-  <div class="circle-button second red {{if webButtonActive 'active'}}" {{action "web"}}>
-    <i class="fa fa-eye fa-2x self-center"></i>
+  <div class="circle-button second red {{if webButtonActive 'active'}}"{{action "web"}}>
+    {{i-fa icon="eye" size="2x" class="self-center"}}
   </div>
 
   {{#if showWeb}}
@@ -31,7 +31,7 @@
             {{activeSuspect.name}}
           </div>
           <div class="middle-button" {{action "middle"}}>
-            <i class="fa fa-2x self-center {{if contentSection 'fa-caret-down' 'fa-caret-up'}}"></i>
+            {{i-fa size="2x" class="self-center" icon=(if contentSection 'caret-down' 'caret-up')}}
           </div>
 
           {{#if contentSection}}
@@ -41,12 +41,12 @@
 
           {{else}}
             {{#small-button inside=true contentIndex=6 action="showExpose"}}
-              <i class="fa fa-exclamation-triangle fa-lg"></i>
+              {{i-fa icon="exclamation-triangle"}}
             {{/small-button}} 
 
             {{#if activeSuspect.isTarget}}      
               {{#small-button inside=true contentIndex=8 class="red" action="showFound"}}
-                <i class="fa fa-crosshairs fa-lg"></i>
+                {{i-fa icon="crosshairs"}}
               {{/small-button}}
             {{/if}}
           {{/if}}
@@ -64,24 +64,24 @@
         {{partial 'common-buttons'}}
       {{/with}}
       {{#small-button contentIndex=14 action="logout"}}
-        <i class="fa fa-sign-out fa-lg color-red"></i>
+        {{i-fa icon="sign-out" color="red"}}
       {{/small-button}}
       {{#small-button contentIndex=11 action="notifications" overlayContent=me.unreadNotifications.length}}
-        <i class="fa fa-file-text-o fa-lg"></i>
+        {{i-fa icon="file-text-o"}}
       {{/small-button}}
       {{#small-button contentIndex=10 action="instructions"}}
-        <i class="fa fa-question fa-lg"></i>
+        {{i-fa icon="question"}}
       {{/small-button}}
 
       {{#if me.active}}
         {{#small-button contentIndex=1 popoverContent=(if transmit.isTransmitting 'You are transmitting your location and accruing influence every 60 seconds.' 'You are not transmitting your location or accruing influence.')}}
-          <i class="fa fa-rss fa-lg {{if transmit.isTransmitting 'is-transmitting' 'not-transmitting'}}"></i>
+          {{i-fa icon="rss" color=(if transmit.isTransmitting 'green' 'red')}}
         {{/small-button}}
         {{#small-button contentIndex=2 popoverContent=(if transmit.locationIsAccurate 'Your location is accurate.' 'Your location is not accurate enough (try turning on your GPS and your WiFi).')}}
-          <i class="fa fa-location-arrow fa-lg {{if transmit.locationIsAccurate 'is-transmitting' 'not-transmitting'}}"></i>
+          {{i-fa icon="location-arrow" color=(if transmit.isTransmitting 'green' 'red')}}
         {{/small-button}}
         {{#small-button contentIndex=3 popoverContent=(if transmit.hasInternetConnection 'You have an internet connection.' 'You do not have an internet connection.')}}
-          <i class="fa fa-signal fa-lg {{if transmit.hasInternetConnection 'is-transmitting' 'not-transmitting'}}"></i>
+          {{i-fa icon="signal" color=(if transmit.isTransmitting 'green' 'red')}}
         {{/small-button}}
       {{/if}}
     {{/circle-interface}}
@@ -109,18 +109,18 @@
   {{#auto-closer}}
     {{#circle-interface}}
       {{#small-button contentIndex=10 action="closePic" target=this}}
-        <i class="fa fa-times fa-lg"></i>
+        {{i-fa icon="times"}}
       {{/small-button}}
 
       {{#if showFound}}
         {{#small-button contentIndex=6 class="red" action="found"}}
-          <i class="fa fa-crosshairs fa-lg"></i>
+          {{i-fa icon="crosshairs"}}
         {{/small-button}}
       {{/if}}
 
       {{#if showExpose}}
         {{#small-button contentIndex=6 action="expose"}}
-          <i class="fa fa-exclamation-triangle fa-lg"></i>
+          {{i-fa icon="exclamation-triangle"}}
         {{/small-button}}
       {{/if}}   
 
@@ -134,17 +134,19 @@
 {{/if}}
 
 {{#if showNotifications}}
-  {{#content-panel scrolling=true}}
-    {{#each me.notifications as |notification|}}
-      {{notification-box notification=notification}}
-    {{else}}
-      <div class="self-center text-center">
-        <i class="fa fa-folder-o fa-3x"></i>
-        <br>
-        <h4>No Messages!</h4>
-      </div>
-    {{/each}}
-  {{/content-panel}}
+  {{#auto-closer}}
+    {{#content-panel scrolling=true}}
+      {{#each me.notifications as |notification|}}
+        {{notification-box notification=notification}}
+      {{else}}
+        <div class="self-center text-center">
+            {{i-fa icon="folder-o" size="3x"}}
+          <br>
+          <h4>No Messages!</h4>
+        </div>
+      {{/each}}
+    {{/content-panel}}
+  {{/auto-closer}}
 {{/if}}
 
 {{#if showInstructions}}
