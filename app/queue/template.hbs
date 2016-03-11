@@ -1,23 +1,23 @@
+{{#stalkers-map bounds=initialBounds initialCenter=center initialZoom=zoom}}
+  {{tile-layer url='https://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}
+  {{me-marker}}
+  {{#each model as |zone|}}
+    {{#each zone.users as |user|}}
+      {{#marker-layer lat=user.location.lat lng=user.location.lng}}
+        Active Stalker who has found {{user.targetsFoundCount}} targets and has been hunting since {{moment-from-now user.activatedAt}}.
+      {{/marker-layer}}
+    {{/each}}
+  {{/each}}
+{{/stalkers-map}}
+
 <div class="circle-button second blue" {{action "unjoin"}}>
-	<div class="self-center">
-		{{i-fa icon="minus-square-o" size="2x"}}
-		<br>
-		<span class="small">Exit Queue</span>
-	</div>
+  <div class="self-center">
+    {{i-fa icon="minus-square-o" size="2x"}}
+    <br>
+    <span class="small">Exit Queue</span>
+  </div>
 </div>
 
 {{info-box length=model.length}}
-		
+    
 {{map-interface}}
-
-{{#stalkers-map bounds=initialBounds initialCenter=center initialZoom=zoom}}
-	{{tile-layer url='https://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}
-	{{me-marker}}
-	{{#each model as |zone|}}
-		{{#each zone.users as |user|}}
-			{{#marker-layer lat=user.location.lat lng=user.location.lng}}
-				Active Stalker who has found {{user.targetsFoundCount}} targets and has been hunting since {{moment-from-now user.activatedAt}}.
-			{{/marker-layer}}
-		{{/each}}
-	{{/each}}
-{{/stalkers-map}}

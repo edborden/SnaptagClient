@@ -6,7 +6,7 @@ const {
 
 export default Component.extend({
 
-  action: 'toggle',
+  action: 'closer',
 
   click() {
     this.sendAction();

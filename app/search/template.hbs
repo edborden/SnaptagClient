@@ -1,3 +1,15 @@
+{{#stalkers-map bounds=initialBounds initialCenter=center initialZoom=zoom}}
+  {{tile-layer url='https://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}
+  {{me-marker}}
+  {{#each model as |zone|}}
+    {{#each zone.users as |user|}}
+      {{#marker-layer lat=user.location.lat lng=user.location.lng}}
+        Active Stalker who has found {{user.targetsFoundCount}} targets and has been hunting since {{moment-from-now user.activatedAt}}.
+      {{/marker-layer}}
+    {{/each}}
+  {{/each}}
+{{/stalkers-map}}
+
 <div class="circle-button first blue" {{action "login"}}>
   <div class="self-center">
     {{i-fa icon="facebook" size="2x" class="small"}}
@@ -15,14 +27,3 @@
     {{partial 'instructions'}}
   {{/content-panel}}
 {{/if}}
-{{#stalkers-map bounds=initialBounds initialCenter=center initialZoom=zoom}}
-  {{tile-layer url='https://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}
-  {{me-marker}}
-  {{#each model as |zone|}}
-    {{#each zone.users as |user|}}
-      {{#marker-layer lat=user.location.lat lng=user.location.lng}}
-        Active Stalker who has found {{user.targetsFoundCount}} targets and has been hunting since {{moment-from-now user.activatedAt}}.
-      {{/marker-layer}}
-    {{/each}}
-  {{/each}}
-{{/stalkers-map}}

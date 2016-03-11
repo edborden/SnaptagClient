@@ -78,6 +78,13 @@ export default Component.extend({
   sendExpose: 'expose',
 
   actions: {
+    closer() {
+      if (this.get('showPic')) {
+        this.send('closePic');
+      } else {
+        this.send('toggle');
+      }
+    },
     toggle() {
       this.set('modal', null);
     },
