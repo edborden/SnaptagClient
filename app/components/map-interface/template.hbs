@@ -54,7 +54,6 @@
 
 {{#if showMe}}
   {{#circle-interface}}
-
     {{#with me as |user|}}
       {{partial 'common-buttons'}}
     {{/with}}
@@ -86,19 +85,23 @@
 {{/if}}
 
 {{#if showFound}}
-  {{#circle-interface}}
-    <ul class="indented">
-      <li>Approach your target in a non-threatening manner, calmly, without disturbing anyone in your vicinity, ideally without them seeing you.</li>
-      <li>Tap them lightly once on the shoulder.</li>
-      <li>Push the Expose button.</li>
-    </ul>
-  {{/circle-interface}}
+  {{#content-panel}}
+    <h2>SnapTag!</h2>
+    <p>If you've got {{activeSuspect.name}} in your sites, take a picture without being seen then upload it by pushing the button below:</p>
+    <p class="text-center">
+      <button class="btn btn-primary circle"{{action 'found'}}>{{i-fa icon='camera' size='2x'}}</button>
+    </p>
+  {{/content-panel}}
 {{/if}}
 
 {{#if showExpose}}
-  {{#circle-interface}}
-    If you think this person is stalking you, attempt a counteraction. If you are right, they'll be exposed; if you are wrong, you'll be disavowed and removed from the game!
-  {{/circle-interface}}
+  {{#content-panel}}
+    <h2>Counter-Tag!</h2>
+    <p>Is something suspicious about {{activeSuspect.name}}? If you think they are looking for you and you're willing to bet your spot in the game on it, press the button below. You'd better be sure -- this happens instantaneously and is non-reversible!</p>
+    <p class="text-center">
+      <button class="btn btn-primary circle"{{action 'expose'}}>{{i-fa icon='eye' size='2x'}}</button>
+    </p>
+  {{/content-panel}}
 {{/if}}
 
 {{#if showPic}}

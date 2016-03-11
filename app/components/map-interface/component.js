@@ -123,10 +123,12 @@ export default Component.extend({
     found() {
       this.sendAction('sendFound', this.get('activeSuspect'));
       this.set('activeSuspect', null);
+      this.send('closeModal');
     },
     expose() {
       this.sendAction('sendExpose', this.get('activeSuspect'));
       this.set('activeSuspect', null);
+      this.send('closeModal');
     },
     logout() {
       this.sendAction('sendLogout');
