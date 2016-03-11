@@ -21,7 +21,6 @@ export default Component.extend({
   // attributes
   modal: null,
   showInfo: false,
-  contentSection: true,
   activeSuspect: null,
   length: null,
 
@@ -81,9 +80,6 @@ export default Component.extend({
   actions: {
     toggle() {
       this.set('modal', null);
-    },
-    middle() {
-      this.toggleProperty('contentSection');
     },
     me() {
       if (this.get('meButtonActive')) {

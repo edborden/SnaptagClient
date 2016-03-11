@@ -12,11 +12,9 @@ export default Object.extend({
 
   // services
   store: service(),
-  notificator: service(),
   growler: service(),
 
   open(auth) {
-    let notificator = this.get('notificator');
     let store = this.get('store');
     let { authorizationToken: { token } } = auth;
 

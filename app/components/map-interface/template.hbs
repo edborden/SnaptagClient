@@ -16,7 +16,7 @@
 
 {{#if me.active}}
   <div class="circle-button second red {{if webButtonActive 'active'}}"{{action "web"}}>
-    {{i-fa icon="eye" size="2x" class="self-center"}}
+    {{i-fa icon="crosshairs" size="2x" class="self-center"}}
   </div>
 
   {{#if showWeb}}
@@ -30,25 +30,19 @@
           <div class="suspect-window-text">
             {{activeSuspect.name}}
           </div>
-          <div class="middle-button" {{action "middle"}}>
-            {{i-fa size="2x" class="self-center" icon=(if contentSection 'caret-down' 'caret-up')}}
-          </div>
 
-          {{#if contentSection}}
-            {{#with activeSuspect as |user|}}
+          {{#with activeSuspect as |user|}}
               {{partial 'common-buttons'}}
-            {{/with}}
+          {{/with}}
 
-          {{else}}
-            {{#small-button inside=true contentIndex=6 action="showExpose"}}
-              {{i-fa icon="exclamation-triangle"}}
-            {{/small-button}} 
+          {{#small-button inside=true contentIndex=13 action="showExpose"}}
+            {{i-fa icon="eye"}}
+          {{/small-button}}
 
-            {{#if activeSuspect.isTarget}}      
-              {{#small-button inside=true contentIndex=8 class="red" action="showFound"}}
-                {{i-fa icon="crosshairs"}}
-              {{/small-button}}
-            {{/if}}
+          {{#if activeSuspect.isTarget}}      
+            {{#small-button inside=true contentIndex=15 class="red" action="showFound"}}
+              {{i-fa icon="camera"}}
+            {{/small-button}}
           {{/if}}
         {{/if}}
       {{/circle-interface}}
@@ -82,6 +76,9 @@
         {{/small-button}}
         {{#small-button contentIndex=3 popoverContent=(if transmit.hasInternetConnection 'You have an internet connection.' 'You do not have an internet connection.')}}
           {{i-fa icon="signal" color=(if transmit.isTransmitting 'green' 'red')}}
+        {{/small-button}}
+        {{#small-button contentIndex=5 overlayContent="!"}}
+          {{i-fa icon="bell" color="red"}}
         {{/small-button}}
       {{/if}}
     {{/circle-interface}}

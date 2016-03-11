@@ -1,23 +1,23 @@
 {{#small-button inside=true contentIndex=11 popoverContent="Targets found"}}
-	{{user.targetsFoundCount}}
+  {{user.targetsFoundCount}}
 {{/small-button}}
 
 {{#small-button inside=true contentIndex=9 popoverContent="You were found"}}
-	{{user.foundCount}}
+  {{user.foundCount}}
 {{/small-button}}
 
 {{#small-button inside=true contentIndex=7 popoverContent="Stalkers exposed"}}
-	{{user.stalkersExposedCount}}
+  {{user.stalkersExposedCount}}
 {{/small-button}}
 
 {{#small-button inside=true contentIndex=5 popoverContent="Exposed yourself"}}
-	{{user.exposedCount}}
+  {{user.exposedCount}}
 {{/small-button}}
 
 {{#small-button inside=true contentIndex=3 popoverContent="Stealth points"}}
-	{{user.stealth}}
+  {{user.stealth}}
 {{/small-button}}
 
-{{#small-button inside=true contentIndex=16 action="pic"}}
-	{{i-fa icon="camera"}}
-{{/small-button}}
+<div class="middle-button" {{action "pic"}}>
+  {{i-fa icon="photo" class="self-center"}}
+</div>
