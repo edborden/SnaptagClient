@@ -72,10 +72,10 @@
         {{i-fa icon="rss" color=(if transmit.isTransmitting 'green' 'red')}}
       {{/small-button}}
       {{#small-button contentIndex=2 popoverContent=(if transmit.locationIsAccurate 'Your location is accurate.' 'Your location is not accurate enough (try turning on your GPS and your WiFi).')}}
-        {{i-fa icon="location-arrow" color=(if transmit.isTransmitting 'green' 'red')}}
+        {{i-fa icon="location-arrow" color=(if transmit.locationIsAccurate 'green' 'red')}}
       {{/small-button}}
       {{#small-button contentIndex=3 popoverContent=(if transmit.hasInternetConnection 'You have an internet connection.' 'You do not have an internet connection.')}}
-        {{i-fa icon="signal" color=(if transmit.isTransmitting 'green' 'red')}}
+        {{i-fa icon="signal" color=(if transmit.hasInternetConnection 'green' 'red')}}
       {{/small-button}}
       {{#small-button contentIndex=5 overlayContent="!"}}
         {{i-fa icon="bell" color="red"}}
@@ -103,9 +103,6 @@
   {{/if}}
 
   {{#circle-interface}}
-    {{#small-button contentIndex=10 action="closePic" target=this}}
-      {{i-fa icon="times"}}
-    {{/small-button}}
 
     {{#if showFound}}
       {{#small-button contentIndex=6 class="red" action="found"}}
