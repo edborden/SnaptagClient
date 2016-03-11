@@ -15,5 +15,5 @@ export default Model.extend({
   createdAt: attr('string'),
   notifiedObjectType: attr('string'),
   notifiedObjectId: attr('number')
-  
+
 });

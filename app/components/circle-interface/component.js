@@ -7,7 +7,7 @@ const {
 export default Component.extend({
 
   click() {
-    return false
+    return false;
   }
 
 });
