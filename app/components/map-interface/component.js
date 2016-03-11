@@ -31,6 +31,8 @@ export default Component.extend({
   @equal('modal', 'pic') showPic,
   @equal('modal', 'notifications') showNotifications,
   @equal('modal', 'instructions') showInstructions,
+  @equal('modal', 'expose') showExpose,
+  @equal('modal', 'found') showFound,
 
   @computed('showWeb', 'showPic', 'activeSuspect')
   webButtonActive() {
@@ -69,7 +71,7 @@ export default Component.extend({
   },
 
   sendToggle() {
-    this.send('toggle');
+    this.send('closeModal');
   },
 
   // actions
@@ -82,10 +84,10 @@ export default Component.extend({
       if (this.get('showPic')) {
         this.send('closePic');
       } else {
-        this.send('toggle');
+        this.send('closeModal');
       }
     },
-    toggle() {
+    closeModal() {
       this.set('modal', null);
     },
     me() {
@@ -103,25 +105,20 @@ export default Component.extend({
         this.set('modal', 'web');
       }
     },
-    pic() {
-      this.set('modal', 'pic');
+    setModal(name) {
+      let modal = this.get('modal');
+      if (modal === name) {
+        this.send('closeModal');
+      } else {
+        this.set('modal', name);
+      }
     },
     closePic() {
-      this.set('showFound', false);
-      this.set('showExpose', false);
       if (isPresent(this.get('activeSuspect'))) {
         this.set('modal', 'web');
       } else {
         this.set('modal', 'me');
       }
-    },
-    showFound() {
-      this.set('showFound', true);
-      this.set('modal', 'pic');
-    },
-    showExpose() {
-      this.set('showExpose', true);
-      this.set('modal', 'pic');
     },
     found() {
       this.sendAction('sendFound', this.get('activeSuspect'));
@@ -134,21 +131,8 @@ export default Component.extend({
     logout() {
       this.sendAction('sendLogout');
     },
-    notifications() {
-      this.set('modal', 'notifications');
-    },
-    instructions() {
-      this.set('modal', 'instructions');
-    },
     suspectClicked(suspect) {
-      if (!this.get('contentSection')) {
-        this.set('contentSection', true);
-      }
-      if (isEqual(this.get('activeSuspect'), suspect)) {
-        this.set('activeSuspect', null);
-      } else {
-        this.set('activeSuspect', suspect);
-      }
+      this.set('activeSuspect', suspect);
     }
   }
 

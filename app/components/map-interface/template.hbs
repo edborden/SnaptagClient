@@ -1,6 +1,7 @@
 {{#if modal}}
   {{auto-closer}}
 {{/if}}
+
 <div class="circle-button first">
   {{#if me.active}}
     {{#overlay-circle top-left=true blue=true}}
@@ -21,34 +22,34 @@
   <div class="circle-button second red {{if webButtonActive 'active'}}"{{action "web"}}>
     {{i-fa icon="crosshairs" size="2x" class="self-center"}}
   </div>
+{{/if}}
 
-  {{#if showWeb}}
-    {{#circle-interface}}
-      {{#each me.suspects as |suspect index|}}
-        {{suspect-container suspect=suspect activeSuspect=activeSuspect contentIndex=index}}
-      {{/each}}
+{{#if showWeb}}
+  {{#circle-interface}}
+    {{#each me.suspects as |suspect index|}}
+      {{suspect-container suspect=suspect activeSuspect=activeSuspect contentIndex=index}}
+    {{/each}}
 
-      {{#if activeSuspect}}
-        <div class="suspect-window-text">
-          {{activeSuspect.name}}
-        </div>
+    {{#if activeSuspect}}
+      <div class="suspect-window-text">
+        {{activeSuspect.name}}
+      </div>
 
-        {{#with activeSuspect as |user|}}
-            {{partial 'common-buttons'}}
-        {{/with}}
+      {{#with activeSuspect as |user|}}
+          {{partial 'common-buttons'}}
+      {{/with}}
 
-        {{#small-button inside=true contentIndex=13 action="showExpose"}}
-          {{i-fa icon="eye"}}
+      {{#small-button inside=true contentIndex=13 action=(action 'setModal' 'expose')}}
+        {{i-fa icon="eye"}}
+      {{/small-button}}
+
+      {{#if activeSuspect.isTarget}}      
+        {{#small-button inside=true contentIndex=15 class="red" action=(action 'setModal' 'found')}}
+          {{i-fa icon="camera"}}
         {{/small-button}}
-
-        {{#if activeSuspect.isTarget}}      
-          {{#small-button inside=true contentIndex=15 class="red" action="showFound"}}
-            {{i-fa icon="camera"}}
-          {{/small-button}}
-        {{/if}}
       {{/if}}
-    {{/circle-interface}}
-  {{/if}}
+    {{/if}}
+  {{/circle-interface}}
 {{/if}}
 
 {{#if showMe}}
@@ -60,10 +61,10 @@
     {{#small-button contentIndex=14 action="logout"}}
       {{i-fa icon="sign-out" color="red"}}
     {{/small-button}}
-    {{#small-button contentIndex=11 action="notifications" overlayContent=me.unreadNotifications.length}}
+    {{#small-button contentIndex=11 action=(action 'setModal' 'notifications') overlayContent=me.unreadNotifications.length}}
       {{i-fa icon="file-text-o"}}
     {{/small-button}}
-    {{#small-button contentIndex=10 action="instructions"}}
+    {{#small-button contentIndex=10 action=(action 'setModal' 'instructions')}}
       {{i-fa icon="question"}}
     {{/small-button}}
 
@@ -84,38 +85,24 @@
   {{/circle-interface}}
 {{/if}}
 
-{{#if showPic}}
-
-  {{#if showFound}}
-    {{#content-panel upper=true}}
-      <ul class="indented">
-        <li>Approach your target in a non-threatening manner, calmly, without disturbing anyone in your vicinity, ideally without them seeing you.</li>
-        <li>Tap them lightly once on the shoulder.</li>
-        <li>Push the Expose button.</li>
-      </ul>
-    {{/content-panel}}
-  {{/if}}
-
-  {{#if showExpose}}
-    {{#content-panel upper=true}}
-      If you think this person is stalking you, attempt a counteraction. If you are right, they'll be exposed; if you are wrong, you'll be disavowed and removed from the game!
-    {{/content-panel}}
-  {{/if}}
-
+{{#if showFound}}
   {{#circle-interface}}
+    <ul class="indented">
+      <li>Approach your target in a non-threatening manner, calmly, without disturbing anyone in your vicinity, ideally without them seeing you.</li>
+      <li>Tap them lightly once on the shoulder.</li>
+      <li>Push the Expose button.</li>
+    </ul>
+  {{/circle-interface}}
+{{/if}}
 
-    {{#if showFound}}
-      {{#small-button contentIndex=6 class="red" action="found"}}
-        {{i-fa icon="crosshairs"}}
-      {{/small-button}}
-    {{/if}}
+{{#if showExpose}}
+  {{#circle-interface}}
+    If you think this person is stalking you, attempt a counteraction. If you are right, they'll be exposed; if you are wrong, you'll be disavowed and removed from the game!
+  {{/circle-interface}}
+{{/if}}
 
-    {{#if showExpose}}
-      {{#small-button contentIndex=6 action="expose"}}
-        {{i-fa icon="exclamation-triangle"}}
-      {{/small-button}}
-    {{/if}}   
-
+{{#if showPic}}
+  {{#circle-interface}}
     {{#if activeSuspect}}
       <img class="circle-pic" src={{activeSuspect.largepic}}>
     {{else}}

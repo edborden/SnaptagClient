@@ -64,9 +64,13 @@ export default Mixin.create({
     }
   },
 
-  toggleAction: 'toggle',
+  toggleAction: 'closeModal',
   standardClick() {
-    this.sendAction();
+    if (typeof this.get('action') === 'string') {
+      this.sendAction();
+    } else {
+      this.action();
+    }
     if (this.get('toggle')) {
       this.sendAction('toggleAction');
     }
