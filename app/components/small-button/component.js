@@ -11,7 +11,6 @@ const {
 export default Component.extend(Rotatable, HasPopup, {
 
   // attributes
-  classNames: [ 'small-button-container' ],
   classNameBindings: [ 'inside' ],
   totalCount: 16,
   content: null,

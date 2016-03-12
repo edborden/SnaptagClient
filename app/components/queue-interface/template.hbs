@@ -2,20 +2,20 @@
   {{auto-closer}}
 {{/if}}
 
-<div class="circle-button first">
+{{#circle-button class="first" action="me" active=meButtonActive}}
   {{#if me.unreadNotifications}}
-    {{overlay-circle top-right=true content=me.unreadNotifications.length}}
+    {{overlay-circle top-right=true color='red' content=me.unreadNotifications.length}}
   {{/if}}
-  <img class="circle-button {{if meButtonActive 'active'}}" src={{me.smallpic}} {{action "me"}}>
-</div>
+  <img src={{me.smallpic}}>
+{{/circle-button}}
 
-<div class="circle-button second blue" {{action "unjoin"}}>
+{{#circle-button class="second" action="unjoin"}}
   <div class="self-center">
     {{i-fa icon="minus-square-o" size="2x"}}
     <br>
     <span class="small">Exit Queue</span>
   </div>
-</div>
+{{/circle-button}}
 
 {{#if showMe}}
   {{#circle-interface}}

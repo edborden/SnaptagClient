@@ -2,17 +2,17 @@
   {{auto-closer}}
 {{/if}}
 
-<div class="circle-button first blue" {{action "login"}}>
+{{#circle-button class="first" action="login"}}
   <div class="self-center">
     {{i-fa icon="facebook" size="2x" class="small"}}
     <br>
     <span class="small">Login</span>
   </div>
-</div>
+{{/circle-button}}
 
-<div class="circle-button second blue{{if showInstructions ' active'}}"{{action 'setModal' 'instructions'}}>
+{{#circle-button class="second" active=showInstructions action=(action 'setModal' 'instructions')}}
   {{i-fa icon="question" size="2x" class="self-center"}}
-</div>
+{{/circle-button}}
 
 {{#if showInstructions}}
   {{partial 'instructions'}}

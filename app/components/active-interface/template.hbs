@@ -2,23 +2,18 @@
   {{auto-closer}}
 {{/if}}
 
-<div class="circle-button first">
-  {{#overlay-circle top-left=true blue=true}}
-    {{i-fa icon="rss" size=false color=(if transmit.isTransmitting 'green' 'red')}}
-  {{/overlay-circle}}
-  {{#if me.unreadNotifications}}
-    {{#overlay-circle top-right=true red=true}}
-      <i class="self-center">
-        {{me.unreadNotifications.length}}
-      </i>
-    {{/overlay-circle}}
-  {{/if}}
-  <img class="circle-button {{if meButtonActive 'active'}}" src={{me.smallpic}} {{action "me"}}>
-</div>
+{{#circle-button class="first" action="me" active=meButtonActive}}
+  {{overlay-circle top-left=true color='white' icon="rss" iconColor=(if transmit.isTransmitting 'green' 'red')}}
 
-<div class="circle-button second red {{if webButtonActive 'active'}}"{{action "web"}}>
+  {{#if me.unreadNotifications}}
+    {{overlay-circle top-right=true color='red' content=me.unreadNotifications.length}}
+  {{/if}}
+  <img src={{me.smallpic}}>
+{{/circle-button}}
+
+{{#circle-button class="second" active=webButtonActive action="web"}}
   {{i-fa icon="crosshairs" size="2x" class="self-center"}}
-</div>
+{{/circle-button}}
 
 {{#if showWeb}}
   {{#circle-interface}}

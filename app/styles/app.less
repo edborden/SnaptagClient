@@ -72,31 +72,3 @@ body {
 
   html, body, .leaflet-container, body>div {height: 100%}
   .leaflet-popup-content-wrapper {color:black;}
-
-// BUTTONS //
-
-  .circle-button {
-    .circle;    
-    .stacked;
-    border: 1px solid black;
-    .click-fix;
-    bottom:4vw;
-    line-height: .5;
-    span.small {
-      font-size: 70%;
-    }
-    img.circle-button {position:static}
-  }
-  .circle-button.active {border-color:white}
-  .circle-button.first {right:4vw;}
-  .circle-button.second {right: 6vw + @circle-width;}
-  .circle-button.third {right: 8vw + @circle-width*2;}
-  .circle-button.blue {background-color: @purple}
-  .circle-button.red {background-color: @green}
-
-  .button-container {
-    .circle;
-    position:absolute;
-    height: @circle-width;
-    width: @circle-width;
-  }

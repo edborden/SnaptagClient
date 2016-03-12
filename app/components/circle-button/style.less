@@ -1,0 +1,21 @@
+& {
+  .circle;    
+  .stacked;
+  border: 1px solid black;
+  .click-fix;
+  bottom:4vw;
+  line-height: .5;
+  background-color: @purple;
+  span.small {
+    font-size: 70%;
+  }
+  img {
+    .circle;
+    max-height:100%;
+    max-width:100%
+  }
+}
+&.active { border-color: white }
+&.first { right: 4vw }
+&.second { right: 6vw + @circle-width }
+&.third { right: 8vw + @circle-width * 2 }

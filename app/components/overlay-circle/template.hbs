@@ -1,3 +1,7 @@
-<i class="self-center">
-  {{content}}
-</i>
+{{#if icon}}
+  {{i-fa icon=icon color=iconColor size=false}}
+{{else}}
+  <i class="self-center">
+    {{content}}
+  </i>
+{{/if}}

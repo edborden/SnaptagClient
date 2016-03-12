@@ -12,10 +12,10 @@ export default Component.extend({
   'top-right': false,
   'top-left': false,
   color: 'red',
-  classNameBindings: [ 'top-right', 'top-left', 'blue', 'red' ],
+  classNameBindings: [ 'top-right', 'top-left', 'white', 'red' ],
 
   // computed
   @equal('color', 'red') red,
-  @equal('color', 'blue') blue  
+  @equal('color', 'white') white  
 
 });
