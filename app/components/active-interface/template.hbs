@@ -35,14 +35,10 @@
           {{partial 'common-buttons'}}
       {{/with}}
 
-      {{#small-button inside=true contentIndex=13 action=(action 'setModal' 'expose')}}
-        {{i-fa icon="eye"}}
-      {{/small-button}}
+      {{small-button inside=true contentIndex=13 class="red" action=(action 'setModal' 'expose') icon="eye"}}
 
       {{#if activeSuspect.isTarget}}      
-        {{#small-button inside=true contentIndex=15 class="red" action=(action 'setModal' 'found')}}
-          {{i-fa icon="camera"}}
-        {{/small-button}}
+        {{small-button inside=true contentIndex=15 class="red" action=(action 'setModal' 'found') icon="camera"}}
       {{/if}}
     {{/if}}
   {{/circle-interface}}
@@ -52,18 +48,14 @@
   {{#circle-interface}}
     {{partial 'me-interface'}}
 
-    {{#small-button contentIndex=1 popoverContent=(if transmit.isTransmitting 'You are transmitting your location and accruing influence every 60 seconds.' 'You are not transmitting your location or accruing influence.')}}
-      {{i-fa icon="rss" color=(if transmit.isTransmitting 'green' 'red')}}
-    {{/small-button}}
-    {{#small-button contentIndex=2 popoverContent=(if transmit.locationIsAccurate 'Your location is accurate.' 'Your location is not accurate enough (try turning on your GPS and your WiFi).')}}
-      {{i-fa icon="location-arrow" color=(if transmit.locationIsAccurate 'green' 'red')}}
-    {{/small-button}}
-    {{#small-button contentIndex=3 popoverContent=(if transmit.hasInternetConnection 'You have an internet connection.' 'You do not have an internet connection.')}}
-      {{i-fa icon="signal" color=(if transmit.hasInternetConnection 'green' 'red')}}
-    {{/small-button}}
-    {{#small-button contentIndex=5 overlayContent="!"}}
-      {{i-fa icon="bell" color="red"}}
-    {{/small-button}}
+    {{small-button contentIndex=1 popoverContent=(if transmit.isTransmitting 'You are transmitting your location and accruing influence every 60 seconds.' 'You are not transmitting your location or accruing influence.') icon="rss" iconColor=(if transmit.isTransmitting 'green' 'red')}}
+
+    {{small-button contentIndex=2 popoverContent=(if transmit.locationIsAccurate 'Your location is accurate.' 'Your location is not accurate enough (try turning on your GPS and your WiFi).') icon="location-arrow" iconColor=(if transmit.locationIsAccurate 'green' 'red')}}
+
+    {{small-button contentIndex=3 popoverContent=(if transmit.hasInternetConnection 'You have an internet connection.' 'You do not have an internet connection.') icon="signal" iconColor=(if transmit.hasInternetConnection 'green' 'red')}}
+    
+    {{small-button contentIndex=5 overlayContent="!" icon="bell" iconColor="red"}}
+    
   {{/circle-interface}}
 {{/if}}
 
@@ -90,9 +82,9 @@
 {{#if showPic}}
   {{#circle-interface}}
     {{#if activeSuspect}}
-      <img class="circle-pic" src={{activeSuspect.largepic}}>
+      {{circle-pic src=activeSuspect.largepic}}
     {{else}}
-      <img class="circle-pic" src={{me.largepic}}>
+      {{circle-pic src=me.largepic}}
     {{/if}}
   {{/circle-interface}}
 {{/if}}

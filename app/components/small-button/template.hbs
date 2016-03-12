@@ -3,6 +3,10 @@
     {{overlay-circle top-right=true content=overlayContent}}
   {{/if}}
   <div class="self-center">
-    {{yield}}
+    {{#if icon}}
+      {{i-fa icon=icon color=iconColor}}
+    {{else}}
+      {{content}}
+    {{/if}}
   </div>
 </div>

@@ -1,22 +1,12 @@
-{{#small-button inside=true contentIndex=11 popoverContent="Targets found"}}
-  {{user.targetsFoundCount}}
-{{/small-button}}
+{{small-button inside=true contentIndex=11 popoverContent="Targets found" content=user.targetsFoundCount}}
 
-{{#small-button inside=true contentIndex=9 popoverContent="You were found"}}
-  {{user.foundCount}}
-{{/small-button}}
+{{small-button inside=true contentIndex=9 popoverContent="You were found" content=user.foundCount}}
 
-{{#small-button inside=true contentIndex=7 popoverContent="Stalkers exposed"}}
-  {{user.stalkersExposedCount}}
-{{/small-button}}
+{{small-button inside=true contentIndex=7 popoverContent="Stalkers exposed" content=user.stalkersExposedCount}}
 
-{{#small-button inside=true contentIndex=5 popoverContent="Exposed yourself"}}
-  {{user.exposedCount}}
-{{/small-button}}
+{{small-button inside=true contentIndex=5 popoverContent="Exposed yourself" content=user.exposedCount}}
 
-{{#small-button inside=true contentIndex=3 popoverContent="Stealth points"}}
-  {{user.stealth}}
-{{/small-button}}
+{{small-button inside=true contentIndex=3 popoverContent="Stealth points" content=user.stealth}}
 
 <div class="middle-button" {{action 'setModal' 'pic'}}>
   {{i-fa icon="photo" class="self-center"}}
