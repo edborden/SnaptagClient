@@ -3,11 +3,9 @@
 {{/if}}
 
 <div class="circle-button first">
-  {{#if me.active}}
-    {{#overlay-circle top-left=true blue=true}}
-      {{i-fa icon="rss" size=false color=(if transmit.isTransmitting 'green' 'red')}}
-    {{/overlay-circle}}
-  {{/if}}
+  {{#overlay-circle top-left=true blue=true}}
+    {{i-fa icon="rss" size=false color=(if transmit.isTransmitting 'green' 'red')}}
+  {{/overlay-circle}}
   {{#if me.unreadNotifications}}
     {{#overlay-circle top-right=true red=true}}
       <i class="self-center">
@@ -18,11 +16,9 @@
   <img class="circle-button {{if meButtonActive 'active'}}" src={{me.smallpic}} {{action "me"}}>
 </div>
 
-{{#if me.active}}
-  <div class="circle-button second red {{if webButtonActive 'active'}}"{{action "web"}}>
-    {{i-fa icon="crosshairs" size="2x" class="self-center"}}
-  </div>
-{{/if}}
+<div class="circle-button second red {{if webButtonActive 'active'}}"{{action "web"}}>
+  {{i-fa icon="crosshairs" size="2x" class="self-center"}}
+</div>
 
 {{#if showWeb}}
   {{#circle-interface}}
@@ -54,33 +50,20 @@
 
 {{#if showMe}}
   {{#circle-interface}}
-    {{#with me as |user|}}
-      {{partial 'common-buttons'}}
-    {{/with}}
-    {{#small-button contentIndex=14 action=(action 'setModal' 'logout')}}
-      {{i-fa icon="sign-out" color="red"}}
-    {{/small-button}}
-    {{#small-button contentIndex=11 action=(action 'setModal' 'notifications') overlayContent=me.unreadNotifications.length}}
-      {{i-fa icon="file-text-o"}}
-    {{/small-button}}
-    {{#small-button contentIndex=10 action=(action 'setModal' 'instructions')}}
-      {{i-fa icon="question"}}
-    {{/small-button}}
+    {{partial 'me-interface'}}
 
-    {{#if me.active}}
-      {{#small-button contentIndex=1 popoverContent=(if transmit.isTransmitting 'You are transmitting your location and accruing influence every 60 seconds.' 'You are not transmitting your location or accruing influence.')}}
-        {{i-fa icon="rss" color=(if transmit.isTransmitting 'green' 'red')}}
-      {{/small-button}}
-      {{#small-button contentIndex=2 popoverContent=(if transmit.locationIsAccurate 'Your location is accurate.' 'Your location is not accurate enough (try turning on your GPS and your WiFi).')}}
-        {{i-fa icon="location-arrow" color=(if transmit.locationIsAccurate 'green' 'red')}}
-      {{/small-button}}
-      {{#small-button contentIndex=3 popoverContent=(if transmit.hasInternetConnection 'You have an internet connection.' 'You do not have an internet connection.')}}
-        {{i-fa icon="signal" color=(if transmit.hasInternetConnection 'green' 'red')}}
-      {{/small-button}}
-      {{#small-button contentIndex=5 overlayContent="!"}}
-        {{i-fa icon="bell" color="red"}}
-      {{/small-button}}
-    {{/if}}
+    {{#small-button contentIndex=1 popoverContent=(if transmit.isTransmitting 'You are transmitting your location and accruing influence every 60 seconds.' 'You are not transmitting your location or accruing influence.')}}
+      {{i-fa icon="rss" color=(if transmit.isTransmitting 'green' 'red')}}
+    {{/small-button}}
+    {{#small-button contentIndex=2 popoverContent=(if transmit.locationIsAccurate 'Your location is accurate.' 'Your location is not accurate enough (try turning on your GPS and your WiFi).')}}
+      {{i-fa icon="location-arrow" color=(if transmit.locationIsAccurate 'green' 'red')}}
+    {{/small-button}}
+    {{#small-button contentIndex=3 popoverContent=(if transmit.hasInternetConnection 'You have an internet connection.' 'You do not have an internet connection.')}}
+      {{i-fa icon="signal" color=(if transmit.hasInternetConnection 'green' 'red')}}
+    {{/small-button}}
+    {{#small-button contentIndex=5 overlayContent="!"}}
+      {{i-fa icon="bell" color="red"}}
+    {{/small-button}}
   {{/circle-interface}}
 {{/if}}
 

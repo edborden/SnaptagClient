@@ -10,20 +10,4 @@
   {{/each}}
 {{/stalkers-map}}
 
-<div class="circle-button first blue" {{action "login"}}>
-  <div class="self-center">
-    {{i-fa icon="facebook" size="2x" class="small"}}
-    <br>
-    <span class="small">Login</span>
-  </div>
-</div>
-
-<div class="circle-button second blue {{if showInstructions 'active'}}" {{action 'instructions'}}>
-  {{i-fa icon="question" size="2x" class="self-center"}}
-</div>
-
-{{#if showInstructions}}
-  {{#content-panel scrolling=true}} 
-    {{partial 'instructions'}}
-  {{/content-panel}}
-{{/if}}
+{{search-interface}}

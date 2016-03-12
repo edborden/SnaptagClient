@@ -10,14 +10,4 @@
   {{/each}}
 {{/stalkers-map}}
 
-<div class="circle-button second blue" {{action "unjoin"}}>
-  <div class="self-center">
-    {{i-fa icon="minus-square-o" size="2x"}}
-    <br>
-    <span class="small">Exit Queue</span>
-  </div>
-</div>
-
-{{info-box length=model.length}}
-    
-{{map-interface}}
+{{queue-interface length=model.length}}

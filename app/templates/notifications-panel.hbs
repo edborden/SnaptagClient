@@ -1,0 +1,11 @@
+{{#content-panel scrolling=true}}
+  {{#each me.notifications as |notification|}}
+    {{notification-box notification=notification}}
+  {{else}}
+    <div class="self-center text-center">
+        {{i-fa icon="folder-o" size="3x"}}
+      <br>
+      <h4>No Messages!</h4>
+    </div>
+  {{/each}}
+{{/content-panel}}

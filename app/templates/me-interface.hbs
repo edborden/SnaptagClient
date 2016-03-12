@@ -1,0 +1,12 @@
+{{#with me as |user|}}
+  {{partial 'common-buttons'}}
+{{/with}}
+{{#small-button contentIndex=14 action=(action 'setModal' 'logout')}}
+  {{i-fa icon="sign-out" color="red"}}
+{{/small-button}}
+{{#small-button contentIndex=11 action=(action 'setModal' 'notifications') overlayContent=me.unreadNotifications.length}}
+  {{i-fa icon="file-text-o"}}
+{{/small-button}}
+{{#small-button contentIndex=10 action=(action 'setModal' 'instructions')}}
+  {{i-fa icon="question"}}
+{{/small-button}}
