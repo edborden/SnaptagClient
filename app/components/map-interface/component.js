@@ -33,6 +33,7 @@ export default Component.extend({
   @equal('modal', 'instructions') showInstructions,
   @equal('modal', 'expose') showExpose,
   @equal('modal', 'found') showFound,
+  @equal('modal', 'logout') showLogout,
 
   @computed('showWeb', 'showPic', 'activeSuspect')
   webButtonActive() {
@@ -91,11 +92,21 @@ export default Component.extend({
       this.set('modal', null);
     },
     me() {
+      let hasUnreadNotifications = isPresent(this.get('me').get('unreadNotifications'));
       if (this.get('meButtonActive')) {
-        this.set('modal', null);
+        if (hasUnreadNotifications) {
+          this.set('modal', 'me');
+          this.set('activeSuspect', null);
+        } else {          
+          this.set('modal', null);
+        }
       } else {
-        this.set('modal', 'me');
-        this.set('activeSuspect', null);
+        if (hasUnreadNotifications) {
+          this.set('modal', 'notifications');
+        } else {
+          this.set('modal', 'me');
+          this.set('activeSuspect', null);
+        }
       }
     },
     web() {

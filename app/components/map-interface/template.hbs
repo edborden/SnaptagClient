@@ -57,7 +57,7 @@
     {{#with me as |user|}}
       {{partial 'common-buttons'}}
     {{/with}}
-    {{#small-button contentIndex=14 action="logout"}}
+    {{#small-button contentIndex=14 action=(action 'setModal' 'logout')}}
       {{i-fa icon="sign-out" color="red"}}
     {{/small-button}}
     {{#small-button contentIndex=11 action=(action 'setModal' 'notifications') overlayContent=me.unreadNotifications.length}}
@@ -131,5 +131,16 @@
 {{#if showInstructions}}
   {{#content-panel scrolling=true}}
     {{partial 'instructions'}}
+  {{/content-panel}}
+{{/if}}
+
+{{#if showLogout}}
+  {{#content-panel}}
+    <h2>Are you sure you want to Logout?</h2>
+    <p>:(</p>
+    <p class="text-center">
+      <button class="btn btn-primary circle"{{action 'closeModal'}}>{{i-fa icon='times' size='2x'}}</button>
+      <button class="btn btn-primary circle"{{action 'logout'}}>{{i-fa icon='sign-out' size='2x'}}</button>
+    </p>
   {{/content-panel}}
 {{/if}}
