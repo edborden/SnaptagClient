@@ -1,10 +1,6 @@
 <div style={{innerStyle}}>
   {{#if overlayContent}}
-    {{#overlay-circle top-right=true red=true}}
-      <div class="self-center color-white">
-        {{overlayContent}}
-      </div>
-    {{/overlay-circle}}
+    {{overlay-circle top-right=true content=overlayContent}}
   {{/if}}
   <div class="self-center">
     {{yield}}
