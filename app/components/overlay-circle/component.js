@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import computed from 'ember-computed-decorators';
 
 const {
   Component,
@@ -10,8 +11,11 @@ export default Component.extend({
   // attributes
   'top-right': false,
   'top-left': false,
-  blue: false,
-  red: false,
-  classNameBindings: [ 'top-right', 'top-left', 'blue', 'red' ]
+  color: 'red',
+  classNameBindings: [ 'top-right', 'top-left', 'blue', 'red' ],
+
+  // computed
+  @equal('color', 'red') red,
+  @equal('color', 'blue') blue  
 
 });
