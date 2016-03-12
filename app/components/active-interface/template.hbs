@@ -27,9 +27,7 @@
     {{/each}}
 
     {{#if activeSuspect}}
-      <div class="suspect-window-text">
-        {{activeSuspect.name}}
-      </div>
+      {{suspect-text content=activeSuspect.name}}
 
       {{#with activeSuspect as |user|}}
           {{partial 'common-buttons'}}
