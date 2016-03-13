@@ -68,10 +68,10 @@ export default Mixin.create({
     switch (typeof this.get('action')) {
       case 'string':
         this.sendAction();
-        break
+        break;
       case 'function':
         this.action();
-        break
+        break;
     }
   },
 

@@ -18,17 +18,33 @@ body {
   -webkit-background-size:100% 100%;
 }
 
+h3 {
+  font-weight: bold;
+}
+
 // INDEX
+
+  .intro-panel {
+    position: absolute;
+    bottom: 7%;
+    .h-centered(80vw);
+    .text-center;
+    color: @purple
+  }
+
+  .blank-panel {
+    height:100%;
+    width:100%;
+    .text-center;
+    background-image: url("../images/bg_no_logo.jpg");
+    color: @purple;    
+  }
 
   .index-bg {
     height:100%;
     width:100%;
     .text-center;
-    h3 {
-      color:white;
-      font-family: "Courier New", Courier, monospace;
-      font-weight: bold;
-    }
+    background-image: url("../images/bg_no_logo.jpg");
     .circle-button {
       .h-centered;
       border-color: white;
@@ -53,6 +69,7 @@ body {
   .centered {.centered(@circle-width);}
 
   .h-centered(@dim) {
+    width: @dim;
     left: 50%;
     margin-left: @dim * -0.5;
     .stacked;
