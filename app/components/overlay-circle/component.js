@@ -16,6 +16,6 @@ export default Component.extend({
 
   // computed
   @equal('color', 'red') red,
-  @equal('color', 'white') white  
+  @equal('color', 'white') white
 
 });

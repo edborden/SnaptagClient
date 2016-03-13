@@ -97,7 +97,7 @@ export default Component.extend({
         if (hasUnreadNotifications) {
           this.set('modal', 'me');
           this.set('activeSuspect', null);
-        } else {          
+        } else {
           this.set('modal', null);
         }
       } else {
