@@ -4,5 +4,8 @@
 	{{notification.subject}}&nbsp;{{moment-from-now notification.createdAt}}
 </div>
 <div class="body">
-	{{notification.body}}
+	<p>{{notification.body}}</p>
+  {{#if notification.hunt}}
+    {{image-thumbnail model=notification.hunt}}
+  {{/if}}
 </div>

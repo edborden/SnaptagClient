@@ -1,9 +1,9 @@
-import computed from 'ember-computed-decorators';
 import DS from 'ember-data';
 
 const {
   Model,
-  attr
+  attr,
+  belongsTo
 } = DS;
 
 export default Model.extend({
@@ -13,7 +13,8 @@ export default Model.extend({
   subject: attr('string'),
   body: attr('string'),
   createdAt: attr('string'),
-  notifiedObjectType: attr('string'),
-  notifiedObjectId: attr('number')
+
+  // associations
+  hunt: belongsTo('hunt')
 
 });
