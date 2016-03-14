@@ -42,7 +42,6 @@ export default Service.extend({
         me.get('suspects').removeObject(data);
         me.set('targetsFoundCount', me.get('targetsFoundCount') + 1);
         loader.out();
-        eventer.trigger('resetUI');
         growler.growl(8);
         break;
 
@@ -51,7 +50,6 @@ export default Service.extend({
         data.deleteRecord();
         me.notifyPropertyChange('suspects');
         loader.out();
-        eventer.trigger('resetUI');
         growler.growl(9);
         break;
 
@@ -132,7 +130,6 @@ export default Service.extend({
           loader.out();
           routing.transitionTo('queue');
         });
-        growler.growl(6);
         break;
 
       case 'You have entered the game':

@@ -33,7 +33,7 @@ export default Route.extend({
   actions: {
     logout() {
       this.get('session').close();
-      this.transitionTo('index');
+      this.replaceWith('index');
       this.get('growler').growl(1);
     },
 
@@ -46,7 +46,7 @@ export default Route.extend({
         loader.out();
         this.get('growler').growl(2);
         let status = this.get('me').get('status');
-        this.transitionTo(status);
+        this.replaceWith(status);
       });
     },
 
@@ -61,7 +61,7 @@ export default Route.extend({
       me.set('status', 'inactive');
       me.set('activationqueue', null);
       this.get('growler').growl(7);
-      this.transitionTo('inactive');
+      this.replaceWith('inactive');
     },
 
     found(target, imageId) {
@@ -73,7 +73,7 @@ export default Route.extend({
         image_id: imageId
       });
     },
-    
+
     expose(suspect) {
       // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
       this.get('keen').addEvent('expose', suspect.getProperties('id', 'name', 'email'));
@@ -82,7 +82,7 @@ export default Route.extend({
     },
 
     accessDenied() {
-      this.transitionTo('index');
+      this.replaceWith('index');
     }
   },
 

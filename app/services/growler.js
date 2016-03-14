@@ -17,38 +17,26 @@ export default Service.extend({
       case 2:
         message = 'Logged in';
         break;
-      case 3:
-        message = 'You may now join.';
-        break;
-      case 4:
-        message = 'You are waiting for other members.';
-        break;
       case 5:
-        message = 'You have been activated.';
-        break;
-      case 6:
-        message = 'Queue entered. You are waiting.';
+        message = "Success! You're in the game!";
         break;
       case 7:
-        message = 'Queue exited. You are inactive.';
+        message = 'You left the queue.';
         break;
       case 8:
         message = 'Success! Target Found.';
         break;
       case 9:
-        message = 'Success! Stalker exposed.';
+        message = 'Success! You counter-tagged your hunter!';
         break;
       case 10:
-        message = 'Failed... You exposed yourself.';
+        message = 'Failed... You guessed wrong and have been booted.';
         break;
       case 11:
-        message = 'You were found by your Stalker!';
+        message = 'You got Snaptagged! Bummer!';
         break;
       case 12:
-        message = 'You were exposed by your target!';
-        break;
-      case 13:
-        message = 'You are being watched.';
+        message = 'You were counter-tagged by your target! Be more careful!';
         break;
       default:
         message = code;

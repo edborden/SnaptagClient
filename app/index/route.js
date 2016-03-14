@@ -5,4 +5,4 @@ const {
   Route
 } = Ember;
 
-export default Route.extend(ChecksStatus, {});
+export default Route.extend(ChecksStatus);

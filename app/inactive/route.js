@@ -8,13 +8,4 @@ const {
   inject: { service }
 } = Ember;
 
-export default Route.extend(ZoneModel, RequiresLocation, ChecksStatus, {
-
-  growler: service(),
-
-  // events
-  afterModel() {
-    this.get('growler').growl(3);
-  }
-
-});
+export default Route.extend(ZoneModel, RequiresLocation, ChecksStatus);

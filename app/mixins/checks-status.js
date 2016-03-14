@@ -17,7 +17,7 @@ export default Mixin.create({
       let status = session.get('me').get('status');
       let routeName = this.get('routeName');
       if (status != routeName) {
-        this.transitionTo(status);
+        this.replaceWith(status);
       }
     }
     return this._super();

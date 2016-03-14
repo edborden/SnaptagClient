@@ -13,15 +13,10 @@ export default Route.extend(RequiresLocation, ChecksStatus, {
   // services
   session: service(),
   geolocation: service(),
-  growler: service(),
 
   // events
   model() {
     return this.get('session').get('me').get('targets').getEach('location');
-  },
-
-  afterModel() {
-    this.get('growler').growl(13);
   },
 
   setupController(controller, model) {
