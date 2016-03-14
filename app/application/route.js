@@ -52,12 +52,12 @@ export default Route.extend({
 
     join() {
       this.get('loader').in();
-      this.get('ajax').getServer('hunts/join', { location: this.get('geolocation').getObject() });
+      this.get('ajax').getServer('actions/join', { location: this.get('geolocation').getObject() });
     },
 
     unjoin() {
       let me = this.get('session').get('me');
-      this.get('ajax').getServer('hunts/unjoin');
+      this.get('ajax').getServer('actions/unjoin');
       me.set('status', 'inactive');
       me.set('activationqueue', null);
       this.get('growler').growl(7);
@@ -68,7 +68,7 @@ export default Route.extend({
       // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
       this.get('keen').addEvent('found', target.getProperties('id', 'name', 'email'));
       this.get('loader').in();
-      this.get('ajax').getServer('hunts/found_target', {
+      this.get('ajax').getServer('actions/found_target', {
         target_id: target.get('id'),
         image_id: imageId
       });
@@ -78,7 +78,7 @@ export default Route.extend({
       // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
       this.get('keen').addEvent('expose', suspect.getProperties('id', 'name', 'email'));
       this.get('loader').in();
-      this.get('ajax').getServer('hunts/expose', { stalker_id: suspect.get('id') });
+      this.get('ajax').getServer('actions/expose', { stalker_id: suspect.get('id') });
     },
 
     accessDenied() {
