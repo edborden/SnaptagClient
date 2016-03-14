@@ -1,6 +1,6 @@
-<div class="circle-button blue third{{if show ' active'}}"{{action "show"}}>
-  <i class="fa fa-info fa-2x self-center"></i>
-</div>
+{{#circle-button class="third" active=show action="show"}}
+  {{i-fa icon="info" size="2x" class="self-center"}}
+{{/circle-button}}
 
 {{#if show}}
   {{#if me.inactive}}

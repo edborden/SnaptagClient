@@ -64,13 +64,16 @@ export default Route.extend({
       this.transitionTo('inactive');
     },
 
-    found(target) {
+    found(target, imageId) {
       // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
       this.get('keen').addEvent('found', target.getProperties('id', 'name', 'email'));
       this.get('loader').in();
-      this.get('ajax').getServer('hunts/found_target', { target_id: target.get('id') });
+      this.get('ajax').getServer('hunts/found_target', {
+        target_id: target.get('id'),
+        image_id: imageId
+      });
     },
-
+    
     expose(suspect) {
       // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
       this.get('keen').addEvent('expose', suspect.getProperties('id', 'name', 'email'));

@@ -77,7 +77,6 @@ export default Component.extend({
 
   // actions
   sendLogout: 'logout',
-  sendFound: 'found',
   sendExpose: 'expose',
 
   actions: {
@@ -130,11 +129,6 @@ export default Component.extend({
       } else {
         this.set('modal', 'me');
       }
-    },
-    found() {
-      this.sendAction('sendFound', this.get('activeSuspect'));
-      this.set('activeSuspect', null);
-      this.send('closeModal');
     },
     expose() {
       this.sendAction('sendExpose', this.get('activeSuspect'));
