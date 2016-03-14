@@ -4,7 +4,7 @@
   {{#each model as |zone|}}
     {{#each zone.users as |user|}}
       {{#marker-layer lat=user.location.lat lng=user.location.lng}}
-        Active Stalker who has found {{user.targetsFoundCount}} targets and has been hunting since {{moment-from-now user.activatedAt}}.
+        Active player who has found {{user.targetsFoundCount}} targets and has been playing since {{moment-from-now user.activatedAt}}.
       {{/marker-layer}}
     {{/each}}
   {{/each}}
