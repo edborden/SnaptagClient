@@ -17,3 +17,18 @@
 {{#if showInstructions}}
   {{partial 'instructions'}}
 {{/if}}
+
+{{#if showInfo}}
+  {{#content-panel}}
+    <div class="text-center">
+      <p>This is a live map that shows all of the other people currently playing SnapTag in your area.</p>
+      <p>
+        {{#if noPlayers}}
+          As you can see, there are no other players in your area right now.  Join up now and we'll start a new game for you. As new people join, we'll let you know!
+        {{else}}
+          As you can see, there are other active players in your area right now! Join up!
+        {{/if}}
+      </p>
+    </div>
+  {{/content-panel}}
+{{/if}}

@@ -20,7 +20,6 @@ export default Component.extend({
 
   // attributes
   modal: null,
-  showInfo: false,
   activeSuspect: null,
   length: null,
 
@@ -34,6 +33,7 @@ export default Component.extend({
   @equal('modal', 'expose') showExpose,
   @equal('modal', 'found') showFound,
   @equal('modal', 'logout') showLogout,
+  @equal('modal', 'info') showInfo,
 
   @computed('showWeb', 'showPic', 'activeSuspect')
   webButtonActive() {

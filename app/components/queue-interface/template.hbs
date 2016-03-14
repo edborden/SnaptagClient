@@ -17,6 +17,10 @@
   </div>
 {{/circle-button}}
 
+{{#circle-button class="third" active=showInfo action=(action 'setModal' 'info')}}
+  {{i-fa icon="info" size="2x" class="self-center"}}
+{{/circle-button}}
+
 {{#if showMe}}
   {{#circle-interface}}
     {{partial 'me-interface'}}
@@ -41,4 +45,17 @@
   {{partial 'logout'}}
 {{/if}}
 
-{{info-box length=length}}
+{{#if showInfo}}
+  {{#content-panel}}
+    <div class="text-center">
+      You are in the queue waiting for other players.
+      <br>
+      {{queueOtherUsersCount}} other players are in the queue. When {{playersTillStartCount}} other players join, you will begin
+      {{#if activeQueueZone}}
+        , or you may begin sooner as spots open up.
+      {{else}}
+        .
+      {{/if}}
+    </div>
+  {{/content-panel}}
+{{/if}}

@@ -17,6 +17,10 @@
   </div>
 {{/circle-button}}
 
+{{#circle-button class="third" active=showInfo action=(action 'setModal' 'info')}}
+  {{i-fa icon="info" size="2x" class="self-center"}}
+{{/circle-button}}
+
 {{#if showMe}}
   {{#circle-interface}}
     {{partial 'me-interface'}}
@@ -41,4 +45,16 @@
   {{partial 'logout'}}
 {{/if}}
 
-{{info-box length=length}}
+{{#if showInfo}}
+  {{#content-panel}}
+    <div class="text-center">
+      <p>
+        {{#if noPlayers}}
+          There are no other players in your area right now.  Join up now and we'll start a new game for you. As new people join, we'll let you know!
+        {{else}}
+          There are other active players in your area right now! Join up!
+        {{/if}}
+      </p>
+    </div>
+  {{/content-panel}}
+{{/if}}
