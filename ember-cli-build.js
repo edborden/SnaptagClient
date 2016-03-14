@@ -55,8 +55,5 @@ module.exports = function(defaults) {
     destDir: '/fonts'
   });
 
-  // Typed
-  app.import('bower_components/typed.js/js/typed.js');
-
   return mergeTrees([app.toTree(), fontAwesomeFonts, leafletAwesomeMarkers, leafletUserMarker]);
 };
