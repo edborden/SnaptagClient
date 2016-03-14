@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
 import { alias, equal } from 'ember-computed-decorators';
-import Rotatable from 'stalkers-client/mixins/rotatable';
+import Rotatable from '../../mixins/rotatable';
 
 const {
   Component,

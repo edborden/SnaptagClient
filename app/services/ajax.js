@@ -1,5 +1,5 @@
 import AjaxService from 'ember-ajax/services/ajax';
-import RequestsConfig from 'stalkers-client/mixins/requests-config';
+import RequestsConfig from '../mixins/requests-config';
 
 export default AjaxService.extend(RequestsConfig, {
 

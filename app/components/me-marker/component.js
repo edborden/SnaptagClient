@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import MarkerLayer from 'stalkers-client/components/marker-layer';
+import MarkerLayer from 'snaptag-client/components/marker-layer';
 import computed from 'ember-computed-decorators';
 import { alias, equal } from 'ember-computed-decorators';
 

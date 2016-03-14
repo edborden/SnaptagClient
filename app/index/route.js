@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ChecksStatus from 'stalkers-client/mixins/checks-status';
+import ChecksStatus from '../mixins/checks-status';
 
 const {
   Route

@@ -1,5 +1,5 @@
 import ActiveModelAdapter from 'active-model-adapter';
-import RequestsConfig from 'stalkers-client/mixins/requests-config';
+import RequestsConfig from '../mixins/requests-config';
 
 export default ActiveModelAdapter.extend(RequestsConfig, {
 

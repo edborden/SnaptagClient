@@ -1,4 +1,4 @@
-import LeafletMap from 'stalkers-client/components/leaflet-map';
+import LeafletMap from 'snaptag-client/components/leaflet-map';
 
 export default LeafletMap.extend({
 

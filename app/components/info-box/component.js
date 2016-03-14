@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import config from 'stalkers-client/config/environment';
+import config from '../../config/environment';
 import computed from 'ember-computed-decorators';
 import { alias, equal } from 'ember-computed-decorators';
 

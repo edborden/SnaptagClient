@@ -15,7 +15,7 @@ module.exports = function(defaults) {
       useLintTree: false
     },
     inlineContent: {
-      favicon: { content: "<link rel='icon' href='/assets/images/favicon.ico'>" },
+      favicon: { content: "<link rel='icon' href='/images/favicon.ico'>" },
       cloudinary: {content: "<script src='//widget.cloudinary.com/global/all.js' type='text/javascript'></script>" }
     }
   });

@@ -1,4 +1,4 @@
-{{#stalkers-map bounds=initialBounds initialCenter=center initialZoom=zoom}}
+{{#snaptag-map bounds=initialBounds initialCenter=center initialZoom=zoom}}
   {{tile-layer url='https://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}
   {{me-marker}}
   {{#each model as |location|}}
@@ -6,6 +6,6 @@
       {{location.user.name}}, {{moment-from-now location.createdAt}}.
     {{/marker-layer}}
   {{/each}}
-{{/stalkers-map}}
+{{/snaptag-map}}
 
 {{active-interface}}

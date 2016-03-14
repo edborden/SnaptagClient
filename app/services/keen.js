@@ -1,4 +1,4 @@
-import config from 'stalkers-client/config/environment';
+import config from '../config/environment';
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
 import { alias } from 'ember-computed-decorators';

@@ -1,5 +1,5 @@
-import MapInterface from 'stalkers-client/components/map-interface/component';
-import layout from 'stalkers-client/components/queue-interface/template';
+import MapInterface from '../map-interface/component';
+import layout from '../queue-interface/template';
 
 export default MapInterface.extend({
 

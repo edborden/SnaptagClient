@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
-import Rotatable from 'stalkers-client/mixins/rotatable';
-import HasPopup from 'stalkers-client/mixins/has-popup';
+import Rotatable from '../../mixins/rotatable';
+import HasPopup from '../../mixins/has-popup';
 
 const {
   Component,

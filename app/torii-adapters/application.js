@@ -22,7 +22,7 @@ export default Object.extend({
       token
     }).save()
     .then((response) => {
-      localStorage.stalkersToken = response.get('token');
+      localStorage.snaptagToken = response.get('token');
       return {
         currentSession: response,
         me: response.get('user')
@@ -31,7 +31,7 @@ export default Object.extend({
   },
 
   fetch() {
-    let token = localStorage.stalkersToken;
+    let token = localStorage.snaptagToken;
 
     if (isPresent(token)) {
       let store = this.get('store');

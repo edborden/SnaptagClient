@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'stalkers-client',
+    modulePrefix: 'snaptag-client',
     environment: environment,
     baseURL: '/',
     locationType: 'hash',

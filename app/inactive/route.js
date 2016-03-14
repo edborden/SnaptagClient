@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import ZoneModel from 'stalkers-client/mixins/zone-model';
-import RequiresLocation from 'stalkers-client/mixins/requires-location';
-import ChecksStatus from 'stalkers-client/mixins/checks-status';
+import ZoneModel from '../mixins/zone-model';
+import RequiresLocation from '../mixins/requires-location';
+import ChecksStatus from '../mixins/checks-status';
 
 const {
   Route,

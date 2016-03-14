@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import { calculateBounds, toLeaflet } from 'stalkers-client/utils/leaflet-helpers';
-import RequiresLocation from 'stalkers-client/mixins/requires-location';
-import ChecksStatus from 'stalkers-client/mixins/checks-status';
+import { calculateBounds, toLeaflet } from '../utils/leaflet-helpers';
+import RequiresLocation from '../mixins/requires-location';
+import ChecksStatus from '../mixins/checks-status';
 
 const {
   Route,
