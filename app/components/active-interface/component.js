@@ -11,7 +11,7 @@ export default MapInterface.extend({
 
   layout,
 
-  sendFound: 'sendFound',
+  sendFound: 'found',
   actions: {
 
     found(imageId) {
