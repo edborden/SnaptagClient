@@ -1,5 +1,5 @@
 {
-  "firebase": "stalkers",
+  "firebase": "snaptag",
   "public": "./dist",
   "rewrites": [
     {

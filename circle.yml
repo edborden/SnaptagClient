@@ -19,4 +19,4 @@ deployment:
     branch: staging
     commands:
       - ember build --environment=staging
-      - firebase deploy -f stalkers --token $FIREBASE_TOKEN
+      - firebase deploy -f snaptag --token $FIREBASE_TOKEN
