@@ -22,7 +22,7 @@ export default Controller.extend({
       let geolocation = this.get('geolocation');
       geolocation.init();
       geolocation.get('promise').then(() => {
-        this.set('waiting', false);
+        localStorage.snaptagLocation = true;
         this.transitionToRoute('search');
       }, (error) => {
         this.set('waiting', false);
@@ -30,6 +30,7 @@ export default Controller.extend({
       });
     },
     cancel() {
+      this.set('error', null);
       this.transitionToRoute('index');
     }
   }
