@@ -47,15 +47,16 @@
 
 {{#if showInfo}}
   {{#content-panel}}
-    <div class="text-center">
-      You are in the queue waiting for other players.
-      <br>
-      {{queueOtherUsersCount}} other players are in the queue. When {{playersTillStartCount}} other players join, you will begin
-      {{#if activeQueueZone}}
-        , or you may begin sooner as spots open up.
-      {{else}}
-        .
-      {{/if}}
-    </div>
+    <h4 class="text-center">
+      <p>You are in the queue waiting for other players.</p>
+      <p>
+        {{queueOtherUsersCount}} other players are in the queue. When {{playersTillStartCount}} other players join, you will begin
+        {{#if activeQueueZone}}
+          , or you may begin sooner as spots open up.
+        {{else}}
+          .
+        {{/if}}
+      </p>
+    </h4>
   {{/content-panel}}
 {{/if}}

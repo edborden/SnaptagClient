@@ -5,6 +5,8 @@
 @import "user-marker";
 @import "popovers";
 @import "circle";
+@import "helpers";
+@import "map";
 @import "pod-styles";
 
 body {
@@ -20,6 +22,10 @@ body {
 
 h1, h3 {
   font-weight: bold
+}
+
+.fa-stack {
+  .fa-lg { line-height: inherit }
 }
 
 // INDEX
@@ -52,40 +58,3 @@ h1, h3 {
       bottom:15%
     }
   }
-
-// COMMON //
-
-  .click-fix {cursor:pointer}
-
-  @panel-width: 78vw;
-  @circle-width: 15vw;
-  @scircle-width: 10vw;
-
-  .centered(@dim) {
-    top: 50%;
-    margin-top: @dim * -0.5;
-    .h-centered(@dim);
-  }
-  .centered {.centered(@circle-width);}
-
-  .h-centered(@dim) {
-    width: @dim;
-    left: 50%;
-    margin-left: @dim * -0.5;
-    .stacked;
-  }
-  .h-centered {.h-centered(@circle-width);}
-
-  .stacked {z-index:2;position:absolute;}
-
-  .self-center {
-    top:50%;
-    position:absolute;
-    left:50%;
-    -webkit-transform: translateY(-50%) translateX(-50%);
-  }
-
-// MAP //
-
-  html, body, .leaflet-container, body>div {height: 100%}
-  .leaflet-popup-content-wrapper {color:black;}
