@@ -14,6 +14,7 @@ Router.map(function() {
   this.authenticatedRoute('inactive');
   this.authenticatedRoute('queue');
   this.authenticatedRoute('active');
+  this.authenticatedRoute('penaltybox');
 });
 
 export default Router;

@@ -3,8 +3,6 @@
 {{/if}}
 
 {{#circle-button class="first" action="me" active=meButtonActive}}
-  {{overlay-circle top-left=true color='white' icon="rss" iconColor=(if transmit.isTransmitting 'green' 'red')}}
-
   {{#if me.unreadNotifications}}
     {{overlay-circle top-right=true color='red' content=me.unreadNotifications.length}}
   {{/if}}

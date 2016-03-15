@@ -2,13 +2,14 @@ import Ember from 'ember';
 import { calculateBounds, toLeaflet } from '../utils/leaflet-helpers';
 import RequiresLocation from '../mixins/requires-location';
 import ChecksStatus from '../mixins/checks-status';
+import StartsTransmit from '../mixins/starts-transmit';
 
 const {
   Route,
   inject: { service }
 } = Ember;
 
-export default Route.extend(RequiresLocation, ChecksStatus, {
+export default Route.extend(RequiresLocation, ChecksStatus, StartsTransmit, {
 
   // services
   session: service(),

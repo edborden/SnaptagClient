@@ -17,10 +17,11 @@ export default Service.extend({
   store: service(),
   session: service(),
   geolocation: service(),
+  routing: service('-routing'),
 
   // attributes
   intervalID: null,
-  hasInternetConnection: true,
+  hasInternetConnection: false,
 
   // computed
   @alias('geolocation.accuracy') accuracy,
@@ -37,30 +38,36 @@ export default Service.extend({
     let active = this.get('active');
     let locationIsAccurate = this.get('locationIsAccurate');
     let hasInternetConnection = this.get('hasInternetConnection');
-    return active && locationIsAccurate && hasInternetConnection;
-  },
-
-  // events
-  init() {
-    this.transmittingChanged();
-    // @setInternetConnectionListeners()
-  },
-
-  // this does not function correctly after logout, still sends location
-  transmittingChanged: observer('isTransmitting', function() {
-    let isTransmitting = this.get('isTransmitting');
+    let isTransmitting = active && locationIsAccurate && hasInternetConnection;
     let intervalID = this.get('intervalID');
-    console.log('transmittingChanged', isTransmitting);
-    if (isTransmitting && isBlank(intervalID)) {
+    let routing = this.get('routing');
+    let inPenaltyBox = routing.get('currentRouteName') === 'penaltybox';
+
+    let shouldStartTransmitting = isTransmitting && isBlank(intervalID); 
+    if (shouldStartTransmitting) {
       this.set('intervalID', this.setLocationInterval());
     }
-    if (isTransmitting === false && isPresent(intervalID)) {
-      console.log('clearInterval');
+
+    let shouldStopTransmitting = !isTransmitting && isPresent(intervalID);
+    if (shouldStopTransmitting) {
       clearInterval(intervalID);
       this.set('intervalID', null);
     }
-  }),
 
+    let shouldTransitionToPenaltyBox = active && !isTransmitting && !inPenaltyBox;
+    if (shouldTransitionToPenaltyBox) {
+      routing.transitionTo('penaltybox');
+    }
+
+    let shouldTransitionFromPenaltyBox = inPenaltyBox && isTransmitting;
+    if (shouldTransitionFromPenaltyBox) {
+      routing.transitionTo('active');
+    }
+
+    return isTransmitting;
+  },
+
+  // helpers
   sendLocation() {
     console.log('sendLocation');
     let me = this.get('me');
