@@ -11,7 +11,11 @@
     {{/if}}
     <br><br>
     <button class="btn btn-lg btn-default" {{action 'confirm'}}disabled={{waiting}}>
-      Confirm
+      {{#if error}}
+        Retry
+      {{else}}
+        Confirm
+      {{/if}}
     </button>
     <button class="btn btn-lg btn-default" {{action 'cancel'}}>
       Cancel

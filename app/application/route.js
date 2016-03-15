@@ -31,6 +31,12 @@ export default Route.extend({
 
   // actions
   actions: {
+    error(error) {
+      console.log(error);
+      this.get('geolocation').init();
+      this.replaceWith('error', error);
+    },
+
     logout() {
       this.get('session').close();
       this.replaceWith('index');
