@@ -9,5 +9,5 @@ export default Controller.extend({
 
   // services
   transmit: service()
-  
+
 });

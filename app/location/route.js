@@ -11,5 +11,5 @@ export default Route.extend({
       this.replaceWith('search');
     }
   }
-  
+
 });

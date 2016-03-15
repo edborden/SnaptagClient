@@ -43,7 +43,7 @@ export default Service.extend({
     let routing = this.get('routing');
     let inPenaltyBox = routing.get('currentRouteName') != 'active';
 
-    let shouldStartTransmitting = isTransmitting && isBlank(intervalID); 
+    let shouldStartTransmitting = isTransmitting && isBlank(intervalID);
     if (shouldStartTransmitting) {
       this.set('intervalID', this.setLocationInterval());
     }
