@@ -21,7 +21,7 @@ export default Service.extend({
 
   // attributes
   intervalID: null,
-  hasInternetConnection: false,
+  hasInternetConnection: true,
 
   // computed
   @alias('geolocation.accuracy') accuracy,
@@ -41,7 +41,7 @@ export default Service.extend({
     let isTransmitting = active && locationIsAccurate && hasInternetConnection;
     let intervalID = this.get('intervalID');
     let routing = this.get('routing');
-    let inPenaltyBox = routing.get('currentRouteName') === 'penaltybox';
+    let inPenaltyBox = routing.get('currentRouteName') != 'active';
 
     let shouldStartTransmitting = isTransmitting && isBlank(intervalID); 
     if (shouldStartTransmitting) {

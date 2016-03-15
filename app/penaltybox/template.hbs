@@ -1,1 +1,25 @@
-TEST
+<div class="blank-panel">
+  <h1>Woops!</h1>
+
+  {{#unless transmit.isTransmitting}}
+    <h3>You have to have an internet connection and an accurate location lock to play!</h3>
+  {{/unless}}
+
+  <h3>
+    {{#if transmit.locationIsAccurate}}
+      Your location is accurate.
+    {{else}}
+      Your location is not accurate enough (try turning on both your GPS and your WiFi).
+    {{/if}}
+    {{i-fa icon="location-arrow" size="2x" color=(if transmit.locationIsAccurate 'green' 'red')}}
+  </h3>
+
+  <h3>
+    {{#if transmit.hasInternetConnection}}
+      You have an internet connection.
+    {{else}}
+      You do not have an internet connection.
+    {{/if}}
+    {{i-fa icon="signal" color=(if transmit.hasInternetConnection 'green' 'red')}}
+  </h3>
+</div>
