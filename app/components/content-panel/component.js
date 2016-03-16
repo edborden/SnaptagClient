@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import AutoCloser from '../auto-closer/component'
+import AutoCloser from '../auto-closer/component';
 
 export default AutoCloser.extend({
 
