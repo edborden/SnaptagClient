@@ -120,7 +120,7 @@ export default Service.extend({
         target.get('locations').pushObject(location);
         break;
 
-      case 'Added to activationqueue':
+      case 'Added to queue':
 
         loader.in();
         store.find('activationqueue', data.get('notifiedObjectId'))
