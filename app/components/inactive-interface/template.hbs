@@ -1,5 +1,5 @@
 {{#if modal}}
-  {{auto-closer}}
+  {{auto-closer closer=true}}
 {{/if}}
 
 {{#circle-button class="first" action="me" active=meButtonActive}}
@@ -46,15 +46,5 @@
 {{/if}}
 
 {{#if showInfo}}
-  {{#content-panel}}
-    <h4 class="text-center">
-      <p>
-        {{#if noPlayers}}
-          There are no other players in your area right now.  Join up now and we'll start a new game for you. As new people join, we'll let you know!
-        {{else}}
-          There are other active players in your area right now! Join up!
-        {{/if}}
-      </p>
-    </h4>
-  {{/content-panel}}
+  {{partial 'inactive-info'}}
 {{/if}}

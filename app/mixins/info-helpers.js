@@ -1,40 +1,33 @@
 import Ember from 'ember';
-import computed from 'ember-computed-decorators';
 import { alias, equal } from 'ember-computed-decorators';
+import computed from 'ember-computed-decorators';
+import { locationInZone } from '../utils/geo-helpers';
 
 const {
   Mixin,
-  inject: { service },
-  isEqual
+  inject: { service }
 } = Ember;
 
 export default Mixin.create({
 
   // services
-  session: service(),
+  geolocation: service(),
 
   // attributes
-  length: null,
+  model: null,
 
   // computed
-  @alias('session.me') me,
-  @alias('me.activationqueue') activationqueue,
-  @alias('activationqueue.usersCount') usersCount,
-  @alias('activationqueue.zone.active') activeQueueZone,
+  @alias('model.length') length,
   @equal('length', 0) noPlayers,
 
-  @computed('usersCount')
-  queueOtherUsersCount() {
-    if (isEqual(this.get('usersCount'), 1)) {
-      return 'No';
-    } else {
-      return this.get('usersCount') - 1;
-    }
-  },
-
-  @computed('usersCount')
-  playersTillStartCount() {
-    return 12 - this.get('usersCount');
+  @computed
+  inZone() {
+    let model = this.get('model');
+    let location = this.get('geolocation').getEmberObject();
+    let inZoneArray = model.filter((zone) => {
+      return locationInZone(location, zone);
+    });
+    return inZoneArray.get('firstObject');
   }
 
 });
