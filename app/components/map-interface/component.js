@@ -97,7 +97,11 @@ export default Component.extend({
           this.set('modal', 'me');
           this.set('activeSuspect', null);
         } else {
-          this.set('modal', null);
+          if (this.get('showPic')) {
+            this.set('modal', 'me');
+          } else {
+            this.set('modal', null);
+          }
         }
       } else {
         if (hasUnreadNotifications) {
