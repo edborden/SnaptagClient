@@ -1,25 +1,18 @@
 import Ember from 'ember';
 
 const {
-  Service,
-  isBlank
+  Service
 } = Ember;
 
 export default Service.extend({
 
+  show: false,
+
   in() {
-    if (typeof cordova != 'undefined') {
-      window.plugins.spinnerDialog.show(null, null, true);
-    } else {
-      return;
-    }
+    this.set('show', true);
   },
 
   out() {
-    if (typeof cordova != 'undefined') {
-      window.plugins.spinnerDialog.hide();
-    } else {
-      return;
-    }
+    this.set('show', false);
   }
 });
