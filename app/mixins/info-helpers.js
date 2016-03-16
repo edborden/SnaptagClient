@@ -17,8 +17,7 @@ export default Mixin.create({
   model: null,
 
   // computed
-  @alias('model.length') length,
-  @equal('length', 0) noPlayers,
+  @equal('model.length', 0) noPlayers,
 
   @computed
   inZone() {
