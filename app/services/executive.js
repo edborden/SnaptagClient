@@ -45,7 +45,7 @@ export default Service.extend({
         growler.growl(8);
         break;
 
-      case 'Stalker exposed':
+      case 'Counter-tag successful':
 
         data.deleteRecord();
         me.notifyPropertyChange('suspects');
@@ -53,7 +53,7 @@ export default Service.extend({
         growler.growl(9);
         break;
 
-      case 'Exposed self':
+      case 'Counter-tag unsuccessful':
 
         me.set('exposedCount', me.get('exposedCount') + 1);
         loader.out();
