@@ -44,7 +44,7 @@ export default Object.extend({
           me: session.get('user')
         };
       }, (error) => {
-        localStorage.clear();
+        localStorage.snaptagToken = null;
         reject(error);
       });
     } else {
@@ -53,7 +53,7 @@ export default Object.extend({
   },
 
   close() {
-    localStorage.clear();
+    localStorage.snaptagToken = null;
     return RSVP.resolve();
   }
 

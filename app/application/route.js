@@ -39,7 +39,7 @@ export default Route.extend({
 
     logout() {
       this.get('session').close();
-      this.replaceWith('index');
+      this.replaceWith('search');
       this.get('growler').growl(1);
     },
 
