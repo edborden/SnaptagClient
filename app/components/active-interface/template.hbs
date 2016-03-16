@@ -1,5 +1,5 @@
 {{#if modal}}
-  {{auto-closer}}
+  {{auto-closer closer=true}}
 {{/if}}
 
 {{#circle-button class="first" action="me" active=meButtonActive}}
@@ -38,9 +38,6 @@
 {{#if showMe}}
   {{#circle-interface}}
     {{partial 'me-interface'}}
-
-    {{small-button contentIndex=5 overlayContent="!" icon="bell" iconColor="red"}}
-    
   {{/circle-interface}}
 {{/if}}
 

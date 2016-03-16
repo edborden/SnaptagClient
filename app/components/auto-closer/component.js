@@ -7,9 +7,12 @@ const {
 export default Component.extend({
 
   action: 'closer',
+  closer: false,
 
   click() {
-    this.sendAction();
+    if (this.get('closer')) {
+      this.sendAction();
+    }
     return false;
   }
 
