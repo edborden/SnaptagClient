@@ -97,7 +97,7 @@ export default Component.extend({
           this.set('modal', 'me');
           this.set('activeSuspect', null);
         } else {
-          if (this.get('showPic')) {
+          if (this.get('showPic') || this.get('showNotifications')) {
             this.set('modal', 'me');
           } else {
             this.set('modal', null);
