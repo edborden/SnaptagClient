@@ -13,6 +13,8 @@ export default Model.extend({
   subject: attr('string'),
   body: attr('string'),
   createdAt: attr('string'),
+  notifiedObjectType: attr('string'),
+  notifiedObjectId: attr('number'),
 
   // associations
   hunt: belongsTo('hunt')

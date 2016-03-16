@@ -93,7 +93,7 @@ export default Component.extend({
     me() {
       let hasUnreadNotifications = isPresent(this.get('me').get('unreadNotifications'));
       if (this.get('meButtonActive')) {
-        if (hasUnreadNotifications) {
+        if (hasUnreadNotifications && this.get('showNotifications')) {
           this.set('modal', 'me');
           this.set('activeSuspect', null);
         } else {
