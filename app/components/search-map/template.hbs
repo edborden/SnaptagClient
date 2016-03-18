@@ -4,6 +4,7 @@
   {{circle-layer radius=zone.range lat=zone.lat lng=zone.lng color='blue' fillOpacity=0}}
   {{#each zone.users as |user|}}
     {{#marker-layer lat=user.location.lat lng=user.location.lng}}
+      <img src={{user.smallpic}} class="left thumb">
       Active player who has found {{user.targetsFoundCount}} targets and has been playing since {{moment-from-now user.activatedAt}}.
     {{/marker-layer}}
   {{/each}}
