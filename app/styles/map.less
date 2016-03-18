@@ -1,5 +1,20 @@
 html, body, .leaflet-container, body>div { height: 100% }
-.leaflet-popup-content-wrapper { color:black }
+
+.leaflet-popup-content-wrapper {
+  @dim: 36vw;  
+  .circle(@dim);
+  padding: 0px;
+  .leaflet-popup-content {
+    margin: 0px;
+  }
+  img {
+    .circle(@dim);
+  }
+}
+
+.leaflet-popup-tip {
+  display: none;
+}
 
 .user-marker {
   background-image: url('../images/bubble.png');
