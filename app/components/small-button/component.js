@@ -15,6 +15,7 @@ export default Component.extend(Rotatable, HasPopup, {
   totalCount: 16,
   content: null,
   overlayContent: null,
+  base: 78,
 
   // computed
   @computed
@@ -26,10 +27,11 @@ export default Component.extend(Rotatable, HasPopup, {
   @computed
   panelDim() {
     let vw = this.get('vw');
+    let base = this.get('base');
     if (this.get('inside')) {
-      return 78 * vw / 4;
+      return base * vw / 4;
     } else {
-      return 78 * vw / 2;
+      return base * vw / 2;
     }
   }
 

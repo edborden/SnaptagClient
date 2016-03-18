@@ -3,13 +3,9 @@
 {{#each model as |zone|}}
   {{circle-layer radius=zone.range lat=zone.lat lng=zone.lng color='blue' fillOpacity=0}}
   {{#each zone.users as |user|}}
-<<<<<<< HEAD
-    {{#marker-layer lat=user.location.lat lng=user.location.lng}}
-      <img src={{user.smallpic}} class="left thumb">
-=======
     {{#user-marker imageUrl=user.smallpic lat=user.location.lat lng=user.location.lng}}
->>>>>>> refs/remotes/origin/master
-      Active player who has found {{user.targetsFoundCount}} targets and has been playing since {{moment-from-now user.activatedAt}}.
+      {{small-button contentIndex=6 base=36 popoverContent="Snaptags" content=user.targetsFoundCount}}
+      <img src={{user.largepic}}>
     {{/user-marker}}
   {{/each}}
 {{/each}}
