@@ -55,5 +55,10 @@ module.exports = function(defaults) {
     destDir: '/fonts'
   });
 
+  // marker cluster
+  app.import('bower_components/leaflet.markercluster/dist/leaflet.markercluster.js');
+  app.import('bower_components/leaflet.markercluster/dist/MarkerCluster.css');
+  app.import('bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css');
+
   return mergeTrees([app.toTree(), fontAwesomeFonts, leafletAwesomeMarkers, leafletUserMarker]);
 };

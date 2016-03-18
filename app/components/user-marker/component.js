@@ -4,21 +4,19 @@ import computed from 'ember-computed-decorators';
 const UserMarker = L.Icon.extend({
 
   options: {
-      iconSize: [65, 80],
-      popupAnchor: [1, -90]
+    iconSize: [65, 80],
+    popupAnchor: [1, -90]
   },
 
   initialize(options) {
-      options = L.Util.setOptions(this, options);
+    options = L.Util.setOptions(this, options);
   },
 
   createIcon() {
-      var div = document.createElement('div');
-      div.className = 'user-marker';
-
-      div.innerHTML = this._createInner();
-
-      return div;
+    let div = document.createElement('div');
+    div.className = 'user-marker';
+    div.innerHTML = this._createInner();
+    return div;
   },
 
   _createInner() {

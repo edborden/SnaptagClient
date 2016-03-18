@@ -2,9 +2,11 @@
 {{me-marker}}
 {{#each model as |zone|}}
   {{circle-layer radius=zone.range lat=zone.lat lng=zone.lng color='blue' fillOpacity=0}}
-  {{#each zone.users as |user|}}
-    {{#user-marker imageUrl=user.smallpic lat=user.location.lat lng=user.location.lng}}
-      Active player who has found {{user.targetsFoundCount}} targets and has been playing since {{moment-from-now user.activatedAt}}.
-    {{/user-marker}}
-  {{/each}}
+  {{#cluster-layer showCoverageOnHover=false zoomToBoundsOnClick=false disableClusteringAtZoom=1}}
+    {{#each zone.users as |user|}}
+      {{#user-marker imageUrl=user.smallpic lat=user.location.lat lng=user.location.lng}}
+        Active player who has found {{user.targetsFoundCount}} targets and has been playing since {{moment-from-now user.activatedAt}}.
+      {{/user-marker}}
+    {{/each}}
+  {{/cluster-layer}}
 {{/each}}
