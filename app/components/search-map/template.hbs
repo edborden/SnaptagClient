@@ -3,8 +3,8 @@
 {{#each model as |zone|}}
   {{circle-layer radius=zone.range lat=zone.lat lng=zone.lng color='blue' fillOpacity=0}}
   {{#each zone.users as |user|}}
-    {{#marker-layer lat=user.location.lat lng=user.location.lng}}
+    {{#user-marker imageUrl=user.smallpic lat=user.location.lat lng=user.location.lng}}
       Active player who has found {{user.targetsFoundCount}} targets and has been playing since {{moment-from-now user.activatedAt}}.
-    {{/marker-layer}}
+    {{/user-marker}}
   {{/each}}
 {{/each}}
