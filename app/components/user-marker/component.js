@@ -1,5 +1,4 @@
 import MarkerLayer from 'snaptag-client/components/marker-layer';
-import computed from 'ember-computed-decorators';
 
 const UserMarker = L.Icon.extend({
 
@@ -27,7 +26,6 @@ const UserMarker = L.Icon.extend({
 
 export default MarkerLayer.extend({
 
-  imageUrl: null,
   icon: null,
 
   init() {
@@ -37,6 +35,20 @@ export default MarkerLayer.extend({
       imageUrl: this.get('imageUrl')
     });
     this.set('icon', icon);
+  },
+
+  didCreateLayer() {
+    //this._super(...arguments);
+    if (this.get('hasBlock')) {
+      this._popup = this.L.popup({}, this._layer);
+      this._popup.setContent(this.get('destinationElement'));
+      this._layer._popup = this._popup;
+      //this._layer.bindPopup(this._popup);
+
+      this._hijackPopup();
+
+      this.popupOpenDidChange();
+    }
   }
 
 });
