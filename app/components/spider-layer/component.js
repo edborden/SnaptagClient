@@ -8,7 +8,7 @@ export default BaseLayer.extend(ContainerMixin, {
     let map = this.get('containerLayer')._layer;
     let oms = new OverlappingMarkerSpiderfier(map);
     let omsAddLayer = Ember.run.bind(this, this.omsAddLayer);
-    oms['addLayer'] = omsAddLayer;
+    oms.addLayer = omsAddLayer;
     oms.addListener('click', function(marker) {
       marker.bindPopup(marker._popup);
       marker.openPopup();

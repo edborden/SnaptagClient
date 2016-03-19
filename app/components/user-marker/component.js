@@ -38,12 +38,12 @@ export default MarkerLayer.extend({
   },
 
   didCreateLayer() {
-    //this._super(...arguments);
+    // this._super(...arguments);
     if (this.get('hasBlock')) {
       this._popup = this.L.popup({}, this._layer);
       this._popup.setContent(this.get('destinationElement'));
       this._layer._popup = this._popup;
-      //this._layer.bindPopup(this._popup);
+      // this._layer.bindPopup(this._popup);
 
       this._hijackPopup();
 
