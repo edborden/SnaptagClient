@@ -6,7 +6,6 @@ export default MapInterface.extend(InfoHelpers, {
 
   layout,
   length: null,
-  modal: 'info',
 
   sendJoin: 'join',
 

@@ -27,6 +27,14 @@ export default Mixin.create({
       return locationInZone(location, zone);
     });
     return inZoneArray.get('firstObject');
+  },
+
+  // events
+  init() {
+    this._super();
+    if (this.get('noPlayers')) {
+      this.set('modal', 'info');
+    }
   }
 
 });

@@ -1,19 +1,18 @@
 {{#content-panel closer=true}}
   <h4 class="text-center">
-    <p>This is a live map.</p>
     <p>
       {{#if noPlayers}}
-        There are no other players in your area right now.  Join up now and we'll start a new game for you. As new people join, we'll let you know!
+        No other players in your area right now.  Join up now and start a new game so other people can see that you want to play!
       {{else}}
-        There are other active players in your area right now! 
+        There are other players in your area right now! 
         {{#if inZone}}
           {{#if inZone.active}}
-            If you join now, you'll be dropped into an active game already in progress -- you'll be able to start playing immediately!
+            Join now to drop into an active game.
           {{else}}
-            They are waiting for a game to start, so if you join now you'll be dropped into the queue and begin playing once it has filled up.
+            Join now to enter the queue.
           {{/if}}
         {{else}}
-          You are a little ways off from where they are playing, though, so if you want to play in their game you'll need to go to their area. Otherwise, if you join up now where you are, we'll start a new game for you. As new people join, we'll let you know!
+          You'll have to move closer to play in their game, otherwise join up now and start a new game so other people can see that you want to play!
         {{/if}}
       {{/if}}
     </p>

@@ -6,7 +6,6 @@ export default MapInterface.extend(InfoHelpers, {
 
   layout,
   sendLogin: 'login',
-  modal: 'info',
 
   actions: {
     login() {
