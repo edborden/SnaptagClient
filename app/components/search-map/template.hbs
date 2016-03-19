@@ -2,7 +2,7 @@
 {{me-marker}}
 {{#each model as |zone|}}
   {{circle-layer radius=zone.range lat=zone.lat lng=zone.lng color='blue' fillOpacity=0}}
-  {{#cluster-layer showCoverageOnHover=false zoomToBoundsOnClick=false disableClusteringAtZoom=1}}
+  {{#cluster-layer showCoverageOnHover=false disableClusteringAtZoom=15}}
     {{#each zone.users as |user|}}
       {{#user-marker imageUrl=user.smallpic lat=user.location.lat lng=user.location.lng}}
         {{small-button contentIndex=6 base=36 popoverContent="Snaptags" content=user.targetsFoundCount}}
