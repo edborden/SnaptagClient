@@ -18,8 +18,9 @@ body {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-tap-highlight-color: transparent;
   overflow: hidden;
+  background-color: @blue;
   background-image: url("../images/bg.jpg");
-  -webkit-background-size: 100% 100%;
+  .has-background
 }
 
 h1, h3 {
@@ -45,7 +46,24 @@ h1, h3 {
     width:100%;
     .text-center;
     background-image: url("../images/bg_no_logo.jpg");
-    color: @purple;    
+    color: @purple;
+    background-color: @blue;
+    .has-background; 
+  }
+
+  .bg-panel1 {
+    .blank-panel;
+    background-image: url("../images/screen1.jpg");
+  }
+
+  .bg-panel2 {
+    .blank-panel;
+    background-image: url("../images/screen2.jpg");
+  }
+
+  .bg-panel3 {
+    .blank-panel;
+    background-image: url("../images/screen3.jpg");
   }
 
   .index-bg {
