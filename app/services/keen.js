@@ -36,10 +36,15 @@ export default Service.extend({
     });
   },
 
+  @computed
+  visitId() {
+    return (Math.random()*9e6).toString(36);
+  },
+
   addEvent(eventName, context = null) {
-    console.log(eventName, context);
     return this.get('client').addEvent(eventName, {
       user: this.get('structuredMe'),
+      visitId: this.get('visitId'),
       context
     });
   }

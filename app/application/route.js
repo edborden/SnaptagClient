@@ -41,27 +41,41 @@ export default Route.extend({
       this.get('session').close();
       this.replaceWith('search');
       this.get('growler').growl(1);
+      this.get('keen').addEvent('logout');
     },
 
     login() {
       let loader = this.get('loader');
-
+      let keen = this.get('keen');
+      let growler = this.get('growler');
+      keen.addEvent('loginInitiated');
       loader.in();
       this.facebookLogin()
-      .then(() => {
-        loader.out();
-        this.get('growler').growl(2);
-        let status = this.get('me').get('status');
-        this.replaceWith(status);
-      });
+      .then(
+        () => {
+          loader.out();
+          growler.growl(2);
+          keen.addEvent('loginSuccess');
+          let status = this.get('me').get('status');
+          this.replaceWith(status);
+        },
+        function(error) {
+          loader.out();
+          console.log('loginFailure', error);
+          growler.growl('Login failure');
+          keen.addEvent('loginFailure', error);
+        }
+      );
     },
 
     join() {
+      this.get('keen').addEvent('joinInitiated');
       this.get('loader').in();
       this.get('ajax').getServer('actions/join', { location: this.get('geolocation').getObject() });
     },
 
     unjoin() {
+      this.get('keen').addEvent('unjoin');
       let me = this.get('session').get('me');
       this.get('ajax').getServer('actions/unjoin');
       me.set('status', 'inactive');

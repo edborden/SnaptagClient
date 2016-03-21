@@ -2,13 +2,14 @@ import Ember from 'ember';
 import ZoneModel from '../mixins/zone-model';
 import RequiresLocation from '../mixins/requires-location';
 import ChecksStatus from '../mixins/checks-status';
+import KeenRoute from '../mixins/keen-route';
 
 const {
   Route,
   inject: { service }
 } = Ember;
 
-export default Route.extend(ZoneModel, RequiresLocation, {
+export default Route.extend(ZoneModel, RequiresLocation, KeenRoute, {
 
   // services
   session: service(),
