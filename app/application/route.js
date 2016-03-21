@@ -66,7 +66,7 @@ export default Route.extend({
       this.get('keen').addEvent('loginJoin');
       this.login().then(() => {
         if (this.get('me').get('inactive')) {
-          this.join();          
+          this.join();
         }
       });
     },

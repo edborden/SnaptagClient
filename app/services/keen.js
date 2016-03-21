@@ -21,7 +21,7 @@ export default Service.extend({
   structuredMe() {
     if (this.get('session').get('isAuthenticated')) {
       if (isPresent(this.get('me'))) {
-        return this.get('me').getProperties('id', 'name', 'email');        
+        return this.get('me').getProperties('id', 'name', 'email');
       } else {
         return null;
       }
