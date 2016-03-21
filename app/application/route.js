@@ -45,33 +45,11 @@ export default Route.extend({
     },
 
     login() {
-      let loader = this.get('loader');
-      let keen = this.get('keen');
-      let growler = this.get('growler');
-      keen.addEvent('loginInitiated');
-      loader.in();
-      this.facebookLogin()
-      .then(
-        () => {
-          loader.out();
-          growler.growl(2);
-          keen.addEvent('loginSuccess');
-          let status = this.get('me').get('status');
-          this.replaceWith(status);
-        },
-        function(error) {
-          loader.out();
-          console.log('loginFailure', error);
-          growler.growl('Login failure');
-          keen.addEvent('loginFailure', error);
-        }
-      );
+      this.login();
     },
 
     join() {
-      this.get('keen').addEvent('joinInitiated');
-      this.get('loader').in();
-      this.get('ajax').getServer('actions/join', { location: this.get('geolocation').getObject() });
+      this.join();
     },
 
     unjoin() {
@@ -85,7 +63,12 @@ export default Route.extend({
     },
 
     loginJoin() {
-      this.get('growler').growl('test');
+      this.get('keen').addEvent('loginJoin');
+      this.login().then(() => {
+        if (this.get('me').get('inactive')) {
+          this.join();          
+        }
+      });
     },
 
     found(target, imageId) {
@@ -111,6 +94,36 @@ export default Route.extend({
   },
 
   // helpers
+  login() {
+    let loader = this.get('loader');
+    let keen = this.get('keen');
+    let growler = this.get('growler');
+    keen.addEvent('loginInitiated');
+    loader.in();
+    return this.facebookLogin()
+    .then(
+      () => {
+        loader.out();
+        growler.growl(2);
+        keen.addEvent('loginSuccess');
+        let status = this.get('me').get('status');
+        this.replaceWith(status);
+      },
+      function(error) {
+        loader.out();
+        console.log('loginFailure', error);
+        growler.growl('Login failure');
+        keen.addEvent('loginFailure', error);
+      }
+    );
+  },
+
+  join() {
+    this.get('keen').addEvent('joinInitiated');
+    this.get('loader').in();
+    this.get('ajax').getServer('actions/join', { location: this.get('geolocation').getObject() });
+  },
+
   facebookLogin() {
     let session = this.get('session');
     let provider;

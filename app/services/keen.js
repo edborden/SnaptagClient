@@ -5,7 +5,8 @@ import { alias } from 'ember-computed-decorators';
 
 const {
   Service,
-  inject: { service }
+  inject: { service },
+  isPresent
 } = Ember;
 
 export default Service.extend({
@@ -19,7 +20,11 @@ export default Service.extend({
   @computed('me')
   structuredMe() {
     if (this.get('session').get('isAuthenticated')) {
-      return this.get('me').getProperties('id', 'name', 'email');
+      if (isPresent(this.get('me'))) {
+        return this.get('me').getProperties('id', 'name', 'email');        
+      } else {
+        return null;
+      }
     } else {
       return null;
     }
