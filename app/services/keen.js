@@ -38,7 +38,7 @@ export default Service.extend({
 
   @computed
   visitId() {
-    return (Math.random()*9e6).toString(36);
+    return (Math.random() * 9e6).toString(36);
   },
 
   addEvent(eventName, context = null) {
