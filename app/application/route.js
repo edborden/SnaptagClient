@@ -84,6 +84,10 @@ export default Route.extend({
       this.replaceWith('inactive');
     },
 
+    loginJoin() {
+      this.get('growler').growl('test');
+    },
+
     found(target, imageId) {
       // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
       this.get('keen').addEvent('found', target.getProperties('id', 'name', 'email'));

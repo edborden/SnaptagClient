@@ -6,10 +6,14 @@ export default MapInterface.extend(InfoHelpers, {
 
   layout,
   sendLogin: 'login',
+  sendLoginJoin: 'loginJoin',
 
   actions: {
     login() {
       this.sendAction('sendLogin');
+    },
+    loginJoin() {
+      this.sendAction('sendLoginJoin');
     }
   }
 
