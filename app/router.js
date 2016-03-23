@@ -11,7 +11,7 @@ Router.map(function() {
   this.route('intro3');
   this.route('location');
   this.route('search');
-  this.route('instructions');
+  this.route('guide');
   this.authenticatedRoute('inactive');
   this.authenticatedRoute('queue');
   this.authenticatedRoute('active');

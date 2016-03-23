@@ -36,7 +36,7 @@ export default Controller.extend({
     cancel() {
       this.get('keen').addEvent('geolocationCancel');
       this.set('error', null);
-      this.transitionToRoute('index');
+      this.transitionToRoute('guide');
     }
   }
 });
