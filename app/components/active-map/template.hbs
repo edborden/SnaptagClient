@@ -1,4 +1,5 @@
 {{tile-layer url='https://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}
+{{circle-layer radius=zone.range lat=zone.lat lng=zone.lng color='blue' fillOpacity=0}}
 {{me-marker}}
 {{#spider-layer showCoverageOnHover=false disableClusteringAtZoom=15}}
   {{#each model as |location|}}

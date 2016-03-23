@@ -38,6 +38,7 @@ export default Model.extend({
   targets: hasMany('user', { inverse: null, async: false }),
   notifications: hasMany('notification', { async: false }),
   locations: hasMany('location', { async: false }),
+  zone: belongsTo('zone', { async: false }),
 
   // computed
   @alias('session.me.targets') meTargets,
