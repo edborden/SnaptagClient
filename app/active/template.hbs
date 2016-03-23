@@ -1,14 +1,2 @@
-{{#snaptag-map bounds=initialBounds initialCenter=center initialZoom=zoom}}
-  {{tile-layer url='https://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}
-  {{me-marker}}
-  {{#spider-layer showCoverageOnHover=false disableClusteringAtZoom=15}}
-    {{#each model as |location|}}
-      {{#user-marker imageUrl=location.user.smallpic lat=location.lat lng=location.lng}}
-        {{small-button contentIndex=6 base=36 popoverContent="Snaptags" content=location.user.targetsFoundCount}}
-        <img src={{location.user.largepic}}>
-      {{/user-marker}}
-    {{/each}}
-  {{/spider-layer}}
-{{/snaptag-map}}
-
+{{active-map bounds=initialBounds initialCenter=center initialZoom=zoom model=model}}
 {{active-interface}}

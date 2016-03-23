@@ -1,0 +1,9 @@
+{{tile-layer url='https://{s}.tiles.mapbox.com/v3/edborden.i7622aec/{z}/{x}/{y}.png'}}
+{{me-marker}}
+{{#spider-layer showCoverageOnHover=false disableClusteringAtZoom=15}}
+  {{#each model as |location|}}
+    {{#user-marker imageUrl=location.user.smallpic lat=location.lat lng=location.lng}}
+      {{location.user.name}}, {{moment-from-now location.createdAt}}
+    {{/user-marker}}
+  {{/each}}
+{{/spider-layer}}
