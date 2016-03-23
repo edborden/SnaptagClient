@@ -80,7 +80,7 @@ export default Service.extend({
   error(error) {
     switch (error.code) {
       case error.PERMISSION_DENIED:
-        return 'You denied the request for your location. You will have to reset your system settings to be able to re-confirm.';
+        return 'You denied the request for your location or your current settings have blocked geolocation access completely. You will have to change or reset your browser or system settings to be able to re-confirm. There is no way to play Snaptag without doing this :(...';
         break;
       case error.POSITION_UNAVAILABLE:
         return 'Your location information is unavailable. Please make sure your GPS and/or WiFi radios are enabled. If they already are, it may not be able to get your location at this time. Please try again in a different location.';
