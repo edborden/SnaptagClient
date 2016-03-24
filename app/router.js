@@ -6,9 +6,11 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('intro1');
-  this.route('intro2');
-  this.route('intro3');
+  this.route('intro', function() {
+    this.route('1');
+    this.route('2');
+    this.route('3');
+  });
   this.route('location');
   this.route('search');
   this.route('guide');

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import KeenRoute from '../mixins/keen-route';
+import KeenRoute from '../../mixins/keen-route';
 
 const {
   Route
