@@ -2,25 +2,27 @@
   {{#content-panel full=true styled=false}}
     <div class="text-center">
       <h1>{{i-fa icon="map-marker" size="1x"}}
-      Use Location?</h1><br><br><br>
-      <h4>In order to show you other players in your area, Snaptag would like to access your location information from your device. This location information won't be stored and we won't share it with anyone.</h4><br>
-      {{#if waiting}}
-        {{i-fa size="4x" icon="cog" class="fa-spin"}}
-      {{/if}}
-      {{#if error}}
-        <h4 class="color-red">{{error}}</h4>
-      {{/if}}
-      <br><br>
-      <button class="btn btn-lg btn-default" {{action 'confirm'}}disabled={{waiting}}>
-        {{#if error}}
-          Retry
+      Use Location?</h1>
+      <div class="self-center width100">
+        {{#unless error}}
+          <h4>In order to show you other players in your area, Snaptag would like to access your location information from your device. This location information won't be stored and we won't share it with anyone.</h4>
         {{else}}
-          Confirm
+          <h4 class="color-red">{{error}}</h4>
+        {{/unless}}
+        {{#if waiting}}
+          {{i-fa size="4x" icon="cog" class="fa-spin"}}
         {{/if}}
-      </button>
-      <button class="btn btn-lg btn-default" {{action 'cancel'}}>
-        Cancel
-      </button>
+        <button class="btn btn-lg btn-default" {{action 'confirm'}}disabled={{waiting}}>
+          {{#if error}}
+            Retry
+          {{else}}
+            Confirm
+          {{/if}}
+        </button>
+        <button class="btn btn-lg btn-default" {{action 'cancel'}}>
+          Cancel
+        </button>
+      </div>
     </div>
   {{/content-panel}}
   {{#link-to 'guide' class="bottom-buttons"}}
