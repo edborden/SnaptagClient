@@ -19,25 +19,14 @@ export default Mixin.create({
   },
 
   setupController(controller, model) {
-    // Call _super for default behavior
     this._super(controller, model);
-    // Implement your custom setup after
-    let myLocation = this.get('geolocation').getEmberObject();
     let boundsArray;
     if (isPresent(model)) {
-      boundsArray = model.getEach('users').map(function(usersArray) {
-        return usersArray.getEach('location');
-      });
       // this will need to be adjusted to show multiple zones, only picking the first zone right now
-      boundsArray = boundsArray.get('firstObject');
+      controller.set('center', toLeaflet(model.get('firstObject')));
+      controller.set('zoom', 12);
     }
-    if (isPresent(boundsArray)) {
-      boundsArray.pushObject(myLocation);
-      controller.set('initialBounds', calculateBounds(boundsArray));
-    } else {
-      controller.set('center', toLeaflet(myLocation));
-      controller.set('zoom', 15);
-    }
+    // need to handle no model
   }
 
 });
