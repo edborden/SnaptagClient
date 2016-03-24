@@ -13,7 +13,6 @@
     "leaflet.awesome-markers": "https://github.com/lvoogdt/Leaflet.awesome-markers.git#2.0/develop",
     "leaflet-usermarker": "https://github.com/heyman/leaflet-usermarker.git#master",
     "keen-js": "~3.4.0",
-    "leaflet.markercluster": "~0.4.0-hotfix.1",
-    "spiderfier":"https://github.com/MuellerMatthew/OverlappingMarkerSpiderfier-Leaflet.git"
+    "spiderfier": "https://github.com/MuellerMatthew/OverlappingMarkerSpiderfier-Leaflet.git"
   }
 }

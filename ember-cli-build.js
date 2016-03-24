@@ -57,9 +57,6 @@ module.exports = function(defaults) {
 
   // marker cluster
   app.import('bower_components/spiderfier/dist/oms.js');
-  app.import('bower_components/leaflet.markercluster/dist/leaflet.markercluster.js');
-  app.import('bower_components/leaflet.markercluster/dist/MarkerCluster.css');
-  app.import('bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css');
 
   return mergeTrees([app.toTree(), fontAwesomeFonts, leafletAwesomeMarkers, leafletUserMarker]);
 };
