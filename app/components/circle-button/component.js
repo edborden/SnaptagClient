@@ -11,10 +11,13 @@ export default Component.extend({
   classNameBindings: [ 'active' ],
 
   click() {
-    if (typeof this.get('action') === 'string') {
-      this.sendAction();
-    } else {
-      this.action();
+    switch (typeof this.get('action')) {
+      case 'string':
+        this.sendAction();
+        break;
+      case 'function':
+        this.action();
+        break;
     }
   }
 
