@@ -32,14 +32,6 @@ module.exports = function(defaults) {
 
   // Keen.io
   app.import('bower_components/keen-js/dist/keen.min.js');
-  
-  // Leaflet Awesome Markers
-  app.import('bower_components/leaflet.awesome-markers/dist/leaflet.awesome-markers.js');
-  app.import('bower_components/leaflet.awesome-markers/dist/leaflet.awesome-markers.css');
-  var leafletAwesomeMarkers = pickFiles('bower_components/leaflet.awesome-markers/dist/images', {
-      srcDir: '/',
-    destDir: 'assets/images'
-  });
 
   // Leaflet User Marker
   app.import('bower_components/leaflet-usermarker/src/leaflet.usermarker.js');
@@ -55,8 +47,8 @@ module.exports = function(defaults) {
     destDir: '/fonts'
   });
 
-  // marker cluster
+  // spiderfier
   app.import('bower_components/spiderfier/dist/oms.js');
 
-  return mergeTrees([app.toTree(), fontAwesomeFonts, leafletAwesomeMarkers, leafletUserMarker]);
+  return mergeTrees([app.toTree(), fontAwesomeFonts, leafletUserMarker]);
 };
