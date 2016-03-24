@@ -20,7 +20,17 @@ export default Route.extend(ZoneModel, RequiresLocation, KeenRoute, {
       let status = this.get('session').get('me').get('status');
       this.replaceWith(status);
     }
-    return this._super();
+    if (localStorage.snaptagLocation) {
+      return this._super();
+    }
+  },
+
+  model() {
+    if (localStorage.snaptagLocation) {
+      return this._super();
+    } else {
+      return this.get('store').query('zone', {});
+    }
   }
 
 });

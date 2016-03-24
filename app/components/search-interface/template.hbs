@@ -2,23 +2,33 @@
   {{auto-closer closer=true}}
 {{/if}}
 
-{{#circle-button class="first" action="login"}}
-  <div class="self-center">
-    {{i-fa icon="facebook" size="2x" class="small"}}
-    <br>
-    <span class="small">Login</span>
-  </div>
-{{/circle-button}}
+{{#unless noLocation}}
+  {{#circle-button class="first" action="login"}}
+    <div class="self-center">
+      {{i-fa icon="facebook" size="2x" class="small"}}
+      <br>
+      <span class="small">Login</span>
+    </div>
+  {{/circle-button}}
 
-{{#circle-button class="second" action="loginJoin"}}
-  <div class="self-center">
-    {{i-fa icon="camera" size="2x"}}
-    <br>
-    <span class="small">Join</span>
-  </div>
-{{/circle-button}}
+  {{#circle-button class="second" action="loginJoin"}}
+    <div class="self-center">
+      {{i-fa icon="camera" size="2x"}}
+      <br>
+      <span class="small">Join</span>
+    </div>
+  {{/circle-button}}
+{{else}}
+  {{#link-to 'location'}}
+    {{#circle-button class="first"}}
+      <div class="self-center">
+        {{i-fa icon="map-marker" size="2x"}}
+      </div>
+    {{/circle-button}}
+  {{/link-to}}
+{{/unless}}
 
-{{#circle-button class="third" active=showInstructions action=(action 'setModal' 'instructions')}}
+{{#circle-button class=(if noLocation "second" "third") active=showInstructions action=(action 'setModal' 'instructions')}}
   {{i-fa icon="question" size="2x" class="self-center"}}
 {{/circle-button}}
 
