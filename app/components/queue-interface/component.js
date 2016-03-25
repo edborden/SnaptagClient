@@ -37,7 +37,7 @@ export default MapInterface.extend({
 
   @computed('usersCount')
   playersTillStartCount() {
-    return 12 - this.get('usersCount');
+    return 4 - this.get('usersCount');
   },
 
   // actions

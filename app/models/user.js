@@ -26,8 +26,6 @@ export default Model.extend({
   foundCount: attr('number'),
   stalkersExposedCount: attr('number'),
   exposedCount: attr('number'),
-  smallpic: attr('string'),
-  largepic: attr('string'),
   stealth: attr('number'),
   activatedAt: attr('date'),
   status: attr('string'),

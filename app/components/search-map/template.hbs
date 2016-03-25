@@ -8,7 +8,7 @@
     {{#each zone.users as |user|}}
       {{#user-marker user=user lat=user.location.lat lng=user.location.lng}}
         {{small-button contentIndex=6 base=36 popoverContent="Snaptags" content=user.targetsFoundCount}}
-        <img src={{user.largepic}}>
+        {{profile-pic user=user size=36}}
         <span class="description">
           {{user.name}},<br>{{moment-from-now user.location.createdAt}}
         </span>

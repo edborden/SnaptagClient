@@ -6,7 +6,7 @@
   {{#if me.unreadNotifications}}
     {{overlay-circle top-right=true color='red' content=me.unreadNotifications.length}}
   {{/if}}
-  <img src={{me.smallpic}}>
+  {{profile-pic user=me size=15}}
 {{/circle-button}}
 
 {{#circle-button class="second" action="unjoin"}}

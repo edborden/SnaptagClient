@@ -6,7 +6,7 @@
   {{#if me.unreadNotifications}}
     {{overlay-circle top-right=true color='red' content=me.unreadNotifications.length}}
   {{/if}}
-  <img src={{me.smallpic}}>
+  {{profile-pic user=me size=15}}
 {{/circle-button}}
 
 {{#circle-button class="second" active=webButtonActive action="web"}}
@@ -63,11 +63,7 @@
 
 {{#if showPic}}
   {{#circle-interface}}
-    {{#if activeSuspect}}
-      {{circle-pic src=activeSuspect.largepic}}
-    {{else}}
-      {{circle-pic src=me.largepic}}
-    {{/if}}
+    {{profile-pic user=(if activeSuspect activeSuspect me) size=78 class="stacked"}}
   {{/circle-interface}}
 {{/if}}
 
