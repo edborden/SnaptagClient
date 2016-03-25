@@ -37,7 +37,7 @@ export default Component.extend({
     }
     let facebookid = this.get('facebookid');
     let sizePx = this.get('sizePx');
-    return `http://res.cloudinary.com/dtmsz8kse/image/facebook/w_${sizePx},h_${sizePx},c_thumb,${face}r_max/${facebookid}.png`.htmlSafe();
+    return `https://res.cloudinary.com/dtmsz8kse/image/facebook/w_${sizePx},h_${sizePx},c_thumb,${face}r_max/${facebookid}.png`.htmlSafe();
   }
 
 });

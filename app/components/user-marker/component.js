@@ -35,7 +35,7 @@ export default MarkerLayer.extend({
   @computed
   imageUrl() {
     let facebookid = this.get('user').get('facebookid');
-    return `http://res.cloudinary.com/dtmsz8kse/image/facebook/w_45,h_45,c_thumb,g_face,r_max/${facebookid}.png`.htmlSafe();
+    return `https://res.cloudinary.com/dtmsz8kse/image/facebook/w_45,h_45,c_thumb,g_face,r_max/${facebookid}.png`.htmlSafe();
   },
 
   // events
