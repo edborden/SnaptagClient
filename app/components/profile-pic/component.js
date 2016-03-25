@@ -25,7 +25,7 @@ export default Component.extend({
 
   @computed('screen.width')
   sizePx() {
-    let sizePx = this.get('size') * (this.get('screen').get('width')/100);
+    let sizePx = this.get('size') * (this.get('screen').get('width') / 100);
     return Math.round(sizePx);
   },
 
