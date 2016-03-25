@@ -3,7 +3,7 @@
 {{me-marker}}
 {{#spider-layer showCoverageOnHover=false disableClusteringAtZoom=15}}
   {{#each model as |location|}}
-    {{#user-marker imageUrl=location.user.smallpic lat=location.lat lng=location.lng}}
+    {{#user-marker user=user lat=user.location.lat lng=user.location.lng}}
       {{location.user.name}}, {{moment-from-now location.createdAt}}
     {{/user-marker}}
   {{/each}}

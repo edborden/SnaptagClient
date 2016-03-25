@@ -32,7 +32,7 @@ export default Mixin.create({
         lng: -74.0058
       });
       controller.set('center', toLeaflet(defaultNYC));
-      controller.set('zoom', 12);      
+      controller.set('zoom', 12);
     }
   }
 

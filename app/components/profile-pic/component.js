@@ -33,7 +33,7 @@ export default Component.extend({
   src() {
     let face = '';
     if (this.face) {
-      face = 'g_face,'
+      face = 'g_face,';
     }
     let facebookid = this.get('facebookid');
     let sizePx = this.get('sizePx');
