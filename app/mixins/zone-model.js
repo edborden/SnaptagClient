@@ -25,8 +25,15 @@ export default Mixin.create({
       // this will need to be adjusted to show multiple zones, only picking the first zone right now
       controller.set('center', toLeaflet(model.get('firstObject')));
       controller.set('zoom', 12);
+    } else {
+      // need to handle no model
+      let defaultNYC = new Ember.Object({
+        lat: 40.7127,
+        lng: -74.0058
+      });
+      controller.set('center', toLeaflet(defaultNYC));
+      controller.set('zoom', 12);      
     }
-    // need to handle no model
   }
 
 });
