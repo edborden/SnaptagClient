@@ -12,7 +12,8 @@ const {
 
 const {
   inject: { service },
-  isEqual
+  isEqual,
+  isPresent
 } = Ember;
 
 export default Model.extend({
@@ -49,10 +50,15 @@ export default Model.extend({
   // this errors if there isn't a session
   @computed('meTargets')
   isTarget() {
-    return this.get('meTargets')
-    .any((user) => {
-      return isEqual(user, this);
-    });
+    let meTargets = this.get('meTargets');
+    if (isPresent(meTargets)) {
+      return this.get('meTargets')
+      .any((user) => {
+        return isEqual(user, this);
+      });
+    } else {
+      return false;
+    }
   },
 
   @filterBy('notifications', 'read', false) unreadNotifications
