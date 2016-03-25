@@ -1,3 +1,4 @@
+import computed from 'ember-computed-decorators';
 import MarkerLayer from 'snaptag-client/components/marker-layer';
 
 const UserMarker = L.Icon.extend({
@@ -19,21 +20,29 @@ const UserMarker = L.Icon.extend({
   },
 
   _createInner() {
-    return `<img class='tiny' src=${this.options.imageUrl}>`;
+    return `<img src=${this.options.imageUrl}>`;
   }
 
 });
 
 export default MarkerLayer.extend({
 
+  // attributes
   icon: null,
+  user: null,
 
+  // computed
+  @computed
+  imageUrl() {
+    let facebookid = this.get('user').get('facebookid');
+    return `http://res.cloudinary.com/dtmsz8kse/image/facebook/w_45,h_45,c_thumb,g_face,r_max/${facebookid}.png`.htmlSafe();
+  },
+
+  // events
   init() {
     this._super();
     let imageUrl = this.get('imageUrl');
-    let icon = new UserMarker({
-      imageUrl: this.get('imageUrl')
-    });
+    let icon = new UserMarker({ imageUrl });
     this.set('icon', icon);
   },
 

@@ -31,6 +31,7 @@ export default Model.extend({
   stealth: attr('number'),
   activatedAt: attr('date'),
   status: attr('string'),
+  facebookid: attr('string'),
 
   // associations
   activationqueue: belongsTo('activationqueue', { async: false }),
