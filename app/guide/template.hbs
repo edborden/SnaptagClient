@@ -1,8 +1,10 @@
 <div class="name-panel">
   {{partial 'instructions'}}
-  {{#link-to 'location' class="bottom-buttons"}}
-    <button class="btn btn-lg btn-primary">
-      {{i-fa icon="map-marker"}} Search for players around you!
-    </button>
-  {{/link-to}}
+  {{#bottom-nav}}
+    {{#link-to 'location'}}
+      <button class="btn btn-lg btn-primary">
+        {{i-fa icon="map-marker"}} Search for players around you!
+      </button>
+    {{/link-to}}
+  {{/bottom-nav}}
 </div>
