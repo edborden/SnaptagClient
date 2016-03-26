@@ -15,7 +15,8 @@
     {{/each}}
     {{#each zone.hunts as |hunt|}}
       {{#marker-layer lat=hunt.lat lng=hunt.lng}}
-        {{hunt.id}}
+        {{image-thumbnail model=hunt}}
+        {{hunt.detail}}
       {{/marker-layer}}
     {{/each}}
   {{/spider-layer}}

@@ -15,6 +15,7 @@ export default Model.extend({
   active: attr('boolean'),
 
   // associations
-  users: hasMany('user', { async: false })
+  users: hasMany('user', { async: false }),
+  hunts: hasMany('hunt', { async: false })
 
 });

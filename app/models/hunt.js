@@ -13,6 +13,7 @@ export default Model.extend({
   lng: attr('number'),
   completedAt: attr('string'),
   imageId: attr('string'),
+  detail: attr('string'),
 
   // computed
   @computed
