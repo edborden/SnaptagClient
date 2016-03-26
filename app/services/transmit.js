@@ -45,6 +45,7 @@ export default Service.extend({
 
     let shouldStartTransmitting = isTransmitting && isBlank(intervalID);
     if (shouldStartTransmitting) {
+      this.sendLocation();
       this.set('intervalID', this.setLocationInterval());
     }
 
