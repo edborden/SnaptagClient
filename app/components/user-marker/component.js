@@ -5,7 +5,7 @@ const UserMarker = L.Icon.extend({
 
   options: {
     iconSize: [65, 80],
-    popupAnchor: [1, -90]
+    popupAnchor: [1, -80]
   },
 
   initialize(options) {

@@ -7,12 +7,16 @@
   {{#spider-layer showCoverageOnHover=false disableClusteringAtZoom=15}}
     {{#each zone.users as |user|}}
       {{#user-marker user=user lat=user.location.lat lng=user.location.lng}}
-        {{small-button contentIndex=6 base=36 popoverContent="Snaptags" content=user.targetsFoundCount}}
-        {{profile-pic user=user size=36}}
-        <span class="description">
-          {{user.name}},<br>{{moment-from-now user.location.createdAt}}
-        </span>
+        {{profile-pic user=user size=20 banner=true face=true}}
+        <div class="user-popup">
+          {{user.name}}, {{moment-from-now user.location.createdAt}}
+        </div>
       {{/user-marker}}
+    {{/each}}
+    {{#each zone.hunts as |hunt|}}
+      {{#marker-layer lat=hunt.lat lng=hunt.lng}}
+        {{hunt.id}}
+      {{/marker-layer}}
     {{/each}}
   {{/spider-layer}}
 {{/each}}

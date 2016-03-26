@@ -4,7 +4,10 @@
 {{#spider-layer showCoverageOnHover=false disableClusteringAtZoom=15}}
   {{#each model as |location|}}
     {{#user-marker user=location.user lat=location.lat lng=location.lng}}
-      {{location.user.name}}, {{moment-from-now location.createdAt}}
+      {{profile-pic user=location.user size=20 banner=true face=true}}
+      <div class="user-popup">
+        {{location.user.name}}, {{moment-from-now location.createdAt}}
+      </div>
     {{/user-marker}}
   {{/each}}
 {{/spider-layer}}

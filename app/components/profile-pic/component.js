@@ -15,10 +15,12 @@ export default Component.extend({
   // attributes
   tagName: 'img',
   attributeBindings: [ 'src', 'style' ],
+  classNameBindings: [ 'banner' ],
   user: null,
   size: null,
   face: false,
   style: null,
+  banner: false,
 
   // computed
   @alias('user.facebookid') facebookid,
