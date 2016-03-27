@@ -16,10 +16,10 @@
     {{#each zone.hunts as |hunt|}}
       {{#marker-layer lat=hunt.lat lng=hunt.lng}}
         <div class="text-center">
-          {{#if hunt.image_id}}
+          {{#if hunt.imageId}}
             {{image-thumbnail model=hunt}}
           {{/if}}
-          <h5>{{hunt.detail}}</h5>
+          <h5>{{hunt.detail}}, {{moment-from-now hunt.completed_at}}</h5>
         </div>
       {{/marker-layer}}
     {{/each}}
