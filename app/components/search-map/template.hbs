@@ -15,8 +15,12 @@
     {{/each}}
     {{#each zone.hunts as |hunt|}}
       {{#marker-layer lat=hunt.lat lng=hunt.lng}}
-        {{image-thumbnail model=hunt}}
-        {{hunt.detail}}
+        <div class="text-center">
+          {{#if hunt.image_id}}
+            {{image-thumbnail model=hunt}}
+          {{/if}}
+          <h5>{{hunt.detail}}</h5>
+        </div>
       {{/marker-layer}}
     {{/each}}
   {{/spider-layer}}
