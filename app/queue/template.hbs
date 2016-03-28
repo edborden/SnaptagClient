@@ -1,3 +1,20 @@
 {{search-map model=model bounds=initialBounds initialCenter=center initialZoom=zoom}}
 
-{{queue-interface length=model.length}}
+{{#circle-button class="first" click=(action send "setModal" "me-interface" "partial" session.me)}}
+  {{#if session.me.unreadNotifications}}
+    {{overlay-circle top-right=true color='red' content=session.me.unreadNotifications.length}}
+  {{/if}}
+  {{profile-pic user=session.me size=15}}
+{{/circle-button}}
+
+{{#circle-button class="second" click=(action send "unjoin")}}
+  <div class="self-center">
+    {{i-fa icon="minus-square-o" size="2x"}}
+    <br>
+    <span class="small">Exit Queue</span>
+  </div>
+{{/circle-button}}
+
+{{#circle-button class="third" click=(action send 'setModal' 'queue-info' 'component' model)}}
+  {{i-fa icon="info" size="2x" class="self-center"}}
+{{/circle-button}}

@@ -1,24 +1,20 @@
 import Ember from 'ember';
-import MapInterface from '../map-interface/component';
 import { alias, equal } from 'ember-computed-decorators';
 import computed from 'ember-computed-decorators';
-import layout from '../queue-interface/template';
 
 const {
+  Component,
   inject: { service },
   isEqual
 } = Ember;
 
-export default MapInterface.extend({
+export default Component.extend({
 
   // services
   session: service(),
 
   // attributes
-  layout,
   model: null,
-  modal: 'info',
-  sendUnjoin: 'unjoin',
 
   // computed
   @alias('session.me') me,
@@ -38,13 +34,6 @@ export default MapInterface.extend({
   @computed('usersCount')
   playersTillStartCount() {
     return 4 - this.get('usersCount');
-  },
-
-  // actions
-  actions: {
-    unjoin() {
-      this.sendAction('sendUnjoin');
-    }
   }
 
 });
