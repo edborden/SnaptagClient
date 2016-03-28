@@ -3,3 +3,11 @@
 {{#if loader.show}}
   {{loader-screen}}
 {{/if}}
+{{#if modaler.show}}
+  {{auto-closer closer=true}}
+  {{#if modaler.component}}
+    {{component modaler.component model=modaler.model}}
+  {{else}}
+    {{partial modaler.partial}}
+  {{/if}}
+{{/if}}

@@ -20,6 +20,7 @@ export default Route.extend({
   realtime: service(),
   ajax: service(),
   keen: service(),
+  modaler: service(),
 
   // computed
   @alias('session.me') me,
@@ -31,6 +32,17 @@ export default Route.extend({
 
   // actions
   actions: {
+    closer() {
+      this.get('modaler').closer();
+    },
+    setModal(name, type) {
+      this.get('modaler').setModal(name, type);
+    },
+
+    closeModal() {
+      this.get('modaler').closeModal();
+    },
+
     error(error) {
       console.log(error);
       this.get('geolocation').init();

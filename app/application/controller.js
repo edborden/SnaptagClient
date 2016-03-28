@@ -8,6 +8,7 @@ const {
 export default Controller.extend({
 
   // services
-  loader: service()
+  loader: service(),
+  modaler: service()
 
 });

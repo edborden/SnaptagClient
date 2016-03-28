@@ -17,6 +17,7 @@ export default Component.extend({
   session: service(),
   transmit: service(),
   eventer: service(),
+  modaler: service(),
 
   // attributes
   modal: null,
@@ -61,16 +62,6 @@ export default Component.extend({
     }
   },
 
-  // events
-  init() {
-    this._super();
-    this.get('eventer').on('resetUI', this, this.sendToggle);
-  },
-
-  willDestroyElement() {
-    this.get('eventer').off('resetUI', this, this.sendToggle);
-  },
-
   sendToggle() {
     this.send('closeModal');
   },
@@ -78,17 +69,15 @@ export default Component.extend({
   // actions
   sendLogout: 'logout',
   sendExpose: 'expose',
+  setModal: 'setModal',
+  closeModal: 'closeModal',
 
   actions: {
-    closer() {
-      if (this.get('showPic')) {
-        this.send('closePic');
-      } else {
-        this.send('closeModal');
-      }
-    },
     closeModal() {
       this.set('modal', null);
+    },
+    setModal(name, type) {
+      this.sendAction('setModal', name, type);
     },
     me() {
       let hasUnreadNotifications = isPresent(this.get('me').get('unreadNotifications'));

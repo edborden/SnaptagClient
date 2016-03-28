@@ -13,6 +13,9 @@ export default MapInterface.extend(InfoHelpers, NoLocation, {
     login() {
       this.sendAction('sendLogin');
     },
+    setModal(name, type) {
+      this.sendAction('setModal', name, type);
+    },
     loginJoin() {
       this.sendAction('sendLoginJoin');
     }

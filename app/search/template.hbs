@@ -1,3 +1,21 @@
 {{search-map model=model bounds=initialBounds initialCenter=center initialZoom=zoom}}
 
-{{search-interface model=model}}
+{{#circle-button class="first" click=(action send "login")}}
+  <div class="self-center">
+    {{i-fa icon="facebook" size="2x" class="small"}}
+    <br>
+    <span class="small">Login</span>
+  </div>
+{{/circle-button}}
+
+{{#circle-button class="second" click=(action send "loginJoin")}}
+  <div class="self-center">
+    {{i-fa icon="camera" size="2x"}}
+    <br>
+    <span class="small">Join</span>
+  </div>
+{{/circle-button}}
+
+{{#circle-button class="third" click=(action send "setModal" "instructions" "partial")}}
+  {{i-fa icon="question" size="2x" class="self-center"}}
+{{/circle-button}}
