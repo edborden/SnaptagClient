@@ -50,6 +50,7 @@ export default Route.extend({
     },
 
     logout() {
+      this.send('closeModal');
       this.get('session').close();
       this.replaceWith('search');
       this.get('growler').growl(1);
