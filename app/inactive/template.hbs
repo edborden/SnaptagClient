@@ -1,3 +1,20 @@
 {{search-map model=model bounds=initialBounds initialCenter=center initialZoom=zoom}}
 
-{{inactive-interface model=model}}
+{{#circle-button class="first" click=(action send "setModal" "me-interface" "partial" session.me)}}
+  {{#if session.me.unreadNotifications}}
+    {{overlay-circle top-right=true color='red' content=session.me.unreadNotifications.length}}
+  {{/if}}
+  {{profile-pic user=session.me size=15}}
+{{/circle-button}}
+
+{{#circle-button class="second" click=(action send "join")}}
+  <div class="self-center">
+    {{i-fa icon="camera" size="2x"}}
+    <br>
+    <span class="small">Join</span>
+  </div>
+{{/circle-button}}
+
+{{#circle-button class="third" click=(action send 'setModal' 'inactive-info' 'component' model)}}
+  {{i-fa icon="info" size="2x" class="self-center"}}
+{{/circle-button}}

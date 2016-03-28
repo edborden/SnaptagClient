@@ -35,8 +35,8 @@ export default Route.extend({
     closer() {
       this.get('modaler').closer();
     },
-    setModal(name, type) {
-      this.get('modaler').setModal(name, type);
+    setModal(name, type, model) {
+      this.get('modaler').setModal(name, type, model);
     },
 
     closeModal() {

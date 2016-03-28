@@ -8,6 +8,8 @@
   {{#if modaler.component}}
     {{component modaler.component model=modaler.model}}
   {{else}}
-    {{partial modaler.partial}}
+    {{#with modaler.model as |model|}}
+      {{partial modaler.partial}}
+    {{/with}}
   {{/if}}
 {{/if}}

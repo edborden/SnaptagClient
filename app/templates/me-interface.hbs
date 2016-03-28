@@ -1,6 +1,8 @@
-{{#with me as |user|}}
-  {{partial 'common-buttons'}}
-{{/with}}
-{{small-button contentIndex=14 action=(action 'setModal' 'logout') icon="sign-out" iconColor="red"}}
-{{small-button contentIndex=11 action=(action 'setModal' 'notifications') overlayContent=me.unreadNotifications.length icon="file-text-o"}}
-{{small-button contentIndex=10 action=(action 'setModal' 'instructions') icon="question"}}
+{{#circle-interface}}
+  {{#with model as |user|}}
+    {{partial 'common-buttons'}}
+  {{/with}}
+  {{small-button contentIndex=14 click=(action send 'setModal' 'logout' 'partial') icon="sign-out" iconColor="red"}}
+  {{small-button contentIndex=11 click=(action send 'setModal' 'notifications-panel' 'partial' model) overlayContent=model.unreadNotifications.length icon="file-text-o"}}
+  {{small-button contentIndex=10 click=(action send 'setModal' 'instructions' 'partial') icon="question"}}
+{{/circle-interface}}

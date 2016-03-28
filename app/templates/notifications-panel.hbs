@@ -1,5 +1,5 @@
 {{#content-panel scrolling=true}}
-  {{#each me.notifications as |notification|}}
+  {{#each model.notifications as |notification|}}
     {{notification-box notification=notification}}
   {{else}}
     <div class="self-center text-center">

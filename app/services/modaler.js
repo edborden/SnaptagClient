@@ -8,7 +8,8 @@ export default Service.extend({
 
   // attributes
   show: false,
-  modal: null,
+  model: null,
+  component: null,
   partial: null,
 
   // helpers
@@ -20,9 +21,10 @@ export default Service.extend({
     }
   },
 
-  setModal(name, type) {
+  setModal(name, type, model) {
     this.set('show', true);
     this.set(type, name);
+    this.set('model', model);
   },
 
   closeModal() {

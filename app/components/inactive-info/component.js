@@ -1,14 +1,14 @@
 import Ember from 'ember';
 import { alias, equal } from 'ember-computed-decorators';
 import computed from 'ember-computed-decorators';
-import { locationInZone } from '../utils/geo-helpers';
+import { locationInZone } from '../../utils/geo-helpers';
 
 const {
-  Mixin,
+  Component,
   inject: { service }
 } = Ember;
 
-export default Mixin.create({
+export default Component.extend({
 
   // services
   geolocation: service(),
