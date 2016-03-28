@@ -18,7 +18,6 @@ export default Component.extend(Rotatable, {
   classNameBindings: [ 'target' ],
   suspect: null,
   activeSuspect: null,
-  action: 'suspectClicked',
 
   // computed
   @alias('suspect.isTarget') target,
@@ -39,10 +38,6 @@ export default Component.extend(Rotatable, {
   circleDim() {
     let vw = this.get('vw');
     return 19 * vw / 2;
-  },
-
-  click() {
-    this.sendAction('action', this.get('suspect'));
   }
 
 });

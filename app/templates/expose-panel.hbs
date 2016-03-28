@@ -1,0 +1,7 @@
+{{#content-panel}}
+  <h2>Counter-Tag!</h2>
+  <p>Is something suspicious about {{model.name}}? If you think they are looking for you and you're willing to bet your spot in the game on it, press the button below. You'd better be sure -- this happens instantaneously and is non-reversible!</p>
+  <p class="text-center">
+    <button class="btn btn-primary circle"{{action send 'expose' model}}>{{i-fa icon='eye' size='2x'}}</button>
+  </p>
+{{/content-panel}}

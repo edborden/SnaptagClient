@@ -15,7 +15,6 @@ export default Service.extend({
   store: service(),
   loader: service(),
   routing: service('-routing'),
-  eventer: service(),
 
   // computed
   @alias('session.me') me,
@@ -29,7 +28,6 @@ export default Service.extend({
     let growler = this.get('growler');
     let realtime = this.get('realtime');
     let store = this.get('store');
-    let eventer = this.get('eventer');
     let user;
     let location;
     let target;

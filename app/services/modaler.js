@@ -22,6 +22,7 @@ export default Service.extend({
   },
 
   setModal(name, type, model) {
+    this.closeModal();
     this.set('show', true);
     this.set(type, name);
     this.set('model', model);

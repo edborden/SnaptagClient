@@ -6,7 +6,7 @@
 {{#if modaler.show}}
   {{auto-closer closer=true}}
   {{#if modaler.component}}
-    {{component modaler.component model=modaler.model}}
+    {{component modaler.component model=modaler.model setModal=(action send 'setModal') closeModal=(action send 'closeModal')}}
   {{else}}
     {{#with modaler.model as |model|}}
       {{partial modaler.partial}}

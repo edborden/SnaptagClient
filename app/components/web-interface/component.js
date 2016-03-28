@@ -1,16 +1,15 @@
 import Ember from 'ember';
-import MapInterface from '../map-interface/component';
-import layout from '../active-interface/template';
 /* global cloudinary */
 
 const {
-  isPresent
+  isPresent,
+  Component,
+  inject: { service }
 } = Ember;
 
-export default MapInterface.extend({
+export default Component.extend({
 
-  layout,
-
+  session: service(),
   sendFound: 'found',
   actions: {
 
@@ -31,7 +30,7 @@ export default MapInterface.extend({
           this.send('found', result[0].public_id);
         }
       });
-    }
+    },
   }
 
 });

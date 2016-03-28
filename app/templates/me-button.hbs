@@ -1,0 +1,6 @@
+{{#circle-button class="first" click=(action send "setModal" "me-interface" "partial" session.me)}}
+  {{#if session.me.unreadNotifications}}
+    {{overlay-circle top-right=true color='red' content=session.me.unreadNotifications.length}}
+  {{/if}}
+  {{profile-pic user=session.me size=15}}
+{{/circle-button}}

@@ -1,2 +1,7 @@
 {{active-map bounds=initialBounds initialCenter=center initialZoom=zoom model=model}}
-{{active-interface}}
+
+{{partial 'me-button'}}
+
+{{#circle-button class="second" click=(action send "setModal" "web-interface" "partial")}}
+  {{i-fa icon="users" size="2x" class="self-center"}}
+{{/circle-button}}

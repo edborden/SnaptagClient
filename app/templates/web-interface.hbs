@@ -1,0 +1,19 @@
+{{#circle-interface}}
+  {{#each session.me.suspects as |suspect index|}}
+    {{suspect-container suspect=suspect activeSuspect=activeSuspect contentIndex=index click=(action set 'activeSuspect' suspect)}}
+  {{/each}}
+
+  {{#if activeSuspect}}
+    {{suspect-text content=activeSuspect.name}}
+
+    {{#with activeSuspect as |user|}}
+      {{partial 'common-buttons'}}
+    {{/with}}
+
+    {{small-button inside=true contentIndex=13 class="red" click=(action send 'setModal' 'expose-panel' 'partial' activeSuspect) icon="eye"}}
+
+    {{#if activeSuspect.isTarget}}      
+      {{small-button inside=true contentIndex=15 class="red" click=(action send 'setModal' 'found-panel' 'component' activeSuspect) icon="camera"}}
+    {{/if}}
+  {{/if}}
+{{/circle-interface}}

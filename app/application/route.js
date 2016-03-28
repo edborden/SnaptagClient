@@ -85,6 +85,7 @@ export default Route.extend({
 
     found(target, imageId) {
       // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+      this.send('closeModal');
       this.get('keen').addEvent('found', target.getProperties('id', 'name', 'email'));
       this.get('loader').in();
       this.get('ajax').getServer('actions/found_target', {
@@ -95,6 +96,7 @@ export default Route.extend({
 
     expose(suspect) {
       // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+      this.send('closeModal');
       this.get('keen').addEvent('expose', suspect.getProperties('id', 'name', 'email'));
       this.get('loader').in();
       this.get('ajax').getServer('actions/expose', { stalker_id: suspect.get('id') });
