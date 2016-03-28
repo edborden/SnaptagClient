@@ -29,7 +29,7 @@ export default Component.extend({
           this.send('found', result[0].public_id);
         }
       });
-    },
+    }
   }
 
 });

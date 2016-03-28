@@ -33,5 +33,5 @@ export default Service.extend({
     this.set('component', null);
     this.set('partial', null);
   }
-  
+
 });
