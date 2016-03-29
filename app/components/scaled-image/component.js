@@ -29,7 +29,7 @@ export default AutoCloser.extend({
 
   @computed
   src() {
-    let imageId = this.imageId;
+    let { imageId } = this;
     let sizePx = this.get('sizePx');
     let widthPx;
     let heightPx;
@@ -42,7 +42,7 @@ export default AutoCloser.extend({
       heightPx = sizePx;
       widthPx = sizePx;
     }
-    return `https://res.cloudinary.com/dtmsz8kse/image/upload/c_limit,w_${widthPx},h_${heightPx}/${imageId}.jpg`
+    return `https://res.cloudinary.com/dtmsz8kse/image/upload/c_limit,w_${widthPx},h_${heightPx}/${imageId}.jpg`;
   }
 
 });
