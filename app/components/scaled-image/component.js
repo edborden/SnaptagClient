@@ -1,12 +1,12 @@
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
+import AutoCloser from '../auto-closer/component';
 
 const {
-  Component,
   inject: { service }
 } = Ember;
 
-export default Component.extend({
+export default AutoCloser.extend({
 
   // services
   screen: service(),
@@ -23,12 +23,7 @@ export default Component.extend({
   @computed('screen.width')
   sizePx() {
     let screenWidth = this.get('screen').get('width');
-    let sizePx;
-    if (this.max) {
-      sizePx = screenWidth;
-    } else {
-      sizePx = this.size * (screenWidth / 100);
-    }
+    let sizePx = this.size * (screenWidth / 100);
     return Math.round(sizePx);
   },
 
@@ -36,7 +31,18 @@ export default Component.extend({
   src() {
     let imageId = this.imageId;
     let sizePx = this.get('sizePx');
-    return `https://res.cloudinary.com/dtmsz8kse/image/upload/c_limit,w_${sizePx},h_${sizePx}/${imageId}.jpg`
+    let widthPx;
+    let heightPx;
+    if (this.max) {
+      let screen = this.get('screen');
+      heightPx = screen.get('height');
+      widthPx = screen.get('width');
+    } else {
+      sizePx = this.get('sizePx');
+      heightPx = sizePx;
+      widthPx = sizePx;
+    }
+    return `https://res.cloudinary.com/dtmsz8kse/image/upload/c_limit,w_${widthPx},h_${heightPx}/${imageId}.jpg`
   }
 
 });

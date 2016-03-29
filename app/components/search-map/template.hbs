@@ -15,7 +15,7 @@
       {{#marker-layer lat=hunt.lat lng=hunt.lng}}
         <div class="text-center">
           {{#if hunt.imageId}}
-            {{scaled-image imageId=hunt.imageId sizePx=100}}
+            {{scaled-image imageId=hunt.imageId sizePx=100 click=(action setModal "lightbox-image" "partial" hunt)}}
           {{/if}}
           <h5>{{hunt.detail}}, {{moment-from-now hunt.completedAt}}</h5>
         </div>

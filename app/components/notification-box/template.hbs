@@ -6,6 +6,6 @@
 <div class="body">
 	<p>{{notification.body}}</p>
   {{#if notification.hunt}}
-    {{scaled-image imageId=notification.hunt.imageId sizePx=100 class="inline"}}
+    {{scaled-image imageId=notification.hunt.imageId sizePx=100 class="inline" click=(action setModal "lightbox-image" "partial" notification.hunt)}}
   {{/if}}
 </div>

@@ -1,6 +1,6 @@
 {{#content-panel scrolling=true}}
   {{#each model.notifications as |notification|}}
-    {{notification-box notification=notification}}
+    {{notification-box notification=notification setModal=(action send 'setModal')}}
   {{else}}
     <div class="self-center text-center">
         {{i-fa icon="folder-o" size="3x"}}
