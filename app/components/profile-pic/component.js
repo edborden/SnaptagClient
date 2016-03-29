@@ -1,35 +1,27 @@
 import Ember from 'ember';
 import computed from 'ember-computed-decorators';
 import { alias } from 'ember-computed-decorators';
+import ScaledImage from '../scaled-image/component';
 
 const {
-  Component,
   inject: { service }
 } = Ember;
 
-export default Component.extend({
+export default ScaledImage.extend({
 
   // services
   screen: service(),
 
   // attributes
-  tagName: 'img',
-  attributeBindings: [ 'src', 'style' ],
+  attributeBindings: [ 'style' ],
   classNameBindings: [ 'banner' ],
   user: null,
-  size: null,
   face: false,
   style: null,
   banner: false,
 
   // computed
   @alias('user.facebookid') facebookid,
-
-  @computed('screen.width')
-  sizePx() {
-    let sizePx = this.get('size') * (this.get('screen').get('width') / 100);
-    return Math.round(sizePx);
-  },
 
   @computed('facebookid')
   src() {
