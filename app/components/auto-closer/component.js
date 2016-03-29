@@ -13,7 +13,6 @@ export default Component.extend({
     if (this.get('closer')) {
       this.sendAction();
     }
-    return false;
   }
 
 });
