@@ -1,4 +1,3 @@
-import computed from 'ember-computed-decorators';
 import DS from 'ember-data';
 
 const {
@@ -13,17 +12,6 @@ export default Model.extend({
   lng: attr('number'),
   completedAt: attr('string'),
   imageId: attr('string'),
-  detail: attr('string'),
-
-  // computed
-  @computed
-  msrc() {
-    return `https://res.cloudinary.com/dtmsz8kse/image/upload/c_limit,w_250,h_100/${this.get('imageId')}.jpg`;
-  },
-
-  @computed
-  src() {
-    return `https://res.cloudinary.com/dtmsz8kse/image/upload/${this.get('imageId')}.jpg`;
-  }
+  detail: attr('string')
 
 });

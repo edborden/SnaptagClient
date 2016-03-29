@@ -15,7 +15,7 @@
       {{#marker-layer lat=hunt.lat lng=hunt.lng}}
         <div class="text-center">
           {{#if hunt.imageId}}
-            {{image-thumbnail model=hunt}}
+            {{scaled-image imageId=hunt.imageId sizePx=100}}
           {{/if}}
           <h5>{{hunt.detail}}, {{moment-from-now hunt.completedAt}}</h5>
         </div>

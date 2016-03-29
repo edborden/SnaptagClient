@@ -1,4 +1,4 @@
-{{search-map model=model bounds=initialBounds initialCenter=center initialZoom=zoom}}
+{{search-map model=model bounds=initialBounds initialCenter=center initialZoom=zoom setModal=(action send 'setModal')}}
 
 {{#circle-button class="first" click=(action send "login")}}
   <div class="self-center">

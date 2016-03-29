@@ -6,6 +6,6 @@
 <div class="body">
 	<p>{{notification.body}}</p>
   {{#if notification.hunt}}
-    {{image-thumbnail model=notification.hunt}}
+    {{scaled-image imageId=notification.hunt.imageId sizePx=100 class="inline"}}
   {{/if}}
 </div>
