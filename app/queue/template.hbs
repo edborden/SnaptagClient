@@ -2,14 +2,6 @@
 
 {{partial 'me-button'}}
 
-{{#circle-button class="second" click=(action send "unjoin")}}
-  <div class="self-center">
-    {{i-fa icon="minus-square-o" size="2x"}}
-    <br>
-    <span class="small">Exit Queue</span>
-  </div>
-{{/circle-button}}
+{{circle-button class="second" click=(action send "unjoin") text="Exit Queue"}}
 
-{{#circle-button class="third" click=(action send 'setModal' 'queue-info' 'component' model)}}
-  {{i-fa icon="info" size="2x" class="self-center"}}
-{{/circle-button}}
+{{partial "info-button"}}
