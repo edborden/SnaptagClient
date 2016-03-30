@@ -17,7 +17,7 @@ export function padBounds(bounds) {
   if (padding > 1) {
     return bounds.pad(padding);
   } else {
-    return bounds;    
+    return bounds;
   }
 };
 
