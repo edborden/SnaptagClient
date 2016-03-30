@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { calculateBounds, toLeaflet } from 'snaptag-client/utils/leaflet-helpers';
+import { calculateBoundsWithMinimum, toLeaflet } from 'snaptag-client/utils/leaflet-helpers';
 
 const {
   Mixin,
@@ -20,18 +20,20 @@ export default Mixin.create({
 
   setupController(controller, model) {
     this._super(controller, model);
+    let myLocation = this.get('geolocation').getEmberObject();
     let boundsArray;
     if (isPresent(model)) {
-      // this will need to be adjusted to show multiple zones, only picking the first zone right now
-      controller.set('center', toLeaflet(model.get('firstObject')));
-      controller.set('zoom', 12);
-    } else {
-      // need to handle no model
-      let defaultNYC = new Ember.Object({
-        lat: 40.7127,
-        lng: -74.0058
+      boundsArray = model.getEach('users').map(function(usersArray) {
+        return usersArray.getEach('location');
       });
-      controller.set('center', toLeaflet(defaultNYC));
+      // this will need to be adjusted to show multiple zones, only picking the first zone right now
+      boundsArray = boundsArray.get('firstObject');
+    }
+    if (isPresent(boundsArray)) {
+      boundsArray.pushObject(myLocation);
+      controller.set('initialBounds', calculateBoundsWithMinimum(boundsArray));
+    } else {
+      controller.set('center', toLeaflet(myLocation));
       controller.set('zoom', 12);
     }
   }
